@@ -1,0 +1,61 @@
+body {
+  width: 100%;
+  background: black image_url('bg-image.png') no-repeat -238px -521px;
+}
+#content {
+  width: 960px;
+  height: 900px;
+  margin: 0px auto;
+}
+#about, #signup {
+  color: #F6F3F3;
+  font-family: "Baskerville","Georgia", serif;
+}
+#about {
+  line-height: 35px;
+  font-size: 35px;
+  position: relative;
+  left: 100px;
+  top: 215px;
+}
+#about {
+  .we { padding-left: 46px; }
+  .line1{ padding-left: 198px; }
+  .line2{ padding-left: 100px; }
+  .line3{ padding-left: 250px; }
+}
+#signup {
+  margin-left: 25px;
+  position: absolute;
+  top: 500px;
+
+  label {
+    font-size: 22px;
+  }
+  .fineprint {
+    width: 300px;
+  }
+  input.email {
+    border-radius: 8px;
+    border-color: #B7F1DB;
+    background-color: #B7F1DB;
+    font-size: 24px;
+    color: #614D4D;
+    font-size: 22px;
+    padding: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  input.submit {
+    font-size: 22px;
+    padding: 5px;
+  }
+}
+#logo {
+  width: 559px;
+  height: 108px;
+  background: transparent image_url('logo.png') no-repeat 0 0;
+}
+#contact {
+  color: #e6dfdf;
+}
