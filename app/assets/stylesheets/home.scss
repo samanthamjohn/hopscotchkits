@@ -35,7 +35,7 @@ body {
   .fineprint {
     width: 300px;
   }
-  input.email {
+  input#signup_email {
     border-radius: 8px;
     border-color: #B7F1DB;
     background-color: #B7F1DB;
@@ -46,7 +46,7 @@ body {
     margin-top: 15px;
     margin-bottom: 15px;
   }
-  input.submit {
+  input[type='submit'] {
     font-size: 22px;
     padding: 5px;
   }

@@ -8,10 +8,9 @@
   #signup
     label
       |sign up for pre-release versions and updates
-    form action="https://docs.google.com/spreadsheet/formResponse?formkey=dE5uREFwbkYxOWZNNGVieEhVZGdwd1E6MQ&amp;embedded=true&amp;ifq" method="POST" id="ss-form"
-    input type="text" name="entry.0.single" value="" class="email" id="entry_0"
-    input type="hidden" name="pageNumber" value="0"
-    input type="hidden" name="backupCache" value=""
-    input type="submit" name="submit" value="Submit"
+    = form_for Signup.new(source: "homepage") do |f|
+      = f.hidden_field :source
+      = f.text_field :email
+      = f.submit "Submit"
     .fineprint (We will not share your email with anyone or use it for anything other than updates abour out beta release, scout&rsquo;s honor.)
     #contact email us: info@gethopscotch.com
