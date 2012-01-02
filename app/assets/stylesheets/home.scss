@@ -1,7 +1,10 @@
 body {
   width: 100%;
-  background: black image_url('bg-image.png') no-repeat -238px -521px;
   font-family: sans-serif;
+}
+
+body.homepage {
+  background: black image_url('bg-image.png') no-repeat -238px -521px;
 }
 #content {
   width: 960px;

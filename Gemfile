@@ -1,7 +1,8 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.1.rc1'
-gem 'slim'
+gem 'simple_form'
+gem 'slim-rails'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -20,6 +21,7 @@ end
 
 group :development, :test do
   gem 'foreman'
+  gem "rspec-rails"
   gem 'sqlite3'
   gem 'mongrel', '1.2.0.pre2'
 end
@@ -39,6 +41,5 @@ gem 'jquery-rails'
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 group :test do
-  gem "rspec-rails"
   gem "shoulda-matchers"
 end
