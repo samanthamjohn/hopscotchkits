@@ -1,5 +1,6 @@
 require 'spec_helper'
 
 describe Kit do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { Kit.create(slug: "foo"); should validate_uniqueness_of :slug}
+  it { should validate_presence_of :slug}
 end

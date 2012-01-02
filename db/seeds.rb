@@ -6,8 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Kit.create(
-  name: "Tic-Tac-Toe",
-  slug: "tic-tac-toe",
-  description: "Welcome to the Tic-Tac-Toe Kit by Hopscotch. We'll teach you step-by-step how to make your own Tic-Tac-Toe game you can play with your friends online. Afterwards you can share it with the world to show everyone what an awesome computer programmer you are."
-)
+unless Kit.find_by_slug("tic-tac-toe")
+  Kit.create(
+    name: "Tic-Tac-Toe",
+    slug: "tic-tac-toe",
+    description: "Welcome to the Tic-Tac-Toe Kit by Hopscotch. We'll teach you step-by-step how to make your own Tic-Tac-Toe game you can play with your friends online. Afterwards you can share it with the world to show everyone what an awesome computer programmer you are."
+  )
+end
