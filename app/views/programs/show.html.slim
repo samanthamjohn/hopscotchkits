@@ -1,2 +1,18 @@
+coffee:
+  window.showSuccessDialog = (x) ->
+    if x()
+      parent.$("#success").dialog(
+        modal: true
+        buttons:
+          "Ready for more? Let's go!": ->
+            parent.$(this).dialog("close")
+            parent.$("#next_form form").bind("ajax:success", ->
+              parent.window.location.href=parent.window.location.href
+            )
+            parent.$('#next_form form').submit()
+      )
+
 script type="text/coffeescript"
-  = raw(@program.code)
+  = raw("#{raw(@program.code)}\n")
+  = raw("\nx = #{raw(@program.current_step.spec)}\n")
+  | window.showSuccessDialog(x)
