@@ -14,4 +14,16 @@ class ProgramsController < ApplicationController
   def edit
     @program = Program.where("lower(name) = ?",params[:id]).first
   end
+
+  def update
+    @program = Program.where("lower(name) = ?",params[:id]).first
+    @program.update_attributes(params[:program])
+    head :ok
+  end
+
+  def show
+    @program = Program.where("lower(name) = ?",params[:id]).first
+    render "show", layout: 'code'
+  end
+
 end

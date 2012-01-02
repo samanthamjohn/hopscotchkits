@@ -1,3 +1,14 @@
-// Place all the styles related to the programs controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+form {
+  float: left;
+  textarea {
+    font-size: 20px;
+  }
+}
+#stage {
+  float: left;
+  padding-left: 20px;
+  iframe {
+    height: 400px;
+    width: 400px;
+  }
+}

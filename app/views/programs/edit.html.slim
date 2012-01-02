@@ -1,1 +1,4 @@
-= "Welcome #{@program.name}"
+= simple_form_for [@program.kit, @program], remote: true do |f|
+  = f.input :code, label: false, placeholder: "Code goes here.."
+  = f.submit value: "run this"
+div id='stage'

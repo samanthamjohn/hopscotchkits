@@ -31,4 +31,24 @@ describe ProgramsController do
     end
   end
 
+  describe "#update" do
+    it "should update the program" do
+      kit = Kit.create(slug: "foo")
+      program = Program.create(kit: kit, name: "Evan")
+      post :update, kit_id: kit.to_param, id: program.to_param, program: {code: "var x = 3;"}
+      assigns(:program).code.should == "var x = 3;"
+    end
+  end
+
+  describe "#show" do
+    it "should show the code with the code layout" do
+      kit = Kit.create(slug: "foo")
+      program = Program.create(kit: kit, name: "Evan")
+      get :show, kit_id: "foo", id: "evan"
+      response.should render_template("show")
+      response.should render_template("layouts/code")
+      assigns(:program).should == program
+    end
+  end
+
 end
