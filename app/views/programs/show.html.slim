@@ -1,20 +1,24 @@
 - unless params[:test]
-  div id="fb-root"
-    javascript:
-      (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=302381466471406";
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));</script>
+  - if @current_user == @program.user
+    div id="fb-root"
+      javascript:
+        (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=302381466471406";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
 
-  div class="fb-like" data-href="#{kit_program_url(@program.kit, @program)}" data-send="false" data-width="450" data-show-faces="true" data-font="arial"
+    div class='advert'
+      div class="fb-like" data-href="#{kit_program_url(@program.kit, @program)}" data-send="false" data-width="450" data-show-faces="true" data-font="arial"
+  - else
+    div class='advert'= link_to "Make your own!", new_kit_program_path(@program.kit)
 
 coffee:
   window.showSuccessDialog = (x) ->
     if x()
-      if parent.$("next_form form").length > 0
+      if parent.$("#next_form form").length > 0
         buttons = "Ready for more? Let's go!": -> 
           parent.$(this).dialog("close")
           parent.$("#next_form form").bind("ajax:success", ->

@@ -1,11 +1,14 @@
 class Program < ActiveRecord::Base
   belongs_to :kit
   belongs_to :current_step, foreign_key: :step_id, class_name: "Step"
+  belongs_to :user
+  validates :user, presence: true
+  accepts_nested_attributes_for :user
 
   before_create :set_current_step
 
   def to_param
-    self.name.downcase
+    self.user.slug
   end
 
   def next_step

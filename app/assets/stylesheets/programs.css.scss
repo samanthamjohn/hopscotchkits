@@ -17,7 +17,11 @@ form {
   display: none;
 }
 
-.fb-like {
+.advert {
+  a {
+    color: black;
+    text-decoration: none;
+  }
   float: right;
   background: white;
   border-radius: 10px;

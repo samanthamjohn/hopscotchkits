@@ -14,9 +14,9 @@ describe ProgramsController do
   describe "#create" do
     it "should set the name" do
       kit = Kit.create(slug: "foo")
-      post :create, kit_id: kit.to_param, program: { kit_id: kit.id, name: "Evan"}
+      post :create, kit_id: kit.to_param, program: { kit_id: kit.id, user_attributes: {name: "Evan"} }
       program = Program.last
-      program.name.should == "Evan"
+      program.user.name.should == "Evan"
       response.should redirect_to edit_kit_program_path(kit, program)
     end
   end
@@ -24,7 +24,7 @@ describe ProgramsController do
   describe "#edit" do
     it "should render the edit template" do
       kit = Kit.create(slug: "foo")
-      program = Program.create(kit: kit, name: "Evan")
+      program = Program.create(kit: kit, user_attributes: {name: "Evan"})
       get :edit, kit_id: kit.to_param, id: program.to_param
       assigns(:program).should == program
       response.should be_success
@@ -34,7 +34,7 @@ describe ProgramsController do
   describe "#update" do
     it "should update the program" do
       kit = Kit.create(slug: "foo")
-      program = Program.create(kit: kit, name: "Evan")
+      program = Program.create(kit: kit, user_attributes: { name: "Evan" })
       post :update, kit_id: kit.to_param, id: program.to_param, program: {code: "var x = 3;"}
       assigns(:program).code.should == "var x = 3;"
     end
@@ -43,8 +43,8 @@ describe ProgramsController do
   describe "#show" do
     it "should show the code with the code layout" do
       kit = Kit.create(slug: "foo")
-      program = Program.create(kit: kit, name: "Evan")
-      get :show, kit_id: "foo", id: "evan"
+      program = Program.create(kit: kit, user_attributes: { name: "Evan" })
+      get :show, kit_id: "foo", id: program.to_param
       response.should render_template("show")
       response.should render_template("layouts/code")
       assigns(:program).should == program
