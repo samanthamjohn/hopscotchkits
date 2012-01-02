@@ -1,15 +1,20 @@
 coffee:
   window.showSuccessDialog = (x) ->
     if x()
+      if parent.$("next_form form").length > 0
+        buttons = "Ready for more? Let's go!": -> 
+          parent.$(this).dialog("close")
+          parent.$("#next_form form").bind("ajax:success", ->
+            parent.window.location.href=parent.window.location.href
+          )
+          parent.$('#next_form form').submit()
+      else
+        buttons = "Let's try it out!": ->
+          parent.$(this).dialog("close")
+          parent.window.location.href = parent.$('#ide form').attr('action')
       parent.$("#success").dialog(
         modal: true
-        buttons:
-          "Ready for more? Let's go!": ->
-            parent.$(this).dialog("close")
-            parent.$("#next_form form").bind("ajax:success", ->
-              parent.window.location.href=parent.window.location.href
-            )
-            parent.$('#next_form form').submit()
+        buttons: buttons
       )
 
 script type="text/coffeescript"
