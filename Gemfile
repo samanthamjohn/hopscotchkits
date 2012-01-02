@@ -21,6 +21,7 @@ end
 group :development, :test do
   gem 'foreman'
   gem 'sqlite3'
+  gem 'mongrel', '1.2.0.pre2'
 end
 
 gem 'jquery-rails'
