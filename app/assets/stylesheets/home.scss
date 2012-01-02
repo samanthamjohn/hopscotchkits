@@ -1,6 +1,7 @@
 body {
   width: 100%;
   background: black image_url('bg-image.png') no-repeat -238px -521px;
+  font-family: sans-serif;
 }
 #content {
   width: 960px;
@@ -26,8 +27,8 @@ body {
 }
 #signup {
   margin-left: 25px;
-  position: absolute;
-  top: 500px;
+  position: relative;
+  top: 300px;
 
   label {
     font-size: 22px;
@@ -49,6 +50,45 @@ body {
   input[type='submit'] {
     font-size: 22px;
     padding: 5px;
+  }
+}
+
+.app-group {
+  position: relative;
+  overflow: hidden;
+  top: 120px;
+  left: 510px;
+  width: 410px;
+  a {
+    color: black;
+    text-decoration: none;
+  }
+  #get_daisy {
+    float: left;
+    border-radius: 24px;
+    overflow: hidden;
+    width: 175px;
+    height: 175px;
+  }
+  #get_app {
+    float: left;
+    margin: 10px;
+    padding: 15px 10px;
+    background: #F8CA00;
+    border-radius: 10px;
+    font-size: 17px;
+    display: inline-block;
+  }
+  #get_appstore {
+    margin: 10px;
+    width: 200px;
+    height: 65px;
+    overflow: hidden;
+    border-radius: 10px;
+    float: left;
+    img {
+      margin-top: -5px;
+    }
   }
 }
 
