@@ -4,7 +4,7 @@ body.homepage {
 
 #about, #signup {
   color: #F6F3F3;
-  font-family: "Baskerville","Georgia", serif;
+  font-family: "Nilland", "Baskerville","Georgia", serif;
 }
 #about {
   line-height: 35px;
@@ -14,11 +14,11 @@ body.homepage {
   .line1{ padding-left: 198px; }
   .line2{ padding-left: 100px; }
   .line3{ padding-left: 250px; }
-  #logo {
-    width: 559px;
-    height: 108px;
-    background: transparent image_url('logo.png') no-repeat 0 0;
-  }
+}
+#logo {
+  width: 559px;
+  height: 108px;
+  background: transparent image_url('logo.png') no-repeat 0 0;
 }
 #signup {
   margin-left: 25px;

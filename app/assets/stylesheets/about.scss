@@ -1,0 +1,61 @@
+body.about {
+  background: #424242 image_url("background.png") right 0 no-repeat;
+
+  #title {
+    color: white;
+    font-size: 36px;
+    font-family: "Nilland", "Baskerville","Georgia", serif;
+    float: left;
+    margin: 100px 25px 30px;
+  }
+
+  #logo_small {
+    background: transparent image_url("logo-small.png") 0 0 no-repeat;
+    width: 231px;
+    height: 57px;
+    float: right;
+    margin: 20px 100px;
+  }
+
+  p {
+    color: white;
+    clear: both;
+    font-size: 18px;
+    margin: 20px 25px;
+    width: 800px;
+    line-height: 22px;
+  }
+
+  #team {
+    img {
+      width: 700px;
+      float: left;
+      margin-left: 25px;
+      border-radius: 15px;
+    }
+
+    span {
+      float: left;
+      color: white;
+      margin-top: 10px;
+      line-height: 20px;
+      a {
+        color: white;
+        text-decoration: none;
+        &:hover {
+          color: #c5d497;
+        }
+      }
+      &#evan {
+        margin-left: 57px;
+        clear: left;
+      }
+      &#jocelyn {
+        margin-left: 170px;
+      }
+      &#samantha {
+        margin-left: 150px;
+      }
+    }
+  }
+}
