@@ -8,5 +8,7 @@ Hopscotch::Application.routes.draw do
     resources :programs
   end
   match "about", to: "welcome#about", as: "about"
+  match "products", to: "welcome#products", as: "products"
+  match "/products/:name", to: "welcome#product_detail", as: "product_detail"
   root :to => 'welcome#index'
 end

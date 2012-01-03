@@ -1,6 +1,7 @@
 .more-games {
   width: 800px;
-  float: right;
+  float: left;
+  color: white;
 }
 .game {
   width: 260px;
