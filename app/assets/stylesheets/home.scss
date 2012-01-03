@@ -16,9 +16,12 @@ body.homepage {
   .line3{ padding-left: 250px; }
 }
 #logo {
+  font-family: "NillandBlackRegular", "Baskerville","Georgia", serif;
+  font-size: 113px;
+  padding-top: 20px;
+  color:  #c5d497;
   width: 559px;
   height: 108px;
-  background: transparent image_url('logo.png') no-repeat 0 0;
 }
 #signup {
   margin-left: 25px;

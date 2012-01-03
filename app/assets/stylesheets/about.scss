@@ -4,15 +4,15 @@ body.about {
   #title {
     color: white;
     font-size: 36px;
-    font-family: "Nilland", "Baskerville","Georgia", serif;
+    font-family: "NillandBlackRegular", "Baskerville","Georgia", serif;
     float: left;
     margin: 100px 25px 30px;
   }
 
   #logo_small {
-    background: transparent image_url("logo-small.png") 0 0 no-repeat;
-    width: 231px;
-    height: 57px;
+    font-family: "NillandBlackRegular", "Baskerville","Georgia", serif;
+    font-size: 48px;
+    color:  #c5d497;
     float: right;
     margin: 20px 100px;
   }
