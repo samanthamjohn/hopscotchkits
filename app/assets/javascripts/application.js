@@ -7,6 +7,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require raphael
+//= require underscore
 //= require coffee-script
 //= require_self
 //= require_tree .

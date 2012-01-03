@@ -4,6 +4,7 @@ gem 'cancan'
 gem 'rails', '3.1.1.rc1'
 gem 'simple_form'
 gem 'slim-rails'
+gem 'underscore-rails'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
