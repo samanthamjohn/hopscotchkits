@@ -5,11 +5,7 @@
   .line2 focused on teaching kids
   .line3 to program.
 #signup
-  = form_for Signup.new(source: "homepage") do |f|
-    = f.hidden_field :source
-    = f.label :email, "sign up for pre-release versions and updates"
-    = f.text_field :email
-    = f.submit "Submit"
+  = render "welcome/email", source: "homepage"
   .fineprint (We will not share your email with anyone or use it for anything other than updates abour out beta release, scout&rsquo;s honor.)
   #contact email us: info@gethopscotch.com
 .app-background

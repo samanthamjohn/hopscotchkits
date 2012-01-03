@@ -24,28 +24,8 @@ body.homepage {
   margin-left: 25px;
   margin-top: 60px;
   float: left;
-
-  label {
-    display: block;
-    font-size: 22px;
-  }
   .fineprint {
     width: 300px;
-  }
-  input#signup_email {
-    border-radius: 8px;
-    border-color: #B7F1DB;
-    background-color: #B7F1DB;
-    font-size: 24px;
-    color: #614D4D;
-    font-size: 22px;
-    padding: 5px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-  }
-  input[type='submit'] {
-    font-size: 22px;
-    padding: 5px;
   }
 }
 

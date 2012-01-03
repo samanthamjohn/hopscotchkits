@@ -1,0 +1,5 @@
+= form_for Signup.new(source: source) do |f|
+  = f.hidden_field :source
+  = f.label :email, "sign up for pre-release versions and updates"
+  = f.text_field :email
+  = f.submit "Submit"
