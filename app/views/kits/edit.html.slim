@@ -7,6 +7,7 @@ ul
         p= step.position
         p= step.description
         p= link_to "Edit", "#", id: step.id, class: "edit-link"
+        p= link_to "Delete", step_path(step), method: "delete"
       div class='edit-step hidden' id="edit_#{step.id}"
         = simple_form_for step do |f|
           = f.hidden_field :kit_id

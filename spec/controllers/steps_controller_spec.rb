@@ -26,4 +26,14 @@ describe StepsController do
     end
   end
 
+  describe "destroy" do
+    it "should delete the step and redirect to the kit" do
+      kit = Kit.create!(slug: "Fool")
+      step = Step.create!(kit_id: kit.id)
+      delete :destroy, id: step.id
+      response.should redirect_to edit_kit_path(kit)
+      lambda { step.reload }.should raise_error(ActiveRecord::RecordNotFound)
+    end
+  end
+
 end

@@ -10,4 +10,9 @@ class StepsController < ApplicationController
     Step.create(params[:step])
     redirect_to edit_kit_path(@step.kit)
   end
+
+  def destroy
+    @step.destroy
+    redirect_to edit_kit_path(@step.kit)
+  end
 end
