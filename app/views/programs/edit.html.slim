@@ -1,19 +1,24 @@
-div
-  p= "Step #{@program.current_step.position} of #{@program.kit.steps.count}"
-  p
-    = @program.current_step.description
+.program.edit
+  .preface
+    .instructions
+      h1= "Step #{@program.current_step.position}: A little background"
+      p
+        = @program.current_step.description
+    .progress
+      p= "Step #{@program.current_step.position} of #{@program.kit.steps.count}"
 
-div id='ide'
-  = simple_form_for [@program.kit, @program], remote: true do |f|
-    = f.input :code, label: false, placeholder: "Code goes here.."
-    = f.submit value: "run this"
-  div id='stage'
-    iframe src="#{kit_program_path(@program.kit, @program, test: true)}"
 
-div id="success"
-  = @program.current_step.success_message
-
-- if @program.next_step
-  div id='next_form'
+  div id='ide'
     = simple_form_for [@program.kit, @program], remote: true do |f|
-      = f.hidden_field :step_id, value: @program.next_step.id
+      = f.input :code, label: false, placeholder: "Code goes here.."
+      = f.submit id: "runthis", value: "run this"
+    div id='stage'
+      iframe src="#{kit_program_path(@program.kit, @program, test: true)}"
+
+  div id="success"
+    = @program.current_step.success_message
+
+  - if @program.next_step
+    div id='next_form'
+      = simple_form_for [@program.kit, @program], remote: true do |f|
+        = f.hidden_field :step_id, value: @program.next_step.id

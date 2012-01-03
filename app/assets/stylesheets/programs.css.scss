@@ -1,12 +1,72 @@
-form {
-  float: left;
-  textarea {
-    font-size: 20px;
+.program {
+  h1 {
+    font-size: 36px;
+  }
+
+  .instructions {
+    h1 { 
+      padding-bottom: 20px;
+      padding-top: 30px;
+    }
+    p { width: 600px; }
+    float: left;
+  }
+
+  .progress {
+    float: right;
+    padding-right: 53px;
+    padding-top: 35px;
+  }
+
+  .preface {
+    width: 960px;
+  }
+}
+
+.program.new {
+  p {
+    width: 600px;
+    line-height: 30px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  form {
+    width: 500px;
+    div {
+      float: left;
+    }
+    input {
+      float: right;
+    }
+  }
+
+}
+
+#preface {
+  width: 920px;
+}
+
+#ide {
+  padding-top: 40px;
+  width: 920px;
+  clear: left;
+  form {
+    float: left;
+    textarea {
+      font-size: 20px;
+      margin: 0px;
+    }
+
+    #runthis {
+      float: right;
+      font-size: 2em;
+    }
   }
 }
 #stage {
   float: left;
-  padding-left: 20px;
+  margin-left: 20px;
+  border: 1px solid gray;
   iframe {
     height: 400px;
     width: 400px;
@@ -27,7 +87,7 @@ form {
   border-radius: 10px;
   padding: 10px;
   position: fixed !important;
-  bottom: 100px;
+  bottom: 20px;
   right: 10px;
 }
 
