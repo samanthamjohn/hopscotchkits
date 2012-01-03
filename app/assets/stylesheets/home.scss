@@ -50,6 +50,15 @@ body.homepage {
 }
 
 .app-group {
+  background-color: rgba(155,155,155,0.8);
+  padding: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 410px;
+  height: 180px;
+  float: right;
+  overflow: hidden;
+  clear: right;
   float: right;
   overflow: hidden;
   width: 410px;
@@ -73,17 +82,13 @@ body.homepage {
     border-radius: 10px;
     font-size: 17px;
     display: inline-block;
+    width: 187px;
   }
   #get_appstore {
     margin: 10px;
     width: 200px;
-    height: 65px;
     overflow: hidden;
-    border-radius: 10px;
     float: left;
-    img {
-      margin-top: -5px;
-    }
   }
 }
 
