@@ -8,6 +8,7 @@ div id='ide'
     = f.input :code, label: false, placeholder: "Code goes here.."
     = f.submit value: "run this"
   div id='stage'
+    iframe src="#{kit_program_path(@program.kit, @program, test: true)}"
 
 div id="success"
   = @program.current_step.success_message
