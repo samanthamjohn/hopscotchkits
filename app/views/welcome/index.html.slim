@@ -1,22 +1,20 @@
-#content
-  #about
-    .we We&rsquo;re
-    #logo
-    .line1 a development environment
-    .line2 focused on teaching kids
-    .line3 to program.
-  #signup
-    label
-      |sign up for pre-release versions and updates
-    = form_for Signup.new(source: "homepage") do |f|
-      = f.hidden_field :source
-      = f.text_field :email
-      = f.submit "Submit"
-    .fineprint (We will not share your email with anyone or use it for anything other than updates abour out beta release, scout&rsquo;s honor.)
-    #contact email us: info@gethopscotch.com
-  .app-group= link_to "http://itunes.apple.com/us/app/daisy-the-dinosaur/id490514278?ls=1&mt=8", target: "_blank" do
-    #get_daisy= image_tag("daisy-icon.jpg")
-    #get_app
-      |Download our latest app
-      div class='title' Daisy the Dinosaur
-    #get_appstore= image_tag("iphone-badge-small.jpeg")
+#about
+  .we We&rsquo;re
+  #logo
+  .line1 a development environment
+  .line2 focused on teaching kids
+  .line3 to program.
+#signup
+  = form_for Signup.new(source: "homepage") do |f|
+    = f.hidden_field :source
+    = f.label :email, "sign up for pre-release versions and updates"
+    = f.text_field :email
+    = f.submit "Submit"
+  .fineprint (We will not share your email with anyone or use it for anything other than updates abour out beta release, scout&rsquo;s honor.)
+  #contact email us: info@gethopscotch.com
+.app-group= link_to "http://itunes.apple.com/us/app/daisy-the-dinosaur/id490514278?ls=1&mt=8", target: "_blank" do
+  #get_daisy= image_tag("daisy-icon.jpg")
+  #get_app
+    |Download our latest app
+    div class='title' Daisy the Dinosaur
+  #get_appstore= image_tag("iphone-badge-small.jpeg")

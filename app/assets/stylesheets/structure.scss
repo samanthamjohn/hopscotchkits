@@ -1,0 +1,33 @@
+body {
+  width: 100%;
+  font-family: sans-serif;
+}
+#content {
+  width: 960px;
+  height: auto;
+  margin: 0px auto;
+}
+.flash {
+  background: #F8CA00;
+  font-family: Arial;
+  padding: 14px;
+  font-size: 21px;
+  position: absolute;
+  width: 100%;
+}
+ul.nav {
+  float: left;
+  margin-top: 100px;
+  margin-left: 25px;
+  clear: both;
+  font-size: 25px;
+  li {
+    float: left;
+    margin-right: 20px;
+  }
+  a {
+    color: white;
+  }
+}
+
+

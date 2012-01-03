@@ -1,16 +1,7 @@
-body {
-  width: 100%;
-  font-family: sans-serif;
-}
-
 body.homepage {
   background: black image_url('bg-image.png') no-repeat -238px -521px;
 }
-#content {
-  width: 960px;
-  height: 900px;
-  margin: 0px auto;
-}
+
 #about, #signup {
   color: #F6F3F3;
   font-family: "Baskerville","Georgia", serif;
@@ -18,22 +9,24 @@ body.homepage {
 #about {
   line-height: 35px;
   font-size: 35px;
-  position: relative;
-  left: 100px;
-  top: 215px;
-}
-#about {
+  margin-top: 20px;
   .we { padding-left: 46px; }
   .line1{ padding-left: 198px; }
   .line2{ padding-left: 100px; }
   .line3{ padding-left: 250px; }
+  #logo {
+    width: 559px;
+    height: 108px;
+    background: transparent image_url('logo.png') no-repeat 0 0;
+  }
 }
 #signup {
   margin-left: 25px;
-  position: relative;
-  top: 300px;
+  margin-top: 60px;
+  float: left;
 
   label {
+    display: block;
     font-size: 22px;
   }
   .fineprint {
@@ -57,11 +50,10 @@ body.homepage {
 }
 
 .app-group {
-  position: relative;
+  float: right;
   overflow: hidden;
-  top: 120px;
-  left: 510px;
   width: 410px;
+  margin-top: 60px;
   a {
     color: black;
     text-decoration: none;
@@ -95,19 +87,6 @@ body.homepage {
   }
 }
 
-.flash {
-  background: #F8CA00;
-  font-family: Arial;
-  padding: 14px;
-  font-size: 21px;
-  position: absolute;
-  width: 100%;
-}
-#logo {
-  width: 559px;
-  height: 108px;
-  background: transparent image_url('logo.png') no-repeat 0 0;
-}
 #contact {
   color: #e6dfdf;
 }
