@@ -9,6 +9,9 @@
 //= require jquery-ui
 //= require raphael
 //= require underscore
+//= require ace
+//= require theme-solarized_light
+//= require mode-coffee
 //= require coffee-script
 //= require_self
 //= require_tree .
