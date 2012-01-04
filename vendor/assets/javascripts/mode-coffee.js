@@ -56,22 +56,22 @@ function Mode() {
 oop.inherits(Mode, TextMode);
 
 (function() {
-    
+
     var indenter = /(?:[({[=:]|[-=]>|\b(?:else|switch|try|catch(?:\s*[$A-Za-z_\x7f-\uffff][$\w\x7f-\uffff]*)?|finally))\s*$/;
     var commentLine = /^(\s*)#/;
     var hereComment = /^\s*###(?!#)/;
     var indentation = /^\s*/;
-    
+
     this.getNextLineIndent = function(state, line, tab) {
         var indent = this.$getIndent(line);
         var tokens = this.$tokenizer.getLineTokens(line, state).tokens;
-    
+
         if (!(tokens.length && tokens[tokens.length - 1].type === 'comment') &&
             state === 'start' && indenter.test(line))
             indent += tab;
         return indent;
     };
-    
+
     this.toggleCommentLines = function(state, doc, startRow, endRow){
         console.log("toggle");
         var range = new Range(0, 0, 0, 0);
@@ -79,38 +79,38 @@ oop.inherits(Mode, TextMode);
             var line = doc.getLine(i);
             if (hereComment.test(line))
                 continue;
-                
+
             if (commentLine.test(line))
                 line = line.replace(commentLine, '$1');
             else
                 line = line.replace(indentation, '$&#');
-    
+
             range.end.row = range.start.row = i;
             range.end.column = line.length + 1;
             doc.replace(range, line);
         }
     };
-    
+
     this.checkOutdent = function(state, line, input) {
         return this.$outdent.checkOutdent(line, input);
     };
-    
+
     this.autoOutdent = function(state, doc, row) {
         this.$outdent.autoOutdent(doc, row);
     };
-    
+
     this.createWorker = function(session) {
         var worker = new WorkerClient(["ace"], "worker-coffee.js", "ace/mode/coffee_worker", "Worker");
         worker.attachToDocument(session.getDocument());
-        
+
         worker.on("error", function(e) {
             session.setAnnotations([e.data]);
         });
-        
+
         worker.on("ok", function(e) {
             session.clearAnnotations();
         });
-        
+
         return worker;
     };
 
@@ -161,7 +161,7 @@ define('ace/mode/coffee_highlight_rules', ['require', 'exports', 'module' , 'ace
     var lang = require("../lib/lang");
     var oop = require("../lib/oop");
     var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
-    
+
     oop.inherits(CoffeeHighlightRules, TextHighlightRules);
 
     function CoffeeHighlightRules() {
@@ -178,22 +178,22 @@ define('ace/mode/coffee_highlight_rules', ['require', 'exports', 'module' , 'ace
             "finally|function|while|when|new|no|not|delete|debugger|do|loop|of|off|" +
             "or|on|unless|until|and|yes").split("|")
         );
-        
+
         var langConstant = lang.arrayToMap((
             "true|false|null|undefined").split("|")
         );
-        
+
         var illegal = lang.arrayToMap((
             "case|const|default|function|var|void|with|enum|export|implements|" +
             "interface|let|package|private|protected|public|static|yield|" +
             "__hasProp|extends|slice|bind|indexOf").split("|")
         );
-        
+
         var supportClass = lang.arrayToMap((
             "Array|Boolean|Date|Function|Number|Object|RegExp|ReferenceError|" +
             "RangeError|String|SyntaxError|Error|EvalError|TypeError|URIError").split("|")
         );
-        
+
         var supportFunction = lang.arrayToMap((
             "Math|JSON|isNaN|isFinite|parseInt|parseFloat|encodeURI|" +
             "encodeURIComponent|decodeURI|decodeURIComponent|RangeError|String|" +
@@ -284,40 +284,40 @@ define('ace/mode/coffee_highlight_rules', ['require', 'exports', 'module' , 'ace
                     token : "text",
                     regex : "\\s+"
                 }],
-            
+
             qdoc : [{
                 token : "string",
                 regex : ".*?'''",
                 next : "start"
             }, stringfill],
-            
+
             qqdoc : [{
                 token : "string",
                 regex : '.*?"""',
                 next : "start"
             }, stringfill],
-            
+
             qstring : [{
                 token : "string",
                 regex : "[^\\\\']*(?:\\\\.[^\\\\']*)*'",
                 merge : true,
                 next : "start"
             }, stringfill],
-            
+
             qqstring : [{
                 token : "string",
                 regex : '[^\\\\"]*(?:\\\\.[^\\\\"]*)*"',
                 merge : true,
                 next : "start"
             }, stringfill],
-            
+
             js : [{
                 token : "string",
                 merge : true,
                 regex : "[^\\\\`]*(?:\\\\.[^\\\\`]*)*`",
                 next : "start"
             }, stringfill],
-            
+
             heregex : [{
                 token : "string.regex",
                 regex : '.*?///[imgy]{0,4}',
@@ -330,7 +330,7 @@ define('ace/mode/coffee_highlight_rules', ['require', 'exports', 'module' , 'ace
                 merge : true,
                 regex : "\\S+"
             }],
-            
+
             comment : [{
                 token : "comment",
                 regex : '.*?###',
@@ -550,7 +550,7 @@ var FoldMode = exports.FoldMode = function() {};
             return "end";
         return "";
     };
-    
+
     this.getFoldWidgetRange = function(session, foldStyle, row) {
         return null;
     };
@@ -563,7 +563,7 @@ var FoldMode = exports.FoldMode = function() {};
         var startColumn = column || line.length;
         var startLevel = line.match(re)[0].length;
         var maxRow = session.getLength()
-        
+
         while (++row < maxRow) {
             line = session.getLine(row);
             var level = line.match(re)[0].length;
@@ -653,6 +653,9 @@ var WorkerClient = function(topLevelNamespaces, packagedJs, mod, classname) {
     if (module.packaged) {
         var base = this.$guessBasePath();
         this.$worker = new Worker(base + packagedJs);
+        console.log("module.packaged")
+        console.log(base)
+        console.log(packagedJs)
     }
     else {
         var workerUrl = this.$normalizePath(require.nameToUrl("ace/worker/worker", null, "_"));
@@ -665,6 +668,8 @@ var WorkerClient = function(topLevelNamespaces, packagedJs, mod, classname) {
 
             tlns[ns] = path;
         }
+        console.log("module.packaged = false")
+        console.log(workerUrl)
     }
 
     this.$worker.postMessage({
@@ -801,4 +806,4 @@ exports.WorkerClient = WorkerClient;
                         ace[key] = a[key];
                 });
             })();
-        
+
