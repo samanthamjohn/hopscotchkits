@@ -1,6 +1,8 @@
 body {
   width: 100%;
   font-family: sans-serif;
+  font-size: 14px;
+  background: #f2eee8;
 }
 #content {
   width: 960px;
@@ -50,7 +52,7 @@ ul.nav {
   margin-bottom: 125px;
   clear: both;
   font-size: 24px;
-  font-family: "NillandBlackRegular", "Baskerville","Georgia", serif;
+  font-family: "NillandBlackRegular";
   li{
     float: left;
     margin-right: 15px;

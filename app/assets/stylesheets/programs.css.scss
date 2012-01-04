@@ -7,8 +7,12 @@
   .instructions {
     h1 {
       padding-bottom: 20px;
+      font-family: 'NillandBlackRegular';
     }
-    p { width: 600px; }
+    p { 
+      width: 600px; 
+      font-family:  "Baskerville","Georgia", serif;
+    }
     float: left;
   }
 
@@ -63,7 +67,6 @@
 
     #runthis {
       float: right;
-      font-size: 2em;
     }
   }
 }

@@ -18,13 +18,14 @@ $ ->
   $("#progressbar").progressbar(
     value: $("#progressbar").data("progress")
   )
+  $("input:submit, .button").button()
 
   if $("#ide").length > 0
     code = $("#ide input#program_code").val()
     window.editor = ace.edit("editor")
     window.editor.getSession().setValue(code)
     window.editor.getSession().setUseWrapMode(true);
-    window.editor.setTheme("ace/theme/solarized_light")
+    window.editor.setTheme("ace/theme/clouds")
     window.editor.getSession().setTabSize(2)
     $('#editor').css('fontSize', '16px')
     $(".ace_gutter-cell").css('fontSize', '16px')

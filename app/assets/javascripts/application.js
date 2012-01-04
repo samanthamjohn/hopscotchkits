@@ -10,7 +10,7 @@
 //= require raphael
 //= require underscore
 //= require ace-uncompressed
-//= require theme-solarized_light-uncompressed
+//= require theme-clouds-uncompressed
 //= require mode-coffee-uncompressed
 //= require coffee-script
 //= require_self
