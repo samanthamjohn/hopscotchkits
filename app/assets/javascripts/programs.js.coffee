@@ -15,6 +15,10 @@ $ ->
     )
   )
 
+  $("#progressbar").progressbar(
+    value: $("#progressbar").data("progress")
+  )
+
   if $("#ide").length > 0
     code = $("#ide input#program_code").val()
     window.editor = ace.edit("editor")
