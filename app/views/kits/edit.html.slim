@@ -11,7 +11,7 @@ p
 h1 Kit steps
 
 ul
-  - @kit.steps.each do |step|
+  - @kit.steps.order("position").each do |step|
     li
       div class='show-step' id="show_#{step.id}"
         p= step.position
