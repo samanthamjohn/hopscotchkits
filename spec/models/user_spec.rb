@@ -5,13 +5,16 @@ describe User do
   it { User.create!(name: "Evan"); should validate_uniqueness_of :slug }
 
   it { should have_many :programs}
-  describe "create" do
+  describe "before_create" do
     it "should save the slug based on name" do
       u = User.create!(name: "Test")
       u.slug.should == "test"
     end
 
-    xit "should increment the slug if the name is already in use" do
+    it "should increment the slug if the name is already in use" do
+      user1 = User.create!(name: "Test")
+      user2 = User.create!(name: "Test")
+      user1.slug.should_not == user2.slug
 
     end
   end
