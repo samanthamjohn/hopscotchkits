@@ -8,6 +8,13 @@ class KitsController < ApplicationController
   def edit
   end
 
+  def new
+  end
+
+  def create
+    @kit = Kit.create(params[:kit])
+    redirect_to edit_kit_path(@kit)
+  end
 
   private
 

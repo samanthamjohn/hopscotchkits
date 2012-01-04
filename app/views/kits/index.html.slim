@@ -1,2 +1,4 @@
-- @kits.each do |kit|
-  = link_to kit, edit_kit_path(kit)
+p= link_to "Add a new kit", new_kit_path
+ul
+  - @kits.each do |kit|
+    li= link_to kit, edit_kit_path(kit)

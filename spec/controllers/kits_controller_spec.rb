@@ -23,4 +23,20 @@ describe KitsController do
     end
   end
 
+  describe "new" do
+    it "should render the new template" do
+      get :new
+      response.should render_template :new
+    end
+  end
+
+  describe "create" do
+    it "should create a new kit" do
+      post :create, kit: {slug: "bar"}
+      kit = Kit.last
+      kit.slug.should == "bar"
+      response.should redirect_to edit_kit_path(kit)
+    end
+  end
+
 end
