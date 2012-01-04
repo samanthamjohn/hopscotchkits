@@ -9,6 +9,7 @@
 //= require jquery-ui
 //= require raphael
 //= require underscore
+//= require ace-uncompressed
 //= require theme-solarized_light-uncompressed
 //= require mode-coffee-uncompressed
 //= require coffee-script
