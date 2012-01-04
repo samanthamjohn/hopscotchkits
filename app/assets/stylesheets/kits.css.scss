@@ -8,6 +8,7 @@ body.kit {
     color: orange;
   }
   ul {
+    float: left;
     li {
       padding: 10px;
     }
@@ -20,6 +21,7 @@ body.kit {
   }
   form {
     overflow: hidden;
+    width: 450px;
   }
   .input {
     overflow: hidden;
@@ -31,4 +33,5 @@ body.kit {
     }
 
   }
+
 }

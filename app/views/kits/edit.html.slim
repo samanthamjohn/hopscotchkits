@@ -28,17 +28,3 @@ ul
     div class='edit-step hidden' id="edit_new"
       = simple_form_for @kit.steps.build do |f|
         = render "steps/form", f: f, id: 'new'
-coffee:
-  $ ->
-    $(".cancel-link").click( (e)->
-      e.preventDefault()
-      id = $(e.target).attr('id')
-      $("#edit_" + id).addClass("hidden")
-      $("#show_" + id).removeClass("hidden")
-    )
-    $(".edit-link").click( (e)->
-      e.preventDefault()
-      id = $(e.target).attr('id')
-      $("#edit_" + id).removeClass("hidden")
-      $("#show_" + id).addClass("hidden")
-    )

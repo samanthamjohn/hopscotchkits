@@ -1,3 +1,13 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+$ ->
+  $(".cancel-link").click( (e) ->
+    e.preventDefault()
+    id = $(e.target).attr('id')
+    $("#edit_" + id).addClass("hidden")
+    $("#show_" + id).removeClass("hidden")
+  )
+  $(".edit-link").click( (e) ->
+    e.preventDefault()
+    id = $(e.target).attr('id')
+    $("#edit_" + id).removeClass("hidden")
+    $("#show_" + id).addClass("hidden")
+  )
