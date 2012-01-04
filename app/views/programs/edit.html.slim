@@ -12,11 +12,14 @@
     = simple_form_for [@program.kit, @program], remote: true do |f|
       = f.input :code, label: false, placeholder: "Code goes here.."
       = f.submit id: "runthis", value: "run this"
+      = link_to "Hint", "#", class: "hint"
     div id='stage'
       iframe src="#{kit_program_path(@program.kit, @program, test: true)}"
 
   div id="success"
     = @program.current_step.success_message
+  div id='hint'
+    = @program.current_step.hint
 
   - if @program.next_step
     div id='next_form'

@@ -4,3 +4,10 @@ $ ->
     $('#stage').html(stageHtml)
   )
 
+  $("a.hint").click( (e) -> 
+    e.preventDefault()
+    $("#hint").dialog(
+      modal: true
+    )
+  )
+
