@@ -22,7 +22,6 @@ class ProgramsController < ApplicationController
   end
 
   def show
-    @current_user = current_user
     render "show", layout: 'code'
   end
 

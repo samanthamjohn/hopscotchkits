@@ -22,4 +22,10 @@ body class=@body_class
     ul class='nav'
       li.middle= link_to "Home", root_path
       li.middle= link_to "Products", products_path
-      li= link_to "About Us", about_path
+      - if current_user
+        li.middle= link_to "About Us", about_path
+        li= link_to "My Code", edit_kit_program_path(current_user.programs.last.kit, current_user.programs.last)
+      - else
+        li= link_to "About Us", about_path
+
+
