@@ -1,7 +1,7 @@
 .program.edit
   .preface
     .instructions
-      h1= "Step #{@program.current_step.position}: A little background"
+      h1= "Step #{@program.current_step.position}: #{@program.current_step.title}"
       p
         = @program.current_step.description
     .progress

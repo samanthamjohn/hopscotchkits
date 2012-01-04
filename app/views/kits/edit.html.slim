@@ -15,30 +15,19 @@ ul
     li
       div class='show-step' id="show_#{step.id}"
         p= step.position
+        p= step.title
         p= step.description
         p= link_to "Edit", "#", id: step.id, class: "edit-link"
         p= link_to "Delete", step_path(step), method: "delete"
       div class='edit-step hidden' id="edit_#{step.id}"
         = simple_form_for step do |f|
-          = f.hidden_field :kit_id
-          = f.input :position
-          = f.input :description, input_html: {rows: 5}
-          = f.input :spec, input_html: {rows: 5}
-          = f.input :success_message, input_html: {rows: 5}
-          = link_to "cancel", "#", id: "#{step.id}", class: "cancel-link"
-          = f.submit
+          = render "steps/form", f: f, id: "#{step.id}"
   li
     div class='show-step' id="show_new"
       p= link_to "New Step", "#", id: "new", class: "edit-link"
     div class='edit-step hidden' id="edit_new"
       = simple_form_for @kit.steps.build do |f|
-        = f.hidden_field :kit_id
-        = f.input :position
-        = f.input :description, input_html: {rows: 5}
-        = f.input :spec, input_html: {rows: 5}
-        = f.input :success_message, input_html: {rows: 5}
-        = link_to "cancel", "#", id: "new", class: "cancel-link"
-        = f.submit
+        = render "steps/form", f: f, id: 'new'
 coffee:
   $ ->
     $(".cancel-link").click( (e)->
