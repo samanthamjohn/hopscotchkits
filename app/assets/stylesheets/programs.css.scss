@@ -35,12 +35,20 @@
     padding-bottom: 40px;
   }
   form {
-    width: 500px;
+    width: 550px;
     div {
       float: left;
     }
+    label {
+      line-height: 45px;
+    }
+    #program_user_attributes_name {
+      margin-top: 10px;
+      line-height: 20px;
+    }
     input {
       float: right;
+      line-height: 25px;
     }
   }
 
