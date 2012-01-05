@@ -21,9 +21,6 @@ coffee:
   window.assert = (assertion, errorMessage) ->
     window.assertions.push([assertion,errorMessage])
   window.runAssertions = ->
-    lastAssertionAndError = window.assertions.pop()
-    lastAssertion = _.first(lastAssertionAndError)
-    lastError = _.last(lastAssertionAndError)
     _.each(window.assertions, ((assertionErrorMessage) ->
       assertion = _.first(assertionErrorMessage)
       errorMessage = _.last(assertionErrorMessage)
@@ -37,13 +34,7 @@ coffee:
         )
     ))
     unless window.failed
-      if (lastAssertion())
-        window.showSuccess()
-      else
-        errorHtml = $("<div>"+lastError+"</div>")
-        parent.$(errorHtml).dialog(
-          modal: true
-        )
+      window.showSuccess()
   window.showSuccess = ->
     if parent.$("#next_form form").length > 0
       buttons = "Ready for more? Let's go!": ->
