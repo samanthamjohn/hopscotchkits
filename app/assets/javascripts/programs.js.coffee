@@ -2,10 +2,12 @@ $ ->
   $("#ide form").bind("ajax:success", -> 
     stageHtml = "<iframe src='"+$('form').attr('action')+"?test=true'></iframe>"
     $('#stage').html(stageHtml)
+    window.editor.focus()
   )
 
   $("#ide form").bind("submit", ->
     $("#ide input#program_code").val(window.editor.getSession().getValue())
+    window.editor.focus()
   )
 
   $("a.hint").click( (e) -> 
