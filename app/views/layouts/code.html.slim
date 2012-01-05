@@ -14,6 +14,10 @@ html
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
+      makePaper = function() {
+        paper = Raphael(0,0,400,400)
+        paper.rect(0,0,399,399).attr('fill', 'white')
+      }
 body
   = yield
 
