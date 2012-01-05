@@ -9,8 +9,8 @@
       padding-bottom: 20px;
       font-family: 'NillandBlackRegular';
     }
-    p { 
-      width: 600px; 
+    p {
+      width: 600px;
       font-family:  "Baskerville","Georgia", serif;
     }
     float: left;
@@ -63,7 +63,8 @@
   form {
     float: left;
     clear: both;
-    width: 400px;
+    width: 480px;
+    margin-top: 10px;
 
     #runthis {
       float: right;
@@ -71,6 +72,7 @@
   }
 }
 #stage {
+  background: white;
   float: left;
   margin-left: 20px;
   border: 1px solid gray;
@@ -93,17 +95,4 @@
   height: 25px;
 }
 
-.advert {
-  a {
-    color: black;
-    text-decoration: none;
-  }
-  float: right;
-  background: white;
-  border-radius: 10px;
-  padding: 10px;
-  position: fixed !important;
-  bottom: 20px;
-  right: 10px;
-}
 

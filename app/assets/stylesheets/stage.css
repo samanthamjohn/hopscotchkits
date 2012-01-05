@@ -1,0 +1,15 @@
+.advert a {
+  color: black;
+  text-decoration: none;
+}
+.advert {
+  float: right;
+  background: white;
+  border-radius: 10px;
+  padding: 10px;
+  position: fixed !important;
+  bottom: 20px;
+  right: 10px;
+}
+
+

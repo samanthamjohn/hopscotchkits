@@ -28,6 +28,7 @@ $ ->
     window.editor.setTheme("ace/theme/clouds")
     window.editor.getSession().setTabSize(2)
     $('#editor').css('fontSize', '16px')
+    $('#editor').css('line-height', '21px')
     $(".ace_gutter-cell").css('fontSize', '16px')
     CoffeeScriptMode = require("ace/mode/coffee").Mode
     window.editor.getSession().setMode(new CoffeeScriptMode())
