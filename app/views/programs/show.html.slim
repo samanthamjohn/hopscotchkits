@@ -16,29 +16,52 @@
     div class='advert'= link_to "Make your own!", new_kit_program_path(@program.kit)
 
 coffee:
+  window.failed = false
+  window.assertions = []
   window.assert = (assertion, errorMessage) ->
-    if assertion()
-      if parent.$("#next_form form").length > 0
-        buttons = "Ready for more? Let's go!": -> 
-          parent.$(this).dialog("close")
-          parent.$("#next_form form").bind("ajax:success", ->
-            parent.window.location.href=parent.window.location.href
-          )
-          parent.$('#next_form form').submit()
+    window.assertions.push([assertion,errorMessage])
+  window.runAssertions = ->
+    lastAssertionAndError = window.assertions.pop()
+    lastAssertion = _.first(lastAssertionAndError)
+    lastError = _.last(lastAssertionAndError)
+    _.each(window.assertions, ((assertionErrorMessage) ->
+      assertion = _.first(assertionErrorMessage)
+      errorMessage = _.last(assertionErrorMessage)
+      if window.failed
+        true
+      else if (!assertion())
+        window.failed = true
+        errorHtml = $("<div>"+errorMessage+"</div>")
+        parent.$(errorHtml).dialog(
+          modal: true
+        )
+    ))
+    unless window.failed
+      if (lastAssertion())
+        window.showSuccess()
       else
-        buttons = "Let's try it out!": ->
-          parent.$(this).dialog("close")
-          parent.window.location.href = parent.$('#ide form').attr('action')
-      parent.$("#success").dialog(
-        modal: true
-        buttons: buttons
-      )
+        errorHtml = $("<div>"+lastError+"</div>")
+        parent.$(errorHtml).dialog(
+          modal: true
+        )
+  window.showSuccess = ->
+    if parent.$("#next_form form").length > 0
+      buttons = "Ready for more? Let's go!": ->
+        parent.$(this).dialog("close")
+        parent.$("#next_form form").bind("ajax:success", ->
+          parent.window.location.href=parent.window.location.href
+        )
+        parent.$('#next_form form').submit()
     else
-      errorHtml = $("<div>"+errorMessage+"</div>")
-      parent.$(errorHtml).dialog(
-        modal: true
-      )
+      buttons = "Let's try it out!": ->
+        parent.$(this).dialog("close")
+        parent.window.location.href = parent.$('#ide form').attr('action')
+    parent.$("#success").dialog(
+      modal: true
+      buttons: buttons
+    )
 
 script type="text/coffeescript"
   = raw("#{raw(@program.code)}\n")
-  = raw("\n#{raw(@program.current_step.spec)}\n")
+  = raw("\n#{raw(@program.current_step.spec)}\n\n")
+  |runAssertions()
