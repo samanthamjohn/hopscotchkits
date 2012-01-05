@@ -17,6 +17,7 @@ html
       makePaper = function() {
         paper = Raphael(0,0,400,400)
         paper.rect(0,0,399,399).attr('fill', 'white')
+        window._paper = paper;
         return paper;
       }
 body
