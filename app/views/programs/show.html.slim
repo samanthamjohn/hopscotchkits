@@ -16,8 +16,8 @@
     div class='advert'= link_to "Make your own!", new_kit_program_path(@program.kit)
 
 coffee:
-  window.showSuccessDialog = (x) ->
-    if x()
+  window.assert = (assertion, errorMessage) ->
+    if assertion()
       if parent.$("#next_form form").length > 0
         buttons = "Ready for more? Let's go!": -> 
           parent.$(this).dialog("close")
@@ -33,8 +33,12 @@ coffee:
         modal: true
         buttons: buttons
       )
+    else
+      errorHtml = $("<div>"+errorMessage+"</div>")
+      parent.$(errorHtml).dialog(
+        modal: true
+      )
 
 script type="text/coffeescript"
   = raw("#{raw(@program.code)}\n")
-  = raw("\nx = #{raw(@program.current_step.spec)}\n")
-  | window.showSuccessDialog(x)
+  = raw("\n#{raw(@program.current_step.spec)}\n")
