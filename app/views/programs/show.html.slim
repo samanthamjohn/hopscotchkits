@@ -42,7 +42,7 @@ coffee:
       buttons = "Ready for more? Let's go!": ->
         parent.$(this).dialog("close")
         parent.$("#next_form form").bind("ajax:success", ->
-          parent.window.location.href=parent.window.location.href
+          parent.window.location.reload()
         )
         parent.$('#next_form form').submit()
     else
