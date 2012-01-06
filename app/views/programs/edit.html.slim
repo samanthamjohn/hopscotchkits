@@ -19,9 +19,9 @@
       = link_to "Hint", "#", class: "hint button"
 
   div id="success"
-    = @program.current_step.success_message
+    = simple_format(@program.current_step.success_message)
   div id='hint'
-    = @program.current_step.hint
+    = simple_format(@program.current_step.hint)
 
   - if @program.next_step
     div id='next_form'

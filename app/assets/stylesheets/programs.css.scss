@@ -10,17 +10,10 @@
       padding-bottom: 20px;
       font-family: 'NillandBlackRegular';
     }
+    float: left;
     p {
       width: 600px;
-      font-family:  sans-serif;
-      font-size: 14px;
-      margin-bottom: 15px;
-      line-height: 16px;
     }
-    code {
-      font-family: monospace;
-    }
-    float: left;
   }
 
   .progress {
@@ -31,6 +24,18 @@
 
   .preface {
     width: 960px;
+  }
+}
+
+.instructions, #hint {
+  p {
+    font-family:  sans-serif;
+    font-size: 14px;
+    margin-bottom: 15px;
+    line-height: 16px;
+  }
+  code {
+    font-family: monospace;
   }
 }
 
