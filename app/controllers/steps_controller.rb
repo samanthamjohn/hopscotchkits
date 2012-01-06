@@ -1,9 +1,5 @@
 class StepsController < ApplicationController
-  if Rails.env.development?
-    load_resource
-  else
-    load_and_authorize_resource
-  end
+  load_and_authorize_resource
 
   def update
     @step.update_attributes(params[:step])
