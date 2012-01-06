@@ -1,5 +1,9 @@
 class KitsController < ApplicationController
-  load_and_authorize_resource :find_by => :slug
+  if Rails.env.development?
+    load_resource :find_by => :slug
+  else
+    load_and_authorize_resource :find_by => :slug
+  end
   before_filter :set_body_class
 
   def index
