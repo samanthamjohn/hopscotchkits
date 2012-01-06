@@ -26,6 +26,8 @@ group :development, :test do
   gem "rspec-rails"
   gem 'sqlite3'
   gem 'mongrel', '1.2.0.pre2'
+  gem "taps"
+  gem "yaml_db"
 end
 
 gem 'jquery-rails'
