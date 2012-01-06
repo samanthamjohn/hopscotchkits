@@ -5,6 +5,12 @@ body {
   color: black;
   text-decoration: none;
 }
+.advert a.edit-link {
+  padding-right: 10px;
+  margin-right: 10px;
+  border-right: 1px solid gray;
+}
+
 .advert {
   float: right;
   background: white;
