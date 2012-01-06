@@ -1,6 +1,6 @@
 $ -> 
   $("#ide form").bind("ajax:success", -> 
-    stageHtml = "<iframe src='"+$('form').attr('action')+"?test=true'></iframe>"
+    stageHtml = "<iframe src='"+$('form').attr('action')+"?test=true&run_specs=true'></iframe>"
     $('#stage').html(stageHtml)
     window.editor.focus()
   )

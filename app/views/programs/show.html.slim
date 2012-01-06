@@ -56,5 +56,8 @@ coffee:
 
 script type="text/coffeescript"
   = raw("#{raw(@program.code)}\n")
-  = raw("\n#{raw(@program.current_step.spec)}\n\n")
-  |runAssertions()
+
+- if params[:run_specs]
+  script type="text/coffeescript"
+    = raw("\n#{raw(@program.current_step.spec)}\n\n")
+    |runAssertions()
