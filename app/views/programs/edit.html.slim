@@ -13,13 +13,19 @@
     div id='editor'
     div id='stage'
       iframe src="#{kit_program_path(@program.kit, @program, test: true)}"
-    = simple_form_for [@program.kit, @program], remote: true do |f|
-      = f.hidden_field :code
-      = f.submit id: "runthis", value: "run this"
-      = link_to "Hint", "#", class: "hint button"
+    div id='message'
+      div id='error'
+      div id="success"
+        = simple_format(@program.current_step.success_message)
+        = simple_form_for [@program.kit, @program], url: next_step_kit_program_path(@program.kit, @program) do |f|
+          = f.hidden_field :step_id, value: @program.next_step.id
+          = f.submit "Let's Go"
+    div id='controls'
+      = simple_form_for [@program.kit, @program], remote: true do |f|
+        = f.hidden_field :code
+        = f.submit id: "runthis", value: "run this"
+        = link_to "Hint", "#", class: "hint button"
 
-  div id="success"
-    = simple_format(@program.current_step.success_message)
   div id='hint'
     = simple_format(@program.current_step.hint)
 

@@ -40,6 +40,16 @@ describe ProgramsController do
     end
   end
 
+  describe "#next_step" do
+    it "should redirect to the edit page" do
+      kit = Kit.create(slug: "foo")
+      program = Program.create(kit: kit, user_attributes: { name: "Evan"}, step_id: 4 )
+      put :next_step, kit_id: kit.to_param, id: program.to_param, program: {step_id: 3}
+      assigns(:program).step_id.should == 3
+      response.should redirect_to edit_kit_program_path(kit, program)
+    end
+  end
+
   describe "#show" do
     it "should show the code with the code layout" do
       kit = Kit.create(slug: "foo")

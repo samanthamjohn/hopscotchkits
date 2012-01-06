@@ -80,7 +80,7 @@
   padding-top: 40px;
   width: 920px;
   clear: left;
-  form {
+  #controls form {
     float: left;
     clear: both;
     width: 480px;
@@ -90,7 +90,27 @@
       float: right;
     }
   }
+
 }
+#message {
+  float: left;
+  margin: 20px;
+  #success, #error {
+    display: none;
+  }
+
+  &.error {
+    #error {
+      display: block;
+    }
+  }
+  &.success {
+    #success {
+      display: block;
+    }
+  }
+}
+
 #stage {
   float: left;
   margin-left: 20px;
@@ -100,9 +120,6 @@
   }
 }
 
-#success {
-  display: none;
-}
 
 #hint {
   display: none;

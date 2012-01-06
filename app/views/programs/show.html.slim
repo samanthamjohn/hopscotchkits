@@ -15,44 +15,6 @@
   - else
     div class='advert'= link_to "Make your own!", new_kit_program_path(@program.kit)
 
-coffee:
-  window.failed = false
-  window.assertions = []
-  window.assert = (assertion, errorMessage) ->
-    window.assertions.push([assertion,errorMessage])
-  window.runAssertions = ->
-    _.each(window.assertions, ((assertionErrorMessage) ->
-      assertion = _.first(assertionErrorMessage)
-      errorMessage = _.last(assertionErrorMessage)
-      if window.failed
-        true
-      else if (!assertion())
-        window.failed = true
-        errorHtml = $("<div>"+errorMessage+"</div>")
-        parent.$(errorHtml).dialog(
-          modal: true
-          close: ->
-            parent.window.editor.focus()
-        )
-    ))
-    unless window.failed
-      window.showSuccess()
-  window.showSuccess = ->
-    if parent.$("#next_form form").length > 0
-      buttons = "Ready for more? Let's go!": ->
-        parent.$(this).dialog("close")
-        parent.$("#next_form form").bind("ajax:success", ->
-          parent.window.location.reload()
-        )
-        parent.$('#next_form form').submit()
-    else
-      buttons = "Let's try it out!": ->
-        parent.$(this).dialog("close")
-        parent.window.location.href = parent.$('#ide form').attr('action')
-    parent.$("#success").dialog(
-      modal: true
-      buttons: buttons
-    )
 
 script type="text/coffeescript"
   = raw("#{raw(@program.code)}\n")

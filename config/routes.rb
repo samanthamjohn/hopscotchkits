@@ -5,7 +5,11 @@ Hopscotch::Application.routes.draw do
 
   resources :signups, only: :create
   resources :kits do
-    resources :programs
+    resources :programs do
+      member do
+        put :next_step
+      end
+    end
   end
   match "about", to: "welcome#about", as: "about"
   match "products", to: "welcome#products", as: "products"

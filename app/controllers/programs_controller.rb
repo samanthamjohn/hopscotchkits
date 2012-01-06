@@ -21,6 +21,11 @@ class ProgramsController < ApplicationController
     head :ok
   end
 
+  def next_step
+    @program.update_attributes(params[:program])
+    redirect_to edit_kit_program_path(@program.kit, @program)
+  end
+
   def show
     render "show", layout: 'code'
   end
