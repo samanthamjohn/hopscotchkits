@@ -15,11 +15,11 @@
   - else
     div class='advert'= link_to "Make your own!", new_kit_program_path(@program.kit)
 
-
-script type="text/coffeescript"
-  = raw("#{raw(@program.code)}\n")
-
-- if params[:run_specs]
+- if params[:test]
   script type="text/coffeescript"
+    = raw("#{raw(@program.code)}\n")
     = raw("\n#{raw(@program.current_step.spec)}\n\n")
     |runAssertions()
+- else
+  script type="text/coffeescript"
+    = raw("#{raw(@program.code)}\n")
