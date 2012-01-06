@@ -15,10 +15,10 @@ html
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
       makePaper = function() {
-        paper = Raphael(0,0,400,400)
-        paper.rect(0,0,399,399).attr('fill', 'white')
-        window._paper = paper;
-        return paper;
+        var _paper = Raphael(0,0,400,400)
+        _paper.rect(0,0,399,399).attr('fill', 'white')
+        window._paper = _paper;
+        return _paper;
       }
 body
   = yield
