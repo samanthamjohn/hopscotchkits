@@ -3,7 +3,7 @@
     .instructions
       h1= "Step #{@program.current_step.position}: #{@program.current_step.title}"
       p
-        = @program.current_step.description
+        = simple_format(@program.current_step.description.html_safe)
     .progress
       p="Step #{@program.current_step.position} of #{@program.kit.steps.count}"
       div id='progressbar' data-progress="#{(@program.current_step.position.to_f/@program.kit.steps.count.to_f * 100).to_i}"
