@@ -3,7 +3,7 @@ Hopscotch::Application.routes.draw do
   resources :steps
   match "login/:token", to: "users#login"
 
-  resources :signups, only: :create
+  resources :signups, only: [:create, :index]
   resources :kits do
     resources :programs do
       member do
