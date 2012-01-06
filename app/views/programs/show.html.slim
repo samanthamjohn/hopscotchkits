@@ -31,6 +31,8 @@ coffee:
         errorHtml = $("<div>"+errorMessage+"</div>")
         parent.$(errorHtml).dialog(
           modal: true
+          close: ->
+            parent.window.editor.focus()
         )
     ))
     unless window.failed
