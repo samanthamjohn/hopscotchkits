@@ -17,9 +17,11 @@
       div id='error'
       div id="success"
         = simple_format(@program.current_step.success_message)
-        = simple_form_for [@program.kit, @program], url: next_step_kit_program_path(@program.kit, @program) do |f|
-          = f.hidden_field :step_id, value: @program.next_step.id
-          = f.submit "Let's Go"
+        - if @program.next_step
+          h3 Ready for more?
+          = simple_form_for [@program.kit, @program], url: next_step_kit_program_path(@program.kit, @program) do |f|
+            = f.hidden_field :step_id, value: @program.next_step.id
+            = f.submit "Let's Go"
         = link_to "Try it!", kit_program_path(@program.kit, @program, test: true), class: 'button'
     div id='controls'
       = simple_form_for [@program.kit, @program], remote: true do |f|
