@@ -29,6 +29,22 @@ describe ProgramsController do
       assigns(:program).should == program
       response.should be_success
     end
+
+    it "should default to current_step" do
+      kit = Kit.create(slug: "foo")
+      step = Step.create!(kit_id: kit.id, position: 2)
+      program = Program.create(kit: kit, step_id: step.id, user_attributes: {name: "Evan"})
+      get :edit, kit_id: kit.to_param, id: program.to_param
+      assigns(:step).should == step
+    end
+
+    it "should set the step" do
+      kit = Kit.create(slug: "foo")
+      program = Program.create(kit: kit, user_attributes: {name: "Evan"})
+      step = Step.create!(kit_id: kit.id, position: 2)
+      get :edit, kit_id: kit.to_param, id: program.to_param, step: step.position
+      assigns(:step).should == step
+    end
   end
 
   describe "#update" do
@@ -44,10 +60,12 @@ describe ProgramsController do
     it "should redirect to the edit page" do
       kit = Kit.create(slug: "foo")
       program = Program.create(kit: kit, user_attributes: { name: "Evan"}, step_id: 4 )
-      put :next_step, kit_id: kit.to_param, id: program.to_param, program: {step_id: 3}
-      assigns(:program).step_id.should == 3
-      response.should redirect_to edit_kit_program_path(kit, program)
+      step = Step.create!(kit_id: kit.id, position: 2)
+      put :next_step, kit_id: kit.to_param, id: program.to_param, program: {step_id: step.id}
+      assigns(:program).step_id.should == step.id
+      response.should redirect_to edit_kit_program_path(kit, program, step: 2)
     end
+
   end
 
   describe "#show" do
@@ -58,6 +76,22 @@ describe ProgramsController do
       response.should render_template("show")
       response.should render_template("layouts/code")
       assigns(:program).should == program
+    end
+
+    it "should default to current_step" do
+      kit = Kit.create(slug: "foo")
+      step = Step.create!(kit_id: kit.id, position: 2)
+      program = Program.create(kit: kit, step_id: step.id, user_attributes: {name: "Evan"})
+      get :show, kit_id: kit.to_param, id: program.to_param
+      assigns(:step).should == step
+    end
+
+    it "should set the step" do
+      kit = Kit.create(slug: "foo")
+      program = Program.create(kit: kit, user_attributes: {name: "Evan"})
+      step = Step.create!(kit_id: kit.id, position: 2)
+      get :show, kit_id: kit.to_param, id: program.to_param, step: step.position
+      assigns(:step).should == step
     end
   end
 

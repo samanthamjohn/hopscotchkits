@@ -1,38 +1,38 @@
 .program.edit
   .preface
     .instructions
-      h1= "Step #{@program.current_step.position}: #{@program.current_step.title}"
+      h1= "Step #{@step.position}: #{@step.title}"
       p
-        = simple_format(@program.current_step.description.html_safe)
+        = simple_format(@step.description.html_safe)
     .progress
-      p="Step #{@program.current_step.position} of #{@program.kit.steps.count}"
-      div id='progressbar' data-progress="#{(@program.current_step.position.to_f/@program.kit.steps.count.to_f * 100).to_i}"
+      p="Step #{@step.position} of #{@step.kit.steps.count}"
+      div id='progressbar' data-progress="#{(@step.position.to_f/@step.kit.steps.count.to_f * 100).to_i}"
 
 
   div id='ide'
     div id='editor'
     div id='stage'
-      iframe src="#{kit_program_path(@program.kit, @program, test: true)}"
+      iframe src="#{kit_program_path(@program.kit, @program, test: true, step: "#{@step.position}")}"
     div id='message'
       div id='error'
       div id="success"
-        = simple_format(@program.current_step.success_message)
-        - if @program.next_step
+        = simple_format(@step.success_message)
+        - if @step.next_step
           h3 Ready for more?
           = simple_form_for [@program.kit, @program], url: next_step_kit_program_path(@program.kit, @program) do |f|
-            = f.hidden_field :step_id, value: @program.next_step.id
+            = f.hidden_field :step_id, value: @step.next_step.id
             = f.submit "Let's Go"
         = link_to "Try it!", kit_program_path(@program.kit, @program, test: true), class: 'button'
-    div id='controls'
+    div id='controls' data-step="#{@step.position}"
       = simple_form_for [@program.kit, @program], remote: true do |f|
         = f.hidden_field :code
         = f.submit id: "runthis", value: "run this"
         = link_to "Hint", "#", class: "hint button"
 
   div id='hint'
-    = simple_format(@program.current_step.hint)
+    = simple_format(@step.hint)
 
-  - if @program.next_step
+  - if @step.next_step
     div id='next_form'
       = simple_form_for [@program.kit, @program], remote: true do |f|
-        = f.hidden_field :step_id, value: @program.next_step.id
+        = f.hidden_field :step_id, value: @step.next_step.id

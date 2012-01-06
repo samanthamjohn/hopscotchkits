@@ -14,6 +14,8 @@ class ProgramsController < ApplicationController
   end
 
   def edit
+    @step = @program.kit.steps.find_by_position(params[:step])
+    @step ||= @program.current_step
   end
 
   def update
@@ -23,10 +25,12 @@ class ProgramsController < ApplicationController
 
   def next_step
     @program.update_attributes(params[:program])
-    redirect_to edit_kit_program_path(@program.kit, @program)
+    redirect_to edit_kit_program_path(@program.kit, @program, step: @program.current_step.position)
   end
 
   def show
+    @step = @program.kit.steps.find_by_position(params[:step])
+    @step ||= @program.current_step
     render "show", layout: 'code'
   end
 

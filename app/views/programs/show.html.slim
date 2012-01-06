@@ -18,7 +18,7 @@
 - if params[:test]
   script type="text/coffeescript"
     = raw("#{raw(@program.code)}\n")
-    = raw("\n#{raw(@program.current_step.spec)}\n\n")
+    = raw("\n#{raw(@step.spec)}\n\n")
     |runAssertions()
 - else
   script type="text/coffeescript"
