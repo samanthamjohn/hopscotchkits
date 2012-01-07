@@ -1,19 +1,12 @@
 .program {
   h1 {
     font-size: 36px;
-      padding-top: 30px;
+    padding-top: 30px;
   }
 
   .instructions {
-    width: 600px;
-    h1 {
-      padding-bottom: 20px;
-      font-family: 'NillandBlackRegular';
-    }
     float: left;
-    p {
-      width: 600px;
-    }
+    width: 800px;
   }
 
   .progress {
@@ -23,7 +16,11 @@
   }
 
   .preface {
-    width: 960px;
+    h1 {
+      padding-bottom: 20px;
+      font-family: 'NillandBlackRegular';
+      float: left
+    }
   }
 }
 
