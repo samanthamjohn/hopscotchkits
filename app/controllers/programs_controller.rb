@@ -8,7 +8,8 @@ class ProgramsController < ApplicationController
 
   def create
     program_attrs = params[:program]
-    @program = Program.create(program_attrs)
+    @program = Program.create!(program_attrs)
+    @program.reload
     session[:user_id] = @program.user.id
     redirect_to edit_kit_program_path(kit_id: params[:kit_id], id: @program.to_param)
   end
