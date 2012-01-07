@@ -11,6 +11,7 @@ Hopscotch::Application.routes.draw do
       end
     end
   end
+  resources :programs
   match "about", to: "welcome#about", as: "about"
   match "products", to: "welcome#products", as: "products"
   match "/products/:name", to: "welcome#product_detail", as: "product_detail"

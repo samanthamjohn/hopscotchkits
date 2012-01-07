@@ -1,0 +1,5 @@
+- @programs.select{|p| p.kit && p.user}.group_by{|p|p.kit}.each do |programs|
+  = programs.last.first.kit.name
+  ul
+    - programs.last.each do |program|
+      li= link_to(program.user.name, kit_program_path(program.kit, program))

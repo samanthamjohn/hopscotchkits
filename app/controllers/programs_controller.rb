@@ -1,5 +1,6 @@
 class ProgramsController < ApplicationController
-  before_filter :load_program, except: ["new", "create"]
+  before_filter :load_program, except: ["new", "create", "index"]
+  load_and_authorize_resource only: "index"
 
   def new
     kit= Kit.find_by_slug(params[:kit_id])
@@ -33,6 +34,9 @@ class ProgramsController < ApplicationController
     @step = @program.kit.steps.find_by_position(params[:step])
     @step ||= @program.current_step
     render "show", layout: 'code'
+  end
+
+  def index
   end
 
   private
