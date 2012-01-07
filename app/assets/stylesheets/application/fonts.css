@@ -1,9 +1,9 @@
 @font-face {
     font-family: 'NillandBlackRegular';
-    src: url('Nilland-Black.eot');
-    src: url('Nilland-Black.eot?#iefix') format('embedded-opentype'),
-         url('Nilland-Black.ttf') format('truetype'),
-         url('Nilland-Black.svg#') format('svg');
+    src: url('/assets/Nilland-Black.eot');
+    src: url('/assets/Nilland-Black.eot?#iefix') format('embedded-opentype'),
+         url('/assets/Nilland-Black.ttf') format('truetype'),
+         url('/assets/Nilland-Black.svg#') format('svg');
     font-weight: normal;
     font-style: normal;
 
