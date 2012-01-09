@@ -11,54 +11,55 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120105214409) do
+ActiveRecord::Schema.define(:version => 20120109003205) do
 
   create_table "kits", :force => true do |t|
-    t.string   "name"
-    t.string   "slug"
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "name"
+    t.string    "slug"
+    t.text      "description"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "programs", :force => true do |t|
-    t.string   "name"
-    t.integer  "progress"
-    t.text     "code"
-    t.integer  "kit_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "step_id"
-    t.integer  "user_id"
+    t.string    "name"
+    t.integer   "progress"
+    t.text      "code"
+    t.integer   "kit_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "step_id"
+    t.integer   "user_id"
   end
 
   create_table "signups", :force => true do |t|
-    t.string   "email"
-    t.string   "source"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "email"
+    t.string    "source"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "steps", :force => true do |t|
-    t.integer  "kit_id"
-    t.text     "description"
-    t.text     "spec"
-    t.text     "success_message"
-    t.integer  "position"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "title"
-    t.text     "hint"
-    t.text     "solution"
+    t.integer   "kit_id"
+    t.text      "description"
+    t.text      "spec"
+    t.text      "success_message"
+    t.integer   "position"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "title"
+    t.text      "hint"
+    t.text      "solution"
+    t.string    "image_url"
   end
 
   create_table "users", :force => true do |t|
-    t.string   "name"
-    t.string   "slug"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "role"
-    t.string   "token"
+    t.string    "name"
+    t.string    "slug"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "role"
+    t.string    "token"
   end
 
 end
