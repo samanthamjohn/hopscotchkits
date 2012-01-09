@@ -19,6 +19,9 @@ body {
   position: fixed !important;
   bottom: 20px;
   right: 10px;
+  -moz-box-shadow:    2px 2px 3px 2px #ccc;
+  -webkit-box-shadow: 2px 2px 3px 2px #ccc;
+  box-shadow:         2px 2px 3px 2px #ccc;
 }
 
 
