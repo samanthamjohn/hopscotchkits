@@ -24,7 +24,7 @@
           = simple_form_for [@program.kit, @program], url: next_step_kit_program_path(@program.kit, @program) do |f|
             = f.hidden_field :step_id, value: @step.next_step.id
             = f.submit "Let's Go"
-        = link_to "Try it!", kit_program_path(@program.kit, @program), class: 'button'
+        = link_to "Try it!", kit_program_path(@program.kit, @program), class: 'button', target: "_blank"
     div id='controls' data-step="#{@step.position}"
       = simple_form_for [@program.kit, @program], remote: true do |f|
         = f.hidden_field :code
