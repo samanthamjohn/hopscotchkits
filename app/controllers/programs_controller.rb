@@ -42,7 +42,6 @@ class ProgramsController < ApplicationController
   private
 
   def load_program
-    program_id = Program.joins(:user, :kit).where("users.slug = ?",params[:id]).where('kits.slug = ?', params[:kit_id]).first.id
-    @program = Program.find(program_id)
+    @program = Program.find(params[:id])
   end
 end

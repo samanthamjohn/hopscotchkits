@@ -7,10 +7,6 @@ class Program < ActiveRecord::Base
 
   before_create :set_current_step
 
-  def to_param
-    self.user.slug
-  end
-
   def next_step
     self.kit.steps.where("position > ?", self.current_step.position).order(:position).first
   end

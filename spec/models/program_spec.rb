@@ -27,8 +27,4 @@ describe Program do
     end
   end
 
-  it "should set to_param to the user's slug" do
-    p = Program.new(user: User.new(slug: "slug"))
-    p.to_param.should == "slug"
-  end
 end
