@@ -5,7 +5,7 @@
       p="Step #{@step.position} of #{@step.kit.steps.count}"
       div id='progressbar' data-progress="#{(@step.position.to_f/@step.kit.steps.count.to_f * 100).to_i}"
     .instructions
-      p
+      div class='description'
         = simple_format(@step.description.html_safe)
       - if @step.image_url
         = image_tag("step_images/#{@step.image_url}")
