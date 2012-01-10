@@ -11,4 +11,3 @@
 //= require underscore
 //= require coffee-script
 //= require_self
-//= require_tree ./code
