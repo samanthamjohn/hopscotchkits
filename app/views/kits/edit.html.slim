@@ -1,6 +1,6 @@
 h1= @kit.name
 p
-  = image_tag(@kit.icon_url) if @kit.icon_url
+  = image_tag(@kit.icon_url) unless @kit.icon_url.blank?
 p
   |slug: 
   = @kit.slug
