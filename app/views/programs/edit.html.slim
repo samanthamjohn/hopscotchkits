@@ -7,8 +7,8 @@
     .instructions
       div class='description'
         = simple_format(@step.description.html_safe)
-      - unless @step.image_url.blank?
-        = image_tag("step_images/#{@step.image_url}")
+        - unless @step.image_url.blank?
+          = image_tag("step_images/#{@step.image_url}")
 
 
   div id='ide'
