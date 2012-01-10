@@ -1,17 +1,29 @@
-$ -> 
-  $("#ide #controls form").bind("ajax:success", -> 
-    step = $("#controls").data("step")
-    stageHtml = "<iframe src='"+$(' #ide #controls form').attr('action')+"?test=true&step=" + step + "'></iframe>"
-    $('#stage').html(stageHtml)
-    window.editor.focus()
-  )
+window.runSpec = ->
+  val = window.editor.getSession().getValue()
+  CoffeeScript.eval(val)
+  spec = $(".spec").data("spec")
+  CoffeeScript.eval('resetAssertions()')
+  CoffeeScript.eval(spec)
+  CoffeeScript.eval("runAssertions()")
+  window.editor.focus()
+
+window.makePaper = ->
+  window._paper = Raphael(0,0,400,400)
+  window._paper.rect(0,0,399,399).attr('fill', 'white')
+  window._paper
+
+$ ->
+  window.$frame = $(window.frames['stage'].document)
+  Raphael.setWindow(window.frames["stage"])
 
   $("#ide form").bind("submit", ->
-    $("#ide input#program_code").val(window.editor.getSession().getValue())
-    window.editor.focus()
+    val = window.editor.getSession().getValue()
+    $("#ide input#program_code").val(val)
+    $frame.find('body').html('')
+    runSpec()
   )
 
-  $("a.hint").click( (e) -> 
+  $("a.hint").click( (e) ->
     e.preventDefault()
     $("#hint").dialog(
       modal: true
@@ -35,3 +47,4 @@ $ ->
     $(".ace_gutter-cell").css('fontSize', '16px')
     CoffeeScriptMode = require("ace/mode/coffee").Mode
     window.editor.getSession().setMode(new CoffeeScriptMode())
+    runSpec()

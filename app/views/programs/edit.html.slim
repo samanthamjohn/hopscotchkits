@@ -7,14 +7,15 @@
     .instructions
       div class='description'
         = simple_format(@step.description.html_safe)
-      - if @step.image_url
+      - unless @step.image_url.blank?
         = image_tag("step_images/#{@step.image_url}")
 
 
   div id='ide'
     div id='editor'
     div id='stage'
-      iframe src="#{kit_program_path(@program.kit, @program, test: true, step: "#{@step.position}")}"
+      iframe name='stage'
+      div class='spec' data-spec=@step.spec
     div id='message'
       div id='error'
       div id="success"
