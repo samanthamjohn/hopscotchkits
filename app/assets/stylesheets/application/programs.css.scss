@@ -33,7 +33,7 @@
   background: none;
 }
 
-.instructions, #hint, #success, #error {
+.instructions, #hint, .success, .error {
   .description {
     float: left;
     padding-right: 10px;
@@ -100,28 +100,45 @@
     }
   }
 
+  .message {
+    float: right;
+    margin: 20px;
+    width: 380px;
+  }
 }
-#message {
-  float: right;
-  margin: 20px;
-  width: 380px;
+
+.progress .message {
+  margin-top: 10px;
+  padding: 10px;
+  h2 { font-size: 30px }
+  &.successful{
+    h2 { color: green; }
+    background-color: rgba(0, 255, 0, 0.2);
+  }
+  &.errored {
+    h2 { color: red; }
+    background-color: rgba(255, 0, 0, 0.2);
+  }
+}
+
+.message {
   h3 {
     text-align: right;
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 4px;
   }
-  #success, #error {
+  .success, .error {
     display: none;
   }
 
-  &.error {
-    #error {
+  &.errored {
+    .error {
       display: block;
     }
   }
-  &.success {
-    #success {
+  &.successful {
+    .success {
       display: block;
       .controls {
       }

@@ -4,6 +4,13 @@
     .progress
       div id='progressbar' data-progress="#{(@step.position.to_f/@step.kit.steps.count.to_f * 100).to_i}"
       p="Step #{@step.position} of #{@step.kit.steps.count}"
+      div class='message'
+        div class='error'
+          h2 Whoops
+          div class='current-error'
+        div class="success"
+          h2 Yay!
+          = simple_format(@step.success_message)
     .instructions
       div class='description'
         = simple_format(@step.description.html_safe)
@@ -16,10 +23,8 @@
     div id='stage'
       iframe name='stage'
       div class='spec' data-spec=@step.spec
-    div id='message'
-      div id='error'
-      div id="success"
-        = simple_format(@step.success_message)
+    div class='message'
+      div class="success"
         - if @step.next_step
           h3 Ready for more?
           = simple_form_for [@program.kit, @program], url: next_step_kit_program_path(@program.kit, @program) do |f|

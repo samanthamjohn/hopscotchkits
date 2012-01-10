@@ -14,11 +14,11 @@ window.runAssertions = ->
     else if (!assertion())
       window.failed = true
       errorHtml = $("<div>"+errorMessage+"</div>")
-      $("#message").attr("class","error")
-      $('#message #error').html(errorHtml)
+      $(".message").attr("class","message errored")
+      $('.message .error .current-error').html(errorHtml)
   ))
   unless window.failed
     window.showSuccess()
 window.showSuccess = ->
-  $("#message").attr("class", "success")
+  $(".message").attr("class", "message successful")
 
