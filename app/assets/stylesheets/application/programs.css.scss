@@ -6,20 +6,21 @@
 
   .instructions {
     float: left;
-    width: 800px;
+    width: 550px;
   }
 
   .progress {
     float: right;
     padding-right: 53px;
-    padding-top: 35px;
+    text-align: center;
   }
 
   .preface {
     h1 {
-      padding-bottom: 20px;
+      margin-bottom: 20px;
+      margin-right: 20px;
       font-family: 'NillandBlackRegular';
-      float: left
+      border-bottom: 3px solid #C5D497;
     }
     padding-left: 30px;
   }
