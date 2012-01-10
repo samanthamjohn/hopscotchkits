@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120109005324) do
+ActiveRecord::Schema.define(:version => 20120110232343) do
 
   create_table "kits", :force => true do |t|
     t.string    "name"
@@ -31,13 +31,6 @@ ActiveRecord::Schema.define(:version => 20120109005324) do
     t.timestamp "updated_at"
     t.integer   "step_id"
     t.integer   "user_id"
-  end
-
-  create_table "signups", :force => true do |t|
-    t.string    "email"
-    t.string    "source"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
   end
 
   create_table "steps", :force => true do |t|
