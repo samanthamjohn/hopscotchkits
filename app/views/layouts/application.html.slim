@@ -20,12 +20,3 @@ body class=@body_class
     div class='flash'= flash[:notice]
   #content
     = yield
-    ul class='nav'
-      li.middle= link_to "Home", root_path
-      li.middle= link_to "Products", products_path
-      li.middle= link_to "About Us", about_path
-      - if current_user && current_user.programs.present?
-        li.middle= link_to "Blog", "http://blog.gethopscotch.com"
-        li= link_to "My Code", edit_kit_program_path(current_user.programs.last.kit, current_user.programs.last)
-      - else
-        li= link_to "Blog", "http://blog.gethopscotch.com"
