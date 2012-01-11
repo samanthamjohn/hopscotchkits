@@ -26,14 +26,14 @@
     div id='stage'
       iframe name='stage'
       div class='spec' data-spec=@step.spec
-    div class='message'
+    div class='message' id='next_steps'
       div class="success"
         - if @step.next_step
           h3 Ready for more?
           = simple_form_for [@program.kit, @program], url: next_step_kit_program_path(@program.kit, @program) do |f|
             = f.hidden_field :step_id, value: @step.next_step.id
             = f.submit "Let's Go"
-        = link_to "Try it!", kit_program_path(@program.kit, @program), class: 'button', target: "_blank"
+        div class='button' id='publish_it' Publish it!
     div id='controls' data-step="#{@step.position}"
       = simple_form_for [@program.kit, @program], remote: true do |f|
         = f.hidden_field :code
@@ -47,6 +47,36 @@
     div id='next_form'
       = simple_form_for [@program.kit, @program], remote: true do |f|
         = f.hidden_field :step_id, value: @step.next_step.id
+div id='publish_popup' style='display:none'
+  = link_to "see your program", kit_program_path(@program.kit, @program), class: 'publish-button', target: "_blank"
+  coffee:
+    $(".publish-button").button(
+      icons: 
+        secondary: 'ui-icon-extlink'
+    )
+  div class='mail'
+    |Mail this link: 
+    input class='permalink' value=kit_program_url(@program.kit, @program)
+    coffee:
+      $("input.permalink").click((e)-> $("input.permalink").select(); e.preventDefault())
+  div class='social'
+    a name="fb_share"
+    script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"
+  div class='social'
+    = link_to "Tweet", "https://twitter.com/share", class: "twitter-share-button", "data-lang" => "en", "data-text" => "Check out my awesome program made with @HopscotchKits: #{kit_program_url(@program.kit, @program)}", "data-count" => 'none'
+    javascript:
+      !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+
+coffee:
+  $("#publish_it").click( (e) ->
+    e.preventDefault()
+    $("#publish_popup").dialog(
+      modal: true
+      title: "Share your work"
+      open: (-> $("input.permalink").focus())
+    )
+  )
+
 -content_for :footer do
   div class='rootlink'
     = link_to image_tag("arrow.png"), root_path

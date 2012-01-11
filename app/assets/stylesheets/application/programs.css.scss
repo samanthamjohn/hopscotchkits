@@ -174,7 +174,7 @@
 .progress .message {
   margin-top: 10px;
   padding: 10px;
-  width: 300px;
+  width: 280px;
   h2 { font-size: 30px }
   &.successful{
     h2 { color: green; }
@@ -201,6 +201,9 @@
     .error {
       display: block;
     }
+  }
+  &#next_steps {
+    width: 400px;
   }
   &.successful {
     .success {
@@ -236,4 +239,14 @@
 #progressbar {
   width: 300px;
   height: 25px;
+}
+
+#publish_popup {
+  .mail {
+    margin: 40px 0 0;
+  }
+  .social {
+    margin: 10px 10px 0 10px;
+    float: left;
+  }
 }
