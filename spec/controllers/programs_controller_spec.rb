@@ -8,7 +8,7 @@ describe ProgramsController do
         kit = Kit.create(slug: "foo")
         get :new, :kit_id => kit.to_param
         assigns(:program).kit.should == kit
-        response.should render_template("my")
+        response.should render_template("new")
       end
     end
 
