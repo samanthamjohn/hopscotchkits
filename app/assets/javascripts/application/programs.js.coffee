@@ -13,8 +13,9 @@ window.makePaper = ->
   window._paper
 
 $ ->
-  window.$frame = $(window.frames['stage'].document)
-  Raphael.setWindow(window.frames["stage"])
+  if $("#stage").length > 0
+    window.$frame = $(window.frames['stage'].document)
+    Raphael.setWindow(window.frames["stage"])
 
   $("#ide form").bind("submit", ->
     val = window.editor.getSession().getValue()
