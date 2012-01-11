@@ -76,3 +76,31 @@ h1 {
   }
 }
 
+#footer {
+  .homelink {
+    float: right;
+    margin-right: 20px;
+    font-size: 15px;
+    font-style: italic;
+    .logo {
+      font-size: 30px;
+      font-family: 'NillandBlackRegular';
+      font-style: normal;
+    }
+  }
+  clear: both;
+}
+
+#footer_bg {
+  background: transparent image_url('footerbg.png') repeat-x bottom left;
+  height: 24px;
+  clear: both
+}
+
+.ui-widget {
+  font-family: "MavenProBold";
+}
+
+.ui-progressbar-value {
+  background: #35414F image_url('candycane.png') 50% 50% repeat;
+}
