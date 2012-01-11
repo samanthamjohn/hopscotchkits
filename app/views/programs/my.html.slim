@@ -1,5 +1,6 @@
 div class='my-programs'
   h1 My Programs
+  .hr
 
   ul
     - current_user.programs.each do |program|
@@ -8,6 +9,7 @@ div class='my-programs'
           = image_tag(program.kit.icon_url) if program.kit.icon_url.present?
           = program.kit.name
   h1 New Program
+  .hr
   ul
     - Kit.all.each do |kit|
       li
