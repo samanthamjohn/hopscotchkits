@@ -47,3 +47,7 @@
     div id='next_form'
       = simple_form_for [@program.kit, @program], remote: true do |f|
         = f.hidden_field :step_id, value: @step.next_step.id
+-content_for :footer do
+  div class='rootlink'
+    = link_to image_tag("arrow.png"), root_path
+    = link_to "My Programs", root_path

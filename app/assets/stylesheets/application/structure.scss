@@ -25,10 +25,27 @@ body {
     margin-right: 20px;
     font-size: 15px;
     font-style: italic;
+    a {
+      color: black;
+    }
     .logo {
       font-size: 30px;
       font-family: 'NillandBlackRegular';
       font-style: normal;
+    }
+  }
+
+  .rootlink {
+    margin: 0 auto;
+    width: 960px;
+    position: relative;
+    top: 13px;
+    left: -31px;
+    a {
+      color: black;
+      font-size: 22px;
+      font-family: "MavenProBlack";
+      float: left;
     }
   }
   #footer_bg {
