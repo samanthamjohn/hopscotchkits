@@ -1,18 +1,4 @@
-- if current_user == @program.user
-  div id="fb-root"
-    javascript:
-      (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=302381466471406";
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));</script>
-
-  div class='advert'
-    = link_to "Edit This", edit_kit_program_path(@program.kit, @program), class: "edit-link"
-    div class="fb-like" data-href="#{kit_program_url(@program.kit, @program)}" data-send="false" data-width="450" data-show-faces="true" data-font="arial"
-- else
+- unless current_user == @program.user
   div class='advert'= link_to "Make your own!", new_kit_program_path(@program.kit)
 
 script type="text/coffeescript"
