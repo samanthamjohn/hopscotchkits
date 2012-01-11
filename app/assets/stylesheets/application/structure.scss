@@ -1,6 +1,6 @@
 body {
   width: 100%;
-  font-family: sans-serif;
+  font-family: 'Georgia';
   font-size: 14px;
   background: #f2eee8;
 }
@@ -66,4 +66,13 @@ ul.nav {
   }
 }
 
+h1 {
+  font-size: 36px;
+  padding-top: 30px;
+  font-family: 'MavenProBlack';
+  .subtitle {
+    font-family: 'Georgia';
+    font-style: italic;
+  }
+}
 
