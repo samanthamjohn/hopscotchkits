@@ -15,18 +15,18 @@ h1 Kit steps
 ul
   - @kit.steps.order("position").each do |step|
     li
-      div class='show-step' id="show_#{step.id}"
+      div class='show-step' id="#{step.id}_show"
         p= step.position
         p= step.title
         p= step.description
-        p= link_to "Edit", "#", id: step.id, class: "edit-link"
+        p= link_to "Edit", "#", id: step.id, class: "show"
         p= link_to "Delete", step_path(step), method: "delete"
-      div class='edit-step hidden' id="edit_#{step.id}"
+      div class='edit-step hidden' id="#{step.id}_form"
         = simple_form_for step do |f|
           = render "steps/form", f: f, id: "#{step.id}"
   li
-    div class='show-step' id="show_new"
-      p= link_to "New Step", "#", id: "new", class: "edit-link"
-    div class='edit-step hidden' id="edit_new"
+    div class='show-step' id="new_show"
+      p= link_to "New Step", "#", id: "new", class: "show"
+    div class='edit-step hidden' id="new_form"
       = simple_form_for @kit.steps.build do |f|
         = render "steps/form", f: f, id: 'new'
