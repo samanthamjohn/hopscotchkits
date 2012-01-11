@@ -1,0 +1,24 @@
+div class='my-programs'
+  h1 My Programs
+
+  ul
+    - current_user.programs.each do |program|
+      li
+        = link_to edit_kit_program_path(program.kit, program) do
+          = image_tag(program.kit.icon_url) if program.kit.icon_url.present?
+          = program.kit.name
+  h1 New Program
+  ul
+    - Kit.all.each do |kit|
+      li
+        = link_to "New #{kit.name} program", "#", id: "#{kit.to_param}_show", class: "show"
+        div class='form' id="#{kit.to_param}_form" style="display:none"
+          - program = Program.new(kit: kit, user: current_user)
+          .new-program-form
+            h2= program.kit.name
+            p= program.kit.description
+          = simple_form_for [program.kit, program] do |f|
+            = f.hidden_field :kit_id
+            = f.hidden_field :user_id
+            = f.submit value: "Start coding"
+            = link_to "Cancel", "#", id: "#{kit.to_param}_cancel", class: "cancel"
