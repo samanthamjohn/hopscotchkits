@@ -20,9 +20,10 @@ body class=@body_class
     div class='flash'= flash[:notice]
   #content
     = yield
+    div class='push'
   #footer
     .homelink
       |a 
       span.logo Hopscotch 
       | app
-  #footer_bg
+    #footer_bg

@@ -1,14 +1,45 @@
+html {
+  height: 100%;
+}
+
 body {
   width: 100%;
   font-family: 'Georgia';
   font-size: 14px;
   background: #f2eee8;
+  height: 100%;
 }
 #content {
   width: 960px;
-  height: auto;
-  margin: 0px auto;
+  margin: 0 auto -54px;
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
 }
+
+#footer, .push {
+  clear: both;
+  height: 54px;
+  .homelink {
+    float: right;
+    margin-right: 20px;
+    font-size: 15px;
+    font-style: italic;
+    .logo {
+      font-size: 30px;
+      font-family: 'NillandBlackRegular';
+      font-style: normal;
+    }
+  }
+  #footer_bg {
+    background: transparent image_url('footerbg.png') repeat-x bottom left;
+    height: 24px;
+    clear: both
+  }
+}
+
+
+
 .flash {
   background: #F8CA00;
   font-family: Arial;
@@ -74,27 +105,6 @@ h1 {
     font-family: 'Georgia';
     font-style: italic;
   }
-}
-
-#footer {
-  .homelink {
-    float: right;
-    margin-right: 20px;
-    font-size: 15px;
-    font-style: italic;
-    .logo {
-      font-size: 30px;
-      font-family: 'NillandBlackRegular';
-      font-style: normal;
-    }
-  }
-  clear: both;
-}
-
-#footer_bg {
-  background: transparent image_url('footerbg.png') repeat-x bottom left;
-  height: 24px;
-  clear: both
 }
 
 .ui-widget {
