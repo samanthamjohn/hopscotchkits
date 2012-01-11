@@ -9,20 +9,19 @@ div class='my-programs'
           = image_tag(program.kit.icon_url) if program.kit.icon_url.present?
           span class='name'= program.kit.name
           span class='updated'= " last updated #{time_ago_in_words(program.updated_at)} ago"
+        = link_to "edit", edit_kit_program_path(program.kit, program), class: "edit-button"
         = link_to 'delete', kit_program_path(program.kit, program), method: 'delete', confirm: "Are you sure you want to delete this program?", class: 'trash-button'
   h1 New Program
   .hr
-  ul
+  ul.new-programs
     - Kit.all.each do |kit|
       li
-        = link_to "New #{kit.name} program", "#", id: "#{kit.to_param}_show", class: "show"
-        div class='form' id="#{kit.to_param}_form" style="display:none"
+        div class='form' id="#{kit.to_param}_form"
           - program = Program.new(kit: kit, user: current_user)
           .new-program-form
             h2= program.kit.name
+            = simple_form_for [program.kit, program] do |f|
+              = f.hidden_field :kit_id
+              = f.hidden_field :user_id
+              = f.submit value: "Start coding"
             p= program.kit.description
-          = simple_form_for [program.kit, program] do |f|
-            = f.hidden_field :kit_id
-            = f.hidden_field :user_id
-            = f.submit value: "Start coding"
-            = link_to "Cancel", "#", id: "#{kit.to_param}_cancel", class: "cancel"
