@@ -42,6 +42,10 @@
   .instructions {
     float: left;
     width: 550px;
+    img {
+      float: left;
+      margin: 0 10px 0 0;
+    }
   }
 
   .progress {
@@ -136,13 +140,13 @@
   .message {
     float: right;
     margin: 20px;
-    width: 380px;
   }
 }
 
 .progress .message {
   margin-top: 10px;
   padding: 10px;
+  width: 300px;
   h2 { font-size: 30px }
   &.successful{
     h2 { color: green; }

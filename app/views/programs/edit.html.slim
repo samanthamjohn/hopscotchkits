@@ -16,9 +16,9 @@
           = simple_format(@step.success_message)
     .instructions
       div class='description'
-        = simple_format(@step.description.html_safe)
         - unless @step.image_url.blank?
           = image_tag("step_images/#{@step.image_url}")
+        = simple_format(@step.description.html_safe)
 
 
   div id='ide'
