@@ -1,10 +1,21 @@
 window.runSpec = ->
-  window.val = window.editor.getSession().getValue()
-  CoffeeScript.eval(val)
-  spec = $(".spec").data("spec")
   CoffeeScript.eval('resetAssertions()')
-  CoffeeScript.eval(spec)
-  CoffeeScript.eval("runAssertions()")
+  val = window.editor.getSession().getValue()
+  try
+    CoffeeScript.eval(val)
+    spec = $(".spec").data("spec")
+    CoffeeScript.eval(spec)
+    CoffeeScript.eval("runAssertions()")
+  catch error
+    if error.type == "not_defined"
+      errorHtml = "<div>Oh no! You have a syntax error: " + error.message + ". You may have forgotten to save the output of one of your function calls.</div>"
+    else
+      errorArray = error.message.split("line ")[1].split(":")
+      line = errorArray[0]
+      errorMessage = errorArray[1]
+      errorHtml = '<div>Oh no! You have a syntax error on line ' + line + '. Check that you don\'t have any extra spaces and that your capitalization is consistent.</div>'
+    $('.message').attr('class', 'message errored')
+    $('.message .error .current-error').html(errorHtml)
   window.editor.focus()
 
 window.makePaper = ->
@@ -20,8 +31,9 @@ $ ->
   $("#ide form").bind("submit", ->
     val = window.editor.getSession().getValue()
     $("#ide input#program_code").val(val)
-    _paper.clear()
-    _paper.remove()
+    if window._paper && _paper.canvas
+      _paper.clear()
+      _paper.remove()
     runSpec()
   )
 
