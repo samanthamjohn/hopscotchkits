@@ -12,6 +12,7 @@ body {
 }
 
 .advert {
+  z-index: 9;
   float: right;
   background: white;
   border-radius: 10px;
