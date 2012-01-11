@@ -1,0 +1,26 @@
+body {
+  background: #f2eee8;
+}
+
+.advert {
+  z-index: 9;
+  float: right;
+  padding: 10px 0;
+  position: fixed !important;
+  bottom: 20px;
+  right: 0px;
+  background: transparent image_url('ribbon.png') 0 0 no-repeat;
+  height: 69px;
+  width: 411px;
+  a {
+    color: black;
+    text-decoration: none;
+    font-family: MavenProBlack;
+    margin-left: 40px;
+    margin-top: 6px;
+    display: block;
+    font-size: 30px;
+  }
+}
+
+

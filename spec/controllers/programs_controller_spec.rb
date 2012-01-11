@@ -2,11 +2,11 @@ require 'spec_helper'
 
 describe ProgramsController do
 
-  describe "#new" do
+  describe "#root" do
     context "the user is not signed in" do
       it "should render the new page" do
         kit = Kit.create(slug: "foo")
-        get :new, :kit_id => kit.to_param
+        get :root, :kit_id => kit.to_param
         assigns(:program).kit.should == kit
         response.should render_template("new")
       end
@@ -17,9 +17,18 @@ describe ProgramsController do
         user = User.create!(name: "sam")
         session[:user_id] = user.id
         kit = Kit.create!(slug: "puppy")
-        get :new, kit_id: kit.to_param
+        get :root, kit_id: kit.to_param
         response.should render_template("my")
       end
+    end
+  end
+
+  describe "#new" do
+    it "should render the new page" do
+      kit = Kit.create(slug: "foo")
+      get :new, :kit_id => kit.to_param
+      assigns(:program).kit.should == kit
+      response.should render_template("new")
     end
   end
 

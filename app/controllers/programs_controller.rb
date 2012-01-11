@@ -1,8 +1,8 @@
 class ProgramsController < ApplicationController
-  before_filter :load_program, except: ["new", "create", "index"]
+  before_filter :load_program, except: ["new", "create", "index", "root"]
   load_and_authorize_resource only: "index"
 
-  def new
+  def root
     kit= Kit.find_by_slug(params[:kit_id])
     @program = Program.new(kit: kit, user: User.new)
     if session[:user_id]
@@ -10,6 +10,11 @@ class ProgramsController < ApplicationController
     else
       render "new"
     end
+  end
+
+  def new
+    kit= Kit.find_by_slug(params[:kit_id])
+    @program = Program.new(kit: kit, user: User.new)
   end
 
   def create
