@@ -49,6 +49,12 @@ $ ->
   )
   $("input:submit, .button").button()
 
+  $(".trash-button").button(
+    icons:
+      primary: 'ui-icon-trash'
+    text: false
+  )
+
   if $("#ide").length > 0
     code = $("#ide input#program_code").val()
     window.editor = ace.edit("editor")

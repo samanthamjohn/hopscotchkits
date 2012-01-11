@@ -8,9 +8,25 @@
 
   li {
     margin: 10px 0;
+    .name {
+      font-family: "MavenProBold";
+      font-size: 16px;
+    }
+    .updated {
+      font-style: italic;
+    }
+
+    a.program {
+      width: 300px;
+      display: inline-block;
+    }
   }
   a {
     color: #45717a;
+  }
+  .ui-state-default {
+    display: inline-block;
+    margin-left: 5px;
   }
 
   .new-program-form {

@@ -107,4 +107,15 @@ describe ProgramsController do
     end
   end
 
+  describe "destroy" do
+    it "should delete the record" do
+      kit = Kit.create(slug: 'puppy')
+      program = Program.create(kit: kit, user_attributes: {name: "Evan"})
+      delete :destroy, id: program.to_param, kit_id: kit.to_param
+      lambda {
+        program.reload
+      }.should raise_error(ActiveRecord::RecordNotFound)
+    end
+  end
+
 end
