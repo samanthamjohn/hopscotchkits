@@ -109,3 +109,6 @@ h1 {
   background: #35414F image_url('candycane.png') 50% 50% repeat;
   margin-bottom: 20px;
 }
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
+  background: #35414F image_url('buttonhover.png') 50% 50% repeat;
+}
