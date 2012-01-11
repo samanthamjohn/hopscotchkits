@@ -1,5 +1,5 @@
 window.runSpec = ->
-  val = window.editor.getSession().getValue()
+  window.val = window.editor.getSession().getValue()
   CoffeeScript.eval(val)
   spec = $(".spec").data("spec")
   CoffeeScript.eval('resetAssertions()')
@@ -20,7 +20,8 @@ $ ->
   $("#ide form").bind("submit", ->
     val = window.editor.getSession().getValue()
     $("#ide input#program_code").val(val)
-    $frame.find('body').html('')
+    _paper.clear()
+    _paper.remove()
     runSpec()
   )
 
