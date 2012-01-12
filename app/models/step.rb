@@ -3,4 +3,8 @@ class Step < ActiveRecord::Base
   def next_step
     self.kit.steps.where("position > ?", self.position).order(:position).first
   end
+
+  def last_step?
+    self.kit.steps.where("position > ? ", self.position).where(bonus: false).where(freeplay: false).blank?
+  end
 end

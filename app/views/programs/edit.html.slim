@@ -25,7 +25,7 @@
     div id='editor'
     div id='stage'
       iframe name='stage'
-      div class='spec' data-spec=@step.spec data-last=@step.next_step.blank?.to_s
+      div class='spec' data-spec=@step.spec data-last=@step.last_step?.to_s
     div class='message' id='next_steps'
       div class="success"
         - if @step.next_step
