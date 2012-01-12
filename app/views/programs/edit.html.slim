@@ -63,7 +63,7 @@ div id='publish_popup' style='display:none'
     a name="fb_share"
     script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"
   div class='social'
-    = link_to "Tweet", "https://twitter.com/share", class: "twitter-share-button", "data-lang" => "en", "data-text" => "Check out my awesome program made with @HopscotchKits: #{kit_program_url(@program.kit, @program)}", "data-count" => 'none'
+    = link_to "Tweet", "https://twitter.com/share", class: "twitter-share-button", "data-lang" => "en", "data-text" => "Check out my awesome program made with @HopscotchKits", "data-count" => 'none', "data-counturl" => "#{kit_program_url(@program.kit, @program)}"
     javascript:
       !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 
