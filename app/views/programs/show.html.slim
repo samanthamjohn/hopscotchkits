@@ -4,3 +4,8 @@
 script type="text/coffeescript"
   = raw("#{raw(@program.code)}\n")
   |window.resizePaper()
+
+-content_for :head do
+  meta property="og:title" content="Hopscotch Kits"
+  meta property="og:description" content="These fun kits will allow you to go from zero to a published web program just by following our steps. Learn to create a puppy animation, a tic-tac-toe game and more!"
+  meta property="og:image" content=path_to_image(@program.kit.icon_url)
