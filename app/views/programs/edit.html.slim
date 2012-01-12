@@ -61,7 +61,7 @@ div id='publish_popup' style='display:none'
     coffee:
       $("input.permalink").click((e)-> $("input.permalink").select(); e.preventDefault())
   div class='social'
-    a name="fb_share"
+    a name="fb_share" share_url=kit_program_url(@program.kit, @program)
     script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"
   div class='social'
     = link_to "Tweet", "https://twitter.com/share", class: "twitter-share-button", "data-lang" => "en", "data-text" => "Check out my awesome program made with @HopscotchKits", "data-count" => 'none', "data-url" => "#{kit_program_url(@program.kit, @program)}"
