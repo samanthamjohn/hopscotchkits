@@ -29,10 +29,11 @@
     div class='message' id='next_steps'
       div class="success"
         - if @step.next_step
-          h3 Ready for more?
           = simple_form_for [@program.kit, @program], url: next_step_kit_program_path(@program.kit, @program) do |f|
             = f.hidden_field :step_id, value: @step.next_step.id
-            = f.submit "Let's Go"
+            = link_to "#", class: 'button', id: 'next_button' do
+              |Next
+              span.arrow &raquo;
         div class='button' id='publish_it' Publish it!
     div id='controls' data-step="#{@step.position}"
       = simple_form_for [@program.kit, @program], remote: true do |f|
@@ -50,11 +51,6 @@
 div id='publish_popup' style='display:none'
   p Your program is so cool that it deserves its own webpage- we've made one just for you!
   = link_to "see your program", kit_program_path(@program.kit, @program), class: 'publish-button', target: "_blank"
-  coffee:
-    $(".publish-button").button(
-      icons: 
-        secondary: 'ui-icon-extlink'
-    )
   div class='social'
     div id="fb-root"
     javascript:
@@ -73,20 +69,6 @@ div id='publish_popup' style='display:none'
   div class='mail'
     |Mail this link: 
     input class='permalink' value=kit_program_url(@program.kit, @program)
-    coffee:
-      $("input.permalink").click((e)-> $("input.permalink").select(); e.preventDefault())
-coffee:
-  $("#publish_it").click( (e) ->
-    e.preventDefault()
-    $("#publish_popup").dialog(
-      modal: true
-      title: "Share your work"
-      open: (-> $("input.permalink").focus())
-      class: "publish"
-      width: "415px"
-      height: 350
-    )
-  )
 
 -content_for :footer do
   div class='rootlink'

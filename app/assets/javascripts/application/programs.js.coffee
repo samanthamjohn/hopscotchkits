@@ -67,6 +67,30 @@ $ ->
     text: false
   )
 
+  $(".publish-button").button(
+    icons:
+      secondary: 'ui-icon-extlink'
+  )
+
+  $('#next_button').click( (e) -> 
+    e.preventDefault()
+    $("#next_steps form").submit()
+  )
+
+  $("#publish_it").click( (e) ->
+    e.preventDefault()
+    $("#publish_popup").dialog(
+      modal: true
+      title: "Share your work"
+      open: (-> $("input.permalink").focus())
+      class: "publish"
+      width: "415px"
+      height: 350
+    )
+  )
+
+  $("input.permalink").click((e)-> $("input.permalink").select(); e.preventDefault())
+
   if $("#ide").length > 0
     code = $("#ide input#program_code").val()
     window.editor = ace.edit("editor")

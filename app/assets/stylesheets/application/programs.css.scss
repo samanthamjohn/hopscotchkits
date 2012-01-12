@@ -202,6 +202,15 @@
   }
   &#next_steps {
     width: 400px;
+    #next_button.ui-state-default {
+      background: #93C3CD image_url("green_button.png") 50% 50% repeat;
+    }
+    .arrow {
+      font-size: 35px;
+      line-height: 16px;
+      display: inline-block;
+      margin-left: 5px;
+    }
   }
   &.successful {
     .success {
