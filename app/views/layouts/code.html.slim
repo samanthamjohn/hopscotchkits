@@ -14,7 +14,7 @@ html
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
-      makePaper = function() {
+      makeWorkspace = function() {
         var _paper = Raphael(0,0,400,400)
         _paper.rect(0,0,399,399).attr('fill', 'white')
         window._paper = _paper;
