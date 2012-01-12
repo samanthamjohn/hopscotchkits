@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120110232343) do
+ActiveRecord::Schema.define(:version => 20120112163333) do
 
   create_table "kits", :force => true do |t|
     t.string    "name"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20120110232343) do
     t.timestamp "created_at"
     t.timestamp "updated_at"
     t.string    "icon_url"
+    t.boolean   "published"
   end
 
   create_table "programs", :force => true do |t|

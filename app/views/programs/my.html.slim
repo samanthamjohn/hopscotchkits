@@ -14,7 +14,7 @@ div class='my-programs'
   h1 New Program
   .hr
   ul.new-programs
-    - Kit.all.each do |kit|
+    - Kit.published.each do |kit|
       li
         div class='form' id="#{kit.to_param}_form"
           - program = Program.new(kit: kit, user: current_user)

@@ -16,6 +16,11 @@ class KitsController < ApplicationController
     redirect_to edit_kit_path(@kit)
   end
 
+  def update
+    @kit.update_attributes(params[:kit])
+    redirect_to edit_kit_path(@kit)
+  end
+
   private
 
   def set_body_class

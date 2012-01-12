@@ -1,12 +1,25 @@
 h1= @kit.name
-p
-  = image_tag(@kit.icon_url) unless @kit.icon_url.blank?
-p
-  |slug: 
-  = @kit.slug
-p
-  |description: 
-  = @kit.description
+div class='show-kit' id='kit_show'
+  p
+    = image_tag(@kit.icon_url) unless @kit.icon_url.blank?
+  p
+    |slug: 
+    = @kit.slug
+  p
+    |description: 
+    = @kit.description
+  p
+    |published: 
+    = @kit.published
+  p= link_to "Edit", "#", id: "kit", class: "show"
+div class='edit-kit' id='kit_form' style='display:none'
+  = simple_form_for @kit do |f|
+    = f.input :name
+    = f.input :slug
+    = f.input :published
+    = f.input :description
+    = link_to "cancel", "#", id: "kit_cancel", class: "cancel"
+    = f.submit
 
 = link_to "Back", kits_path
 

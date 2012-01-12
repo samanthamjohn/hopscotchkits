@@ -23,6 +23,15 @@ describe KitsController do
     end
   end
 
+  describe "update" do
+    it "should update the kit" do
+      kit = Kit.create!(slug: 'foo', description: "Foo")
+      put :update, id: kit.to_param, kit: {description: "Bar"}
+      response.should redirect_to edit_kit_path(kit)
+      kit.reload.description.should == 'Bar'
+    end
+  end
+
   describe "new" do
     it "should render the new template" do
       get :new
