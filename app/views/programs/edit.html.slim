@@ -61,6 +61,10 @@
 div id='publish_popup' style='display:none'
   p Your program is so cool that it deserves its own webpage- we've made one just for you!
   = link_to "see your program", kit_program_path(@program.kit, @program), class: 'publish-button', target: "_blank"
+  - if @step.next_step
+    p
+      |try the 
+      = link_to "bonus steps", edit_kit_program_path(@program.kit, @program, step: @step.next_step.position), class: 'bonus'
   div class='social'
     div id="fb-root"
     javascript:

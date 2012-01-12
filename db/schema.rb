@@ -35,19 +35,19 @@ ActiveRecord::Schema.define(:version => 20120112221724) do
   end
 
   create_table "steps", :force => true do |t|
-    t.integer  "kit_id"
-    t.text     "description"
-    t.text     "spec"
-    t.text     "success_message"
-    t.integer  "position"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "title"
-    t.text     "hint"
-    t.text     "solution"
-    t.string   "image_url"
-    t.boolean  "bonus",           :default => false
-    t.boolean  "freeplay",        :default => false
+    t.integer   "kit_id"
+    t.text      "description"
+    t.text      "spec"
+    t.text      "success_message"
+    t.integer   "position"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "title"
+    t.text      "hint"
+    t.text      "solution"
+    t.string    "image_url"
+    t.boolean   "bonus",           :default => false
+    t.boolean   "freeplay",        :default => false
   end
 
   create_table "users", :force => true do |t|

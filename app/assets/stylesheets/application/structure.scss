@@ -72,6 +72,10 @@ a {
   text-decoration: none;
 }
 
+p a {
+  font-style: italic;
+}
+
 form#new_signup {
   label {
     display: block;
