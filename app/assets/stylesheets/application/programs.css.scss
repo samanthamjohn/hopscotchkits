@@ -242,11 +242,17 @@
 }
 
 #publish_popup {
+  overflow: hidden;
   .mail {
-    margin: 40px 0 0;
+    margin: 10px 0;
   }
   .social {
-    margin: 10px 10px 0 10px;
-    float: left;
+    margin: 10px 0;
+  }
+  .publish-button {
+    margin-bottom: 40px;
+  }
+  p {
+    padding: 10px 0;
   }
 }
