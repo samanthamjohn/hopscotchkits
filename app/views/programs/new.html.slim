@@ -1,9 +1,28 @@
-.new.program
-  h1 Hello!
-  p= @program.kit.description
+.program.edit
+  .preface
+    h1 Hello!
+    .hr
+    .progress
+      = image_tag(@program.kit.icon_url)
+    .instructions.welcome
+      div class='description'
+        p= @program.kit.description
+      .new.program
+        = simple_form_for [@program.kit, @program] do |f|
+          = f.hidden_field :kit_id
+          = f.fields_for :user do |u|
+            = u.input :name, label: "What's your name?"
+          = f.submit value: "Start coding"
 
-  = simple_form_for [@program.kit, @program] do |f|
-    = f.hidden_field :kit_id
-    = f.fields_for :user do |u|
-      = u.input :name, label: "What's your name?"
-    = f.submit value: "Start coding"
+
+  div id='ide'
+    div id='editor'
+        div class='button' id='publish_it' Publish it!
+    div id='stage'
+      iframe name='stage'
+    div id='controls'
+      input id="program_code" type='hidden'
+      = link_to "Run this", "#", id: "runthis", class: "button"
+      = link_to "Hint", "#", class: "hint button"
+
+  div id='hint' Fill in your name and press Start Coding to begin

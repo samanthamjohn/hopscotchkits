@@ -37,6 +37,12 @@ $ ->
     runSpec()
   )
 
+  $("a#runthis").click( (e) ->
+    e.preventDefault()
+    val = window.editor.getSession().getValue()
+    CoffeeScript.eval(val)
+  )
+
   $("a.hint").click( (e) ->
     e.preventDefault()
     $("#hint").dialog(

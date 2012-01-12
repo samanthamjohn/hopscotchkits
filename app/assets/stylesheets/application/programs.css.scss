@@ -70,6 +70,10 @@
   .instructions {
     float: left;
     width: 550px;
+    &.welcome p {
+      font-size: 20px;
+      line-height: 22px;
+    }
     img {
       float: left;
       margin: 0 10px 0 0;
@@ -115,18 +119,13 @@
 }
 
 .program.new {
-  p {
-    width: 600px;
-    line-height: 30px;
-    padding-top: 40px;
-    padding-bottom: 40px;
-  }
   form {
-    width: 550px;
+    width: 605px;
     div {
       float: left;
     }
     label {
+      font-size: 20px;
       line-height: 45px;
     }
     #program_user_attributes_name {
@@ -155,20 +154,19 @@
   padding-top: 40px;
   width: 920px;
   clear: both;
-  #controls form {
+  #controls {
     float: left;
     width: 480px;
     margin-top: 10px;
 
-    #runthis {
-      float: right;
-    }
   }
-
   .message {
     float: right;
     margin: 20px;
   }
+}
+#runthis {
+  float: right;
 }
 
 .progress .message {
