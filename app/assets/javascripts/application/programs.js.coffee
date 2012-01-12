@@ -13,7 +13,7 @@ window.runSpec = ->
       errorArray = error.message.split("line ")[1].split(":")
       line = errorArray[0]
       errorMessage = errorArray[1]
-      errorHtml = '<div>Oh no! You have a syntax error on line ' + line + '. Check that you don\'t have any extra spaces and that your capitalization is consistent.</div>'
+      errorHtml = '<div>Oh no! You have a syntax error on line ' + line + '. Check to make sure you capitalized everything correctly, don\'t have any extra spaces and aren\'t missing any punctuation marks ( " , ).</div>'
     $('.message').attr('class', 'message errored')
     $('.message .error .current-error').html(errorHtml)
   window.editor.focus()
