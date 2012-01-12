@@ -48,6 +48,7 @@
       = simple_form_for [@program.kit, @program], remote: true do |f|
         = f.hidden_field :step_id, value: @step.next_step.id
 div id='publish_popup' style='display:none'
+  | Your program is so cool that it deserves its own webpage- we've made one just for you!
   = link_to "see your program", kit_program_path(@program.kit, @program), class: 'publish-button', target: "_blank"
   coffee:
     $(".publish-button").button(
