@@ -43,6 +43,10 @@
 
   div id='hint'
     = simple_format(@step.hint)
+    p Still having trouble? 
+    = link_to "See the solution", "#", class: "solution-link"
+    div class='solutions' style='display:none'
+      = simple_format(@step.solution)
 
   - if @step.next_step
     div id='next_form'

@@ -47,6 +47,7 @@ $ ->
     e.preventDefault()
     $("#hint").dialog(
       modal: true
+      title: "Hints and Solutions"
     )
   )
 
@@ -90,6 +91,11 @@ $ ->
   )
 
   $("input.permalink").click((e)-> $("input.permalink").select(); e.preventDefault())
+
+  $(".solution-link").click((e) ->
+    e.preventDefault()
+    $(".solutions").toggle()
+  )
 
   if $("#ide").length > 0
     code = $("#ide input#program_code").val()
