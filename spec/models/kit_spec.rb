@@ -14,4 +14,14 @@ describe Kit do
     end
   end
 
+  describe "#num_steps" do
+    it "should return the number of non-bonus, non-freeplay steps" do
+      kit = Kit.create!(slug: "foo")
+      step1 = Step.create!(position: 1, kit: kit)
+      step3_bonus = Step.create!(position: 3, kit: kit, bonus: true)
+      step4_freeplay = Step.create!(position: 4, kit: kit, freeplay: true)
+      kit.num_steps.should == 1
+    end
+  end
+
 end

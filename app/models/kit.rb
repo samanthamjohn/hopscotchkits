@@ -12,4 +12,8 @@ class Kit < ActiveRecord::Base
   def to_s
     name
   end
+
+  def num_steps
+    self.steps.where(bonus: false, freeplay: false).count
+  end
 end

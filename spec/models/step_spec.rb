@@ -21,6 +21,9 @@ describe Step do
       step4_freeplay = Step.create!(position: 4, kit: kit, freeplay: true)
       step1.last_step?.should == false
       step2.last_step?.should == true
+      step3_bonus.last_step?.should == false
+      step4_freeplay.last_step?.should == false
     end
+
   end
 end

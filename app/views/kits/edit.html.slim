@@ -31,6 +31,9 @@ ul
       div class='show-step' id="#{step.id}_show"
         p= step.position
         p= step.title
+        p
+          |Bonus: 
+          = step.bonus
         p= step.description
         p= link_to "Edit", "#", id: step.id, class: "show"
         p= link_to "Delete", step_path(step), method: "delete"

@@ -1,12 +1,18 @@
 .program.edit
   .preface
     h1
-      = "Step #{@step.position}: "
+      - if @step.bonus
+        |Bonus:
+      - else
+        = "Step #{@step.position}: "
       span.subtitle= @step.title
     .hr
     .progress
-      div id='progressbar' data-progress="#{(@step.position.to_f/@step.kit.steps.count.to_f * 100).to_i}"
-      p="Step #{@step.position} of #{@step.kit.steps.count}"
+      div id='progressbar' data-progress="#{(@step.position.to_f/@step.kit.num_steps.to_f * 100).to_i}"
+      - if @step.position > @step.kit.num_steps
+        p Complete!
+      - else
+        p="Step #{@step.position} of #{@step.kit.num_steps}"
       div class='message'
         div class='error'
           h2 Whoops

@@ -5,6 +5,7 @@ class Step < ActiveRecord::Base
   end
 
   def last_step?
+    return false if bonus || freeplay
     self.kit.steps.where("position > ? ", self.position).where(bonus: false).where(freeplay: false).blank?
   end
 end
