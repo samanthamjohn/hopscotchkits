@@ -73,4 +73,5 @@ $ ->
     $(".ace_gutter-cell").css('fontSize', '16px')
     CoffeeScriptMode = require("ace/mode/coffee").Mode
     window.editor.getSession().setMode(new CoffeeScriptMode())
-    runSpec()
+    val = window.editor.getSession().getValue()
+    CoffeeScript.eval(val)
