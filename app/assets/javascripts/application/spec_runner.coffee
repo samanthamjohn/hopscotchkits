@@ -22,5 +22,6 @@ window.runAssertions = ->
 window.showSuccess = ->
   $(".message").attr("class", "message successful")
   if $(".spec").data("last")
+    $(".spec").data('last', false)
     $("#publish_it").click()
 
