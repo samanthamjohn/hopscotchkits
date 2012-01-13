@@ -24,7 +24,6 @@
             a href="#" class="hint" get a hint
           .clearfix
         div class="success"
-          h2 Yay!
           h2= ["Yay!", "Boom!", "You're Right!", "Good Job!", "Way to go!", "You did it!"].shuffle.first
           = simple_format(@step.success_message)
     .instructions
