@@ -66,6 +66,16 @@ describe ProgramsController do
       get :edit, kit_id: kit.to_param, id: program.to_param, step: step.position
       assigns(:step).should == step
     end
+
+    context "when the step_param is freeplay" do
+      it "should set the step as the freeplay step if present" do
+      kit = Kit.create(slug: "foo")
+      program = Program.create(kit: kit, user_attributes: {name: "Evan"})
+      step = Step.create!(kit_id: kit.id, position: 2, freeplay: true)
+      get :edit, kit_id: kit.to_param, id: program.to_param, step: "freeplay"
+      assigns(:step).should == step
+      end
+    end
   end
 
   describe "#update" do

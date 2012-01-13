@@ -86,7 +86,7 @@ $ ->
       open: (-> $("input.permalink").focus())
       class: "publish"
       width: "415px"
-      height: 350
+      height: 415
     )
   )
 

@@ -26,7 +26,11 @@ class ProgramsController < ApplicationController
   end
 
   def edit
-    @step = @program.kit.steps.find_by_position(params[:step])
+    if params[:step] == "freeplay"
+      @step = @program.kit.freeplay_step
+    else
+      @step = @program.kit.steps.find_by_position(params[:step])
+    end
     @step ||= @program.current_step
   end
 

@@ -3,6 +3,8 @@
     h1
       - if @step.bonus
         |Bonus:
+      - elsif @step.freeplay
+        |Freeplay Mode:
       - else
         = "Step #{@step.position}: "
       span.subtitle= @step.title
@@ -49,7 +51,7 @@
 
   div id='hint'
     = simple_format(@step.hint)
-    p Still having trouble? 
+    p Still having trouble?
     = link_to "See the solution", "#", class: "solution-link"
     div class='solutions' style='display:none'
       = simple_format(@step.solution)
@@ -64,7 +66,10 @@ div id='publish_popup' style='display:none'
   - if @step.next_step
     p
       |try the 
-      = link_to "bonus steps", edit_kit_program_path(@program.kit, @program, step: @step.next_step.position), class: 'bonus'
+      = link_to "bonus steps", edit_kit_program_path(@program.kit, @program, step: @step.next_step.position)
+    p
+      |or enter 
+      = link_to "freeplay mode", edit_kit_program_path(@program.kit, @program, step: 'freeplay')
   div class='social'
     div id="fb-root"
     javascript:

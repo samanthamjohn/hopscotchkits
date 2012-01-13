@@ -24,4 +24,13 @@ describe Kit do
     end
   end
 
+  describe "#freeplay_step" do
+    it "should return the freeplay step" do
+      kit = Kit.create!(slug: "foo")
+      freeplay = Step.create!(position: 4, kit: kit, freeplay: true)
+      kit.freeplay_step.should == freeplay
+    end
+
+  end
+
 end
