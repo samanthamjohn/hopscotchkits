@@ -26,7 +26,7 @@
       div class='description'
         - unless @step.image_url.blank?
           = image_tag("step_images/#{@step.image_url}")
-        = simple_format(@step.description.html_safe)
+        = simple_format(@step.description.html_safe, {}, sanitize: false)
 
 
   div id='ide'
