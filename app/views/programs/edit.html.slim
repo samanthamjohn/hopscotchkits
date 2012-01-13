@@ -17,10 +17,15 @@
         p="Step #{@step.position} of #{@step.kit.num_steps}"
       div class='message'
         div class='error'
-          h2 Whoops
+          h2= ["Whoops!", "Oops!", "Sorry!", "Uh-oh!", "Oh Noes!", "Oh gosh!"].shuffle.first
           div class='current-error'
+          div class='hint'
+            |Are you stumped? 
+            a href="#" class="hint" get a hint
+          .clearfix
         div class="success"
           h2 Yay!
+          h2= ["Yay!", "Boom!", "You're Right!", "Good Job!", "Way to go!", "You did it!"].shuffle.first
           = simple_format(@step.success_message)
     .instructions
       div class='description'
