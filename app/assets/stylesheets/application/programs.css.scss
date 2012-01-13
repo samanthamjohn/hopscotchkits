@@ -159,6 +159,7 @@
     float: left;
     width: 480px;
     margin-top: 10px;
+    margin-bottom: 30px;
 
   }
   .message {
@@ -196,6 +197,7 @@
 }
 
 .message {
+  display: none;
   h3 {
     text-align: right;
     font-size: 18px;

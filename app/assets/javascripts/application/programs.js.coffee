@@ -15,7 +15,9 @@ window.runSpec = ->
       errorMessage = errorArray[1]
       errorHtml = '<div>Oh no! You have a syntax error on line ' + line + '. Check to make sure you capitalized everything correctly, don\'t have any extra spaces and aren\'t missing any punctuation marks ( " , ).</div>'
     $('.message').attr('class', 'message errored')
+    $('.message:visible').hide('fade')
     $('.message .error .current-error').html(errorHtml)
+    $('.message').show('bounce')
   window.editor.focus()
 
 window.makeWorkspace = ->
