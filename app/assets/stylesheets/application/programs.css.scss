@@ -168,6 +168,11 @@
 #runthis {
   float: right;
 }
+#runthis_copy {
+  z-index: 99;
+  position: fixed;
+  bottom: 0;
+}
 
 .progress .message {
   margin-top: 10px;

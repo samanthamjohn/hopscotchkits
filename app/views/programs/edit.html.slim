@@ -52,6 +52,7 @@
       = simple_form_for [@program.kit, @program], remote: true do |f|
         = f.hidden_field :code
         = f.submit id: "runthis", value: "run this"
+        = f.submit id: "runthis_copy", value: "run this"
         = link_to "Hint", "#", class: "hint button"
 
   div id='hint'

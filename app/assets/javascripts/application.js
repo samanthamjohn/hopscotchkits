@@ -13,5 +13,6 @@
 //= require theme-clouds-uncompressed
 //= require mode-coffee-uncompressed
 //= require coffee-script
+//= require waypoints
 //= require_self
 //= require_tree ./application
