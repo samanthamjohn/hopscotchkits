@@ -6,7 +6,6 @@ div class='my-programs'
     - current_user.programs.order("updated_at DESC").each do |program|
       li
         = link_to edit_kit_program_path(program.kit, program), class: "program" do
-          = image_tag(program.kit.icon_url) if program.kit.icon_url.present?
           span class='name'= program.kit.name
           span class='updated'= " last updated #{time_ago_in_words(program.updated_at)} ago"
         = link_to "edit", edit_kit_program_path(program.kit, program), class: "edit-button"
