@@ -1,5 +1,40 @@
+- programs= Program.where(kit_id: 3).order("created_at DESC")
+- finished_programs = programs.select{|p| p.current_step.position >= 8}.sort{|a,b| b.current_step <=>  a.current_step}
+- unfinished_programs = programs.select{|p| p.current_step.position < 8}.sort{|a,b| b.current_step <=>  a.current_step}
+h1
+  | Finished puppys 
+  = finished_programs.count
+ul
+- finished_programs.each do |program|
+  li style='margin:10px 0;'
+    = link_to("By #{program.user.name}", kit_program_path(program.kit, program))
+    |  - 
+    = program.created_at.strftime("%m/%d/%Y")
+    |  Step 
+    = program.current_step.position
+h1
+  | Unfinished puppys 
+  = unfinished_programs.count
+ul
+- unfinished_programs.each do |program|
+  li style='margin:10px 0;'
+    = link_to("By #{program.user.name}", kit_program_path(program.kit, program))
+    |  - 
+    = program.created_at.strftime("%m/%d/%Y")
+    |  Step 
+    = program.current_step.position
+
+
 - @programs.select{|p| p.kit && p.user}.group_by{|p|p.kit}.each do |programs|
-  = programs.last.first.kit.name
+  h1
+    = programs.last.first.kit.name
+    |  
+    = programs.last.count
   ul
     - programs.last.each do |program|
-      li= link_to(program.user.name, kit_program_path(program.kit, program))
+      li style='margin:10px 0;'
+        = link_to("By #{program.user.name}", kit_program_path(program.kit, program))
+        |  - 
+        = program.created_at.strftime("%m/%d/%Y")
+        |  Step 
+        = program.current_step.position
