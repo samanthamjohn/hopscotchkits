@@ -24,6 +24,7 @@ window.makeWorkspace = ->
   window._paper = Raphael(0,0,400,400)
   window._paper.rect(0,0,399,399).attr('fill', 'white')
   window._paper
+window.makePaper = makeWorkspace
 
 $ ->
   if $("#stage").length > 0
