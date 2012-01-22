@@ -2,6 +2,15 @@ html {
   height: 100%;
 }
 
+a.logo {
+  float: right;
+  display: block;
+  text-indent: -999em;
+  background: transparent url('/assets/logo.png') 0px 11px no-repeat;
+  height: 98px;
+  width: 135px;
+}
+
 body {
   width: 100%;
   font-family: 'Georgia';
