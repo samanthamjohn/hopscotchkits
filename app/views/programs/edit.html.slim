@@ -26,6 +26,11 @@
         div class="success"
           h2= ["Yay!", "Boom!", "You're Right!", "Good Job!", "Way to go!", "You did it!"].shuffle.first
           = simple_format(@step.success_message)
+          - if @step.next_step
+            .controls
+              = link_to "#", class: 'button next_button' do
+                |Next
+                span.arrow &raquo;
     .instructions
       div class='description'
         - unless @step.image_url.blank?
@@ -43,7 +48,7 @@
         - if @step.next_step
           = simple_form_for [@program.kit, @program], url: next_step_kit_program_path(@program.kit, @program) do |f|
             = f.hidden_field :step_id, value: @step.next_step.id
-            = link_to "#", class: 'button', id: 'next_button' do
+            = link_to "#", class: 'button next_button' do
               |Next
               span.arrow &raquo;
         div class='button' id='publish_it' Publish it!

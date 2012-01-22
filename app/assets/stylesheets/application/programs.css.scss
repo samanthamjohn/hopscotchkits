@@ -215,9 +215,6 @@
   }
   &#next_steps {
     width: 400px;
-    #next_button.ui-state-default {
-      background: #93C3CD image_url("green_button.png") 50% 50% repeat;
-    }
     .arrow {
       font-size: 35px;
       line-height: 16px;
@@ -235,6 +232,17 @@
       }
     }
   }
+}
+
+.next_button.ui-state-default {
+  background: #93C3CD image_url("green_button.png") 50% 50% repeat;
+  &.ui-state-hover {
+    background: #35414F image_url('buttonhover.png') 50% 50% repeat;
+  }
+}
+
+.success .controls {
+  text-align: right;
 }
 
 #stage {

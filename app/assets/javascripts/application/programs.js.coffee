@@ -82,7 +82,7 @@ window.makeWorkspace = ->
       "M375,0L375,400"
     ).attr(stroke: 'lightgray')
   window._paper
-window.makePaper = makeWorkspace
+window.makePaper = window.makeWorkspace
 
 $ ->
   if $("#stage").length > 0
@@ -134,7 +134,7 @@ $ ->
       secondary: 'ui-icon-extlink'
   )
 
-  $('#next_button').click( (e) -> 
+  $('.next_button').click( (e) ->
     e.preventDefault()
     $("#next_steps form").submit()
   )
