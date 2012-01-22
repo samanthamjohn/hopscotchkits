@@ -1,6 +1,10 @@
+h1 Puppy Draw Step breakdown
+ul
+  - Kit.find_by_slug('puppy').steps.sort{|a,b| a.position <=> b.position}.each do |step| 
+    li style='margin:10px 0; font-size:15px;'= "#{step.position}: #{Program.where(step_id: step.id).count}"
 - programs= Program.where(kit_id: 3).order("created_at DESC")
-- finished_programs = programs.select{|p| p.current_step.position >= 8}.sort{|a,b| b.current_step <=>  a.current_step}
-- unfinished_programs = programs.select{|p| p.current_step.position < 8}.sort{|a,b| b.current_step <=>  a.current_step}
+- finished_programs = programs.select{|p| p.current_step.position >= 8}
+- unfinished_programs = programs.select{|p| p.current_step.position < 8}
 h1
   | Finished puppys 
   = finished_programs.count
