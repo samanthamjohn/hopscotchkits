@@ -134,6 +134,7 @@ $ ->
       secondary: 'ui-icon-extlink'
   )
 
+  $('.next_button').button(disabled: true)
   $('.next_button').click( (e) ->
     e.preventDefault()
     $("#next_steps form").submit()
