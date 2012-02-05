@@ -25,6 +25,7 @@ window.showSuccess = ->
   $('.message:visible').hide('fade')
   $(".message").attr("class", "message successful")
   $('.message').show('fold')
+  $('.next_button').button({disabled: false})
   if $(".spec").data("last")
     $(".spec").data('last', false)
     $("#publish_it").click()

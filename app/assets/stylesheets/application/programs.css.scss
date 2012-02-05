@@ -114,7 +114,7 @@
     margin-bottom: 15px;
     line-height: 16px;
   }
-  code {
+  code, code p {
     font-family: monospace;
   }
 }
@@ -162,7 +162,7 @@
     margin-bottom: 30px;
 
   }
-  .message {
+  .next-controls {
     float: right;
     margin: 20px;
   }
@@ -196,6 +196,17 @@
   }
 }
 
+.next-controls {
+  width: 400px;
+  .arrow {
+    font-size: 35px;
+    line-height: 16px;
+    display: inline-block;
+    margin-left: 5px;
+  }
+  .next_button { float: right }
+}
+
 .message {
   display: none;
   h3 {
@@ -211,15 +222,6 @@
   &.errored {
     .error {
       display: block;
-    }
-  }
-  &#next_steps {
-    width: 400px;
-    .arrow {
-      font-size: 35px;
-      line-height: 16px;
-      display: inline-block;
-      margin-left: 5px;
     }
   }
   &.successful {
