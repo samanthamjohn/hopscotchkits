@@ -16,6 +16,23 @@ describe Program do
     end
   end
 
+  describe "after_save" do
+    it "should create a snapshot" do
+      kit = Kit.create!(slug: "foo")
+      step1 = Step.create!(position: 1, kit: kit)
+      step2 = Step.create!(position: 2, kit: kit)
+      user = User.create!(name: 'foo')
+      program = Program.create(kit: kit, user: user)
+      snapshot = Snapshot.last
+      snapshot.program.should == program
+      snapshot.step.should == step1
+      program.update_attributes(current_step: step2, code: 'bar')
+      snapshot2 = Snapshot.last
+      snapshot2.step.should == step2
+      snapshot2.code.should == 'bar'
+    end
+  end
+
   describe "#next_step" do
     it "should return the next step" do
       kit = Kit.create!(slug: "foo")
