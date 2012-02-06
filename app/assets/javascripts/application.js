@@ -9,6 +9,7 @@
 //= require jquery-ui
 //= require raphael
 //= require underscore
+//= require backbone
 //= require ace-uncompressed
 //= require theme-clouds-uncompressed
 //= require mode-coffee-uncompressed
