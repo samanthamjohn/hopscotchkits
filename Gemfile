@@ -46,4 +46,5 @@ gem 'jquery-rails'
 
 group :test do
   gem "shoulda-matchers"
+  gem 'ruby-debug19'
 end
