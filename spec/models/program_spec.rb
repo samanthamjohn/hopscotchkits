@@ -26,7 +26,8 @@ describe Program do
       snapshot = Snapshot.last
       snapshot.program.should == program
       snapshot.step.should == step1
-      program.update_attributes(current_step: step2, code: 'bar')
+      step2_id = step2.id
+      program.reload.update_attributes(step_id: step2_id, code: 'bar')
       snapshot2 = Snapshot.last
       snapshot2.step.should == step2
       snapshot2.code.should == 'bar'
