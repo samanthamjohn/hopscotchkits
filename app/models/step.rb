@@ -8,4 +8,16 @@ class Step < ActiveRecord::Base
     return false if bonus || freeplay
     self.kit.steps.where("position > ? ", self.position).where(bonus: false).where(freeplay: false).blank?
   end
+
+  def as_json(options=nil)
+    if last_step?
+      attrs = self.attributes.merge( last_step: true, next_step_id: nil)
+    else
+      attrs = self.attributes.merge(
+        next_step_id: next_step.id,
+        last_step: false
+      )
+    end
+    attrs
+  end
 end
