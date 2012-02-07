@@ -5,6 +5,7 @@ describe Program do
   it { should belong_to :current_step }
   it { should belong_to :user }
   it { should validate_presence_of :user }
+  it { should have_many :snapshots }
 
   describe "creation" do
     it "should start on the first step" do

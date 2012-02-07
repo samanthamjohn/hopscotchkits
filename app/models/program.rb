@@ -2,6 +2,7 @@ class Program < ActiveRecord::Base
   belongs_to :kit
   belongs_to :current_step, foreign_key: :step_id, class_name: "Step"
   belongs_to :user
+  has_many :snapshots
   validates :user, presence: true
   accepts_nested_attributes_for :user
 
