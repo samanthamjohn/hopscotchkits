@@ -22,7 +22,6 @@ window.runSpec = (spec) ->
   window.editor.focus()
 
 $ ->
-  window.spec = $(".program.edit").data("step").spec
   if $("#stage").length > 0
     window.$frame = $(window.frames['stage'].document)
     Raphael.setWindow(window.frames["stage"])

@@ -31,5 +31,7 @@ window.showSuccess = ->
     window.location.href="/programs/#{programId}"
 
 $ ->
-  window.last = $(".program.edit").data('step').last_step
+  if $(".program.edit[data-step]").length > 0
+    window.last = $(".program.edit").data('step').last_step
+    window.spec = $(".program.edit").data("step").spec
 
