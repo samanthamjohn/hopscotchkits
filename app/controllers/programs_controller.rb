@@ -40,8 +40,9 @@ class ProgramsController < ApplicationController
   end
 
   def next_step
-    @program.update_attributes(params[:program])
-    redirect_to edit_kit_program_path(@program.kit, @program, step: @program.current_step.position)
+    @program = Program.find(params[:id])
+    @program.update_attributes(current_step: @program.next_step)
+    render json: @program.current_step
   end
 
   def show

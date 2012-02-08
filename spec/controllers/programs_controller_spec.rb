@@ -88,13 +88,14 @@ describe ProgramsController do
   end
 
   describe "#next_step" do
-    it "should redirect to the edit page" do
+    it "should render the next step as json" do
       kit = Kit.create(slug: "foo")
-      program = Program.create(kit: kit, user_attributes: { name: "Evan"}, step_id: 4 )
       step = Step.create!(kit_id: kit.id, position: 2)
-      put :next_step, kit_id: kit.to_param, id: program.to_param, program: {step_id: step.id}
-      assigns(:program).step_id.should == step.id
-      response.should redirect_to edit_kit_program_path(kit, program, step: 2)
+      step2 = Step.create!(kit_id: kit.id, position: 3)
+      program = Program.create(kit: kit, user_attributes: { name: "Evan"}, current_step: step)
+      get :next_step, kit_id: kit.to_param, id: program.to_param
+      assigns(:program).reload.current_step.should == step.next_step
+      response.body.should == step2.to_json
     end
 
   end

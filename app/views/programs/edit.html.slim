@@ -1,87 +1,34 @@
-.program.edit
-  .preface
-    h1
-      - if @step.bonus
-        |Bonus:
-      - elsif @step.freeplay
-        |Freeplay Mode:
-      - else
-        = "Step #{@step.position}: "
-      span.subtitle= @step.title
-    .hr
-    .progress
-      div id='progressbar' data-progress="#{(@step.position.to_f/@step.kit.num_steps.to_f * 100).to_i}"
-      - if @step.position > @step.kit.num_steps
-        p Complete!
-      - else
-        p="Step #{@step.position} of #{@step.kit.num_steps}"
-      div class='message'
-        div class='error'
-          h2= ["Whoops!", "Oops!", "Sorry!", "Uh-oh!", "Oh Noes!", "Oh gosh!"].shuffle.first
-          div class='current-error'
-          div class='hint'
-            |Are you stumped? 
-            a href="#" class="hint" get a hint
-          .clearfix
-        div class="success"
-          h2= ["Yay!", "Boom!", "You're Right!", "Good Job!", "Way to go!", "You did it!"].shuffle.first
-          = simple_format(@step.success_message)
-          - if @step.next_step
-            .controls
-              = link_to "#", class: 'button next_button' do
-                |Next
-                span.arrow &raquo;
-    .instructions
-      div class='description'
-        - unless @step.image_url.blank?
-          = image_tag("step_images/#{@step.image_url}")
-        = simple_format(@step.description.html_safe, {}, sanitize: false)
-
+div class='program edit' data-step=@step.to_json data-num-steps=@program.kit.num_steps data-program-id=@program.id
+  /* = render "preface", step: @step, program: @program */
+  script type='template' id='preface_template'
+    = render 'preface.mustache'
+  script type='template' id='ide_template'
+    = render 'ide.mustache'
 
   div id='ide'
     div id='editor'
     div id='stage'
       iframe name='stage'
-      div class='spec' data-spec=@step.spec data-last=@step.last_step?.to_s
     div class='next-controls' id='next_steps'
-      div class="success"
-        - if @step.next_step
-          = simple_form_for [@program.kit, @program], url: next_step_kit_program_path(@program.kit, @program) do |f|
-            = f.hidden_field :step_id, value: @step.next_step.id
-            = link_to "#", class: 'button next_button' do
-              |Next
-              span.arrow &raquo;
-        - if @step.last_step? || @step.bonus? || @step.freeplay?
-          div class='button' id='publish_it' Publish it!
     div id='controls' data-step="#{@step.position}"
       = simple_form_for [@program.kit, @program], remote: true do |f|
         = f.hidden_field :code
+        = f.hidden_field :step_id, value: @program.kit.step(params[:step]) || @program.step_id
         = f.submit id: "runthis", value: "run this"
         = f.submit id: "runthis_copy", value: "run this"
         = link_to "Hint", "#", class: "hint button"
 
-  div id='hint'
-    = simple_format(@step.hint)
-    p Still having trouble?
-    = link_to "See the solution", "#", class: "solution-link"
-    div class='solutions' style='display:none'
-      code
-        = simple_format(@step.solution)
-
-  - if @step.next_step
-    div id='next_form'
-      = simple_form_for [@program.kit, @program], remote: true do |f|
-        = f.hidden_field :step_id, value: @step.next_step.id
 div id='publish_popup' style='display:none'
   p Your program is so cool that it deserves its own webpage- we've made one just for you!
   = link_to "see your program", kit_program_path(@program.kit, @program), class: 'publish-button', target: "_blank"
-  - if @step.next_step
+  - if @program.kit.has_freeplay?
     p
-      |try the 
-      = link_to "bonus steps", edit_kit_program_path(@program.kit, @program, step: @step.next_step.position)
-    p
-      |or enter 
+      |enter 
       = link_to "freeplay mode", edit_kit_program_path(@program.kit, @program, step: 'freeplay')
+  - if @program.kit.has_bonus?
+    p
+      |or try the 
+      = link_to "bonus steps", edit_kit_program_path(@program.kit, @program, step: @kit.bonus)
   div class='social'
     div id="fb-root"
     javascript:

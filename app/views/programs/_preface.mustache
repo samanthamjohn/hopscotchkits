@@ -1,0 +1,43 @@
+<div class='preface'>
+  <h1>
+    {{showTitle}}
+    <span class='subtitle'>{{step.title}}</span>
+  </h1>
+  <div class='hr'></div>
+  <div class='progress'>
+    <div id='progressbar' data-progress="{{progressPct}}">
+    </div>
+    <p> {{progressText}} </p>
+    <div class='message'>
+      <div class='error'>
+        <h2> {{errorShuffle}} </h2>
+        <div class='current-error'></div>
+        <div class='hint'>
+          |Are you stumped? 
+          <a href="#" class="hint"> get a hint</a>
+        </div>
+        <div class='clearfix'></div>
+      </div>
+      <div class="success">
+        <h2> {{successShuffle}} </h2>
+        {{ step.success_message }}
+        {{{nextStep}}}
+      </div>
+    </div>
+  </div>
+  <div class='instructions'>
+    <div class='description'>
+      {{{image_tag}}}
+      {{{step.description}}}
+    </div>
+  </div>
+
+</div>
+<div id='hint'>
+  <p>{{{step.hint}}}</p>
+  <p> Still having trouble?</p>
+  <a href='#' class='solution-link'>See the solution</a>
+  <div class='solutions' style='display:none'>
+    <code> {{{step.solution}}}</code>
+</div>
+

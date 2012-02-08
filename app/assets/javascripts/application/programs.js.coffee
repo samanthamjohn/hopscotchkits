@@ -1,14 +1,15 @@
-window.runSpec = ->
+window.runSpec = (spec) ->
   CoffeeScript.eval('resetAssertions()')
   val = window.editor.getSession().getValue()
   try
     CoffeeScript.eval(val)
-    spec = $(".spec").data("spec")
     CoffeeScript.eval(spec)
     CoffeeScript.eval("runAssertions()")
   catch error
     if error.type == "not_defined"
       errorHtml = "<div>Oh no! You have a syntax error: " + error.message + ". You may have forgotten to save the output of one of your function calls.</div>"
+    else if error.type == "undefined_method"
+      errorHtml = "<div>You are calling a method that doesn't exist! '" + error.arguments[0] + "' is either not the right method or you may have called it on the wrong variable.</div>"
     else
       errorArray = error.message.split("line ")[1].split(":")
       line = errorArray[0]
@@ -21,6 +22,7 @@ window.runSpec = ->
   window.editor.focus()
 
 $ ->
+  window.spec = $(".program.edit").data("step").spec
   if $("#stage").length > 0
     window.$frame = $(window.frames['stage'].document)
     Raphael.setWindow(window.frames["stage"])
@@ -31,16 +33,10 @@ $ ->
     if window._paper && _paper.canvas
       _paper.clear()
       _paper.remove()
-    runSpec()
+    runSpec(window.spec)
   )
 
-  $("a#runthis").click( (e) ->
-    e.preventDefault()
-    val = window.editor.getSession().getValue()
-    CoffeeScript.eval(val)
-  )
-
-  $("a.hint").click( (e) ->
+  $('a.hint').on('click', (e) ->
     e.preventDefault()
     $("#hint").dialog(
       modal: true
@@ -71,9 +67,26 @@ $ ->
   )
 
   $('.next_button').button(disabled: true)
-  $('.next_button').click( (e) ->
+  $(window).on('click', '.next_button', (e) ->
     e.preventDefault()
-    $("#next_steps form").submit()
+    $.ajax(
+      url: e.currentTarget.href
+      dataType: "json"
+      success: (data, status, xhr) ->
+        template = $("script#preface_template").html()
+        ideTemplate = $("script#ide_template").html()
+        view = window.view(data)
+        $(".preface").remove()
+        $('.program.edit').prepend(Mustache.render(template, view))
+        ideView = window.ideViewData(data)
+        $("#next_steps").html(Mustache.render(ideTemplate, ideView))
+        window.spec = data.spec
+        $("#progressbar").progressbar(
+          value: $("#progressbar").data("progress")
+        )
+        $(".next_button").attr('disabled', 'true')
+        window.last = data.last_step
+    )
   )
 
   $("#publish_it").click( (e) ->
@@ -90,7 +103,7 @@ $ ->
 
   $("input.permalink").click((e)-> $("input.permalink").select(); e.preventDefault())
 
-  $(".solution-link").click((e) ->
+  $(document).on('click', ".solution-link", (e) ->
     e.preventDefault()
     $(".solutions").toggle()
   )

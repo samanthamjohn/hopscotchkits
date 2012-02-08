@@ -3,6 +3,18 @@ require 'spec_helper'
 describe Step do
   it { should belong_to :kit }
 
+  it "should be unique across kit and position" do
+    kit = Kit.create!(slug: 'foo')
+    step1 = Step.create!(kit: kit, position: 1)
+    step1.should be_valid
+
+    step2 = Step.new(kit: kit, position: 1)
+    step2.should_not be_valid
+
+    step3 = Step.new(kit: kit, position: 2)
+    step3.should be_valid
+  end
+
   describe "#next_step" do
     it "should return the next step" do
       kit = Kit.create!(slug: "foo")

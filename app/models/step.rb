@@ -1,5 +1,7 @@
 class Step < ActiveRecord::Base
   belongs_to :kit
+
+  validates_uniqueness_of :kit_id, scope: :position
   def next_step
     self.kit.steps.where("position > ?", self.position).order(:position).first
   end
