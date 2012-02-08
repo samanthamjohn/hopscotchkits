@@ -42,12 +42,13 @@ describe Step do
   describe "to_json" do
     it "should return the step attributes plus last_step and next_step" do
       kit = Kit.create!(slug: "foo")
-      step1 = Step.create!(position: 1, kit: kit)
+      step1 = Step.create!(position: 1, kit: kit, description: "hello\nfoo")
       step2 = Step.create!(position: 2, kit: kit)
       step1_json = JSON.parse(step1.to_json)
       step1_json["next_step_id"].should == step2.id
       step1_json["last_step"].should_not be
       step1_json["kit_id"].should == step1.kit.id
+      step1_json["description"].should == "<p>hello\n<br />foo</p>"
 
       step2_json = JSON.parse(step2.to_json)
       step2_json["next_step_id"].should be_nil

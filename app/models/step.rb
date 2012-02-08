@@ -1,5 +1,6 @@
 class Step < ActiveRecord::Base
   belongs_to :kit
+  include ActionView::Helpers
 
   validates_uniqueness_of :kit_id, scope: :position
   def next_step
@@ -20,6 +21,10 @@ class Step < ActiveRecord::Base
         last_step: false
       )
     end
+    attrs["description"] = simple_format(description)
+    attrs["success_message"] = simple_format(success_message)
+    attrs["solution"] = simple_format(solution)
+    attrs["hint"] = simple_format(hint)
     attrs
   end
 end
