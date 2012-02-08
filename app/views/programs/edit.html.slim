@@ -18,36 +18,6 @@ div class='program edit' data-step=@step.to_json data-num-steps=@program.kit.num
         = f.submit id: "runthis_copy", value: "run this"
         = link_to "Hint", "#", class: "hint button"
 
-div id='publish_popup' style='display:none'
-  p Your program is so cool that it deserves its own webpage- we've made one just for you!
-  = link_to "see your program", kit_program_path(@program.kit, @program), class: 'publish-button', target: "_blank"
-  - if @program.kit.has_freeplay?
-    p
-      |enter 
-      = link_to "freeplay mode", edit_kit_program_path(@program.kit, @program, step: 'freeplay')
-  - if @program.kit.has_bonus?
-    p
-      |or try the 
-      = link_to "bonus steps", edit_kit_program_path(@program.kit, @program, step: @kit.bonus)
-  div class='social'
-    div id="fb-root"
-    javascript:
-      (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=302381466471406";
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
-    div class="fb-like" data-href="#{kit_program_url(@program.kit, @program)}" data-width="450" data-show-faces="false"
-  div class='social'
-    = link_to "Tweet", "https://twitter.com/share", class: "twitter-share-button", "data-lang" => "en", "data-text" => "Check out my awesome program made with @HopscotchKits", "data-count" => 'none', "data-url" => "#{kit_program_url(@program.kit, @program)}"
-    javascript:
-      !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-  div class='mail'
-    |Mail this link: 
-    input class='permalink' value=kit_program_url(@program.kit, @program)
-
 -content_for :footer do
   div class='rootlink'
     = link_to image_tag("arrow.png"), root_path
