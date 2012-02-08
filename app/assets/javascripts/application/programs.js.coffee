@@ -29,10 +29,11 @@ $ ->
   $("#ide form").bind("submit", ->
     val = window.editor.getSession().getValue()
     $("#ide input#program_code").val(val)
+    $("#ide input#program_step_id").val(window.step.id)
     if window._paper && _paper.canvas
       _paper.clear()
       _paper.remove()
-    runSpec(window.spec)
+    runSpec(window.step.spec)
   )
 
   $('a.hint').on('click', (e) ->
@@ -79,24 +80,12 @@ $ ->
         $('.program.edit').prepend(Mustache.render(template, view))
         ideView = window.ideViewData(data)
         $("#next_steps").html(Mustache.render(ideTemplate, ideView))
-        window.spec = data.spec
+        window.step = data
         $("#progressbar").progressbar(
           value: $("#progressbar").data("progress")
         )
-        $(".next_button").attr('disabled', 'true')
-        window.last = data.last_step
-    )
-  )
-
-  $("#publish_it").click( (e) ->
-    e.preventDefault()
-    $("#publish_popup").dialog(
-      modal: true
-      title: "Share your work"
-      open: (-> $("input.permalink").focus())
-      class: "publish"
-      width: "415px"
-      height: 415
+        $(".next_button").button('disabled', 'true')
+        $(".last_button").button()
     )
   )
 

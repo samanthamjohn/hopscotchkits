@@ -3,11 +3,10 @@ class ProgramsController < ApplicationController
   load_and_authorize_resource only: "index"
 
   def root
-    kit= Kit.find_by_slug(params[:kit_id])
-    @program = Program.new(kit: kit, user: User.new)
     if session[:user_id]
       render "my"
     else
+      new
       render "new"
     end
   end

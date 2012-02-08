@@ -45,6 +45,8 @@ gem 'jquery-rails'
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 group :test do
-  gem "shoulda-matchers"
+  gem 'database_cleaner'
+  gem 'capybara'
   gem 'ruby-debug19'
+  gem "shoulda-matchers"
 end

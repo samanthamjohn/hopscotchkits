@@ -28,7 +28,13 @@ $ ->
       errorShuffle: () ->
         _.shuffle(["Whoops!", "Oops!", "Sorry!", "Uh-oh!", "Oh Noes!", "Oh gosh!"])[0]
       nextStep: () ->
-        if step.next_step_id
+       if step.last_step || step.bonus == true || step.freeplay == true
+          programId = $(".program.edit").data("programId")
+          "<div class='controls'>" + 
+            "<a href='/programs/#{programId}' class='button last_button'>"+
+            "Next <span class='arrow'> &raquo;</span>" +
+            "</a></div>"
+        else if step.next_step_id
           programId = $(".program.edit").data("programId")
           "<div class='controls'>" + 
             "<a href='/programs/#{programId}/next_step' class='button next_button'>"+
@@ -47,12 +53,15 @@ $ ->
       step: step
       nextStep: ->
         if step.last_step || step.bonus == true || step.freeplay == true
-          "<div class='button' id='publish_it'>Publish it!</div>"
-        if step.next_step_id
+          programId = $(".program.edit").data("programId")
+          "<a href='/programs/#{programId}' class='button last_button'>"+
+            "Next <span class='arrow'> &raquo;</span>" +
+            "</a>"
+        else if step.next_step_id
           programId = $(".program.edit").data("programId")
           "<a href='/programs/#{programId}/next_step' class='button next_button'>"+
             "Next <span class='arrow'> &raquo;</span>" +
             "</a>"
-    step =  $(".program.edit").data('step')
-    $("#next_steps").append(Mustache.render(ideViewTemplate, ideViewData(step)))
+    window.step =  $(".program.edit").data('step')
+    $("#next_steps").append(Mustache.render(ideViewTemplate, ideViewData(window.step)))
 
