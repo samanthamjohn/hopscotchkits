@@ -12,6 +12,9 @@ Hopscotch::Application.routes.draw do
     end
   end
   resources :kits do
+    member do
+      get :analytics
+    end
     resources :programs do
       collection do
         get :root

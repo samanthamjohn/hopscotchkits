@@ -1,0 +1,68 @@
+div class='summary'
+  h1= @kit.name
+
+  - all_snapshots = []
+  - all_non_zero_snapshots = []
+  - @programs.each do |program|
+    - snapshots =  program.snapshots.order("created_at DESC").map(&:created_at).map(&:to_i)
+    - unless snapshots.empty?
+      - minutes = (snapshots.first - snapshots.last)/60
+      - if minutes < 100
+        - all_snapshots.push(minutes)
+        - if minutes > 0
+          - all_non_zero_snapshots.push(minutes)
+  - total_time = all_snapshots.inject(0) { |memo, snapshot| memo += snapshot }
+  - total_time_non_zero = all_non_zero_snapshots.inject(0) { |memo, snapshot| memo += snapshot }
+  p
+    | Average time spent on the programs: 
+    = total_time/all_snapshots.length
+    |  minutes
+  p
+    | Sample size: 
+    = all_snapshots.length
+  p
+    | Average time spent on the programs (excluding zeros): 
+    = total_time_non_zero/all_non_zero_snapshots.length
+    |  minutes
+  p
+    | Sample size (excluding zeros): 
+    = all_non_zero_snapshots.length
+  p
+    | Completion rate: 
+    - count = 0
+    - @users.each do |user|
+      - programs = user.programs.where("step_id IN (17, 27)")
+      - if programs.length > 0
+        - count += 1
+    = ((count.to_f/@users.count.to_f) * 100).to_i
+    | %
+div class='step-breakdown'
+  h1 Puppy Draw Step breakdown
+  ul
+    - Kit.find_by_slug('puppy').steps.sort{|a,b| a.position <=> b.position}.each do |step| 
+      li style='margin:10px 0; font-size:15px;'= "#{step.position}: #{Program.where(step_id: step.id).count}"
+- programs= Program.where(kit_id: 3).order("created_at DESC")
+- finished_programs = programs.select{|p| p.current_step.position >= 8}
+- unfinished_programs = programs.select{|p| p.current_step.position < 8}
+h1
+  | Finished puppys 
+  = finished_programs.count
+ul
+  - finished_programs.each do |program|
+    li style='margin:10px 0;'
+      = link_to("By #{program.user.name}", kit_program_path(program.kit, program))
+      |  - 
+      = program.created_at.strftime("%m/%d/%Y")
+      |  Step 
+      = program.current_step.position
+h1
+  | Unfinished puppys 
+  = unfinished_programs.count
+ul
+  - unfinished_programs.each do |program|
+    li style='margin:10px 0;'
+      = link_to("By #{program.user.name}", kit_program_path(program.kit, program))
+      |  - 
+      = program.created_at.strftime("%m/%d/%Y")
+      |  Step 
+      = program.current_step.position

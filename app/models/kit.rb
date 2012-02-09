@@ -3,6 +3,7 @@ class Kit < ActiveRecord::Base
   validates :slug, presence: true
   validates :slug, uniqueness: true
   has_many :steps
+  has_many :programs
 
   scope :published, where(published: true)
   def to_param

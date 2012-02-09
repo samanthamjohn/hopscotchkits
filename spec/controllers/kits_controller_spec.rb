@@ -48,4 +48,16 @@ describe KitsController do
     end
   end
 
+  describe "#analytics" do
+    it "should load the kit and all its programs" do
+      kit = Kit.create!(slug: 'foo')
+      program = Program.create!(kit: kit, user_attributes: {name: "evan"})
+      step = Step.create!(kit: kit, position: 1)
+      get :analytics, id: "foo"
+      assigns(:kit).should == kit
+      assigns(:programs).should == [program]
+      assigns(:steps).should == [step]
+    end
+  end
+
 end
