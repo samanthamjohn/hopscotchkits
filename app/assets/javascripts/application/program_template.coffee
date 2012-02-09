@@ -77,8 +77,12 @@ $ ->
           value: $('#progressbar').data('progress')
         )
         program = data.program
+        if program.code
+          code = program.code
+        else
+          code = ""
         window.editor = ace.edit("editor")
-        window.editor.getSession().setValue(program.code)
+        window.editor.getSession().setValue(code)
         window.editor.getSession().setUseWrapMode(true);
         window.editor.setTheme("ace/theme/clouds")
         window.editor.getSession().setTabSize(2)
