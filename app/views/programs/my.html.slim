@@ -10,11 +10,12 @@ div class='my-programs'
         span class='name'= program.kit.name
         span class='updated'= " last updated #{time_ago_in_words(program.updated_at)} ago"
 
-        - if i%2 == 0
-          = image_tag("frame-orange.png")
-        - else
-          = image_tag("frame-green.png")
-        = image_tag("puppy-icon.png", class: 'puppy')
+        = link_to edit_kit_program_path(program.kit, program) do
+          - if i%2 == 0
+            = image_tag("frame-orange.png")
+          - else
+            = image_tag("frame-green.png")
+          = image_tag("puppy-icon.png", class: 'puppy')
         = link_to "edit", edit_kit_program_path(program.kit, program), class: "edit-button"
         = link_to 'delete', kit_program_path(program.kit, program), method: 'delete', confirm: "Are you sure you want to delete this program?", class: 'trash-button'
   h1 New Program
