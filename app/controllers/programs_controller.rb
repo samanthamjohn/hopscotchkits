@@ -44,6 +44,10 @@ class ProgramsController < ApplicationController
     render json: @program.current_step
   end
 
+  def data
+    render json: { step: @program.current_step, program: @program }
+  end
+
   def show
     @step = @program.kit.steps.find_by_position(params[:step])
     @step ||= @program.current_step

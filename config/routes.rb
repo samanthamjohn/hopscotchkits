@@ -6,6 +6,7 @@ Hopscotch::Application.routes.draw do
   resources :programs do
     member do
       get :next_step
+      get :data
     end
     collection do
       get :root

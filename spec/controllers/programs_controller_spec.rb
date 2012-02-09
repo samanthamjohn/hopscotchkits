@@ -69,12 +69,23 @@ describe ProgramsController do
 
     context "when the step_param is freeplay" do
       it "should set the step as the freeplay step if present" do
-      kit = Kit.create(slug: "foo")
-      program = Program.create(kit: kit, user_attributes: {name: "Evan"})
-      step = Step.create!(kit_id: kit.id, position: 2, freeplay: true)
-      get :edit, kit_id: kit.to_param, id: program.to_param, step: "freeplay"
-      assigns(:step).should == step
+        kit = Kit.create(slug: "foo")
+        program = Program.create(kit: kit, user_attributes: {name: "Evan"})
+        step = Step.create!(kit_id: kit.id, position: 2, freeplay: true)
+        get :edit, kit_id: kit.to_param, id: program.to_param, step: "freeplay"
+        assigns(:step).should == step
       end
+    end
+  end
+
+  describe "#data" do
+    it "should return the program and the step" do
+      kit = Kit.create(slug: "foo")
+      step = Step.create!(kit_id: kit.id, position: 2, freeplay: true)
+      step2 = Step.create!(kit_id: kit.id, position: 3)
+      program = Program.create(kit: kit, user_attributes: {name: "Evan"}, code: "foo", current_step: step)
+      get :data, id: program.to_param
+      response.body.should == {step: step, program: program}.to_json
     end
   end
 

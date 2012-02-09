@@ -44,11 +44,8 @@ $ ->
         if step.image_url
           "<img src='/assets/step_images/#{step.image_url}' alt=#{step.title}/>"
 
-    step =  $(".program.edit").data('step')
-    view = window.view(step)
-    $('.program.edit').prepend(Mustache.render(template, view))
-  ideViewTemplate = $("script#ide_template").html()
-  if ideViewTemplate
+  ideTemplate = $("script#ide_template").html()
+  if ideTemplate
     window.ideViewData = (step) ->
       step: step
       nextStep: ->
@@ -62,6 +59,34 @@ $ ->
           "<a href='/programs/#{programId}/next_step' class='button next_button'>"+
             "Next <span class='arrow'> &raquo;</span>" +
             "</a>"
-    window.step =  $(".program.edit").data('step')
-    $("#next_steps").append(Mustache.render(ideViewTemplate, ideViewData(window.step)))
-
+    programId = $(".program.edit").data('programId')
+    $.ajax(
+      url: "/programs/#{programId}/data"
+      dataType: 'json'
+      success: (data, status, xhr) ->
+        step = data.step
+        view = window.view(step)
+        $(".preface").remove()
+        $('.program.edit').prepend(Mustache.render(template, view))
+        ideView = window.ideViewData(step)
+        $("#next_steps").append(Mustache.render(ideTemplate, ideView))
+        window.step = step
+        $(".next_button").button(disabled: true)
+        $(".last_button").button()
+        $("#progressbar").progressbar(
+          value: $('#progressbar').data('progress')
+        )
+        program = data.program
+        window.editor = ace.edit("editor")
+        window.editor.getSession().setValue(program.code)
+        window.editor.getSession().setUseWrapMode(true);
+        window.editor.setTheme("ace/theme/clouds")
+        window.editor.getSession().setTabSize(2)
+        $('#editor').css('fontSize', '16px')
+        $('#editor').css('line-height', '21px')
+        $(".ace_gutter-cell").css('fontSize', '16px')
+        CoffeeScriptMode = require("ace/mode/coffee").Mode
+        window.editor.getSession().setMode(new CoffeeScriptMode())
+        val = window.editor.getSession().getValue()
+        CoffeeScript.eval(val)
+    )
