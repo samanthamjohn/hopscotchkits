@@ -5,21 +5,46 @@
     font-size: 36px;
     margin: 4px 0;
   }
+  ul {
+    overflow: hidden;
+  }
 
   li {
-    margin: 10px 0;
+    float: left;
+    margin-right: 47px;
+    position: relative;
+    width: 256px;
+    height: 313px;
+    color: #45717A;
+    img {
+      position: absolute;
+    }
+    img.puppy {
+      position: relative;
+      top: 22px;
+      left: 33px;
+      width: 200px;
+      margin-right: 19px;
+    }
     .name {
       font-family: "MavenProBold";
-      font-size: 16px;
+      font-weight: bold;
+      font-size: 20px;
+      margin-left: 8px;
     }
     .updated {
       font-style: italic;
+      display: block;
+      margin-left: 8px;
+      margin-bottom: 5px;
     }
-
     a.program {
       width: 300px;
       display: inline-block;
     }
+   .trash-button, .edit-button {
+     margin: 58px 14px 0 0;
+   }
   }
 
   .new-programs {
@@ -37,23 +62,38 @@
 
   .new-program-form {
     margin: 10px 0;
-    width: 350px;
+    width: 500px;
     h2 {
-      font-size: 25px;
+      font-size: 20px;
       margin: 5px 0 10px;
-      font-family: "MavenProBlack";
-      float: left;
+      font-family: "MavenProBold";
+      color: #45717a;
     }
     form {
       float: right;
     }
     p {
-      clear: both;
+      float: left;
       font-size: 16px;
-    }
-  }
+      background: transparent url(/assets/new-program.png) 0 0 no-repeat;
+      width: 330px;
+      height: 107px;
+      font-family: "MavenPro";
+      padding: 15px 20px 0 30px;
+   }
+   img {
+     height: 84px;
+   }
+   .title {
+      float: left;
+      width: 113px;
+   }
+ }
+
   .ui-button {
     margin-right: 10px;
+    float: right;
+    display: block;
   }
 }
 .program {

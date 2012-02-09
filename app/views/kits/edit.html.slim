@@ -9,6 +9,9 @@ div class='show-kit' id='kit_show'
     |description: 
     = @kit.description
   p
+    |blurb: 
+    = @kit.blurb
+  p
     |published: 
     = @kit.published
   p= link_to "Edit", "#", id: "kit", class: "show"
@@ -18,6 +21,7 @@ div class='edit-kit' id='kit_form' style='display:none'
     = f.input :slug
     = f.input :published
     = f.input :description
+    = f.input :blurb
     = link_to "cancel", "#", id: "kit_cancel", class: "cancel"
     = f.submit
 
