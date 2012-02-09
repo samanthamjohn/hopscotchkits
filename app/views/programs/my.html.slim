@@ -6,7 +6,6 @@ div class='my-programs'
     - i = 0
     - current_user.programs.order("updated_at DESC").each do |program|
       - i+=1
-      - kit = program.kit
       li
         span class='name'= program.kit.name
         span class='updated'= " last updated #{time_ago_in_words(program.updated_at)} ago"
