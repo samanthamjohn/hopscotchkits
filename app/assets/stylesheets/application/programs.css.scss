@@ -15,7 +15,6 @@
     position: relative;
     width: 256px;
     height: 313px;
-    color: #45717A;
     img {
       position: absolute;
     }
@@ -31,8 +30,10 @@
       font-weight: bold;
       font-size: 20px;
       margin-left: 8px;
+      color: #45717A;
     }
     .updated {
+      color: #45717A;
       font-style: italic;
       display: block;
       margin-left: 8px;
@@ -103,7 +104,6 @@
     font-family: 'MavenProBlack';
     .subtitle {
       font-family: 'Georgia';
-      font-style: italic;
     }
   }
 
