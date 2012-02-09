@@ -22,6 +22,7 @@ group :assets do
 end
 
 group :development, :test do
+  gem 'auto_tagger'
   gem 'foreman'
   gem "rspec-rails"
   gem 'sqlite3'
