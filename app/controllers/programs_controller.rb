@@ -49,6 +49,7 @@ class ProgramsController < ApplicationController
   end
 
   def show
+    @body_class = 'program show'
     @step = @program.kit.steps.find_by_position(params[:step])
     @step ||= @program.current_step
   end
