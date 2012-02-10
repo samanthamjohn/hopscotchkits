@@ -7,6 +7,7 @@ Hopscotch::Application.routes.draw do
     member do
       get :next_step
       get :data
+      post :name
     end
     collection do
       get :root

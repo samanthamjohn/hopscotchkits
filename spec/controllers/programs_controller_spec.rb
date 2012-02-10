@@ -89,6 +89,15 @@ describe ProgramsController do
     end
   end
 
+  describe "#name" do
+    it "should set the programs name" do
+      kit = Kit.create!(slug: "foo")
+      program = Program.create(kit: kit, user_attributes: {name: "Evan"}, code: "foo")
+      post :name, id: program.to_param, value: 'Sam is cool'
+      response.body.should == "Sam is cool"
+    end
+  end
+
   describe "#update" do
     it "should update the program" do
       kit = Kit.create(slug: "foo")

@@ -5,6 +5,8 @@ window.resizePaper = ->
 
 $ ->
   if $("body.program.show").length > 0
+    programId = $(".left").data("programId")
+    $('h1.edit').editable("/programs/#{programId}/name");
     hoverOut = (timeout) -> window.setTimeout((-> $(".advert").animate(
       right: "-373px"
       , 500

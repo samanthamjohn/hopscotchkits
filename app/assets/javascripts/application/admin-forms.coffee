@@ -1,5 +1,5 @@
 $ ->
-  $(".show").click((e) ->
+  $("body .show").click((e) ->
     e.preventDefault()
     id = $(e.target).attr('id').split("_")[0]
     $("#" + id + "_form").show()

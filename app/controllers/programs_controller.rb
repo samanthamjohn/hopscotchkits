@@ -48,6 +48,11 @@ class ProgramsController < ApplicationController
     render json: { step: @program.current_step, program: @program }
   end
 
+  def name
+    @program.update_attributes(name: params[:value])
+    render text: @program.name
+  end
+
   def show
     @body_class = 'program show'
     @step = @program.kit.steps.find_by_position(params[:step])

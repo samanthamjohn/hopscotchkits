@@ -16,5 +16,6 @@
 //= require coffee-script
 //= require mustache
 //= require waypoints
+//= require jquery.jeditable
 //= require_self
 //= require_tree ./application
