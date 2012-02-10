@@ -11,13 +11,15 @@
     }
     makePaper = makeWorkspace;
 
-= render "publish", program: @program
-
-- unless current_user == @program.user
-  div class='advert'= link_to "Make your own!", new_kit_program_path(@program.kit)
-
-
 = image_tag("orange-frame-large.png", class: 'show-frame')
 script type="text/coffeescript"
   = raw("#{raw(@program.code)}\n")
   |window.resizePaper()
+
+div class='left'
+  h1 Puppy Draw
+  h2= "created by #{@program.user.name} #{time_ago_in_words(@program.created_at)} ago"
+  = render "publish", program: @program
+
+- unless current_user == @program.user
+  div class='advert'= link_to "Make your own!", new_kit_program_path(@program.kit)
