@@ -1,14 +1,10 @@
 window.resizePaper = ->
   window._paper.setViewBox(0,0,400,400,true)
-  $("svg").attr('height', ($(window).height()- 50))
-  $("svg").attr('width', ($(window).height() - 50))
+  $("svg").attr('height', 433)
+  $("svg").attr('width', 433)
 
 $ ->
   if $("body.program.show").length > 0
-    $(window).resize(->
-      window.resizePaper()
-    )
-
     hoverOut = (timeout) -> window.setTimeout((-> $(".advert").animate(
       right: "-373px"
       , 500

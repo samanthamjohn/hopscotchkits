@@ -16,6 +16,8 @@
 - unless current_user == @program.user
   div class='advert'= link_to "Make your own!", new_kit_program_path(@program.kit)
 
+
+= image_tag("orange-frame-large.png", class: 'show-frame')
 script type="text/coffeescript"
   = raw("#{raw(@program.code)}\n")
   |window.resizePaper()

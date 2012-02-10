@@ -32,5 +32,15 @@
   }
 }
 
+svg {
+  margin: 31px 69px;
+}
+img.show-frame {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 9;
+}
+
 
 
