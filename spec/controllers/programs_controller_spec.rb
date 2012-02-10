@@ -112,12 +112,12 @@ describe ProgramsController do
   end
 
   describe "#show" do
-    it "should show the code with the code layout" do
+    it "should show the code" do
       kit = Kit.create(slug: "foo")
       program = Program.create(kit: kit, user_attributes: { name: "Evan" })
       get :show, kit_id: "foo", id: program.to_param
       response.should render_template("show")
-      response.should render_template("layouts/code")
+      response.should render_template("layouts/application")
       assigns(:program).should == program
     end
 

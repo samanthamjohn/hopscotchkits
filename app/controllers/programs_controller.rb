@@ -51,7 +51,6 @@ class ProgramsController < ApplicationController
   def show
     @step = @program.kit.steps.find_by_position(params[:step])
     @step ||= @program.current_step
-    render "show", layout: 'code'
   end
 
   def index

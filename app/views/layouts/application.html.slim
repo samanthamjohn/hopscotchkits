@@ -15,18 +15,19 @@ html
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
-body class=@body_class
-  - if flash[:notice]
-    div class='flash'= flash[:notice]
-  #content
-    a.logo Kits (beta!)
-    = yield
-    div class='push'
-  #footer
-    = yield :footer
-    .homelink
-      = link_to "http://www.gethopscotch.com", target: "_blank" do
-        |a 
-        span.logo Hopscotch 
-        | app
-    #footer_bg
+  = yield :head
+  body class=@body_class
+    - if flash[:notice]
+      div class='flash'= flash[:notice]
+    #content
+      a.logo Kits (beta!)
+      = yield
+      div class='push'
+    #footer
+      = yield :footer
+      .homelink
+        = link_to "http://www.gethopscotch.com", target: "_blank" do
+          |a 
+          span.logo Hopscotch 
+          | app
+      #footer_bg

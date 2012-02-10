@@ -1,7 +1,7 @@
 window.resizePaper = ->
   window._paper.setViewBox(0,0,400,400,true)
-  $("svg").attr('height', $(window).height())
-  $("svg").attr('width', $(window).height())
+  $("svg").attr('height', ($(window).height()- 50))
+  $("svg").attr('width', ($(window).height() - 50))
 
 $ ->
   $(window).resize(->
