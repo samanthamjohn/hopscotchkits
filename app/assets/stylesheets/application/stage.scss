@@ -1,12 +1,8 @@
-body {
-  background: #f2eee8;
-}
-
 .advert {
   z-index: 9;
   float: right;
   position: fixed !important;
-  bottom: 0px;
+  bottom: 30px;
   right: 0px;
   background: transparent image_url('ribbon.png') 200px 200px no-repeat;
   height: 69px;
@@ -20,6 +16,19 @@ body {
     margin-top: 14px;
     display: block;
     font-size: 30px;
+  }
+}
+
+#social_links {
+  width: 220px;
+  float: right;
+  margin-top: 150px;
+  h1 {
+    font-family: MavenProBlack;
+    font-size: 20px;
+  }
+  > div {
+    margin: 20px 0;
   }
 }
 
