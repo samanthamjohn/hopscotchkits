@@ -96,16 +96,15 @@ $ ->
     $(".solutions").toggle()
   )
 
-  leftOffset = $("#runthis").offset().left - 16;
-  $("#runthis_copy").css("left", leftOffset)
-
-  $(window).resize((->
-    leftOffset = $("#runthis").offset().left;
+  if $("#runthis").length > 0
+    leftOffset = $("#runthis").offset().left - 16;
     $("#runthis_copy").css("left", leftOffset)
-  ))
-  $("#runthis").waypoint( ( -> $("#runthis_copy").css(
-    "display": "none"
-    ) ),
-    offset: 'bottom-in-view')
 
-
+    $(window).resize((->
+      leftOffset = $("#runthis").offset().left;
+      $("#runthis_copy").css("left", leftOffset)
+    ))
+    $("#runthis").waypoint( ( -> $("#runthis_copy").css(
+      "display": "none"
+      ) ),
+      offset: 'bottom-in-view')
