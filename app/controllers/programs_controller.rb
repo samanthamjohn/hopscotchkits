@@ -12,6 +12,7 @@ class ProgramsController < ApplicationController
   end
 
   def new
+    @body_class = "programs new"
     kit= Kit.find_by_slug(params[:kit_id])
     @program = Program.new(kit: kit, user: User.new)
   end

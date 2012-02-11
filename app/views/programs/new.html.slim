@@ -17,11 +17,11 @@
 
   div id='ide'
     div id='editor'
-        div class='button' id='publish_it' Publish it!
     div id='stage'
       iframe name='stage'
     div id='controls'
-      input id="program_code" type='hidden'
+      form
+        input id="program_code" type='hidden'
       = link_to "Run this", "#", id: "runthis", class: "button"
       = link_to "Hint", "#", class: "hint button"
 

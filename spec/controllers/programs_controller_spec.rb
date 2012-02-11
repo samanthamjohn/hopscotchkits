@@ -5,7 +5,7 @@ describe ProgramsController do
   describe "#root" do
     context "the user is not signed in" do
       it "should render the new page" do
-        kit = Kit.create(slug: "foo")
+        kit = Kit.create!(slug: "foo")
         get :root, :kit_id => kit.to_param
         assigns(:program).kit.should == kit
         response.should render_template("new")
