@@ -10,6 +10,11 @@ feature "hopscotch kits flow", js: true do
   scenario "completing a kit" do
     visit root_path
     fill_in "What's your name?", with: "Samantha"
+    page.execute_script("window.editor.getSession().setValue('makeWorkspace()')")
+    click_on("Run this")
+    within_frame('stage') do
+      Nokogiri::HTML.parse(page.body).css('ellipse')
+    end
     click_on "Start coding"
 
     # step 1
@@ -19,7 +24,11 @@ feature "hopscotch kits flow", js: true do
         page.should have_content("I love puppies")
       end
     end
+    page.execute_script("window.editor.getSession().setValue('makeWorkspace()')")
     click_on("run this")
+    within_frame('stage') do
+      Nokogiri::HTML.parse(page.body).css('svg')
+    end
     within ".progress .success" do
       page.should have_content("You passed")
     end
@@ -32,7 +41,11 @@ feature "hopscotch kits flow", js: true do
         page.should have_content("I <3 kitties")
       end
     end
+    page.execute_script("window.editor.getSession().setValue('makeWorkspace().ellipse(0,0,10,10)')")
     click_on("run this")
+    within_frame('stage') do
+      Nokogiri::HTML.parse(page.body).css('ellipse')
+    end
     within ".progress .success" do
       page.should have_content("Yep")
     end
@@ -40,6 +53,9 @@ feature "hopscotch kits flow", js: true do
     # step 3
     click_on("Next")
     click_on("run this")
+    within_frame('stage') do
+      Nokogiri::HTML.parse(page.body).css('svg')
+    end
     within ".progress .success" do
       page.should have_content("fuubar")
       page.should have_css("a[href='/programs/#{Program.last.id}']")
