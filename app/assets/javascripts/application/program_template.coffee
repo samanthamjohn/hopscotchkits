@@ -72,7 +72,7 @@ $ ->
         $("#next_steps").append(Mustache.render(ideTemplate, ideView))
         window.step = step
         $(".next_button").button(disabled: true)
-        $(".last_button").button()
+        $(".last_button").button(disabled: true)
         $("#progressbar").progressbar(
           value: $('#progressbar').data('progress')
         )

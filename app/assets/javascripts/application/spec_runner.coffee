@@ -26,6 +26,7 @@ window.showSuccess = ->
   $(".message").attr("class", "message successful")
   $('.message').show('fold')
   $('.next_button').button({disabled: false})
+  $('.last_button').button({disabled: false})
   if window.step.last
     programId = $('.program.edit').data('programId')
     window.location.href="/programs/#{programId}"
