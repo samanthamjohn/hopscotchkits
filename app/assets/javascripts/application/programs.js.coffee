@@ -47,28 +47,6 @@ $ ->
     window.$frame = $(window.frames['stage'].document)
     Raphael.setWindow(window.frames["stage"])
 
-  $("#ide form").bind("submit", ->
-    val = window.editor.getSession().getValue()
-    $("#ide input#program_code").val(val)
-    $("#ide input#program_step_id").val(window.step.id)
-    if window._paper && _paper.canvas
-      _paper.clear()
-      _paper.remove()
-    runSpec(window.step.spec)
-  )
-
-  $('a.hint').on('click', (e) ->
-    e.preventDefault()
-    $("#hint").dialog(
-      modal: true
-      title: "Hints and Solutions"
-    )
-  )
-
-  $("#progressbar").progressbar(
-    value: $("#progressbar").data("progress")
-  )
-  $("input:submit, .button").button()
 
   $(".trash-button").button(
     icons:
@@ -87,45 +65,4 @@ $ ->
       secondary: 'ui-icon-extlink'
   )
 
-  $('.next_button').button(disabled: true)
-  $(window).on('click', '.next_button', (e) ->
-    e.preventDefault()
-    $.ajax(
-      url: e.currentTarget.href
-      dataType: "json"
-      success: (data, status, xhr) ->
-        template = $("script#preface_template").html()
-        ideTemplate = $("script#ide_template").html()
-        view = window.view(data)
-        $(".preface").remove()
-        $('.program.edit').prepend(Mustache.render(template, view))
-        ideView = window.ideViewData(data)
-        $("#next_steps").html(Mustache.render(ideTemplate, ideView))
-        window.step = data
-        $(".next_button").button(disabled: true)
-        $(".last_button").button(disabled: true)
-        $("#progressbar").progressbar(
-          value: $("#progressbar").data("progress")
-        )
-    )
-  )
-
   $("input.permalink").click((e)-> $("input.permalink").select(); e.preventDefault())
-
-  $(document).on('click', ".solution-link", (e) ->
-    e.preventDefault()
-    $(".solutions").toggle()
-  )
-
-  if $("#runthis").length > 0
-    leftOffset = $("#runthis").offset().left - 16;
-    $("#runthis_copy").css("left", leftOffset)
-
-    $(window).resize((->
-      leftOffset = $("#runthis").offset().left;
-      $("#runthis_copy").css("left", leftOffset)
-    ))
-    $("#runthis").waypoint( ( -> $("#runthis_copy").css(
-      "display": "none"
-      ) ),
-      offset: 'bottom-in-view')

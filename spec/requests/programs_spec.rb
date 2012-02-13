@@ -2,7 +2,7 @@ require 'spec_helper'
 feature "hopscotch kits flow", js: true do
   background do
     kit = Kit.create!(slug: "puppy")
-    step_1 = Step.create!(success_message: "You passed", title: "I love puppies", description: "hello from step 1", kit: kit, position: 1, spec: "assert(( -> true), 'Step 1 is passed')")
+    step_1 = Step.create!(image_url: "step2.png", success_message: "You passed", title: "I love puppies", description: "hello from step 1", kit: kit, position: 1, spec: "assert(( -> true), 'Step 1 is passed')")
     step_2 = Step.create!(success_message: "Yep", title: "I <3 kitties", description: "in between at step 2", kit: kit, position: 2, spec: "assert(( -> true), 'Step 2 is done')")
     step_3 = Step.create!(success_message: "fuubar", title: "poop", description: "goodbye from step 3", kit: kit, position: 3, spec: "assert(( -> true), 'Step 3 is complete')")
   end
@@ -24,6 +24,7 @@ feature "hopscotch kits flow", js: true do
         page.should have_content("I love puppies")
       end
     end
+    page.should have_css("img[src='/assets/step_images/step2.png']")
     page.execute_script("window.editor.getSession().setValue('makeWorkspace()')")
     click_on("run this")
     within_frame('stage') do

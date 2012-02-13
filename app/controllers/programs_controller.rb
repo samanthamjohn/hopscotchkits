@@ -28,7 +28,7 @@ class ProgramsController < ApplicationController
   def edit
     if params[:step] == "freeplay"
       @step = @program.kit.freeplay_step
-    else
+    elsif params[:step]
       @step = @program.kit.steps.find_by_position(params[:step])
     end
     @step ||= @program.current_step
@@ -42,7 +42,7 @@ class ProgramsController < ApplicationController
   def next_step
     @program = Program.find(params[:id])
     @program.update_attributes(current_step: @program.next_step)
-    render json: @program.current_step
+    render json: { step: @program.current_step, program: @program }
   end
 
   def data

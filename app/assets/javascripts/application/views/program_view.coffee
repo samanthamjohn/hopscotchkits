@@ -1,0 +1,96 @@
+window.View = Backbone.View.extend(
+  render: ->
+    template = $('script#preface_template').html()
+    $('.preface').html(Mustache.render(template, this))
+    $("#progressbar").progressbar(
+      value: $('#progressbar').data('progress')
+    )
+    ideTemplate = $("script#ide_template").html()
+    $("#next_steps").html(Mustache.render(ideTemplate, this))
+    $(".next_button").button(disabled: true)
+    $(".last_button").button(disabled: true)
+    if $("#runthis").length > 0
+      leftOffset = $("#runthis").offset().left - 40;
+      $("#runthis_copy").css("left", leftOffset)
+
+      $(window).resize((->
+        leftOffset = $("#runthis").offset().left;
+        $("#runthis_copy").css("left", leftOffset)
+      ))
+      $("#runthis").waypoint( ( -> $("#runthis_copy").css(
+        "display": "none"
+        ) ),
+        offset: 'bottom-in-view')
+    $("input:submit, .button").button()
+  events:
+    "submit #ide form" : "submitCode"
+    "click a.hint" : "showHint"
+    "click .next_button" : "refreshStep"
+    "click .solution-link" : "toggleSolutions"
+  toggleSolutions: (e) ->
+    e.preventDefault()
+    $(".solutions").toggle()
+  refreshStep: (e) ->
+    e.preventDefault()
+    this.model.set('url', 'next_step')
+    this.model.fetch()
+  showHint: (e) ->
+    e.preventDefault()
+    $("#hint").dialog(
+      modal: true
+      title: "Hints and Solutions"
+    )
+  submitCode: ->
+    val = window.editor.getSession().getValue()
+    $("#ide input#program_code").val(val)
+    $("#ide input#program_step_id").val(this.model.get('id'))
+    if window._paper && _paper.canvas
+      _paper.clear()
+      _paper.remove()
+    runSpec(this.model.get('spec'))
+  subTitle: () ->
+    this.model.get('title')
+  successMessage: () ->
+    this.model.get('success_message')
+  description: () ->
+    this.model.get('description')
+  hint: () ->
+    this.model.get('hint')
+  solution: () ->
+    this.model.get('solution')
+  showTitle: () ->
+    if this.model.get('bonus') == true
+      str = "Bonus: "
+    else if this.model.get('freeplay')
+      str = "Freeplay Mode: "
+    else
+      str = "Step #{this.model.get('position')}: "
+    str
+  progressText: () ->
+    if this.model.get('last_step')
+      "Complete!"
+    else
+      numSteps = $("script#preface_template").data("numSteps")
+      "Step #{this.model.get('position')} of #{numSteps}"
+  progressPct: () ->
+    if this.model.get('last_step')
+      100
+    else
+      numSteps = $("script#preface_template").data("numSteps")
+      this.model.get('position')/numSteps * 100
+  successShuffle: () ->
+    _.shuffle(['Yay!', 'Boom!', "You're Right!", "Good Job", "Way to go!", "You did it!"])[0]
+  errorShuffle: () ->
+    _.shuffle(["Whoops!", "Oops!", "Sorry!", "Uh-oh!", "Oh Noes!", "Oh gosh!"])[0]
+  programId: ->
+    this.model.get('programId')
+  buttonClass: ->
+    if this.model.get('last_step') || this.model.get('bonus') == true || this.model.get('freeplay') == true
+      "last_button"
+    else if this.model.get('next_step_id')
+      "next_button"
+  image_tag: () ->
+    if this.model.get('image_url')
+      "<img src='/assets/step_images/#{this.model.get('image_url')}' alt=#{this.model.get('.title')}/>"
+)
+

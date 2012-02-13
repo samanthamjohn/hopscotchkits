@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe ProgramsController do
-
   describe "#root" do
     context "the user is not signed in" do
       it "should render the new page" do
@@ -115,7 +114,9 @@ describe ProgramsController do
       program = Program.create(kit: kit, user_attributes: { name: "Evan"}, current_step: step)
       get :next_step, kit_id: kit.to_param, id: program.to_param
       assigns(:program).reload.current_step.should == step.next_step
-      response.body.should == step2.to_json
+      resp = JSON.parse(response.body)
+      resp["step"]["id"].should == step2.id
+      resp["program"]["id"].should == program.id
     end
 
   end
