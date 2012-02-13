@@ -25,6 +25,7 @@ $ ->
     Raphael.setWindow(window.frames["stage"])
 
 
+  $("input:submit, .button").button()
   $(".trash-button").button(
     icons:
       primary: 'ui-icon-trash'

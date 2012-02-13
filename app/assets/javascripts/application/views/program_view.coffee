@@ -27,7 +27,6 @@ window.View = Backbone.View.extend(
         "display": "none"
         ) ),
         offset: 'bottom-in-view')
-    $("input:submit, .button").button()
   events:
     "submit #ide form" : "submitCode"
     "click a.hint" : "showHint"
