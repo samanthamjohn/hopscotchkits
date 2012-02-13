@@ -9,6 +9,12 @@ window.View = Backbone.View.extend(
     $("#next_steps").html(Mustache.render(ideTemplate, this))
     $(".next_button").button(disabled: true)
     $(".last_button").button(disabled: true)
+    $(".more-info").button(icons:
+      secondary: "ui-icon-triangle-1-s"
+    )
+    $(".less-info").button(icons:
+      secondary: 'ui-icon-triangle-1-n'
+    )
     if $("#runthis").length > 0
       leftOffset = $("#runthis").offset().left - 40;
       $("#runthis_copy").css("left", leftOffset)
@@ -27,6 +33,18 @@ window.View = Backbone.View.extend(
     "click a.hint" : "showHint"
     "click .next_button" : "refreshStep"
     "click .solution-link" : "toggleSolutions"
+    "click .more-info"  : "showMoreInfo"
+    "click .less-info"  : "showLessInfo"
+  showMoreInfo: (e) ->
+    e.preventDefault()
+    $("#more_info").slideDown('slow', ->
+      $("#more_info_button").hide()
+    )
+  showLessInfo: (e) ->
+    e.preventDefault()
+    $("#more_info").slideUp('slow', ->
+      $("#more_info_button").show()
+    )
   toggleSolutions: (e) ->
     e.preventDefault()
     $(".solutions").toggle()
@@ -56,6 +74,17 @@ window.View = Backbone.View.extend(
     this.model.get('description')
   hint: () ->
     this.model.get('hint')
+  moreInfo: () ->
+    if this.model.get('more_info') != "<p></p>"
+      html = "<div class='gradient'>" +
+        "<div id='more_info_button'><a href='#' class='more-info'>more info</a></div id='more_info_button'>" +
+        "<div id='more_info'>" +
+          "<div class='text'>" + this.model.get('more_info') + "</div>" +
+          "<a href='#' class='less-info'>less info</a>" +
+        "</div>" +
+      "</div>"
+    else
+      html = ""
   solution: () ->
     this.model.get('solution')
   showTitle: () ->

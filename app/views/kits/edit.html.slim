@@ -42,6 +42,7 @@ ul
           |Bonus: 
           = step.bonus
         p= step.description
+        p= step.more_info
         p= link_to "Edit", "#", id: step.id, class: "show"
         p= link_to "Delete", step_path(step), method: "delete"
       div class='edit-step hidden' id="#{step.id}_form"

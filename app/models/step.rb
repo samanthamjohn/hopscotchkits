@@ -25,6 +25,7 @@ class Step < ActiveRecord::Base
     attrs["success_message"] = simple_format(success_message)
     attrs["solution"] = simple_format(solution)
     attrs["hint"] = simple_format(hint)
+    attrs["more_info"] = simple_format(more_info)
     attrs
   end
 end

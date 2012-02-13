@@ -11,17 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120208235530) do
+ActiveRecord::Schema.define(:version => 20120213194950) do
 
   create_table "kits", :force => true do |t|
-    t.string    "name"
-    t.string    "slug"
-    t.text      "description"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "icon_url"
-    t.boolean   "published"
-    t.text      "blurb"
+    t.string   "name"
+    t.string   "slug"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "icon_url"
+    t.boolean  "published"
+    t.text     "blurb"
   end
 
   create_table "programs", :force => true do |t|
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(:version => 20120208235530) do
     t.string    "image_url"
     t.boolean   "bonus",           :default => false
     t.boolean   "freeplay",        :default => false
+    t.text      "more_info"
   end
 
   create_table "users", :force => true do |t|
