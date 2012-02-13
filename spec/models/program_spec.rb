@@ -33,6 +33,16 @@ describe Program do
       snapshot2.code.should == 'bar'
     end
   end
+  describe "before_save" do
+    it "should return the user name if it doesn't exists" do
+      kit = Kit.create!(slug: "foo", name: 'bar')
+      user = User.create!(name: "foo")
+      program = Program.create!(kit: kit, user: user)
+      program.name.should == "foo's bar"
+      program.update_attributes(name: "boo!")
+      program.name.should == "boo!"
+    end
+  end
 
   describe "#next_step" do
     it "should return the next step" do

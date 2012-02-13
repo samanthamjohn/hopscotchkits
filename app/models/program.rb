@@ -7,6 +7,7 @@ class Program < ActiveRecord::Base
   accepts_nested_attributes_for :user
 
   before_create :set_current_step
+  before_save :set_name
   after_save :create_snapshot
 
   def next_step
@@ -20,5 +21,9 @@ private
 
   def create_snapshot
     Snapshot.create(program: self, step_id: step_id, code: code)
+  end
+
+  def set_name
+    self.name = "#{self.user.name}'s #{self.kit.name}" unless self.name.present?
   end
 end

@@ -17,7 +17,7 @@ script type="text/coffeescript"
   |window.resizePaper()
 
 div class='left' data-program-id=@program.id
-  h1.edit= @program.name || "#{@program.user.name}'s Puppy"
+  h1.edit= @program.name
   h2= "created by #{@program.user.name} #{time_ago_in_words(@program.created_at)} ago"
   = render "publish", program: @program
 

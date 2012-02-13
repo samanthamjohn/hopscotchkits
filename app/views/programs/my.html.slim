@@ -7,7 +7,7 @@ div class='my-programs'
     - current_user.programs.order("updated_at DESC").each do |program|
       - i+=1
       li
-        span class='name'= program.kit.name
+        span class='name'= program.name
         span class='updated'= " last updated #{time_ago_in_words(program.updated_at)} ago"
 
         = link_to edit_kit_program_path(program.kit, program) do
