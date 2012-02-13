@@ -26,17 +26,6 @@ $ ->
 
 
   $("input:submit, .button").button()
-  $(".trash-button").button(
-    icons:
-      primary: 'ui-icon-trash'
-    text: false
-  )
-
-  $('.edit-button').button(
-    icons:
-      primary: 'ui-icon-pencil'
-    text: false
-  )
 
   $(".publish-button").button(
     icons:
