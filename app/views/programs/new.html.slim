@@ -3,7 +3,7 @@
     h1 Hello!
     .hr
     .progress
-      = image_tag(@program.kit.icon_url)
+      = image_tag(@program.kit.icon_url) if @program.kit.icon_url.present?
     .instructions.welcome
       div class='description'
         p= @program.kit.description
