@@ -22,6 +22,8 @@ group :assets do
 end
 
 group :development, :test do
+  gem 'factory_girl_rails'
+  gem 'lorem_athlete'
   gem 'auto_tagger'
   gem 'foreman'
   gem "rspec-rails"

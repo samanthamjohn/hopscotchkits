@@ -7,23 +7,23 @@ describe Program do
   it { should validate_presence_of :user }
   it { should have_many :snapshots }
 
+  it "should have a factory" do
+    create(:program).should be_valid
+  end
+
   describe "creation" do
     it "should start on the first step" do
-      kit = Kit.create!(slug: "foo")
-      step = Step.create!(position: 1, kit: kit)
-      user = User.create!(name: "foo")
-      p = Program.create!(kit: kit, user: user)
+      step = create(:step)
+      p = create(:program, kit: step.kit)
       p.current_step.should == step
     end
   end
 
   describe "after_save" do
     it "should create a snapshot" do
-      kit = Kit.create!(slug: "foo")
-      step1 = Step.create!(position: 1, kit: kit)
-      step2 = Step.create!(position: 2, kit: kit)
-      user = User.create!(name: 'foo')
-      program = Program.create(kit: kit, user: user)
+      step1 = create(:step, position: 1)
+      step2 = create(:step, position: 2, kit: step1.kit)
+      program = create(:program, kit: step1.kit)
       snapshot = Snapshot.last
       snapshot.program.should == program
       snapshot.step.should == step1
@@ -46,11 +46,9 @@ describe Program do
 
   describe "#next_step" do
     it "should return the next step" do
-      kit = Kit.create!(slug: "foo")
-      step = Step.create!(position: 1, kit: kit)
-      next_step = Step.create!(position: 5, kit: kit)
-      user = User.create!(name: "foo")
-      p = Program.create!(kit: kit, user: user)
+      step = create(:step)
+      next_step = create(:step, kit: step.kit)
+      p = create(:program, kit: step.kit)
       p.next_step.should == next_step
     end
   end

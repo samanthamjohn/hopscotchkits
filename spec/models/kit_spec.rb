@@ -6,6 +6,9 @@ describe Kit do
   it { should have_many :steps}
   it { should have_many :programs}
 
+  it "should have a factory" do
+    create(:kit).should be_valid
+  end
   describe ".published" do
     it "should only include kits where published= true" do
       published_kit = Kit.create!(slug: "foo", published: true)

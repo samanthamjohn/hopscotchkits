@@ -3,8 +3,12 @@ require 'spec_helper'
 describe User do
 
   it { User.create!(name: "Evan"); should validate_uniqueness_of :slug }
-
   it { should have_many :programs}
+
+  it "should have a factory" do
+    create(:user).should be_valid
+  end
+
   describe "before_create" do
     it "should save the slug based on name" do
       u = User.create!(name: "Test")
