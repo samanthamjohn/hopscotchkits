@@ -36,12 +36,12 @@ window.View = Backbone.View.extend(
     "click .less-info"  : "showLessInfo"
   showMoreInfo: (e) ->
     e.preventDefault()
-    $("#more_info").slideDown('slow', ->
+    $("#more_info").fadeIn('fast', ->
       $("#more_info_button").hide()
     )
   showLessInfo: (e) ->
     e.preventDefault()
-    $("#more_info").slideUp('slow', ->
+    $("#more_info").fadeOut('fast', ->
       $("#more_info_button").show()
     )
   toggleSolutions: (e) ->
