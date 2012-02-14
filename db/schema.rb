@@ -14,14 +14,14 @@
 ActiveRecord::Schema.define(:version => 20120213194950) do
 
   create_table "kits", :force => true do |t|
-    t.string   "name"
-    t.string   "slug"
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "icon_url"
-    t.boolean  "published"
-    t.text     "blurb"
+    t.string    "name"
+    t.string    "slug"
+    t.text      "description"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "icon_url"
+    t.boolean   "published"
+    t.text      "blurb"
   end
 
   create_table "programs", :force => true do |t|
@@ -36,11 +36,11 @@ ActiveRecord::Schema.define(:version => 20120213194950) do
   end
 
   create_table "snapshots", :force => true do |t|
-    t.text     "code"
-    t.integer  "program_id"
-    t.integer  "step_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.text      "code"
+    t.integer   "program_id"
+    t.integer   "step_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "steps", :force => true do |t|
