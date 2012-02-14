@@ -50,6 +50,7 @@ h1
 ul
   - finished_programs.each do |program|
     li style='margin:10px 0;'
+      iframe name=program.id class='puppy' src=iframe_program_path(program)
       = link_to("By #{program.user.name}", kit_program_path(program.kit, program))
       |  - 
       = program.created_at.strftime("%m/%d/%Y")
