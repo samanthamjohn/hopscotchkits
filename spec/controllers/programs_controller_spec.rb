@@ -97,6 +97,15 @@ describe ProgramsController do
     end
   end
 
+  describe "iframe" do
+    it "should return the program's iframe with code layout" do
+      program = create(:program)
+      get :iframe, id: program.id
+      response.should render_template('layouts/code')
+      response.should render_template('iframe')
+    end
+  end
+
   describe "#update" do
     it "should update the program" do
       kit = Kit.create(slug: "foo")

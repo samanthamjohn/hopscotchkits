@@ -2,26 +2,8 @@ doctype html
 html
   head
     title Hopscotch
-    = stylesheet_link_tag    "code"
     = javascript_include_tag "code"
     = csrf_meta_tags
-    javascript:
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-26599714-1']);
-      _gaq.push(['_trackPageview']);
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-      makeWorkspace = function() {
-        var _paper = Raphael(0,0,400,400)
-        _paper.rect(0,0,399,399).attr('fill', 'white')
-        window._paper = _paper;
-        return _paper;
-      }
-      makePaper = makeWorkspace;
-    = yield :head
 body
   = yield
 

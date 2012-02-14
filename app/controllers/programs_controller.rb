@@ -54,6 +54,10 @@ class ProgramsController < ApplicationController
     render text: @program.name
   end
 
+  def iframe
+    render layout: 'code'
+  end
+
   def show
     @step = @program.kit.steps.find_by_position(params[:step])
     @step ||= @program.current_step

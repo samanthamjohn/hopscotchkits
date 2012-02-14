@@ -15,7 +15,7 @@ div class='my-programs'
             = image_tag("frame-orange.png")
           - else
             = image_tag("frame-green.png")
-          = image_tag("puppy-icon.png", class: 'puppy')
+          iframe name=program.id class='puppy' src=iframe_program_path(program)
         = link_to "edit", edit_kit_program_path(program.kit, program), class: "edit-button"
         = link_to 'delete', kit_program_path(program.kit, program), method: 'delete', confirm: "Are you sure you want to delete this program?", class: 'trash-button'
   h1 Make Something New
