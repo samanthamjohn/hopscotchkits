@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe Step do
   it { should belong_to :kit }
+  it { should validate_presence_of :kit }
+  it { should validate_presence_of :position }
 
   it "should have a factory" do
     create(:step).should be_valid

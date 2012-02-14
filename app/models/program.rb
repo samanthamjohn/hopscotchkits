@@ -4,6 +4,7 @@ class Program < ActiveRecord::Base
   belongs_to :user
   has_many :snapshots
   validates :user, presence: true
+  validates :kit, presence: true
   accepts_nested_attributes_for :user
 
   before_create :set_current_step

@@ -5,6 +5,7 @@ describe Program do
   it { should belong_to :current_step }
   it { should belong_to :user }
   it { should validate_presence_of :user }
+  it { should validate_presence_of :kit }
   it { should have_many :snapshots }
 
   it "should have a factory" do
