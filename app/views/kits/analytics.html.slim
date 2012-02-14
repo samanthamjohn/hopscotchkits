@@ -22,7 +22,7 @@ div class='summary'
     = all_snapshots.length
   p
     | Average time spent on the programs (excluding zeros): 
-    = total_time_non_zero/all_non_zero_snapshots.length
+    = total_time_non_zero/all_non_zero_snapshots.length unless all_non_zero_snapshots.empty?
     |  minutes
   p
     | Sample size (excluding zeros): 
