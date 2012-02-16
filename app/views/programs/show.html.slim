@@ -11,15 +11,12 @@
     }
     makePaper = makeWorkspace;
 
-= image_tag("orange-frame-large.png", class: 'show-frame')
-script type="text/coffeescript"
-  = raw("#{raw(@program.code)}\n")
-  |window.resizePaper()
+h1.edit= @program.name
+.hr
+div class='left'
+  = image_tag("large-frame.png", class: 'show-frame')
+  iframe name=@program.id src=iframe_program_path(@program, full_size: true)
 
-div class='left' data-program-id=@program.id
-  h1.edit= @program.name
+div class='right' data-program-id=@program.id
   h2= "created by #{@program.user.name} #{time_ago_in_words(@program.created_at)} ago"
   = render "publish", program: @program unless Rails.env.test?
-
-- unless current_user == @program.user
-  div class='advert'= link_to "Make your own!", new_kit_program_path(@program.kit)

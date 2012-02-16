@@ -4,6 +4,6 @@ html
     title Hopscotch
     = javascript_include_tag "code"
     = csrf_meta_tags
-body
+body data-fullsize=params[:full_size]
   = yield
 

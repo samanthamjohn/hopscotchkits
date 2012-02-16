@@ -41,16 +41,31 @@
   }
 }
 
-svg {
-  margin: 31px 69px;
+
+body.programs-show {
+  .left {
+    position: relative;
+    float: left;
+    height: 482px;
+  }
+  img.show-frame {
+    position: absolute;
+    z-index: 9;
+    width: 454px;
+    height: 481px;
+
+  }
+  iframe {
+    height: 400px;
+    width: 400px;
+    position: relative;
+    z-index: 99;
+    top: 24px;
+    left: 18px;
+  }
+
 }
 
-img.show-frame {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  z-index: 9;
-}
 
 
 

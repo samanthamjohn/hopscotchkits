@@ -5,16 +5,7 @@ window.resizePaper = ->
     $("svg").attr('width', 433)
 
 $ ->
-  if $("body.program-show").length > 0
-    programId = $(".left").data("programId")
+  if $("body.programs-show").length > 0
+    programId = $(".right").data("programId")
     $('h1.edit').editable("/programs/#{programId}/name");
-    hoverOut = (timeout) -> window.setTimeout((-> $(".advert").animate(
-      right: "-373px"
-      , 500
-    )), timeout)
-    hoverOut(2000)
 
-    $('.advert').hover(( -> $('.advert').animate(
-        right: "0px"
-        , 500
-        )), (-> hoverOut(500)) )
