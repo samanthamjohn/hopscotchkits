@@ -1,6 +1,6 @@
 class ProgramsController < ApplicationController
   before_filter :load_program, except: ["new", "create", "index", "root", "gallery"]
-  load_and_authorize_resource only: "index"
+  load_and_authorize_resource only: ["index", "feature"]
 
   def root
     if session[:user_id]
@@ -68,6 +68,13 @@ class ProgramsController < ApplicationController
 
   def gallery
     @programs = Program.where(featured: true)
+  end
+
+  def feature
+    Program.record_timestamps = false
+    @program.update_attributes(params[:program])
+    Program.record_timestamps = true
+    head :ok
   end
 
   def destroy

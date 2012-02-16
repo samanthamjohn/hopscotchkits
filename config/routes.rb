@@ -9,6 +9,7 @@ Hopscotch::Application.routes.draw do
       get :data
       post :name
       get :iframe
+      put :feature
     end
     collection do
       get :root

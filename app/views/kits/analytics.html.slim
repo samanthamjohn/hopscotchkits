@@ -55,10 +55,10 @@ div class='finished-puppies'
         - else
           - featured_status = 'unfeatured'
         div class=featured_status
-          = simple_form_for program, remote: true, html: {class: "unfeature", id: "unfeature_#{program.id}"} do |f|
+          = simple_form_for program, remote: true, url: feature_program_path(program), html: {class: "unfeature", id: "unfeature_#{program.id}"} do |f|
             = f.hidden_field :featured, value: false
             = f.submit "unfeature"
-          = simple_form_for program, remote: true, html: { class: "feature", id: "feature_#{program.id}" } do |f|
+          = simple_form_for program, remote: true, url: feature_program_path(program), html: { class: "feature", id: "feature_#{program.id}" } do |f|
             = f.hidden_field :featured, value: true
             = f.submit "feature"
         = link_to("By #{program.user.name}", kit_program_path(program.kit, program))

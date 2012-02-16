@@ -166,6 +166,27 @@ describe ProgramsController do
     end
   end
 
+  describe "#feature" do
+    it "should feature the program" do
+      user = create(:user, role: 'admin')
+      session[:user_id] = user.id
+      program = create(:program, updated_at: Time.parse('july 1, 2011'))
+      put :feature, id: program.id, program: {featured: true}
+      program.reload.updated_at.should == Time.parse('july 1, 2011')
+      program.featured?.should be
+      response.should be_success
+    end
+
+    it "should unfeature the program" do
+      user = create(:user, role: 'admin')
+      session[:user_id] = user.id
+      program = create(:program, featured: true)
+      put :feature, id: program.id, program: {featured: 'false'}
+      program.reload.featured?.should_not be
+      response.should be_success
+    end
+  end
+
   describe "destroy" do
     it "should delete the record" do
       kit = Kit.create(slug: 'puppy')
