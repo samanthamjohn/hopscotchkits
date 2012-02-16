@@ -1,0 +1,40 @@
+body.programs-gallery {
+  ul {
+    li {
+      float: left;
+      margin-bottom: 32px;
+      position: relative;
+      width: 276px;
+      height: 281px;
+      margin-right: 20px;
+      margin-left: 23px;
+    }
+  }
+  h2 {
+    font-family: MavenProBold;
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+
+  .updated {
+    font-family: Georgia;
+    font-size: 13px;
+    font-style: italic;
+    color: #666;
+    margin-bottom: 10px;
+  }
+  .by {
+    text-align: right;
+    font-family: MavenProBold;
+    font-size: 18px;
+    color: #666;
+    margin-top: 48px;
+    margin-right: 26px;
+  }
+  iframe {
+     position: relative;
+  }
+  img {
+    position: absolute;
+  }
+}

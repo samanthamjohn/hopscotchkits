@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
   has_many :programs
   before_validation :create_slug
 
+  def to_s
+    name
+  end
   private
 
   def create_slug

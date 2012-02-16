@@ -1,0 +1,11 @@
+- @i += 1
+li
+  h2= program.name
+  div class='updated'= "last updated #{time_ago_in_words(program.updated_at)} ago"
+  - if @i%2 == 0
+    = image_tag("frame-orange.png")
+  - else
+    = image_tag("frame-green.png")
+  iframe name=program.id class='puppy' src=iframe_program_path(program)
+  div class='by'= "by #{program.user}"
+

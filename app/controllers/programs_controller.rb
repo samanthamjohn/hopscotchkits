@@ -1,5 +1,5 @@
 class ProgramsController < ApplicationController
-  before_filter :load_program, except: ["new", "create", "index", "root"]
+  before_filter :load_program, except: ["new", "create", "index", "root", "gallery"]
   load_and_authorize_resource only: "index"
 
   def root
@@ -64,6 +64,10 @@ class ProgramsController < ApplicationController
   end
 
   def index
+  end
+
+  def gallery
+    @programs = Program.where(featured: true)
   end
 
   def destroy

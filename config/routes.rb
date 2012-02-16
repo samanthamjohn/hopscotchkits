@@ -12,6 +12,7 @@ Hopscotch::Application.routes.draw do
     end
     collection do
       get :root
+      get :gallery
     end
   end
   resources :kits do

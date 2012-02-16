@@ -157,6 +157,15 @@ describe ProgramsController do
     end
   end
 
+  describe "#gallery" do
+    it "should only show the programs that are featured" do
+      featured = create(:program, featured: true)
+      unfeatured = create(:program, featured: false)
+      get :gallery
+      assigns(:programs).map(&:id).should == [featured.id]
+    end
+  end
+
   describe "destroy" do
     it "should delete the record" do
       kit = Kit.create(slug: 'puppy')
