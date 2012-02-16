@@ -6,7 +6,8 @@ window.makeWorkspace = ->
 window.makePaper = makeWorkspace
 
 window.resizePaper = ->
-  window._paper.setViewBox(90,100,210,210,true)
-  $("svg").attr('height', 181)
-  $("svg").attr('width', 181)
+  if (window._paper)
+    window._paper.setViewBox(90,100,210,210,true)
+    $("svg").attr('height', 181)
+    $("svg").attr('width', 181)
 
