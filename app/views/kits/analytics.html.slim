@@ -41,21 +41,33 @@ div class='step-breakdown'
   ul
     - @kit.steps.sort{|a,b| a.position <=> b.position}.each do |step| 
       li style='margin:10px 0; font-size:15px;'= "#{step.position}: #{Program.where(step_id: step.id).count}"
-- programs = @programs.order("created_at DESC")
-- finished_programs = programs.select{|p| p.current_step && p.current_step.position >= 8}
-- unfinished_programs = programs.select{|p| p.current_step && p.current_step.position < 8}
-h1
-  | Finished puppys 
-  = finished_programs.count
-ul
-  - finished_programs.each do |program|
-    li style='margin:10px 0;'
-      iframe name=program.id class='puppy' src=iframe_program_path(program)
-      = link_to("By #{program.user.name}", kit_program_path(program.kit, program))
-      |  - 
-      = program.created_at.strftime("%m/%d/%Y")
-      |  Step 
-      = program.current_step.position
+- unfinished_programs = @programs.select{|p| p.current_step && p.current_step.position < 8}
+div class='finished-puppies'
+  h1
+    | Finished puppys 
+    = @complete_programs.count
+  ul
+    - @complete_programs.each do |program|
+      li style='margin:10px 0;'
+        iframe name=program.id class='puppy' src=iframe_program_path(program)
+        - if program.featured?
+          - featured_status = 'featured'
+        - else
+          - featured_status = 'unfeatured'
+        div class=featured_status
+          = simple_form_for program, remote: true, html: {class: "unfeature", id: "unfeature_#{program.id}"} do |f|
+            = f.hidden_field :featured, value: false
+            = f.submit "unfeature"
+          = simple_form_for program, remote: true, html: { class: "feature", id: "feature_#{program.id}" } do |f|
+            = f.hidden_field :featured, value: true
+            = f.submit "feature"
+        = link_to("By #{program.user.name}", kit_program_path(program.kit, program))
+        |  - 
+        = program.created_at.strftime("%m/%d/%Y")
+        |  Step 
+        = program.current_step.position
+  = will_paginate(@complete_programs)
+div class='unfinished-puppies'
 h1
   | Unfinished puppys 
   = unfinished_programs.count

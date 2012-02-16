@@ -22,9 +22,11 @@ class KitsController < ApplicationController
   end
 
   def analytics
-    @users = User.where('id <> 3')
-    @programs = @kit.programs.where("user_id <> 3")
+    @users = User.where("role IS NULL")
+    @programs = @kit.programs.joins(:user).where("users.role IS NULL").order("created_at DESC")
     @steps = @kit.steps
+    @complete_programs = @programs.joins(:current_step).where("steps.position >= 8").paginate(page: params[:page])
+    @incomplete_programs = @programs.joins(:current_step).where("steps.position < 8").paginate(page: params[:page], per_page: 100)
   end
 
   private

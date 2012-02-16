@@ -48,5 +48,21 @@ body.kit {
   .step-breakdown {
     overflow: hidden;
   }
+  .finished-puppies {
+    form {
+      width: 200px;
+      clear: both;
+    }
+
+    form.feature, form.unfeature {
+      display: none;
+    }
+    .unfeatured form.feature {
+      display: block;
+    }
+    .featured form.unfeature {
+      display: block;
+    }
+  }
 
 }

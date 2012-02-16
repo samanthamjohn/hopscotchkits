@@ -12,3 +12,11 @@ $ ->
     $("#" + id + "_show").show()
   )
 
+  $(".unfeature.simple_form").bind("ajax:success", ->
+    $(this).parent().attr("class", 'unfeatured')
+  )
+
+  $(".feature.simple_form").bind("ajax:success", ->
+    $(this).parent().attr("class", 'featured')
+  )
+

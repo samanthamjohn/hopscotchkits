@@ -58,6 +58,18 @@ describe KitsController do
       assigns(:programs).should == [program]
       assigns(:steps).should == [step]
     end
+
+    it "should assign the paginated complete programs" do
+      step = create(:step, position: 8)
+      step1 = create(:step, position: 1, kit: step.kit)
+      complete_program = create(:program, kit: step.kit)
+      get :analytics, id: step.kit.to_param
+      assigns(:incomplete_programs).map(&:id).should == [complete_program.id]
+
+      complete_program.reload.update_attribute(:step_id, step.id)
+      get :analytics, id: step.kit.to_param
+      assigns(:complete_programs).map(&:id).should == [complete_program.id]
+    end
   end
 
 end
