@@ -69,7 +69,7 @@
 
   .new-program-form {
     margin: 10px 0;
-    width: 526px;
+    overflow: hidden;
     h2 {
       background: #3F9CBA;
       color: white;
@@ -79,6 +79,25 @@
       margin: 5px 0 10px;
       font-family: "MavenProBold";
     }
+   img {
+     height: 84px;
+      background: white;
+      padding: 11px;
+      top: 70px;
+      left: 30px;
+      border: 1px solid black;
+      cursor: pointer;
+   }
+   .title {
+      float: left;
+      width: 113px;
+   }
+ }
+ .blurb-hover {
+    display: none;
+    position: absolute;
+    left: 100px;
+    top: 0;
     form {
       float: right;
     }
@@ -92,18 +111,6 @@
       padding: 9px 20px 5px 30px;
       line-height: 18px;
       margin-left: 26px;
-   }
-   img {
-     height: 84px;
-      background: white;
-      padding: 11px;
-      top: 70px;
-      left: 30px;
-      border: 1px solid black;
-   }
-   .title {
-      float: left;
-      width: 113px;
    }
  }
 

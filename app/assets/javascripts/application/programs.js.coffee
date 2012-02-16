@@ -19,6 +19,27 @@ $ ->
       val = window.editor.getSession().getValue()
       CoffeeScript.eval(val)
     )
+  if $("body.programs-root").length > 0
+    $(".new-program-form img").click(->
+      $(".blurb-hover form").submit()
+    )
+    hoverState = 'off'
+    $(".new-program-form img").on('mouseenter', (e)->
+      if (hoverState == 'off')
+        setTimeout( (->
+          hover = $(e.target).parents(".form").find('.blurb-hover')
+          hover.show()
+          hoverState = 'on'
+        ), 500)
+    )
+    $('.form').on("mouseleave", (e) ->
+      if hoverState == 'on'
+        setTimeout( (->
+          hover = $(e.target).parents(".form").find('.blurb-hover')
+          hover.hide()
+          hoverState = "off"
+        ), 500)
+    )
 
   if $("#stage").length > 0
     window.$frame = $(window.frames['stage'].document)

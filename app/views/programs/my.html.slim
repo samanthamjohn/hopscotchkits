@@ -29,6 +29,7 @@ div class='my-programs'
             div class='title'
               h2= kit.name
               = image_tag(kit.icon_url)
+          div class='blurb-hover'
             p= kit.blurb
             = simple_form_for [kit, program] do |f|
               = f.hidden_field :kit_id
