@@ -12,6 +12,7 @@
     makePaper = makeWorkspace;
 
 - editable = current_user == @program.user ? 'edit' : 'cant-edit'
+= image_tag(@program.kit.icon_url, style: 'display:none')
 h1 class=editable data-program-id=@program.id = @program.name
 .hr
 div id='subtitle'
