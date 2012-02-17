@@ -86,6 +86,23 @@ describe ProgramsController do
       get :data, id: program.to_param
       response.body.should == {step: step, program: program}.to_json
     end
+
+    context "when a step param is passed in" do
+      it "should set the step to the freeplay step" do
+        step_1 = create(:step, position: 1)
+        step = create(:step, kit: step_1.kit, freeplay: true, position: 2)
+        program = create(:program, kit: step.kit)
+        get :data, id: program.to_param, step: 'freeplay'
+        program.reload.current_step.should == step
+      end
+
+      it "should set the step to the passed in step." do
+        step = create(:step, position: 3)
+        program = create(:program, kit: step.kit)
+        get :data, id: program.to_param, step: step.position
+        program.reload.current_step.should == step
+      end
+    end
   end
 
   describe "#name" do

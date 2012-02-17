@@ -46,6 +46,13 @@ class ProgramsController < ApplicationController
   end
 
   def data
+    if params['step'] == 'freeplay'
+      @program.current_step = @program.kit.steps.where(freeplay: true).first
+      @program.save
+    elsif params['step']
+      @program.current_step = @program.kit.steps.where(position: params['step']).first
+      @program.save
+    end
     render json: { step: @program.current_step, program: @program }
   end
 

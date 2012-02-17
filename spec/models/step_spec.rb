@@ -40,9 +40,8 @@ describe Step do
       step1.last_step?.should == false
       step2.last_step?.should == true
       step3_bonus.last_step?.should == false
-      step4_freeplay.last_step?.should == false
+      step4_freeplay.last_step?.should == true
     end
-
   end
 
   describe "to_json" do

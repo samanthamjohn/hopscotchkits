@@ -1,6 +1,6 @@
 div class='program edit'
   div class='preface'
-  script type='template' id='preface_template' data-program-id=@program.id data-num-steps=@program.kit.num_steps
+  script type='template' id='preface_template' data-program-id=@program.id data-num-steps=@program.kit.num_steps data-step=params[:step]
     = render 'preface.mustache'
   script type='template' id='ide_template'
     = render 'ide.mustache'

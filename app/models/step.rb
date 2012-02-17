@@ -9,8 +9,12 @@ class Step < ActiveRecord::Base
     self.kit.steps.where("position > ?", self.position).order(:position).first
   end
 
+  def next_step_id
+    next_step.id if next_step
+  end
+
   def last_step?
-    return false if bonus || freeplay
+    return false if bonus
     self.kit.steps.where("position > ?", self.position).where(bonus: false).where(freeplay: false).blank?
   end
 
@@ -19,7 +23,7 @@ class Step < ActiveRecord::Base
       attrs = self.attributes.merge( last_step: true, next_step_id: nil)
     else
       attrs = self.attributes.merge(
-        next_step_id: next_step.id,
+        next_step_id: next_step_id,
         last_step: false
       )
     end

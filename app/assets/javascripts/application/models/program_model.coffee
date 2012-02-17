@@ -24,4 +24,7 @@ window.ProgramModel = Backbone.Model.extend(
       )
 )
 $ ->
-  window.step = new ProgramModel(url: 'data')
+  if $('script#preface_template').data('step')
+    window.step = new ProgramModel(url: "data?step=#{$('script#preface_template').data('step')}")
+  else
+    window.step = new ProgramModel(url: 'data')

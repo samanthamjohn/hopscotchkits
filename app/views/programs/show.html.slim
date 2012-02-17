@@ -48,3 +48,8 @@ div class='bottom'
     div class='mail'
       | Email this!
       input class='permalink' value=program_url(@program)
+  - if @program.user == current_user
+    = link_to "edit", edit_program_path(@program, step: "freeplay"), class: 'program-button edit'
+  - else
+    = link_to new_kit_program_path(@program.kit), class: "program-button new" do
+      span class='make-your-own' make your own

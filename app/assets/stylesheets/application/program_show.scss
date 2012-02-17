@@ -22,9 +22,13 @@ body.programs-show {
   }
   #social_links {
     background: transparent image_url('share-bg.png') 0 0 no-repeat;
-    margin-left: 68px;
+    margin-left: 48px;
     overflow: hidden;
     height: 49px;
+    float: left;
+    width: 371px;
+    z-index: 99;
+    position: relative;
     .social {
       display: block;
       cursor: pointer;
@@ -52,6 +56,29 @@ body.programs-show {
       color: white;
       margin-top: 9px;
       width: 100px;
+    }
+  }
+  a.program-button {
+    display: block;
+    float: left;
+    @include sprite('social_buttons', 'edit-bg');
+    margin-top: 3px;
+    position: relative;
+    left: -8px;
+    text-align: center;
+    font-family: MavenProBold;
+    color: #333;
+    &.edit {
+      font-size: 21px;
+      line-height: 45px;
+    }
+    &.new {
+      font-size: 15px;
+      line-height: 17px;
+      span {
+        display: inline-block;
+        margin-top: 9px;
+      }
     }
   }
   .created-by {
