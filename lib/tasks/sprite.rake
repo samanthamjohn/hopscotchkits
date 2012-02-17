@@ -1,3 +1,3 @@
 task :sprite do
-  `sprite` && `mv app/assets/assets/sprites/*.png app/assets/images/sprites/`
+  `sprite` && `mv app/assets/assets/sprites/*.png public/assets/sprites/`
 end
