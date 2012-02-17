@@ -27,11 +27,11 @@ class Step < ActiveRecord::Base
         last_step: false
       )
     end
-    attrs["description"] = simple_format(description)
-    attrs["success_message"] = simple_format(success_message)
-    attrs["solution"] = simple_format(solution)
-    attrs["hint"] = simple_format(hint)
-    attrs["more_info"] = simple_format(more_info)
+    attrs["description"] = simple_format(description, {}, sanitize: false)
+    attrs["success_message"] = simple_format(success_message, {}, sanitize: false)
+    attrs["solution"] = simple_format(solution, {}, sanitize: false)
+    attrs["hint"] = simple_format(hint, {}, sanitize: false)
+    attrs["more_info"] = simple_format(more_info, {}, sanitize: false)
     attrs
   end
 end
