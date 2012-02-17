@@ -11,7 +11,8 @@
     }
     makePaper = makeWorkspace;
 
-h1 class='edit' data-program-id=@program.id = @program.name
+- editable = current_user == @program.user ? 'edit' : 'cant-edit'
+h1 class=editable data-program-id=@program.id = @program.name
 .hr
 div id='subtitle'
   | Tah dah! Check out your masterpiece.
