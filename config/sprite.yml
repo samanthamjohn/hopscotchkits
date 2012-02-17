@@ -1,0 +1,9 @@
+config:
+  style: sass_mixin
+  public_path: app/assets/
+  image_output_path: assets/sprites/
+  sprites_class: 'sprites'
+  class_separator: '-'
+  default_format: png
+  style_output_path: stylesheets/application/_sprites
+

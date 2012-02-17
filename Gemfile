@@ -34,6 +34,11 @@ group :development, :test do
   gem "yaml_db"
 end
 
+group :development do
+  gem 'rmagick'
+  gem 'sprite'
+end
+
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
