@@ -1,3 +1,4 @@
+@import 'mixins.scss';
 body.programs-gallery {
   ul {
     li {
@@ -14,15 +15,11 @@ body.programs-gallery {
     font-family: MavenProBold;
     font-size: 18px;
     margin-bottom: 5px;
+    a {
+      color: black;
+    }
   }
 
-  .updated {
-    font-family: Georgia;
-    font-size: 13px;
-    font-style: italic;
-    color: #666;
-    margin-bottom: 10px;
-  }
   .by {
     text-align: right;
     font-family: MavenProBold;

@@ -1,6 +1,6 @@
 - @i += 1
 li
-  h2= program.name
+  h2= link_to program.name, program_path(program)
   div class='updated'= "last updated #{time_ago_in_words(program.updated_at)} ago"
   = link_to program_path(program) do
     - if @i%2 == 0
