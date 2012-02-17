@@ -16,6 +16,7 @@ Hopscotch::Application.routes.draw do
       get :gallery
     end
   end
+  match "/gallery", to: "programs#gallery", as: :gallery
   resources :kits do
     member do
       get :analytics
