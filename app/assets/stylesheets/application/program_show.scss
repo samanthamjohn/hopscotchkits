@@ -1,5 +1,12 @@
 @import 'mixins.scss';
 body.programs-show {
+  // Hacks to get the logo/bar to line up
+  .preface {
+    padding-left: 30px;
+  }
+  .hr {
+    margin-top: 5px;
+  }
   h1 {
     form input {
       width: 300px !important;

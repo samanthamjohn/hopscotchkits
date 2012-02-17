@@ -125,11 +125,13 @@
     display: block;
   }
 }
+body.programs.new {
+  .hr {
+    margin-top: 5px;
+  }
+}
 .program {
   h1 {
-    font-size: 36px;
-    padding-top: 30px;
-    font-family: 'MavenProBlack';
     .subtitle {
       font-family: 'Georgia';
     }
