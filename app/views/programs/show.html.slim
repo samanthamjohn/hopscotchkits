@@ -36,7 +36,6 @@ div class='bottom'
           newwindow.focus()
       )
     - url = "https://www.facebook.com/sharer/sharer.php?u=#{program_url(@program)}&t=Check+out+my+awesome+program+made+with+HopsocthKits"
-    - url1= "http://www.facebook.com/dialog/feed?app_id=#{ENV['facebook_app_id']}&link=#{program_url(@program)}&picture=#{image_tag(@program.kit.icon_url)}&name=Hopscotch%20Kits&caption=Check%20out%20my%20awesome%20program&description=You%20can%20make%20one%20too%20with%20HopscotchKits.&redirect_uri=#{program_url(@program)}&display=popup"
     = link_to "Facebook", url, class: 'facebook social', target: "_blank"
     coffee:
       $(".facebook.social").on('click', (e) ->
