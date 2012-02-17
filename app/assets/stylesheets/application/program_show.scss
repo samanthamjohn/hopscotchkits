@@ -10,7 +10,7 @@ body.programs-show {
     position: relative;
     float: left;
     height: 474px;
-    width: 456px;
+    width: 467px;
     margin-left: 50px;
   }
   .right {
@@ -22,7 +22,7 @@ body.programs-show {
   }
   #social_links {
     background: transparent image_url('share-bg.png') 0 0 no-repeat;
-    margin-left: 48px;
+    margin-left: 59px;
     overflow: hidden;
     height: 49px;
     float: left;
@@ -89,7 +89,7 @@ body.programs-show {
   img.show-frame {
     position: absolute;
     z-index: 9;
-    width: 454px;
+    width: 465px;
     height: 481px;
   }
   iframe {
@@ -98,7 +98,7 @@ body.programs-show {
     position: relative;
     z-index: 99;
     top: 24px;
-    left: 18px;
+    left: 10px;
   }
 
 }
