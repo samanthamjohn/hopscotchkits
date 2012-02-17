@@ -25,39 +25,27 @@ div class='right'
   div class='updated'= "last updated #{time_ago_in_words(@program.created_at)} ago"
 
 div class='bottom'
-  /* div id='publish_popup' */
-    /* p Your program is so cool that it deserves its own webpage- we've made one just for you! */
-    /* = link_to "see your program", kit_program_path(program.kit, program), class: 'publish-button', target: "_blank" */
-    /* - if program.kit.has_freeplay? */
-      /* p */
-        /* |enter  */
-        /* = link_to "freeplay mode", edit_kit_program_path(program.kit, program, step: 'freeplay') */
-    /* - if program.kit.has_bonus? */
-      /* p */
-        /* |or try the  */
-        /* = link_to "bonus steps", edit_kit_program_path(program.kit, program, step: program.kit.bonus) */
-  - unless Rails.env.test?
-    div id='social_links'
-      = link_to "Tweet", "https://twitter.com/share?url=#{program_url(@program)}&text=Check%20out%20my%20awesome%20program%20made%20with%20%40HopscotchKits", target: "_blank", class: "social tweet"
-      coffee:
-        $(".tweet.social").on("click", (e)->
-          e.preventDefault()
-          url = e.target.href
-          newwindow=window.open(url,'Share your program on Twitter','height=375,width=450')
-          if (window.focus)
-            newwindow.focus()
-        )
-      - url = "https://www.facebook.com/sharer/sharer.php?u=#{program_url(@program)}&t=Check+out+my+awesome+program+made+with+HopsocthKits"
-      - url1= "http://www.facebook.com/dialog/feed?app_id=#{ENV['facebook_app_id']}&link=#{program_url(@program)}&picture=#{image_tag(@program.kit.icon_url)}&name=Hopscotch%20Kits&caption=Check%20out%20my%20awesome%20program&description=You%20can%20make%20one%20too%20with%20HopscotchKits.&redirect_uri=#{program_url(@program)}&display=popup"
-      = link_to "Facebook", url, class: 'facebook social', target: "_blank"
-      coffee:
-        $(".facebook.social").on('click', (e) ->
-          e.preventDefault()
-          url = e.target.href
-          newwindow=window.open(url,'Share your program on Facebook','height=375,width=450')
-          if (window.focus)
-            newwindow.focus()
-        )
-      div class='mail'
-        | Email this!
-        input class='permalink' value=program_url(@program)
+  div id='social_links'
+    = link_to "Tweet", "https://twitter.com/share?url=#{program_url(@program)}&text=Check%20out%20my%20awesome%20program%20made%20with%20%40HopscotchKits", target: "_blank", class: "social tweet"
+    coffee:
+      $(".tweet.social").on("click", (e)->
+        e.preventDefault()
+        url = e.target.href
+        newwindow=window.open(url,'Share your program on Twitter','height=375,width=450')
+        if (window.focus)
+          newwindow.focus()
+      )
+    - url = "https://www.facebook.com/sharer/sharer.php?u=#{program_url(@program)}&t=Check+out+my+awesome+program+made+with+HopsocthKits"
+    - url1= "http://www.facebook.com/dialog/feed?app_id=#{ENV['facebook_app_id']}&link=#{program_url(@program)}&picture=#{image_tag(@program.kit.icon_url)}&name=Hopscotch%20Kits&caption=Check%20out%20my%20awesome%20program&description=You%20can%20make%20one%20too%20with%20HopscotchKits.&redirect_uri=#{program_url(@program)}&display=popup"
+    = link_to "Facebook", url, class: 'facebook social', target: "_blank"
+    coffee:
+      $(".facebook.social").on('click', (e) ->
+        e.preventDefault()
+        url = e.target.href
+        newwindow=window.open(url,'Share your program on Facebook','height=375,width=450')
+        if (window.focus)
+          newwindow.focus()
+      )
+    div class='mail'
+      | Email this!
+      input class='permalink' value=program_url(@program)
