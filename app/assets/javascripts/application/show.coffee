@@ -6,6 +6,6 @@ window.resizePaper = ->
 
 $ ->
   if $("body.programs-show").length > 0
-    programId = $(".right").data("programId")
+    programId = $("h1.edit").data("programId")
     $('h1.edit').editable("/programs/#{programId}/name");
 

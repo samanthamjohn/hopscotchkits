@@ -1,0 +1,77 @@
+@import 'mixins.scss';
+body.programs-show {
+  h1 {
+    form input {
+      width: 300px !important;
+      font-size: 20px !important;
+    }
+  }
+  .left {
+    position: relative;
+    float: left;
+    height: 474px;
+    width: 456px;
+    margin-left: 50px;
+  }
+  .right {
+    float: left;
+    padding-top: 27px;
+  }
+  .bottom {
+    clear: both;
+  }
+  #social_links {
+    background: transparent image_url('share-bg.png') 0 0 no-repeat;
+    margin-left: 68px;
+    overflow: hidden;
+    height: 49px;
+    .social {
+      display: block;
+      cursor: pointer;
+      float: left;
+      margin-top: 9px;
+      text-indent: -99999px;
+    }
+    .tweet {
+      @include sprite("social_buttons", "tweet");
+      margin-right: 27px;
+      margin-left: 6px;
+      &:hover {
+        @include sprite("social_buttons", "tweet-hover");
+      }
+    }
+    .facebook {
+      @include sprite("social_buttons", "facebook");
+      &:hover {
+        @include sprite('social_buttons', 'facebook-hover');
+      }
+    }
+    .mail {
+      margin-left: 83px;
+      float: left;
+      color: white;
+      margin-top: 9px;
+      width: 100px;
+    }
+  }
+  .created-by {
+    font-style: italic;
+    color: #666;
+    line-height: 17px;
+  }
+  img.show-frame {
+    position: absolute;
+    z-index: 9;
+    width: 454px;
+    height: 481px;
+  }
+  iframe {
+    height: 400px;
+    width: 400px;
+    position: relative;
+    z-index: 99;
+    top: 24px;
+    left: 18px;
+  }
+
+}

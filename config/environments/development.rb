@@ -28,3 +28,5 @@ Hopscotch::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 end
+ENV['facebook_app_id'] = "256222744454335"
+ENV['facebook_app_secret'] = "af75f8c647d98ce67e6701df79c34dd3"
