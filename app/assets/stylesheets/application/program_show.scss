@@ -12,8 +12,8 @@ body.programs-show {
   .left {
     position: relative;
     float: left;
-    height: 474px;
-    width: 467px;
+    height: 442px;
+    width: 500px;
     margin-left: 50px;
   }
   .right {
@@ -22,6 +22,7 @@ body.programs-show {
   }
   .bottom {
     clear: both;
+    margin-left: 18px;
   }
   #social_links {
     background: transparent image_url('share-bg.png') 0 0 no-repeat;
@@ -32,6 +33,7 @@ body.programs-show {
     width: 371px;
     z-index: 99;
     position: relative;
+    top: -1px;
     .social {
       display: block;
       cursor: pointer;
@@ -65,7 +67,7 @@ body.programs-show {
     display: block;
     float: left;
     @include sprite('social_buttons', 'edit-bg');
-    margin-top: 3px;
+    margin-top: 1px;
     position: relative;
     left: -8px;
     text-align: center;
@@ -92,8 +94,6 @@ body.programs-show {
   img.show-frame {
     position: absolute;
     z-index: 9;
-    width: 465px;
-    height: 481px;
   }
   iframe {
     height: 400px;
@@ -101,7 +101,7 @@ body.programs-show {
     position: relative;
     z-index: 99;
     top: 24px;
-    left: 10px;
+    left: 14px;
   }
 
 }
