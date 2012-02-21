@@ -58,4 +58,5 @@ group :test do
   gem 'capybara'
   gem 'ruby-debug19'
   gem "shoulda-matchers"
+  gem 'simplecov'
 end
