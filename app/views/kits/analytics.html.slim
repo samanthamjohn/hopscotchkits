@@ -1,6 +1,5 @@
 div class='summary'
   h1= @kit.name
-
   - all_snapshots = []
   - all_non_zero_snapshots = []
   - @programs.each do |program|
@@ -38,9 +37,15 @@ div class='summary'
     | %
 div class='step-breakdown'
   h1 Puppy Draw Step breakdown
+  - steps = []
+  - positions = []
   ul
     - @kit.steps.sort{|a,b| a.position <=> b.position}.each do |step| 
-      li style='margin:10px 0; font-size:15px;'= "#{step.position}: #{Program.where(step_id: step.id).count}"
+      - count = Program.where(step_id: step.id).count
+      - positions << "step: #{step.position}"
+      - steps << count
+      li style='margin:10px 0; font-size:15px;'= "#{step.position}: #{count}"
+  = image_tag(Gchart.bar(title: "step breakdown", data: steps, labels: positions, bar_width_and_spacing: [35,10], size: '500x400', axis_with_labels: ['x', 'y'], bar_colors: "008cba"))
 - unfinished_programs = @programs.select{|p| p.current_step && p.current_step.position < 8}
 div class='finished-puppies'
   h1

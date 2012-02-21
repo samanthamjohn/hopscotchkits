@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'cancan'
+gem 'googlecharts'
 gem 'rails', '3.1.1.rc1'
 gem 'simple_form'
 gem 'slim-rails'
