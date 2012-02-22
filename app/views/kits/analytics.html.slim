@@ -45,7 +45,11 @@ div class='step-breakdown'
       - positions << "step: #{step.position}"
       - steps << count
       li style='margin:10px 0; font-size:15px;'= "#{step.position}: #{count}"
-  = image_tag(Gchart.bar(title: "step breakdown", data: steps, labels: positions, bar_width_and_spacing: [35,10], size: '500x400', axis_with_labels: ['x', 'y'], bar_colors: "008cba"))
+  = image_tag(Gchart.bar(axis_range: [nil, [0, steps.max]],\ 
+    title: "step breakdown", data: steps, \
+    axis_with_labels: ['x', 'y'], labels: positions, \
+    bar_width_and_spacing: [35,10], size: '500x400', \
+    bar_colors: "008cba"))
 - unfinished_programs = @programs.select{|p| p.current_step && p.current_step.position < 8}
 div class='finished-puppies'
   h1
