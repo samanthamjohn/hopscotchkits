@@ -6,13 +6,14 @@ body.kit {
   }
 
   a {
-    color: orange;
+    color: $bright-blue;
   }
   ul {
     float: left;
     li {
       padding: 10px;
       float: left;
+      clear: both;
     }
   }
   .edit-step, .show-step{
