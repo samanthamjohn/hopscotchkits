@@ -2,14 +2,12 @@ source 'http://rubygems.org'
 
 gem 'cancan'
 gem 'googlecharts'
+gem 'jquery-rails'
 gem 'rails', '3.1.1.rc1'
 gem 'simple_form'
 gem 'slim-rails'
 gem 'will_paginate'
 gem 'underscore-rails'
-
-# Bundle edge Rails instead:
-# gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 group :production do
   gem 'pg'
@@ -40,19 +38,6 @@ group :development do
   gem 'sprite'
 end
 
-gem 'jquery-rails'
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# Use unicorn as the web server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
 
 group :test do
   gem 'database_cleaner'
