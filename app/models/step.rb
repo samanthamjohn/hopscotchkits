@@ -20,7 +20,7 @@ class Step < ActiveRecord::Base
   end
 
   def as_json(options=nil)
-    if options[:serializing]
+    if options && options[:serializing]
       super
     else
       if last_step?
