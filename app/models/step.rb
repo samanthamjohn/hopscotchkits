@@ -20,19 +20,23 @@ class Step < ActiveRecord::Base
   end
 
   def as_json(options=nil)
-    if last_step?
-      attrs = self.attributes.merge( last_step: true, next_step_id: nil)
+    if options[:serializing]
+      super
     else
-      attrs = self.attributes.merge(
-        next_step_id: next_step_id,
-        last_step: false
-      )
-    end
-    attrs["description"] = simple_format(description, {}, sanitize: false)
-    attrs["success_message"] = simple_format(success_message, {}, sanitize: false)
-    attrs["solution"] = simple_format(solution, {}, sanitize: false)
-    attrs["hint"] = simple_format(hint, {}, sanitize: false)
-    attrs["more_info"] = simple_format(more_info, {}, sanitize: false)
-    attrs
+      if last_step?
+        attrs = self.attributes.merge( last_step: true, next_step_id: nil)
+      else
+        attrs = self.attributes.merge(
+          next_step_id: next_step_id,
+          last_step: false
+        )
+      end
+      attrs["description"] = simple_format(description, {}, sanitize: false)
+      attrs["success_message"] = simple_format(success_message, {}, sanitize: false)
+      attrs["solution"] = simple_format(solution, {}, sanitize: false)
+      attrs["hint"] = simple_format(hint, {}, sanitize: false)
+      attrs["more_info"] = simple_format(more_info, {}, sanitize: false)
+      attrs
+      end
   end
 end
