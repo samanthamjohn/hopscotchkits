@@ -1,5 +1,6 @@
 class Step < ActiveRecord::Base
   belongs_to :kit
+  has_many :requirements
   include ActionView::Helpers
 
   validates_presence_of :position

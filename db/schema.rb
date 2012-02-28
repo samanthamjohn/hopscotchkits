@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120216194053) do
+ActiveRecord::Schema.define(:version => 20120228033424) do
 
   create_table "kits", :force => true do |t|
     t.string    "name"
@@ -25,15 +25,25 @@ ActiveRecord::Schema.define(:version => 20120216194053) do
   end
 
   create_table "programs", :force => true do |t|
-    t.string    "name"
-    t.integer   "progress"
-    t.text      "code"
-    t.integer   "kit_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "step_id"
-    t.integer   "user_id"
-    t.boolean   "featured",   :default => false
+    t.string   "name"
+    t.integer  "progress"
+    t.text     "code"
+    t.integer  "kit_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "step_id"
+    t.integer  "user_id"
+    t.boolean  "featured",   :default => false
+  end
+
+  create_table "requirements", :force => true do |t|
+    t.string   "name"
+    t.string   "message"
+    t.text     "spec"
+    t.integer  "step_id"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "snapshots", :force => true do |t|
