@@ -283,6 +283,15 @@
     .success {
       display: block;
     }
+    .hint {
+      display: none;
+    }
+    .controls {
+      display: block;
+    }
+  }
+  .controls {
+    display: none;
   }
   div.hint {
     float: right;
