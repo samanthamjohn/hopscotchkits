@@ -36,7 +36,7 @@ class Step < ActiveRecord::Base
       attrs["solution"] = simple_format(solution, {}, sanitize: false)
       attrs["hint"] = simple_format(hint, {}, sanitize: false)
       attrs["more_info"] = simple_format(more_info, {}, sanitize: false)
-      attrs
-      end
+      attrs.merge(requirements: self.requirements.map(&:attributes))
+    end
   end
 end

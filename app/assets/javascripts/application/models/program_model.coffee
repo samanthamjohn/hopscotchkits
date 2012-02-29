@@ -15,6 +15,7 @@ window.ProgramModel = Backbone.Model.extend(
         success: (data, status, xhr) =>
           this.attributes = data.step
           this.set("programId", programId)
+          this.requirements.reset(data.step.requirements)
           this.view.render()
           if data.program.code
             code = data.program.code
@@ -22,9 +23,12 @@ window.ProgramModel = Backbone.Model.extend(
             code = ""
           startEditor(code)
       )
+  requirements: new Requirements()
+  runSpecs: ->
+    this.requirements.runSpecs()
 )
 $ ->
   if $('script#preface_template').data('step')
-    window.step = new ProgramModel(url: "data?step=#{$('script#preface_template').data('step')}")
+    window.Step = new ProgramModel(url: "data?step=#{$('script#preface_template').data('step')}")
   else
-    window.step = new ProgramModel(url: 'data')
+    window.Step = new ProgramModel(url: 'data')

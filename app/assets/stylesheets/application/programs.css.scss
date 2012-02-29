@@ -307,31 +307,32 @@
 }
 
 .message {
-  display: none;
-  h3 {
-    text-align: right;
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 4px;
+  .unchecked {
+    float: left;
+    width: 22px;
+    height: 18px;
+    background: image_url('box.gif') 0 0 no-repeat;
   }
-  .success, .error {
-    display: none;
+  .checked {
+    float: left;
+    width: 22px;
+    height: 18px;
+    background: image_url('checked_box.gif') 0 0 no-repeat;
   }
-
-  &.errored {
-    .error {
-      display: block;
-    }
+  .name {
+    float: left;
+    margin-left: 5px;
+    margin-top: 3px;
   }
-  &.successful {
-    .success {
-      display: block;
-      .controls {
-      }
-      form {
-        float: right;
-      }
-    }
+  .success {
+    margin: 8px 0 12px;
+    margin-left: 27px;
+    clear: both;
+    float: left;
+    text-align: left;
+  }
+  li {
+    overflow: hidden;
   }
 }
 

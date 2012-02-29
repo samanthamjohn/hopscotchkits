@@ -8,22 +8,20 @@
   </div>
   <p> {{progressText}} </p>
   <div class='message'>
-    <div class='error'>
-      <h2> {{errorShuffle}} </h2>
-      <div class='current-error'></div>
-      <div class='hint'> Are you stumped?  <a href="#" class="hint"> get a hint</a>
-      </div>
-      <div class='clearfix'></div>
+    <div class='specs'>
+      <ul>
+        {{#requirements}}
+        <li id="req_{{id}}">
+          <div class='{{result}}'></div>
+          <div class='name'>{{name}}</p></div>
+        </li>
+        {{/requirements}}
+      </ul>
     </div>
-    <div class="success">
-      <h2> {{successShuffle}} </h2>
-      {{{ successMessage }}}
-
-      <div class='controls'>
-        <a href='/programs/{{programId}}' class='button {{buttonClass}}'>
-          Next <span class='arrow'> &raquo; </span>
-        </a>
-      </div>
+    <div class='controls'>
+      <a href='/programs/{{programId}}' class='button {{buttonClass}}'>
+        Next <span class='arrow'> &raquo; </span>
+      </a>
     </div>
   </div>
 </div>

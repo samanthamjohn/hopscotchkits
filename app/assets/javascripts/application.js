@@ -18,4 +18,6 @@
 //= require waypoints
 //= require jquery.jeditable
 //= require_self
+//= require ./application/models/requirement_model
+//= require ./application/collections/requirements
 //= require_tree ./application

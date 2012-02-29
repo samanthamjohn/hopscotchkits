@@ -64,7 +64,7 @@ window.View = Backbone.View.extend(
     if window._paper && _paper.canvas
       _paper.clear()
       _paper.remove()
-    runSpec(this.model.get('spec'))
+    this.model.runSpecs()
   subTitle: () ->
     this.model.get('title')
   successMessage: () ->
@@ -106,10 +106,14 @@ window.View = Backbone.View.extend(
     else
       numSteps = $("script#preface_template").data("numSteps")
       this.model.get('position')/numSteps * 100
-  successShuffle: () ->
-    _.shuffle(['Yay!', 'Boom!', "You're Right!", "Good Job", "Way to go!", "You did it!"])[0]
-  errorShuffle: () ->
-    _.shuffle(["Whoops!", "Oops!", "Sorry!", "Uh-oh!", "Oh Noes!", "Oh gosh!"])[0]
+  requirements: () ->
+    reqs = this.model.requirements
+    reqs.map( (r) -> 
+      name: r.get('name')
+      result: "unchecked"
+      success: r.get('success')
+      id: r.id
+    )
   programId: ->
     this.model.get('programId')
   buttonClass: ->
