@@ -14,7 +14,7 @@ requirements = [
   },
   {
     position: 2,
-    spec: '$frame.find("svg ellipse").first().attr("rx") == "60")',
+    spec: '$frame.find("svg ellipse").first().attr("rx") == "60"',
     name: "make the width 60",
     step_id: 10,
     success: "the third number that you added to ellipse set the width"
@@ -56,12 +56,12 @@ requirements = [
       _.each($frame.find("svg ellipse"), (ellipse)->
         if $(ellipse).attr("rx") > 35 && $(ellipse).attr("rx") < 45
           ellipses += 1
-        )
-        if ellipses < 2
-          return false
-        else
-          return true
-      )',
+      )
+      if ellipses < 2
+        return false
+      else
+        return true
+      ',
       success: "the x radius controls how wide the ellipse is."
   },
   {
@@ -73,18 +73,18 @@ requirements = [
       _.each($frame.find("svg ellipse"), (ellipse)->
         if $(ellipse).attr("ry") > 75 && $(ellipse).attr("ry") < 85
           ellipses += 1
-        )
-        if ellipses < 2
+      )
+      if ellipses < 2
         return false
-        else
+      else
         return true
-      )',
+      ',
     success: "the y radius controls how tall the ellipse is."
   },
   {
     position: 1,
     step_id: 14,
-    name: "color both ears saddlebrown in color",
+    name: "color both ears saddlebrown",
     spec: '
       brownEllipses = 0
       _.each($frame.find("svg ellipse"), (ellipse)->
@@ -107,12 +107,11 @@ requirements = [
       _.each($frame.find("svg ellipse"), (ellipse)->
         if $(ellipse).attr("transform")
           rotatedEllipses += 1
-        )
-        if rotatedEllipses < 2
-          return false
-        else
-          return true
       )
+      if rotatedEllipses < 2
+        return false
+      else
+        return true
     ',
     success: "When you use \"R20\" you rotate the ear 20&deg; clockwise. \"R-20\" will rotate it counterclockwise."
   },
@@ -126,12 +125,11 @@ requirements = [
       _.each($frame.find("svg ellipse"), (ellipse)->
         if $(ellipse).attr("fill").match(/#/i)
           eyes += 1
-        )
-        if (eyes >= 5 && pupils == 2) || (pupils == 0 && eyes >= 7)
-          return true
-        else
-          return false
       )
+      if (eyes >= 5 && pupils == 2) || (pupils == 0 && eyes >= 7)
+        return true
+      else
+        return false
     '
   },
   {
@@ -143,9 +141,8 @@ requirements = [
       _.each($frame.find("svg ellipse"), (ellipse)->
         if parseInt($(ellipse).attr("rx"), 10) > parseInt($(ellipse).attr("ry"), 10)
           nose = true
-        )
-        return nose
       )
+      return nose
     '
   },
   {
