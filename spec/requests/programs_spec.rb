@@ -46,7 +46,7 @@ feature "hopscotch kits flow", js: true do
       end
     end
     page.should have_css("img[src='/assets/step_images/#{steps[1].image_url}']")
-    page.should have_no_css("#more_info")
+    page.should have_css("#more_info")
 
     page.execute_script("window.editor.getSession().setValue('#{steps[1].solution.gsub("\r", ";").gsub("\n", ";")}')")
     click_on("run this")
