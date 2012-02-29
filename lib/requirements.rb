@@ -57,14 +57,14 @@ requirements = [
   {
     position: 2,
     step_id: 13,
-    name: "set the x-coordinate (first number in the ellipse method) to be different for the second ear.",
+    name: "make sure the x-coordinate (first number in the ellipse method) is different for each ear",
     spec: '$frame.find("svg ellipse[cx=150]").length != 2',
     success: "when both ears were on top of each other you couldn't tell them apart.'"
   },
   {
     position: 3,
     step_id: 13,
-    name: "give ears x-radius (the third number in the ellipse method) of approximately 40",
+    name: "give both ears x-radius (the third number in the ellipse method) of approximately 40",
     spec: '
       ellipses = 0
       _.each($frame.find("svg ellipse"), (ellipse)->
@@ -81,14 +81,14 @@ requirements = [
   {
     position: 4,
     step_id: 13,
-    name: "give ears y-radius (the fourth number in the ellipse method) of approximately 80",
+    name: "give both ears y-radius (the fourth number in the ellipse method) of approximately 80",
     spec: '
       ellipses = 0
       _.each($frame.find("svg ellipse"), (ellipse)->
         if $(ellipse).attr("ry") > 75 && $(ellipse).attr("ry") < 85
           ellipses += 1
       )
-      if ellipses < 2
+      if ellipses < 3
         return false
       else
         return true
