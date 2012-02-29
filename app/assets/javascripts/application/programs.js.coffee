@@ -10,7 +10,7 @@ window.startEditor = (code) ->
   CoffeeScriptMode = require("ace/mode/coffee").Mode
   window.editor.getSession().setMode(new CoffeeScriptMode())
   try
-    $frame.find('body').html('')
+    $frame.find('body svg').remove()
   val = window.editor.getSession().getValue()
   CoffeeScript.eval(val)
 
