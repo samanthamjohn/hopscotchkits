@@ -95,7 +95,7 @@ window.View = Backbone.View.extend(
       str = "Step #{this.model.get('position')}: "
     str
   progressText: () ->
-    if this.model.get('last_step')
+    if this.model.get('freeplay')
       "Complete!"
     else
       numSteps = $("script#preface_template").data("numSteps")
