@@ -125,9 +125,6 @@
     display: block;
   }
 }
-.hr {
-  margin-top: 5px;
-}
 .program {
   h1 {
     .subtitle {
@@ -323,6 +320,8 @@
     float: left;
     margin-left: 5px;
     margin-top: 3px;
+    width: 253px;
+    text-align: left;
   }
   .success {
     margin: 8px 0 12px;
