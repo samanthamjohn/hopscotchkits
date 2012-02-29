@@ -39,6 +39,7 @@ ul
         p= "id: #{step.id}"
         p= step.position
         p= step.title
+        p= step.success_message
         p= simple_format(step.spec)
         p= link_to "Edit", "#", id: step.id, class: "show"
         p= link_to "Delete", step_path(step), method: "delete"
