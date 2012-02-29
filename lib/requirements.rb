@@ -1,6 +1,45 @@
 requirements = [
   { name: "add the paper to the page",
     spec: "$frame.find('svg').length > 0",
+    step_id: 28,
+    position: 1,
+    success: "You just made an HTML canvas to draw on."
+  },
+  { name: "set the background color",
+    spec: "
+    colored_rects = 0
+    _.each($frame.find('svg rect'), (rect) ->
+      if $(rect).attr('fill').match(/#/i) &&
+      $(rect).attr('width') >= 399 && $(rect).attr('height') >= 399
+        colored_rects += 1
+    )
+    if colored_rects > 1
+      return true
+    else
+      return false
+    ",
+    step_id: 30,
+    position: 1,
+    success: "Great, now you have a nice color in your background"
+  },
+  {
+    name: "add a question",
+    step_id: 31,
+    position: 1,
+    spec: "
+      $frame.find('svg text').length > 6
+    "
+  },
+  {
+    name: "add at least 3 answers",
+    step_id: 32,
+    position: 1,
+    spec: "
+      $frame.find('svg text').length > 9
+    "
+  },
+  { name: "add the paper to the page",
+    spec: "$frame.find('svg').length > 0",
     step_id: 9,
     position: 1,
     success: "You just made an HTML canvas to draw on."
@@ -274,6 +313,7 @@ requirements = [
     '
   }
 ]
+
 requirements.each do |req|
   if existing_req = Requirement.where(step_id: req[:step_id], position: req[:position]).first
     existing_req.update_attributes(req)

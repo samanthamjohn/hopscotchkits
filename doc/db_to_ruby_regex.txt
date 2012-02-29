@@ -1,0 +1,14 @@
+These regexes are for formatting the data you pull from the database into a ruby file for the seeds. 
+
+Example for pulling the steps into a file. 
+f = File.open(Rails.root.join("lib/steps.rb"), 'w')
+f.write(Step.all.map(&:attributes))
+f.close
+
+
+:%s/\}, /},\r/g
+:%s/,\ \"/,\r "/g
+:%s/"updated_at"=>/"updated_at"=>"/g
+:%s/"created_at"=>/"created_at"=>"/g
+:%s/updated_at\(/*),$/updated_at\1",/g
+:%s/created_at\(/*),$/created_at\1",/g
