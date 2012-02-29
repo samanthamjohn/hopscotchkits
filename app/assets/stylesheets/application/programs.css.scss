@@ -280,15 +280,17 @@
   &.successful{
     h2 { color: green; }
     background-color: rgba(0, 255, 0, 0.2);
-  }
-  &.errored {
-    h2 { color: red; }
-    background-color: rgba(255, 0, 0, 0.2);
+    .success {
+      display: block;
+    }
   }
   div.hint {
     float: right;
     padding-top: 15px;
     font-style: italic;
+  }
+  .success {
+    display: none;
   }
 }
 

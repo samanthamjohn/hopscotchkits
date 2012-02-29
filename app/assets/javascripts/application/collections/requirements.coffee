@@ -5,10 +5,13 @@ window.Requirements = Backbone.Collection.extend(
     val = window.editor.getSession().getValue()
     try
       CoffeeScript.eval(val)
-      specs = this.reject( (requirement) ->
+      failedSpecs = this.reject( (requirement) ->
         requirement.runSpec()
       )
-      unless specs.length > 0
+      if failedSpecs.length > 0
+        $(".progress .message.successful").removeClass("successful")
+      else
+        $(".progress .message").addClass("successful")
         $('.next_button').button({disabled: false})
         $('.last_button').button({disabled: false})
     catch error
