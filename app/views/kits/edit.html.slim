@@ -32,7 +32,7 @@ div class='edit-kit' id='kit_form' style='display:none'
 
 h1 Kit steps
 
-ul
+ul.kit-steps
   - @kit.steps.order("position").each do |step|
     li
       div class='show-step' id="#{step.id}_show"

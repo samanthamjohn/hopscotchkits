@@ -13,8 +13,10 @@ body.kit {
     li {
       padding: 10px;
       float: left;
-      clear: both;
     }
+  }
+  ul.kit-steps li {
+    clear: both;
   }
   .edit-step, .show-step{
     overflow: hidden;
