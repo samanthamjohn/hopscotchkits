@@ -362,9 +362,21 @@
   margin-left: 20px;
   height: 400px;
   width: 400px;
+  position: relative;
   iframe {
     height: 400px;
     width: 400px;
+  }
+  .syntax-error {
+    position: absolute;
+    background: red;
+    padding: 20px;
+    color: black;
+    top:10px;
+    right: 10px;
+    width: 200px;
+    opacity: 0.8;
+    line-height: 1.2em;
   }
   height: 400px;
   width: 400px;

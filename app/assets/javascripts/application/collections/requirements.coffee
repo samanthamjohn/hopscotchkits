@@ -24,6 +24,6 @@ window.Requirements = Backbone.Collection.extend(
         line = errorArray[0]
         errorMessage = errorArray[1]
         errorHtml = '<div class="syntax-error">Oh no! You have a syntax error on line ' + line + '. Check to make sure you capitalized everything correctly, don\'t have any extra spaces and aren\'t missing any punctuation marks ( " , ).</div>'
-      $("body").append(errorHtml)
+      $("#stage").append(errorHtml)
     window.editor.focus()
 )
