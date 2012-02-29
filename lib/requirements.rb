@@ -118,18 +118,79 @@ requirements = [
   {
     position: 1,
     step_id: 16,
-    name: "make 2 eyes with pupils",
+    name: "make the outer left eye",
     spec: '
-      eyes = 0
-      pupils = $frame.find("svg circle").length
+      eye = false
       _.each($frame.find("svg ellipse"), (ellipse)->
-        if $(ellipse).attr("fill").match(/#/i)
-          eyes += 1
+        if ($(ellipse).attr("fill").match(/#/i) &&
+        $(ellipse).attr("cx") >= 170 && $(ellipse).attr("cx") <= 185 &&
+        $(ellipse).attr("cy") >= 170 && $(ellipse).attr("cy") <= 185 &&
+        $(ellipse).attr("rx") < 15 && $(ellipse).attr("ry") < 18)
+          eye = true
       )
-      if (eyes >= 5 && pupils == 2) || (pupils == 0 && eyes >= 7)
-        return true
-      else
-        return false
+      return eye
+    '
+  },
+  {
+    position: 2,
+    step_id: 16,
+    name: "make the left pupil",
+    spec: '
+      eye = false
+      _.each($frame.find("svg ellipse"), (ellipse)->
+        if ($(ellipse).attr("fill").match(/#/i) &&
+        $(ellipse).attr("cx") >= 170 && $(ellipse).attr("cx") <= 185 &&
+        $(ellipse).attr("cy") >= 165 && $(ellipse).attr("cy") <= 180 &&
+        $(ellipse).attr("rx") < 11 && $(ellipse).attr("ry") < 11)
+          eye = true
+      )
+      _.each($frame.find("svg circle"), (circle) ->
+        if ($(circle).attr("fill").match(/#/i) &&
+        $(circle).attr("cx") >= 170 && $(circle).attr("cx") <= 185 &&
+        $(circle).attr("cy") >= 165 && $(circle).attr("cy") <= 180 &&
+        $(circle).attr("r") < 11)
+          eye = true
+      )
+      return eye
+    '
+  },
+  {
+    position: 3,
+    step_id: 16,
+    name: "make the outer right eye",
+    spec: '
+      eye = false
+      _.each($frame.find("svg ellipse"), (ellipse)->
+        if ($(ellipse).attr("fill").match(/#/i) &&
+        $(ellipse).attr("cx") >= 220 && $(ellipse).attr("cx") <= 235 &&
+        $(ellipse).attr("cy") >= 170 && $(ellipse).attr("cy") <= 185 &&
+        $(ellipse).attr("rx") < 15 && $(ellipse).attr("ry") < 18)
+          eye = true
+      )
+      return eye
+    '
+  },
+  {
+    position: 4,
+    step_id: 16,
+    name: "make the right pupil",
+    spec: '
+      eye = false
+      _.each($frame.find("svg ellipse"), (ellipse)->
+        if ($(ellipse).attr("fill").match(/#/i) &&
+        $(ellipse).attr("cx") >= 220 && $(ellipse).attr("cx") <= 235 &&
+        $(ellipse).attr("cy") >= 165 && $(ellipse).attr("cy") <= 180 &&
+        $(ellipse).attr("rx") < 11 && $(ellipse).attr("ry") < 11)
+          eye = true
+      )
+      _.each($frame.find("svg circle"), (circle) ->
+        if ($(circle).attr("fill").match(/#/i) &&
+        $(circle).attr("cx") >= 220 && $(circle).attr("cx") <= 235 &&
+        $(circle).attr("cy") >= 165 && $(circle).attr("cy") <= 180 &&
+        $(circle).attr("r") < 11)
+          eye = true
+      )
+      return eye
     '
   },
   {
