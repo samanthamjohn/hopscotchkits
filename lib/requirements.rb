@@ -14,14 +14,28 @@ requirements = [
   },
   {
     position: 2,
-    spec: '$frame.find("svg ellipse").first().attr("rx") == "60"',
+    spec: '
+      face = false
+      _.each($frame.find("svg ellipse"), (ellipse)->
+        if $(ellipse).attr("rx") == "60"
+          face = true
+      )
+      return face
+    ',
     name: "make the width 60",
     step_id: 10,
     success: "the third number that you added to ellipse set the width"
   },
   {
     position: 3,
-    spec: '$frame.find("svg ellipse").first().attr("ry") == "80"',
+    spec: '
+      face = false
+      _.each($frame.find("svg ellipse"), (ellipse)->
+        if $(ellipse).attr("ry") == "80"
+          face = true
+      )
+      return face
+    ',
     name: "make the height 80",
     step_id: 10,
     success: "and the last number set the height."
