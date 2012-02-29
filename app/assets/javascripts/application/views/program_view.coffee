@@ -16,7 +16,7 @@ window.View = Backbone.View.extend(
       secondary: 'ui-icon-triangle-1-n'
     )
     if $("#runthis").length > 0
-      leftOffset = $("#runthis").offset().left - 40;
+      leftOffset = $("#runthis").offset().left - 2;
       $("#runthis_copy").css("left", leftOffset)
 
       $(window).resize((->
