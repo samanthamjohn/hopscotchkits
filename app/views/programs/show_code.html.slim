@@ -1,0 +1,5 @@
+div class='show-code' data-code=@program.code
+javascript:
+  var code = $(".show-code").data("code");
+  var compiled = CoffeeScript.compile(code);
+  $(".show-code").append(compiled);

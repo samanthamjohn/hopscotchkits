@@ -70,6 +70,9 @@ class ProgramsController < ApplicationController
     @step ||= @program.current_step
   end
 
+  def show_code
+  end
+
   def index
   end
 
