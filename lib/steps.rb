@@ -323,7 +323,7 @@ steps = [
     "more_info"=>nil},
   {"id"=>29,
     "kit_id"=>7,
-    "description"=>"We're going to give the workspace a nickname: \"paper\". This is so that we can tell it what to do later. This is common in programming- you'll use a nickname so that you can talk to a piece of code later on in your program. \r\n\r\nSo now go back to line 1 and change it to:\r\n\r\n<code>paper = makeWorkspace()</code>",
+    "description"=>"We're going to give the workspace a nickname: \"paper\". This is so that we can tell it what to do later. This is common in programming – you'll use a nickname so that you can talk to a piece of code later on in your program. \r\n\r\nSo now go back to line 1 and change it to:\r\n\r\n<code>paper = makeWorkspace()</code>",
     "success_message"=>"What you've done is created a variable called \"paper\". A variable is what computer programmers call these nicknames. ",
     "position"=>2,
     "created_at"=>"Wed, 15 Feb 2012 15:01:45 UTC +00:00",
