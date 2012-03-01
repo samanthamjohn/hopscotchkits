@@ -1,7 +1,7 @@
 These regexes are for formatting the data you pull from the database into a ruby file for the seeds. 
 
 Example for pulling the steps into a file. 
-f = File.open(Rails.root.join("lib/steps2.rb"), 'w')
+f = File.open(Rails.root.join("tmp/steps.rb"), 'w')
 steps = Step.all.map do |step|
   step = step.attributes
   step['created_at'] = step['created_at'].to_s

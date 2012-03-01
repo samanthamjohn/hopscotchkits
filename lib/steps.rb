@@ -1,5 +1,4 @@
-steps = 
-[
+steps = [
   {"id"=>5,
   "kit_id"=>2,
   "description"=>"To start out, we will need to create an svg. An svg is commonly used by programmers creating online games. ",
@@ -392,12 +391,12 @@ steps =
     "more_info"=>"If you want we can also change around the colors and fonts a bit by using \"attr\".\r\n\r\nTry this:\r\n\r\n<code>question.attr(\"fill\" : 'white', 'font-family' : 'Helvetica', 'font-size' : 20) </code>\r\n\r\nYou can adjust the fill color, font-family and font-size to change the look. \r\n  "},
   {"id"=>32,
     "kit_id"=>7,
-    "description"=>"Now let's come up with some answers to choose from. \r\n\r\nHere's one to start you off: \r\n\r\n<code> answer1 = paper.text(200, 80, \"a little nippy out there\") </code>\r\n\r\nCreate at least 3 possible answers to your question. ",
+    "description"=>"Now let's come up with some answers to choose from. \r\n\r\nHere's a couple to start you off: \r\n\r\n<code> answer1 = paper.text(200, 80, \"a little nippy out there\")  \r\nanswer2 = paper.text(200, 120, \"rainy rainy rain\") </code>\r\n\r\nMake sure you change the second number in text, making it larger will move each answer down the page. If you don't do this they might end up on top of each other!\r\n\r\nCreate at least 3 possible answers to your question. ",
     "spec"=>"",
     "success_message"=>"Awesome! Now there are some answers to choose from. ",
     "position"=>5,
     "created_at"=>"2012-02-29 20:32:30 UTC",
-    "updated_at"=>"2012-02-29 20:34:24 UTC",
+    "updated_at"=>"2012-03-01 18:54:29 UTC",
     "title"=>"I have an answer",
     "hint"=>"You will need to figure out the right placement of answers. The second number is the vertical placement. Try moving your answers up and down. ",
     "solution"=>"paper = makeWorkspace()\r\nbg = paper.rect(0,0,400, 400)\r\nbg.attr('fill', 'yellow')\r\nquestion = paper.text(200, 50, \"How cold is it today?\")\r\n\r\nanswer1 = paper.text(200, 80, \"a little nippy out there\") \r\nanswer2 = paper.text(200, 120, \"spring-like\") \r\nanswer3 = paper.text(200, 160, \"watch out for global warming\") ",
