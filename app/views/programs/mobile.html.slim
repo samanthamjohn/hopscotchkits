@@ -1,0 +1,9 @@
+div class='show-code' data-code=@program.code
+javascript:
+  var code = $(".show-code").data("code");
+  CoffeeScript.eval(code);
+  window._paper.setViewBox(0,0,400,400,true);
+  $("svg").attr('height', 380);
+  $("svg").attr('width', 320);
+  
+

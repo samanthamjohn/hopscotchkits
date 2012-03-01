@@ -73,6 +73,10 @@ class ProgramsController < ApplicationController
   def show_code
   end
 
+  def mobile
+    render :mobile, layout: "code"
+  end
+
   def index
   end
 

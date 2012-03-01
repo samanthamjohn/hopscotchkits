@@ -11,6 +11,7 @@ Hopscotch::Application.routes.draw do
       get :iframe
       put :feature
       get :show_code
+      get :mobile
     end
     collection do
       get :root

@@ -2,8 +2,12 @@ doctype html
 html
   head
     title Hopscotch
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "application"
     = javascript_include_tag "code"
     = csrf_meta_tags
+
+    
 body data-fullsize=params[:full_size]
   = yield
 
