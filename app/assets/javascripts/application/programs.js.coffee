@@ -23,7 +23,7 @@ $ ->
     )
   if $("body.programs-root").length > 0
     $(".new-program-form img").click( (e) ->
-      $(e.target).parents().find(".form").find(".blurb-hover form").submit()
+      $(e.target).parents().closest(".form").find(".blurb-hover form").submit()
     )
     hoverState = 'off'
     $(".new-program-form img").on('mouseenter', (e)->
