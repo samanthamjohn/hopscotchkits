@@ -1,2 +1,2 @@
 #!/bin/sh
-heroku db:push --tables steps --confirm gethopscotch
+heroku db:push --tables kits, steps --confirm $1
