@@ -61,5 +61,8 @@ window.makeWorkspace = ->
     ).attr(stroke: 'lightgray')
   window._paper
 window.makePaper = window.makeWorkspace
-
+window.reset = ->
+  $frame.find("svg").remove()
+  val = window.editor.getSession().getValue()
+  CoffeeScript.eval(val)
 
