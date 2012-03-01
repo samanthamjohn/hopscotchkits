@@ -184,11 +184,12 @@ describe ProgramsController do
   end
 
   describe "#gallery" do
-    it "should only show the programs that are featured" do
-      featured = create(:program, featured: true)
+    it "should only show the programs that are featured in order" do
+      featured_old = create(:program, featured: true, updated_at: 1.day.ago)
+      featured_new = create(:program, featured: true)
       unfeatured = create(:program, featured: false)
       get :gallery
-      assigns(:programs).map(&:id).should == [featured.id]
+      assigns(:programs).map(&:id).should == [featured_new.id, featured_old.id]
     end
   end
 
