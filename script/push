@@ -1,2 +1,2 @@
 #!/bin/sh
-heroku db:push --tables kits, steps --confirm $1
+heroku db:push --tables kits, steps --app $1 --confirm $1 

@@ -512,7 +512,7 @@ steps =
     "more_info"=>""}
 ]
 steps.each do |step|
-  if existing_step = Step.where(kit_id: step["kit_id"]).where(position: step["position"]).first
+  if existing_step = Step.find(step["id"])
     existing_step.update_attributes(step)
   else
     new_step = Step.new(step)
