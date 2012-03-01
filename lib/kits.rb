@@ -50,7 +50,7 @@ kits = [
     "description"=>"For this kit, we're going to show you how to make a quiz you can play on your computer or your phone. You'll need to give the computer different sets of directions to do several different things, and at the end, we'll put them all together to make a working program.",
     "created_at"=>"Wed, 15 Feb 2012 14:53:09 UTC +00:00",
     "updated_at"=>"Wed, 15 Feb 2012 14:53:09 UTC +00:00",
-    "icon_url"=>"http://www.gettyicons.com/free-icons/103/pretty-office-2/png/256/faq_256.png",
+    "icon_url"=>"quiz-icon.png",
     "published"=>nil,
     "blurb"=>"Make a quiz you can play on your computer or your phone."}
 ]
