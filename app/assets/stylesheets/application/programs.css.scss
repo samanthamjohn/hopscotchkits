@@ -148,12 +148,15 @@
     }
     .gradient {
       position: relative;
+      height: 40px;
     }
     #more_info_button {
       border-top: 1px solid #ccc;
       padding-top: 10px;
     }
     #more_info, #more_info_button{
+      position: absolute;
+      z-index: 99;
       padding-right: 8px;
       width: 552px;
       .text {
