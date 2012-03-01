@@ -511,7 +511,7 @@ steps = [
     "more_info"=>""}
 ]
 steps.each do |step|
-  if existing_step = Step.find(step["id"])
+  if existing_step = Step.where(id: step["id"]).first
     existing_step.update_attributes(step)
   else
     new_step = Step.new(step)
