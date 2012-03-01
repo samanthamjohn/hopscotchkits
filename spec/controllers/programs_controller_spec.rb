@@ -132,6 +132,15 @@ describe ProgramsController do
     end
   end
 
+  describe "#mobile" do
+    it "should render the mobile page with the code layout" do
+      program = create(:program)
+      get :mobile, id: program.to_param
+      response.should be_success
+      response.should render_template(:code)
+      response.should render_template("mobile")
+    end
+  end
   describe "#next_step" do
     it "should render the next step as json" do
       kit = Kit.create(slug: "foo")
