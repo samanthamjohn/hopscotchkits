@@ -51,7 +51,7 @@ kits = [
     "created_at"=>"Wed, 15 Feb 2012 14:53:09 UTC +00:00",
     "updated_at"=>"Wed, 15 Feb 2012 14:53:09 UTC +00:00",
     "icon_url"=>"quiz-icon.png",
-    "published"=>nil,
+    "published"=>true,
     "blurb"=>"Make a quiz you can play on your computer or your phone."}
 ]
 kits.each do |kit|
