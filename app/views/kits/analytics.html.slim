@@ -12,10 +12,11 @@ div class='summary'
           - all_non_zero_snapshots.push(minutes)
   - total_time = all_snapshots.inject(0) { |memo, snapshot| memo += snapshot }
   - total_time_non_zero = all_non_zero_snapshots.inject(0) { |memo, snapshot| memo += snapshot }
-  p
-    | Average time spent on the programs: 
-    = total_time/all_snapshots.length
-    |  minutes
+  - if all_snapshots.length > 0
+    p
+      | Average time spent on the programs: 
+      = total_time/all_snapshots.length
+      |  minutes
   p
     | Sample size: 
     = all_snapshots.length
