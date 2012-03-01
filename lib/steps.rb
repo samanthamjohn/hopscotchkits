@@ -286,8 +286,12 @@ steps = [
     "more_info"=>nil},
   {"id"=>25,
     "kit_id"=>4,
+<<<<<<< HEAD
     "description"=>"The first thing we will draw is the face. We will use a long oval &emdash; also known as an <a href=\"http://www.merriam-webster.com/dictionary/ellipse\">ellipse</a>. \r\n\r\nYour paper has a method called ellipse but in order to use it we need a reference to the paper object. To do this we will set a variable. We set variables like so:\r\n\r\n<code>x = 1</code>\r\n\r\nNow the variable called <code>x</code> has the value 1. Try setting a variable called <code>paper</code> to the value of <code>makeWorkspace()</code>. Once you've done that it would be a good time to click run it to see if you have that bit correct. Did it work? OK, now we need to draw our ellipse on the paper. Ellipses look like this:\r\n\r\n<code>paper.ellipse(center-horizontal, center-vertical, width, height)</code>\r\n\r\nwhere center-horizontal is the oval's position left to right on the paper, center-vertical is the oval's position top to bottom, and width and height control the size of the oval.\r\n\r\nLet\\'s make an oval in the center of our paper, at center-vertical 200, center-horizontal 200, and with a width of 60 and a height of 80",
     "spec"=>"assert(( -> \r\n  try\r\n    paper\r\n  catch error\r\n    false\r\n), \"You need to set a variable called paper\")\r\nassert((-> window._paper == paper), \"You need to set the paper variable equal to makeWorkspace()\")\r\n\r\nassert((->$(\"svg ellipse\").length > 0), \"You need to add an ellipse by calling paper.ellipse()\")",
+=======
+    "description"=>"The first thing we will draw is the face. We will use a long oval - also known as an <a href=\"http://www.merriam-webster.com/dictionary/ellipse\">ellipse</a>. \r\n\r\nYour paper has a method called ellipse but in order to use it we need a reference to the paper object. To do this we will set a variable. We set variables like so:\r\n\r\n<code>x = 1</code>\r\n\r\nNow the variable called <code>x</code> has the value 1. Try setting a variable called <code>paper</code> to the value of <code>makeWorkspace()</code>. Once you\'ve done that it would be a good time to click run it to see if you have that bit correct. Did it work? OK, now we need to draw our ellipse on the paper. Ellipses look like this:\r\n\r\n<code>paper.ellipse(center-horizontal, center-vertical, width, height)</code>\r\n\r\nwhere center-horizontal is the oval\'s position left to right on the paper, center-vertical is the oval\'s position top to bottom, and width and height control the size of the oval.\r\n\r\nLet\\'s make an oval in the center of our paper, at center-vertical 200, center-horizontal 200, and with a width of 60 and a height of 80",
+>>>>>>> 4344f57053df34c0936f444f1cf3471bc0043afa
     "success_message"=>"Great work. Our puppy has a head. He\"ll need that.",
     "position"=>2,
     "created_at"=>"2012-01-05 22:39:34 UTC",
@@ -331,9 +335,14 @@ steps = [
     "more_info"=>nil},
   {"id"=>28,
     "kit_id"=>7,
+<<<<<<< HEAD
     "description"=>"If you were to write out a quiz, the first thing you'd need is a piece of paper to write it on.  Same thing with our computer quiz--you need the equivalent of a piece of paper.  \r\n\r\nSo the first set of instructions we need to give to the computer will make the paper for the quiz. \r\nSo first type this:\r\n\r\n<code>makeWorkspace()</code>\r\n\r\nand then hit \"run this\". ",
     "spec"=>"",
     "success_message"=>"What you've made by typing \"makeWorkspace()\" is an html canvas element.  It's the digital version of laying down a sheet of paper to begin writing on.",
+=======
+    "description"=>"If you were to write out a quiz, the first thing you\'d need is a piece of paper to write it on.  Same thing with our computer quiz - you need the equivalent of a piece of paper.  \r\n\r\nSo the first set of instructions we need to give to the computer will make the paper for the quiz. \r\nSo first type this:\r\n\r\n<code>makeWorkspace()</code>\r\n\r\nand then hit \"run this\". ",
+    "success_message"=>"What you\'ve made by typing \"makeWorkspace()\" is an html canvas element.  It\'s the digital version of laying down a sheet of paper to begin writing on.",
+>>>>>>> 4344f57053df34c0936f444f1cf3471bc0043afa
     "position"=>1,
     "created_at"=>"2012-02-15 14:56:56 UTC",
     "updated_at"=>"2012-02-29 22:23:18 UTC",
@@ -346,9 +355,14 @@ steps = [
     "more_info"=>nil},
   {"id"=>29,
     "kit_id"=>7,
+<<<<<<< HEAD
     "description"=>"We're going to give the workspace a nickname: \"paper\". This is so that we can tell it what to do later. This is common in programming &emdash; you'll use a nickname so that you can talk to a piece of code later on in your program. \r\n\r\nSo now go back to line 1 and change it to:\r\n\r\n<code>paper = makeWorkspace()</code>",
     "spec"=>"",
     "success_message"=>"What you've done is created a variable called \"paper\". A variable is what computer programmers call these nicknames. ",
+=======
+    "description"=>"We\'re going to give the workspace a nickname: \"paper\". This is so that we can tell it what to do later. This is common in programming - you\'ll use a nickname so that you can talk to a piece of code later on in your program. \r\n\r\nSo now go back to line 1 and change it to:\r\n\r\n<code>paper = makeWorkspace()</code>",
+    "success_message"=>"What you\'ve done is created a variable called \"paper\". A variable is what computer programmers call these nicknames. ",
+>>>>>>> 4344f57053df34c0936f444f1cf3471bc0043afa
     "position"=>2,
     "created_at"=>"2012-02-15 15:01:45 UTC",
     "updated_at"=>"2012-02-29 22:23:18 UTC",
