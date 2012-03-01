@@ -22,8 +22,8 @@ $ ->
       CoffeeScript.eval(val)
     )
   if $("body.programs-root").length > 0
-    $(".new-program-form img").click(->
-      $(".blurb-hover form").submit()
+    $(".new-program-form img").click( (e) ->
+      this.parents().find(".form").find(".blurb-hover form").submit()
     )
     hoverState = 'off'
     $(".new-program-form img").on('mouseenter', (e)->
