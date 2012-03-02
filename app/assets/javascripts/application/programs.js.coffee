@@ -35,18 +35,22 @@ window.startEditor = (code) ->
         else
           number = ""
           newNumber = ""
-          _.each(word.split(/[a-zA-Z]/), (w) ->
-            if w.match(/\d/)
-              number = w
-              newNumber = parseInt(w, 10) + 1
-          )
-          word = _.map(word.split(number), (w) ->
-            if (w.length == 0) 
-              w = newNumber
-            w
-          ).join('')
-          editor.getSession().replace(wRange, word)
-          editor.commands.commands.selectwordleft.exec(editor)
+          wordSplit = word.split(/[a-zA-Z]/)
+          if wordSplit.length == 2
+            _.each(wordSplit (w) ->
+              if w.match(/\d/)
+                number = w
+                newNumber = parseInt(w, 10) + 1
+            )
+            word = _.map(word.split(number), (w) ->
+              if (w.length == 0) 
+                w = newNumber
+              w
+            ).join('')
+            editor.getSession().replace(wRange, word)
+            editor.commands.commands.selectwordleft.exec(editor)
+          else
+            editor.navigateUp(1)
       else
         editor.navigateUp(1);
   )
@@ -66,18 +70,22 @@ window.startEditor = (code) ->
         else
           number = ""
           newNumber = ""
-          _.each(word.split(/[a-zA-Z]/), (w) ->
-            if w.match(/\d/)
-              number = w
-              newNumber = parseInt(w, 10) - 1
-          )
-          word = _.map(word.split(number), (w) ->
-            if (w.length == 0) 
-              w = newNumber
-            w
-          ).join('')
-          editor.getSession().replace(wRange, word)
-          editor.commands.commands.selectwordleft.exec(editor)
+          wordSplit = word.split(/[a-zA-Z]/)
+          if wordSplit.length == 2
+            _.each(wordSplit (w) ->
+              if w.match(/\d/)
+                number = w
+                newNumber = parseInt(w, 10) - 1
+            )
+            word = _.map(word.split(number), (w) ->
+              if (w.length == 0) 
+                w = newNumber
+              w
+            ).join('')
+            editor.getSession().replace(wRange, word)
+            editor.commands.commands.selectwordleft.exec(editor)
+          else
+            editor.navigateDown(1)
       else
         editor.navigateDown(1);
   )
