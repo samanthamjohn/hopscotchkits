@@ -37,7 +37,7 @@ window.startEditor = (code) ->
           newNumber = ""
           wordSplit = word.split(/[a-zA-Z]/)
           if wordSplit.length == 2
-            _.each(wordSplit (w) ->
+            _.each(wordSplit, (w) ->
               if w.match(/\d/)
                 number = w
                 newNumber = parseInt(w, 10) + 1
@@ -72,7 +72,7 @@ window.startEditor = (code) ->
           newNumber = ""
           wordSplit = word.split(/[a-zA-Z]/)
           if wordSplit.length == 2
-            _.each(wordSplit (w) ->
+            _.each(wordSplit, (w) ->
               if w.match(/\d/)
                 number = w
                 newNumber = parseInt(w, 10) - 1
