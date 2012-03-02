@@ -13,6 +13,9 @@ window.startEditor = (code) ->
     $frame.find('body svg').remove()
   val = window.editor.getSession().getValue()
   CoffeeScript.eval(val)
+  editor.getSession().on('change', (e) ->
+    window.Step.requirements.runSpecs()
+  );
 
 $ ->
   if $("body.programs.new").length > 0
