@@ -19,6 +19,68 @@ window.startEditor = (code) ->
       $("#ide form").submit()
   );
 
+  editor.commands.addCommand(
+    name: 'upArrow'
+    bindKey:
+      win: "Up"
+      mac: "Up"
+      sender: editor
+    exec: (editor) ->
+      wRange = editor.getSelectionRange()
+      word = editor.getSession().doc.getTextRange(wRange)
+      if word.match(/\d/)
+        if parseInt(word) || parseInt(word) == 0
+          editor.getSession().replace(wRange, "#{(parseInt(word, 10) + 1)}")
+          editor.commands.commands.selectwordleft.exec(editor)
+        else
+          number = ""
+          newNumber = ""
+          _.each(word.split(/[a-zA-Z]/), (w) ->
+            if w.match(/\d/)
+              number = w
+              newNumber = parseInt(w, 10) + 1
+          )
+          word = _.map(word.split(number), (w) ->
+            if (w.length == 0) 
+              w = newNumber
+            w
+          ).join('')
+          editor.getSession().replace(wRange, word)
+          editor.commands.commands.selectwordleft.exec(editor)
+      else
+        editor.navigateUp(1);
+  )
+  editor.commands.addCommand(
+    name: 'downArrow'
+    bindKey:
+      win: "Down"
+      mac: "Down"
+      sender: editor
+    exec: (editor) ->
+      wRange = editor.getSelectionRange()
+      word = editor.getSession().doc.getTextRange(wRange)
+      if word.match(/\d/) 
+        if parseInt(word) || parseInt(word) == 0
+          editor.getSession().replace(wRange, "#{(parseInt(word, 10) - 1)}")
+          editor.commands.commands.selectwordleft.exec(editor)
+        else
+          number = ""
+          newNumber = ""
+          _.each(word.split(/[a-zA-Z]/), (w) ->
+            if w.match(/\d/)
+              number = w
+              newNumber = parseInt(w, 10) - 1
+          )
+          word = _.map(word.split(number), (w) ->
+            if (w.length == 0) 
+              w = newNumber
+            w
+          ).join('')
+          editor.getSession().replace(wRange, word)
+          editor.commands.commands.selectwordleft.exec(editor)
+      else
+        editor.navigateDown(1);
+  )
 $ ->
   if $("body.programs.new").length > 0
     startEditor("")
