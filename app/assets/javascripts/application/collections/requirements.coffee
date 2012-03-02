@@ -3,10 +3,8 @@ window.Requirements = Backbone.Collection.extend(
   runSpecs: ->
     $('.syntax-error').remove()
     val = window.editor.getSession().getValue()
+    old_paper = window._paper
     try
-      if window._paper && _paper.canvas
-        _paper.clear()
-        _paper.remove()
       CoffeeScript.eval(val)
       failedSpecs = this.reject( (requirement) ->
         requirement.runSpec()
@@ -35,5 +33,8 @@ window.Requirements = Backbone.Collection.extend(
           errorHtml = "<div class='syntax-error'>#{error}</div>"
           console.log(error)
       $("#stage").append(errorHtml)
+    if old_paper && old_paper.canvas
+      old_paper.clear()
+      old_paper.remove()
     window.editor.focus()
 )
