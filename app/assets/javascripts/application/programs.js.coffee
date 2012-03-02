@@ -15,7 +15,7 @@ window.startEditor = (code) ->
   CoffeeScript.eval(val)
   editor.getSession().on('change', (e) ->
     Step.runSpecs()
-    if e.data.text.match(/\r/)
+    if e.data.text && e.data.text.match(/\r/)
       $("#ide form").submit()
   );
 
