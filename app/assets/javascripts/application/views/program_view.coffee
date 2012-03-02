@@ -31,6 +31,7 @@ window.View = Backbone.View.extend(
     "submit #ide form" : "submitCode"
     "click a.hint" : "showHint"
     "click .next_button" : "refreshStep"
+    "click .last_button" : "submitCode"
     "click .solution-link" : "toggleSolutions"
     "click .more-info"  : "showMoreInfo"
     "click .less-info"  : "showLessInfo"
@@ -50,6 +51,7 @@ window.View = Backbone.View.extend(
   refreshStep: (e) ->
     e.preventDefault()
     this.model.set('url', 'next_step')
+    $("#ide form").submit()
     this.model.fetch()
   showHint: (e) ->
     e.preventDefault()
@@ -61,9 +63,6 @@ window.View = Backbone.View.extend(
     val = window.editor.getSession().getValue()
     $("#ide input#program_code").val(val)
     $("#ide input#program_step_id").val(this.model.get('id'))
-    if window._paper && _paper.canvas
-      _paper.clear()
-      _paper.remove()
     this.model.runSpecs()
   subTitle: () ->
     this.model.get('title')

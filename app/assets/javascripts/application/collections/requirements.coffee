@@ -4,6 +4,9 @@ window.Requirements = Backbone.Collection.extend(
     $('.syntax-error').remove()
     val = window.editor.getSession().getValue()
     try
+      if window._paper && _paper.canvas
+        _paper.clear()
+        _paper.remove()
       CoffeeScript.eval(val)
       failedSpecs = this.reject( (requirement) ->
         requirement.runSpec()
