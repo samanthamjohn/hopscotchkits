@@ -17,28 +17,9 @@
     } catch (_error) {}
     val = window.editor.getSession().getValue();
     CoffeeScript.eval(val);
-    window.timeout = true;
-    window.sendData = setTimeout((function() {
-      Step.runSpecs();
-      return $("#ide form").submit();
-    }), 700);
     editor.getSession().on('change', function(e) {
-      clearTimeout(sendData);
-      if (timeout) {
-        console.log('send data');
-        return window.sendData = setTimeout((function() {
-          console.log(Step);
-          Step.runSpecs();
-          $("#ide form").submit();
-          return console.log('end timeout');
-        }), 700);
-      } else {
-        window.timeout = true;
-        Step.runSpecs();
-        return window.sendData = setTimeout((function() {
-          return $("#ide form").submit();
-        }), 700);
-      }
+      Step.runSpecs();
+      if (e.data.text && e.data.text.match(/\r/)) return $("#ide form").submit();
     });
     editor.commands.addCommand({
       name: 'upArrow',
@@ -53,7 +34,6 @@
         word = editor.getSession().doc.getTextRange(wRange);
         if (word.match(/\d/)) {
           if (parseInt(word) || parseInt(word) === 0) {
-            window.timeout = false;
             editor.getSession().replace(wRange, "" + (parseInt(word, 10) + 1));
             return editor.commands.commands.selectwordleft.exec(editor);
           } else {
@@ -71,7 +51,6 @@
                 if (w.length === 0) w = newNumber;
                 return w;
               }).join('');
-              window.timeout = false;
               editor.getSession().replace(wRange, word);
               return editor.commands.commands.selectwordleft.exec(editor);
             } else {

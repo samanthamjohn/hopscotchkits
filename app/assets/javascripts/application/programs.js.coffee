@@ -123,11 +123,12 @@ $ ->
     Raphael.setWindow(window.frames["stage"])
 
 
-  $("input:submit, .button").button()
+  $("input:submit, .button").button() if $("input:submit, .button").length > 0
 
-  $(".publish-button").button(
-    icons:
-      secondary: 'ui-icon-extlink'
-  )
+  if $(".publish-button").length > 0
+    $(".publish-button").button(
+      icons:
+        secondary: 'ui-icon-extlink'
+    )
 
   $("input.permalink").click((e)-> $("input.permalink").select(); e.preventDefault())
