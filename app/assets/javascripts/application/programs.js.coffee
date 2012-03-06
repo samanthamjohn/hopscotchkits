@@ -4,6 +4,7 @@ window.startEditor = (code) ->
   window.editor.getSession().setUseWrapMode(true);
   window.editor.setTheme("ace/theme/clouds")
   window.editor.getSession().setTabSize(2)
+  tick = 1200
   $('#editor').css('fontSize', '16px')
   $('#editor').css('line-height', '21px')
   $(".ace_gutter-cell").css('fontSize', '16px')
@@ -11,13 +12,29 @@ window.startEditor = (code) ->
   window.editor.getSession().setMode(new CoffeeScriptMode())
   try
     $frame.find('body svg').remove()
-  val = window.editor.getSession().getValue()
-  CoffeeScript.eval(val)
-  editor.getSession().on('change', (e) ->
+  window.specTimer = setTimeout((-> 
     Step.runSpecs()
-    if e.data.text && e.data.text.match(/\r/)
-      $("#ide form").submit()
-  );
+  ), tick)
+  editor.getSession().on('change', (e) ->
+    clearTimeout(specTimer)
+    window.specTimer = setTimeout((-> 
+      Step.runSpecs()
+      if e.data.text && e.data.text.match(/\r/)
+        $("#ide form").submit()
+    ), tick)
+  )
+
+  editor.commands.addCommand(
+    name: 'saveNewLine'
+    bindKey:
+      win: "Enter"
+      mac: "Return"
+      sender: editor
+    exec: (editor) ->
+      editor.insert("\n")
+      Step.runSpecs()
+      $('#ide form').submit()
+  )
 
   editor.commands.addCommand(
     name: 'upArrow'
@@ -32,6 +49,7 @@ window.startEditor = (code) ->
         if parseInt(word) || parseInt(word) == 0
           editor.getSession().replace(wRange, "#{(parseInt(word, 10) + 1)}")
           editor.commands.commands.selectwordleft.exec(editor)
+          Step.runSpecs()
         else
           number = ""
           newNumber = ""
@@ -49,11 +67,13 @@ window.startEditor = (code) ->
             ).join('')
             editor.getSession().replace(wRange, word)
             editor.commands.commands.selectwordleft.exec(editor)
+            Step.runSpecs()
           else
             editor.navigateUp(1)
       else
         editor.navigateUp(1);
   )
+
   editor.commands.addCommand(
     name: 'downArrow'
     bindKey:
@@ -67,6 +87,7 @@ window.startEditor = (code) ->
         if parseInt(word) || parseInt(word) == 0
           editor.getSession().replace(wRange, "#{(parseInt(word, 10) - 1)}")
           editor.commands.commands.selectwordleft.exec(editor)
+          Step.runSpecs()
         else
           number = ""
           newNumber = ""
@@ -84,6 +105,7 @@ window.startEditor = (code) ->
             ).join('')
             editor.getSession().replace(wRange, word)
             editor.commands.commands.selectwordleft.exec(editor)
+            Step.runSpecs()
           else
             editor.navigateDown(1)
       else

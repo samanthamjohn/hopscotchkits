@@ -1,12 +1,13 @@
 (function() {
 
   window.startEditor = function(code) {
-    var CoffeeScriptMode, val;
+    var CoffeeScriptMode, tick;
     window.editor = ace.edit("editor");
     window.editor.getSession().setValue(code);
     window.editor.getSession().setUseWrapMode(true);
     window.editor.setTheme("ace/theme/clouds");
     window.editor.getSession().setTabSize(2);
+    tick = 1200;
     $('#editor').css('fontSize', '16px');
     $('#editor').css('line-height', '21px');
     $(".ace_gutter-cell").css('fontSize', '16px');
@@ -15,11 +16,28 @@
     try {
       $frame.find('body svg').remove();
     } catch (_error) {}
-    val = window.editor.getSession().getValue();
-    CoffeeScript.eval(val);
+    window.specTimer = setTimeout((function() {
+      return Step.runSpecs();
+    }), tick);
     editor.getSession().on('change', function(e) {
-      Step.runSpecs();
-      if (e.data.text && e.data.text.match(/\r/)) return $("#ide form").submit();
+      clearTimeout(specTimer);
+      return window.specTimer = setTimeout((function() {
+        Step.runSpecs();
+        if (e.data.text && e.data.text.match(/\r/)) return $("#ide form").submit();
+      }), tick);
+    });
+    editor.commands.addCommand({
+      name: 'saveNewLine',
+      bindKey: {
+        win: "Enter",
+        mac: "Return",
+        sender: editor
+      },
+      exec: function(editor) {
+        editor.insert("\n");
+        Step.runSpecs();
+        return $('#ide form').submit();
+      }
     });
     editor.commands.addCommand({
       name: 'upArrow',
@@ -35,7 +53,8 @@
         if (word.match(/\d/)) {
           if (parseInt(word) || parseInt(word) === 0) {
             editor.getSession().replace(wRange, "" + (parseInt(word, 10) + 1));
-            return editor.commands.commands.selectwordleft.exec(editor);
+            editor.commands.commands.selectwordleft.exec(editor);
+            return Step.runSpecs();
           } else {
             number = "";
             newNumber = "";
@@ -52,7 +71,8 @@
                 return w;
               }).join('');
               editor.getSession().replace(wRange, word);
-              return editor.commands.commands.selectwordleft.exec(editor);
+              editor.commands.commands.selectwordleft.exec(editor);
+              return Step.runSpecs();
             } else {
               return editor.navigateUp(1);
             }
@@ -76,7 +96,8 @@
         if (word.match(/\d/)) {
           if (parseInt(word) || parseInt(word) === 0) {
             editor.getSession().replace(wRange, "" + (parseInt(word, 10) - 1));
-            return editor.commands.commands.selectwordleft.exec(editor);
+            editor.commands.commands.selectwordleft.exec(editor);
+            return Step.runSpecs();
           } else {
             number = "";
             newNumber = "";
@@ -93,7 +114,8 @@
                 return w;
               }).join('');
               editor.getSession().replace(wRange, word);
-              return editor.commands.commands.selectwordleft.exec(editor);
+              editor.commands.commands.selectwordleft.exec(editor);
+              return Step.runSpecs();
             } else {
               return editor.navigateDown(1);
             }
