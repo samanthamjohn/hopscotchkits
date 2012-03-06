@@ -1,4 +1,4 @@
-window.View = Backbone.View.extend(
+window.ProgramView = Backbone.View.extend(
   render: ->
     template = $('script#preface_template').html()
     $('.preface').html(Mustache.render(template, this))

@@ -1,7 +1,7 @@
 window.ProgramModel = Backbone.Model.extend(
   initialize: ->
     this.fetch()
-    this.view = new View (
+    this.view = new ProgramView (
       model: this
       el: $("body")
     )

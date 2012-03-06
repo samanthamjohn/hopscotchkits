@@ -34,8 +34,8 @@
       }
     },
     requirements: new Requirements(),
-    runProgramSpecs: function() {
-      return this.requirements.runProgramSpecs();
+    runSpecs: function() {
+      return this.requirements.runSpecs();
     }
   });
 
