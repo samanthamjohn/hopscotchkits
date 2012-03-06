@@ -5,7 +5,7 @@ kits = Kit.all.map do |kit|
   kit['updated_at'] = kit['updated_at'].to_s
   kit
 end
-f.write("kits = #{kits.to_s.gsub(/\}, /, "},\n").gsub(/,\ \"/, "\n \"" )}")
+f.write("kits = #{kits.to_s.gsub(/\}, /, "},\n").gsub(/,\ \"/, ",\n \"" )}")
 f.close
 f = File.open(Rails.root.join("lib/kits.rb"), 'a')
 f.write(
@@ -28,7 +28,7 @@ steps = Step.all.map do |step|
   step['updated_at'] = step['updated_at'].to_s
   step
 end
-f.write("steps = #{steps.to_s.gsub(/\}, /, "},\n").gsub(/,\ \"/, "\n \"" )}")
+f.write("steps = #{steps.to_s.gsub(/\}, /, "},\n").gsub(/,\ \"/, ",\n \"" )}")
 f.close
 f = File.open(Rails.root.join("lib/steps.rb"), 'a')
 f.write(
