@@ -3,23 +3,23 @@
   describe("Programs", function() {
     return describe("startEditor", function() {
       beforeEach(function() {
+        jasmine.Clock.useMock();
+        $("#jasmine_content").append("<div id='ide'><div id='editor'></div><form></form></div>");
         return window.tick = 1200;
       });
       it("should run the specs after a 700ms timeout", function() {
-        jasmine.Clock.useMock();
-        $("#jasmine_content").append("<div id='ide'><div id='editor'></div><form></form></div>");
         startEditor('window.foo=3');
         jasmine.Clock.tick(tick);
+        expect(window.foo).toEqual(3);
         editor.getSession().setValue('window.foo=4');
         expect(window.foo).toEqual(3);
         jasmine.Clock.tick(tick);
         return expect(window.foo).toEqual(4);
       });
       it("should restart the timer if you type another character before that.", function() {
-        jasmine.Clock.useMock();
-        $("#jasmine_content").append("<div id='ide'><div id='editor'></div><form></form></div>");
         startEditor('window.foo=3');
         jasmine.Clock.tick(tick);
+        expect(window.foo).toEqual(3);
         editor.getSession().setValue('window.foo=4');
         jasmine.Clock.tick(tick - 200);
         expect(window.foo).toEqual(3);
@@ -31,8 +31,7 @@
       });
       it("should not timeout if you change a number using the arrows", function() {
         var fakeRange;
-        jasmine.Clock.useMock();
-        startEditor("window.foo = 3");
+        startEditor('window.foo = 3');
         jasmine.Clock.tick(tick);
         expect(window.foo).toEqual(3);
         fakeRange = editor.getSelectionRange();
@@ -45,14 +44,13 @@
           row: 0
         };
         spyOn(editor, 'getSelectionRange').andReturn(fakeRange);
-        editor.commands.commands.upArrow.exec(editor);
-        expect(window.foo).toEqual(4);
         editor.commands.commands.downArrow.exec(editor);
+        expect(window.foo).toEqual(2);
+        editor.commands.commands.upArrow.exec(editor);
         return expect(window.foo).toEqual(3);
       });
       it("should not timeout if you change a letter-number combo", function() {
         var fakeRange;
-        jasmine.Clock.useMock();
         startEditor("window.foo = 'r3'");
         jasmine.Clock.tick(tick);
         expect(window.foo).toEqual('r3');
@@ -62,7 +60,7 @@
           row: 0
         };
         fakeRange.start = {
-          column: 13,
+          column: 14,
           row: 0
         };
         spyOn(editor, 'getSelectionRange').andReturn(fakeRange);
@@ -73,11 +71,10 @@
       });
       return it("should not timeout if you press enter", function() {
         var fakeRange;
-        jasmine.Clock.useMock();
         spyOn($.fn, "submit");
-        startEditor("window.foo = 'r3'");
+        startEditor('window.foo=3');
         jasmine.Clock.tick(tick);
-        expect(window.foo).toEqual('r3');
+        expect(window.foo).toEqual(3);
         fakeRange = editor.getSelectionRange();
         fakeRange.end = {
           column: 16,
