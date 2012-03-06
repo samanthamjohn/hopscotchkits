@@ -4,4 +4,5 @@
 
 require File.expand_path('../config/application', __FILE__)
 
+task :default => ['spec', 'jasmine:ci']
 Hopscotch::Application.load_tasks
