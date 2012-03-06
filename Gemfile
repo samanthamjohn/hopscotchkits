@@ -23,6 +23,10 @@ end
 
 group :development, :test do
   gem 'factory_girl_rails'
+  gem 'guard'
+  gem 'guard-coffeescript'
+  gem 'guard-livereload'
+  gem 'jasmine'
   gem 'lorem_athlete'
   gem 'auto_tagger'
   gem 'foreman'

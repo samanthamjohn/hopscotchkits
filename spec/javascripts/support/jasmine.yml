@@ -1,0 +1,71 @@
+
+# stylesheets
+#
+# Return an array of stylesheet filepaths relative to src_dir to include before jasmine specs.
+# Default: []
+#
+# EXAMPLE:
+#
+# stylesheets:
+#   - css/style.css
+#   - stylesheets/*.css
+#
+stylesheets:
+  - stylesheets/**/*.css
+
+# helpers
+#
+# Return an array of filepaths relative to spec_dir to include before jasmine specs.
+# Default: ["helpers/**/*.js"]
+#
+# EXAMPLE:
+#
+# helpers:
+#   - helpers/**/*.js
+#
+helpers:
+  - helpers/**/jquery.js
+  - helpers/**/underscore.js
+  - helpers/**/backbone.js
+
+# src_dir
+#
+# Source directory path. Your src_files must be returned relative to this path. Will use root if left blank.
+# Default: project root
+#
+# EXAMPLE:
+#
+# src_dir: public
+#
+src_dir: public/javascripts/compiled
+src_files:
+  - vendor/jquery.js
+  - vendor/underscore.js
+  - vendor/backbone.js
+  - vendor/*.js
+  - ace/ace-uncompressed.js
+  - ace/theme-clouds-uncompressed.js
+  - ace/theme-solarized_light-uncompressed.js
+  - ace/mode-coffee-uncompressed.js
+  - application/views/requirement_view.js
+  - application/models/requirement_model.js
+  - application/collections/requirements.js
+  - application/*.js
+  - application/views/*.js
+  - application/models/*.js
+  - code/*.js
+
+
+# spec_dir
+#
+# Spec directory path. Your spec_files must be returned relative to this path.
+# Default: spec/javascripts
+#
+# EXAMPLE:
+#
+# spec_dir: spec/javascripts
+#
+spec_dir: spec/javascripts
+spec_files:
+  - '**/*_spec.js'
+
