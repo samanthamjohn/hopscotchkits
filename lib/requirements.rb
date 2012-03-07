@@ -1,9 +1,10 @@
 requirements = [
   { name: "add the paper to the page",
     spec: "$frame.find('svg').length > 0",
-    step_id: 28,
     position: 1,
-    success: "You just made an HTML canvas to draw on."
+    success: "You just made an HTML canvas to draw on.",
+    step: 1,
+    kit: "quiz"
   },
   { name: "set the background color",
     spec: "
@@ -18,13 +19,15 @@ requirements = [
     else
       return false
     ",
-    step_id: 30,
     position: 1,
-    success: "Great, now you have a nice color in your background"
+    success: "Great, now you have a nice color in your background",
+    step: 3,
+    kit: "quiz"
   },
   {
     name: "add a question",
-    step_id: 31,
+    step: 4,
+    kit: "quiz",
     position: 1,
     spec: "
       $frame.find('svg text').length > 6
@@ -32,7 +35,8 @@ requirements = [
   },
   {
     name: "add at least 3 answers",
-    step_id: 32,
+    step: 5,
+    kit: "quiz",
     position: 1,
     spec: "
       $frame.find('svg text').length > 9
@@ -40,7 +44,8 @@ requirements = [
   },
   { name: "add the paper to the page",
     spec: "$frame.find('svg').length > 0",
-    step_id: 9,
+    step: 1,
+    kit: "puppy",
     position: 1,
     success: "You just made an HTML canvas to draw on."
   },
@@ -48,7 +53,8 @@ requirements = [
     position: 1,
     name: 'add an ellipse for the face',
     spec: '$frame.find("svg ellipse").length > 0',
-    step_id: 10,
+    step: 2,
+    kit: "puppy",
     success: "You just drew an ellipse for the face."
   },
   {
@@ -62,7 +68,8 @@ requirements = [
       return face
     ',
     name: "make the width 60",
-    step_id: 10,
+    step: 2,
+    kit: "puppy",
     success: "the third number that you added to ellipse set the width"
   },
   {
@@ -76,33 +83,38 @@ requirements = [
       return face
     ',
     name: "make the height 80",
-    step_id: 10,
+    step: 2,
+    kit: "puppy",
     success: "and the last number set the height."
   },
   {
     position: 1,
-    step_id: 12,
+    step: 3,
+    kit: 'puppy',
     name: "set the face color to saddlebrown",
     spec: '_.find($frame.find("svg ellipse"),((e)-> $(e).attr("fill").match(/#/i)))',
     success: "try changing the fill color with <a href='http://www.w3schools.com/html/html_colornames.asp' target='_blank'>this!</a>"
   },
   {
     position: 1,
-    step_id: 13,
+    step: 4,
+    kit: "puppy",
     name: "add 2 new ellipses for the ears",
     spec: '$frame.find("svg ellipse").length > 2',
     success: "an ellipse is like a circle, only more stretched."
   },
   {
     position: 2,
-    step_id: 13,
+    step: 4,
+    kit: "puppy",
     name: "make sure the x-coordinate (first number in the ellipse method) is different for each ear",
     spec: '$frame.find("svg ellipse[cx=150]").length != 2',
     success: "when both ears were on top of each other you couldn't tell them apart.'"
   },
   {
     position: 3,
-    step_id: 13,
+    step: 4,
+    kit: "puppy",
     name: "give both ears x-radius (the third number in the ellipse method) of approximately 40",
     spec: '
       ellipses = 0
@@ -119,7 +131,8 @@ requirements = [
   },
   {
     position: 4,
-    step_id: 13,
+    step: 4,
+    kit: "puppy",
     name: "give both ears y-radius (the fourth number in the ellipse method) of approximately 80",
     spec: '
       ellipses = 0
@@ -136,8 +149,9 @@ requirements = [
   },
   {
     position: 1,
-    step_id: 14,
     name: "color both ears saddlebrown",
+    step: 5,
+    kit: "puppy",
     spec: '
       brownEllipses = 0
       _.each($frame.find("svg ellipse"), (ellipse)->
@@ -153,7 +167,8 @@ requirements = [
   },
   {
     position: 1,
-    step_id: 15,
+    step: 6,
+    kit: "puppy",
     name: "rotate both ears",
     spec: '
       rotatedEllipses = 0
@@ -170,7 +185,8 @@ requirements = [
   },
   {
     position: 1,
-    step_id: 16,
+    step: 7,
+    kit: "puppy",
     name: "make the outer left eye",
     spec: '
       eye = false
@@ -186,7 +202,8 @@ requirements = [
   },
   {
     position: 2,
-    step_id: 16,
+    step: 7,
+    kit: "puppy",
     name: "make the left pupil",
     spec: '
       eye = false
@@ -209,7 +226,8 @@ requirements = [
   },
   {
     position: 3,
-    step_id: 16,
+    step: 7,
+    kit: "puppy",
     name: "make the outer right eye",
     spec: '
       eye = false
@@ -225,7 +243,8 @@ requirements = [
   },
   {
     position: 4,
-    step_id: 16,
+    step: 7,
+    kit: "puppy",
     name: "make the right pupil",
     spec: '
       eye = false
@@ -248,7 +267,8 @@ requirements = [
   },
   {
     position: 1,
-    step_id: 17,
+    step: 8,
+    kit: "puppy",
     name: "make a nose that is wider than it is long",
     spec: '
       nose = false
@@ -260,8 +280,9 @@ requirements = [
     '
   },
   {
-    position: 3,
-    step_id: 17,
+    position: 2,
+    step: 8,
+    kit: "puppy",
     name: "center the nose",
     spec: '
       nose = false
@@ -275,8 +296,9 @@ requirements = [
     '
   },
   {
-    position: 4,
-    step_id: 17,
+    position: 3,
+    step: 8,
+    kit: "puppy",
     name: "put the nose at the bottom of the face",
     spec: '
       nose = false
@@ -299,8 +321,9 @@ requirements = [
     '
   },
   {
-    position: 5,
-    step_id: 17,
+    position: 4,
+    step: 8,
+    kit: "puppy",
     name: 'give the nose a color',
     spec: '
       nose = false
@@ -315,6 +338,10 @@ requirements = [
 ]
 
 requirements.each do |req|
+  kit = Kit.find_by_slug(req.delete(:kit))
+  step = Step.where(kit_id: kit.id).where(position: req.delete(:step)).first
+  req[:step_id] = step.id
+
   if existing_req = Requirement.where(step_id: req[:step_id], position: req[:position]).first
     existing_req.update_attributes(req)
   else
