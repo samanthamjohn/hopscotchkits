@@ -6,19 +6,25 @@ requirements = [
     step: 1,
     kit: "quiz"
   },
+  { name: "assign a variable to the paper",
+    spec: 'editor.getSession().getValue().match(/\=/)',
+    position: 1,
+    step: 2,
+    kit: "quiz"
+  },
   { name: "set the background color",
-    spec: "
+    spec: '
     colored_rects = 0
-    _.each($frame.find('svg rect'), (rect) ->
-      if $(rect).attr('fill').match(/#/i) &&
-      $(rect).attr('width') >= 399 && $(rect).attr('height') >= 399
+    _.each($frame.find("svg rect"), (rect) ->
+      if $(rect).attr("fill").match(/#/i) &&
+      $(rect).attr("width") >= 399 && $(rect).attr("height") >= 399
         colored_rects += 1
     )
     if colored_rects > 1
       return true
     else
       return false
-    ",
+    ',
     position: 1,
     success: "Great, now you have a nice color in your background",
     step: 3,
@@ -41,6 +47,86 @@ requirements = [
     spec: "
       $frame.find('svg text').length > 9
     "
+  },
+  {
+    step: 6,
+    position: 1,
+    kit: 'quiz',
+    name: 'Add an alert to the page',
+    spec: 'editor.getSession().getValue().match(/alert/)'
+  },
+  {
+    step: 7,
+    position: 1,
+    kit: 'quiz',
+    name: 'Add a click to one of the answers',
+    spec: '
+      editor.getSession().getValue().match(///
+        answer\d.click\(*.+->*.+
+        \r\n .+alert\(*.+\)
+        [^]*\)
+      ///)
+    '
+  },
+  {
+    step: 8,
+    position: 1,
+    kit: 'quiz',
+    name: 'Add a new background to the click',
+    spec: '
+      editor.getSession().getValue().match(///
+        answer\d.click\(*.+->*.+
+        \r\n\s+alert\(*.+\)
+        \r\n\s+.+paper.rect\(*.+\)
+        [^]+attr*.+fill*.+\)
+        [^]*\)
+      ///)
+    '
+  },
+  {
+    step: 9,
+    position: 1,
+    kit: 'quiz',
+    name: 'Add a new question on the click',
+    spec: '
+      editor.getSession().getValue().match(///
+        answer\d.click\(*.+->*.+
+        \r\n\s+alert\(*.+\)
+        \r\n\s+.+paper.rect\(*.+\)[^]+attr*.+fill*.+\)*.+
+        [^]+\r\n\s+.+paper.text\(*.+\)[^]*\)
+      ///)
+    '
+  },
+  {
+    step: 9,
+    position: 2,
+    kit: 'quiz',
+    name: 'Add at least 1 new answer on the click',
+    spec: '
+      editor.getSession().getValue().match(///
+        answer\d.click\(*.+->*.+
+        \r\n\s+alert\(*.+\)
+        \r\n\s+.+paper.rect\(*.+\)[^]+attr*.+fill*.+\)*.+
+        [^]+\r\n\s+.+paper.text
+        [^]+\r\n\s+.+paper.text
+        [^]*\)
+      ///)
+    '
+  },
+  {
+    step: 10,
+    position: 1,
+    kit: 'quiz',
+    name: 'Add a click to the correct answer',
+    spec: '
+      editor.getSession().getValue().match(///
+        answer\d.click\(*.+->*.+
+        [^]+paper.text\(*.+\)
+        [^]+.click\(*.+->*.+
+        \r\n\s+alert\(*.+\)*.+\)
+        [^]*\)
+      ///)
+    '
   },
   { name: "add the paper to the page",
     spec: "$frame.find('svg').length > 0",

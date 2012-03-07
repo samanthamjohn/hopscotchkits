@@ -41,6 +41,9 @@
           errorHtml = "<div class='syntax-error'>Oh no! You have a syntax error: " + error.message + ". You may have forgotten to save the output of one of your function calls.</div>";
         } else if (error.type === "undefined_method") {
           errorHtml = "<div class='syntax-error'>You are calling a method that doesn't exist! '" + error.arguments[0] + "' is either not the right method or you may have called it on the wrong variable.</div>";
+        } else if (error.type = "malformed regex") {
+          console.log("error in your requirements regex");
+          console.log(error.arguments);
         } else {
           if (error.message) {
             if (error.message.split('line')[1]) {
