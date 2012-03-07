@@ -90,6 +90,9 @@
     subTitle: function() {
       return this.model.get('title');
     },
+    successHeader: function() {
+      return _.shuffle(['Yay!', 'Boom!', "You're Right!", "Good Job", "Way to go!", "You did it!"])[0];
+    },
     successMessage: function() {
       return this.model.get('success_message');
     },

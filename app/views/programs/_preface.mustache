@@ -18,14 +18,17 @@
         {{/requirements}}
       </ul>
     </div>
-    <div class='success'>{{{successMessage}}}</div>
+    <div class='success'>
+      <h3>{{successHeader}}</h3>
+      {{{successMessage}}}
+      <div class='controls'>
+        <a href='/programs/{{programId}}' class='button {{buttonClass}}'>
+          Next <span class='arrow'> &raquo; </span>
+        </a>
+      </div>
+    </div>
     <div class='hint'> Are you stumped? 
       <a href="#" class="hint"> get a hint</a>
-    </div>
-    <div class='controls'>
-      <a href='/programs/{{programId}}' class='button {{buttonClass}}'>
-        Next <span class='arrow'> &raquo; </span>
-      </a>
     </div>
   </div>
 </div>

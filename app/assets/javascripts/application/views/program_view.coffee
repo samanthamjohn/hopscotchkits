@@ -66,6 +66,8 @@ window.ProgramView = Backbone.View.extend(
     this.model.runSpecs()
   subTitle: () ->
     this.model.get('title')
+  successHeader: ->
+     _.shuffle(['Yay!', 'Boom!', "You're Right!", "Good Job", "Way to go!", "You did it!"])[0]
   successMessage: () ->
     this.model.get('success_message')
   description: () ->
