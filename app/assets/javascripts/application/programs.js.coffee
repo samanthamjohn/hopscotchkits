@@ -1,3 +1,7 @@
+executeCode = ->
+  val = editor.getSession().getValue()
+  CoffeeScript.eval(val)
+
 window.startEditor = (code) ->
   window.editor = ace.edit("editor")
   window.editor.getSession().setValue(code)
@@ -13,7 +17,7 @@ window.startEditor = (code) ->
   try
     $frame.find('body svg').remove()
   window.specTimer = setTimeout((-> 
-    Step.runSpecs()
+    executeCode()
   ), tick)
   editor.getSession().on('change', (e) ->
     clearTimeout(specTimer)
@@ -32,6 +36,7 @@ window.startEditor = (code) ->
       sender: editor
     exec: (editor) ->
       editor.insert("\n")
+      clearTimeout(specTimer)
       Step.runSpecs()
       $('#ide form').submit()
   )
@@ -49,7 +54,7 @@ window.startEditor = (code) ->
         if parseInt(word) || parseInt(word) == 0
           editor.getSession().replace(wRange, "#{(parseInt(word, 10) + 1)}")
           editor.commands.commands.selectwordleft.exec(editor)
-          Step.runSpecs()
+          executeCode()
         else
           number = ""
           newNumber = ""
@@ -67,7 +72,7 @@ window.startEditor = (code) ->
             ).join('')
             editor.getSession().replace(wRange, word)
             editor.commands.commands.selectwordleft.exec(editor)
-            Step.runSpecs()
+            executeCode()
           else
             editor.navigateUp(1)
       else
@@ -87,7 +92,7 @@ window.startEditor = (code) ->
         if parseInt(word) || parseInt(word) == 0
           editor.getSession().replace(wRange, "#{(parseInt(word, 10) - 1)}")
           editor.commands.commands.selectwordleft.exec(editor)
-          Step.runSpecs()
+          executeCode()
         else
           number = ""
           newNumber = ""
@@ -105,7 +110,7 @@ window.startEditor = (code) ->
             ).join('')
             editor.getSession().replace(wRange, word)
             editor.commands.commands.selectwordleft.exec(editor)
-            Step.runSpecs()
+            executeCode()
           else
             editor.navigateDown(1)
       else

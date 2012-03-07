@@ -1,4 +1,11 @@
 (function() {
+  var executeCode;
+
+  executeCode = function() {
+    var val;
+    val = editor.getSession().getValue();
+    return CoffeeScript.eval(val);
+  };
 
   window.startEditor = function(code) {
     var CoffeeScriptMode, tick;
@@ -17,7 +24,7 @@
       $frame.find('body svg').remove();
     } catch (_error) {}
     window.specTimer = setTimeout((function() {
-      return Step.runSpecs();
+      return executeCode();
     }), tick);
     editor.getSession().on('change', function(e) {
       clearTimeout(specTimer);
@@ -35,6 +42,7 @@
       },
       exec: function(editor) {
         editor.insert("\n");
+        clearTimeout(specTimer);
         Step.runSpecs();
         return $('#ide form').submit();
       }
@@ -54,7 +62,7 @@
           if (parseInt(word) || parseInt(word) === 0) {
             editor.getSession().replace(wRange, "" + (parseInt(word, 10) + 1));
             editor.commands.commands.selectwordleft.exec(editor);
-            return Step.runSpecs();
+            return executeCode();
           } else {
             number = "";
             newNumber = "";
@@ -72,7 +80,7 @@
               }).join('');
               editor.getSession().replace(wRange, word);
               editor.commands.commands.selectwordleft.exec(editor);
-              return Step.runSpecs();
+              return executeCode();
             } else {
               return editor.navigateUp(1);
             }
@@ -97,7 +105,7 @@
           if (parseInt(word) || parseInt(word) === 0) {
             editor.getSession().replace(wRange, "" + (parseInt(word, 10) - 1));
             editor.commands.commands.selectwordleft.exec(editor);
-            return Step.runSpecs();
+            return executeCode();
           } else {
             number = "";
             newNumber = "";
@@ -115,7 +123,7 @@
               }).join('');
               editor.getSession().replace(wRange, word);
               editor.commands.commands.selectwordleft.exec(editor);
-              return Step.runSpecs();
+              return executeCode();
             } else {
               return editor.navigateDown(1);
             }

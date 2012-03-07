@@ -1,24 +1,38 @@
 describe("Programs", ->
   describe("startEditor", ->
     beforeEach( ->
-      window.tick = 1200
-    )
-    it("should run the specs after a 700ms timeout", ->
       jasmine.Clock.useMock()
       $("#jasmine_content").append("<div id='ide'><div id='editor'></div><form></form></div>")
+      window.tick = 1200
+    )
+
+    it("should not execute the specs on start", ->
+      spyOn(Step, 'runSpecs')
+      startEditor('window.foo = 3')
+      jasmine.Clock.tick(tick)
+      expect(Step.runSpecs).not.toHaveBeenCalled()
+      expect(foo).toEqual(3)
+    )
+
+    it("should run the specs after a 700ms timeout", ->
+      spyOn(Step, 'runSpecs').andCallThrough()
       startEditor('window.foo=3')
       jasmine.Clock.tick(tick)
+      expect(window.foo).toEqual(3)
+
       editor.getSession().setValue('window.foo=4')
       expect(window.foo).toEqual(3)
       jasmine.Clock.tick(tick)
       expect(window.foo).toEqual(4)
+      expect(Step.runSpecs).toHaveBeenCalled()
+      expect(Step.runSpecs.callCount).toEqual(1)
     )
 
     it("should restart the timer if you type another character before that.", ->
-      jasmine.Clock.useMock()
-      $("#jasmine_content").append("<div id='ide'><div id='editor'></div><form></form></div>")
+      spyOn(Step, 'runSpecs').andCallThrough()
       startEditor('window.foo=3')
       jasmine.Clock.tick(tick)
+      expect(window.foo).toEqual(3)
 
       # change the value but don't wait the full time
       editor.getSession().setValue('window.foo=4')
@@ -33,13 +47,18 @@ describe("Programs", ->
       # 700ms after the last change
       jasmine.Clock.tick(tick)
       expect(window.foo).toEqual(5)
+
+      jasmine.Clock.tick(tick)
+      expect(Step.runSpecs).toHaveBeenCalled()
+      expect(Step.runSpecs.callCount).toEqual(1)
     )
 
     it("should not timeout if you change a number using the arrows", ->
-      jasmine.Clock.useMock()
-      startEditor("window.foo = 3")
+      spyOn(Step, 'runSpecs').andCallThrough()
+      startEditor('window.foo = 3')
       jasmine.Clock.tick(tick)
       expect(window.foo).toEqual(3)
+
       fakeRange = editor.getSelectionRange()
       fakeRange.end =
         column: 14
@@ -49,25 +68,29 @@ describe("Programs", ->
         row: 0
       spyOn(editor, 'getSelectionRange').andReturn(fakeRange)
 
-      # make a change using the up arrow
-      editor.commands.commands.upArrow.exec(editor)
-      expect(window.foo).toEqual(4)
-
       editor.commands.commands.downArrow.exec(editor)
+      expect(window.foo).toEqual(2)
+
+      editor.commands.commands.upArrow.exec(editor)
       expect(window.foo).toEqual(3)
+
+      jasmine.Clock.tick(tick)
+      expect(Step.runSpecs).toHaveBeenCalled()
+      expect(Step.runSpecs.callCount).toEqual(1)
     )
 
     it("should not timeout if you change a letter-number combo", ->
-      jasmine.Clock.useMock()
+      spyOn(Step, 'runSpecs').andCallThrough()
       startEditor("window.foo = 'r3'")
       jasmine.Clock.tick(tick)
       expect(window.foo).toEqual('r3')
+
       fakeRange = editor.getSelectionRange()
       fakeRange.end =
         column: 16
         row: 0
       fakeRange.start =
-        column: 13
+        column: 14
         row: 0
       spyOn(editor, 'getSelectionRange').andReturn(fakeRange)
 
@@ -78,14 +101,19 @@ describe("Programs", ->
       # make a change using the down arrow
       editor.commands.commands.downArrow.exec(editor)
       expect(window.foo).toEqual('r3')
+
+      jasmine.Clock.tick(tick)
+      expect(Step.runSpecs).toHaveBeenCalled()
+      expect(Step.runSpecs.callCount).toEqual(1)
     )
 
     it("should not timeout if you press enter", ->
-      jasmine.Clock.useMock()
+      spyOn(Step, 'runSpecs').andCallThrough()
       spyOn($.fn, "submit")
-      startEditor("window.foo = 'r3'")
+      startEditor('window.foo=3')
       jasmine.Clock.tick(tick)
-      expect(window.foo).toEqual('r3')
+      expect(window.foo).toEqual(3)
+
       fakeRange = editor.getSelectionRange()
       fakeRange.end =
         column: 16
@@ -94,14 +122,18 @@ describe("Programs", ->
         column: 13
         row: 0
       spyOn(editor, 'getSelectionRange').andReturn(fakeRange)
-      editor.getSession().setValue("window.foo='r4'")
 
+      editor.getSession().setValue("window.foo='r4'")
       editor.commands.commands.saveNewLine.exec(editor)
       expect(window.foo).toEqual('r4')
       expect(editor.getSession().getValue()).toEqual("\nwindow.foo='r4'")
       expect($.fn.submit).toHaveBeenCalled()
       expect(editor.getSelection().selectionLead.row).toEqual(1)
       expect(editor.getSelection().selectionLead.column).toEqual(0)
+
+      jasmine.Clock.tick(tick)
+      expect(Step.runSpecs).toHaveBeenCalled()
+      expect(Step.runSpecs.callCount).toEqual(1)
     )
   )
 )

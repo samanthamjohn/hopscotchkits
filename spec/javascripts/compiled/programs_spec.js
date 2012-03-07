@@ -7,16 +7,27 @@
         $("#jasmine_content").append("<div id='ide'><div id='editor'></div><form></form></div>");
         return window.tick = 1200;
       });
+      it("should not execute the specs on start", function() {
+        spyOn(Step, 'runSpecs');
+        startEditor('window.foo = 3');
+        jasmine.Clock.tick(tick);
+        expect(Step.runSpecs).not.toHaveBeenCalled();
+        return expect(foo).toEqual(3);
+      });
       it("should run the specs after a 700ms timeout", function() {
+        spyOn(Step, 'runSpecs').andCallThrough();
         startEditor('window.foo=3');
         jasmine.Clock.tick(tick);
         expect(window.foo).toEqual(3);
         editor.getSession().setValue('window.foo=4');
         expect(window.foo).toEqual(3);
         jasmine.Clock.tick(tick);
-        return expect(window.foo).toEqual(4);
+        expect(window.foo).toEqual(4);
+        expect(Step.runSpecs).toHaveBeenCalled();
+        return expect(Step.runSpecs.callCount).toEqual(1);
       });
       it("should restart the timer if you type another character before that.", function() {
+        spyOn(Step, 'runSpecs').andCallThrough();
         startEditor('window.foo=3');
         jasmine.Clock.tick(tick);
         expect(window.foo).toEqual(3);
@@ -27,10 +38,14 @@
         jasmine.Clock.tick(tick - 200);
         expect(window.foo).toEqual(3);
         jasmine.Clock.tick(tick);
-        return expect(window.foo).toEqual(5);
+        expect(window.foo).toEqual(5);
+        jasmine.Clock.tick(tick);
+        expect(Step.runSpecs).toHaveBeenCalled();
+        return expect(Step.runSpecs.callCount).toEqual(1);
       });
       it("should not timeout if you change a number using the arrows", function() {
         var fakeRange;
+        spyOn(Step, 'runSpecs').andCallThrough();
         startEditor('window.foo = 3');
         jasmine.Clock.tick(tick);
         expect(window.foo).toEqual(3);
@@ -47,10 +62,14 @@
         editor.commands.commands.downArrow.exec(editor);
         expect(window.foo).toEqual(2);
         editor.commands.commands.upArrow.exec(editor);
-        return expect(window.foo).toEqual(3);
+        expect(window.foo).toEqual(3);
+        jasmine.Clock.tick(tick);
+        expect(Step.runSpecs).toHaveBeenCalled();
+        return expect(Step.runSpecs.callCount).toEqual(1);
       });
       it("should not timeout if you change a letter-number combo", function() {
         var fakeRange;
+        spyOn(Step, 'runSpecs').andCallThrough();
         startEditor("window.foo = 'r3'");
         jasmine.Clock.tick(tick);
         expect(window.foo).toEqual('r3');
@@ -67,10 +86,14 @@
         editor.commands.commands.upArrow.exec(editor);
         expect(window.foo).toEqual('r4');
         editor.commands.commands.downArrow.exec(editor);
-        return expect(window.foo).toEqual('r3');
+        expect(window.foo).toEqual('r3');
+        jasmine.Clock.tick(tick);
+        expect(Step.runSpecs).toHaveBeenCalled();
+        return expect(Step.runSpecs.callCount).toEqual(1);
       });
       return it("should not timeout if you press enter", function() {
         var fakeRange;
+        spyOn(Step, 'runSpecs').andCallThrough();
         spyOn($.fn, "submit");
         startEditor('window.foo=3');
         jasmine.Clock.tick(tick);
@@ -91,7 +114,10 @@
         expect(editor.getSession().getValue()).toEqual("\nwindow.foo='r4'");
         expect($.fn.submit).toHaveBeenCalled();
         expect(editor.getSelection().selectionLead.row).toEqual(1);
-        return expect(editor.getSelection().selectionLead.column).toEqual(0);
+        expect(editor.getSelection().selectionLead.column).toEqual(0);
+        jasmine.Clock.tick(tick);
+        expect(Step.runSpecs).toHaveBeenCalled();
+        return expect(Step.runSpecs.callCount).toEqual(1);
       });
     });
   });

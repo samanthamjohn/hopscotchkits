@@ -9,6 +9,10 @@
       old_paper = window._paper;
       try {
         CoffeeScript.eval(val);
+        if (old_paper && old_paper.canvas) {
+          old_paper.clear();
+          old_paper.remove();
+        }
         failedSpecs = this.reject(function(requirement) {
           return requirement.runSpec();
         });
@@ -16,14 +20,23 @@
           $(".progress .message.successful").removeClass("successful");
         } else {
           $(".progress .message").addClass("successful");
-          $('.next_button').button({
-            disabled: false
-          });
-          $('.last_button').button({
-            disabled: false
-          });
+          if ($(".next_button").length > 0) {
+            $('.next_button').button({
+              disabled: false
+            });
+          }
+          if ($(".last_button").length > 0) {
+            $('.last_button').button({
+              disabled: false
+            });
+          }
         }
       } catch (error) {
+        $(".progress .message.successful").removeClass("successful");
+        if (old_paper && old_paper.canvas) {
+          old_paper.clear();
+          old_paper.remove();
+        }
         if (error.type === "not_defined") {
           errorHtml = "<div class='syntax-error'>Oh no! You have a syntax error: " + error.message + ". You may have forgotten to save the output of one of your function calls.</div>";
         } else if (error.type === "undefined_method") {
@@ -44,10 +57,6 @@
           }
         }
         $("#stage").append(errorHtml);
-      }
-      if (old_paper && old_paper.canvas) {
-        old_paper.clear();
-        old_paper.remove();
       }
       return window.editor.focus();
     }
