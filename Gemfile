@@ -5,13 +5,10 @@ gem 'googlecharts'
 gem 'jquery-rails'
 gem 'rails', '3.2'
 gem 'simple_form'
+gem 'pg'
 gem 'slim-rails'
 gem 'will_paginate'
 gem 'underscore-rails'
-
-group :production do
-  gem 'pg'
-end
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -31,7 +28,6 @@ group :development, :test do
   gem 'auto_tagger'
   gem 'foreman'
   gem "rspec-rails"
-  gem 'sqlite3'
   gem 'mongrel', '1.2.0.pre2'
   gem "taps"
   gem "yaml_db"

@@ -267,7 +267,6 @@ DEPENDENCIES
   simplecov
   slim-rails
   sprite
-  sqlite3
   taps
   uglifier (>= 1.0.3)
   underscore-rails

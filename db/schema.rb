@@ -14,26 +14,26 @@
 ActiveRecord::Schema.define(:version => 20120228230904) do
 
   create_table "kits", :force => true do |t|
-    t.string    "name"
-    t.string    "slug"
-    t.text      "description"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "icon_url"
-    t.boolean   "published"
-    t.text      "blurb"
+    t.string   "name"
+    t.string   "slug"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "icon_url"
+    t.boolean  "published"
+    t.text     "blurb"
   end
 
   create_table "programs", :force => true do |t|
-    t.string    "name"
-    t.integer   "progress"
-    t.text      "code"
-    t.integer   "kit_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "step_id"
-    t.integer   "user_id"
-    t.boolean   "featured",   :default => false
+    t.string   "name"
+    t.integer  "progress"
+    t.text     "code"
+    t.integer  "kit_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "step_id"
+    t.integer  "user_id"
+    t.boolean  "featured",   :default => false
   end
 
   create_table "requirements", :force => true do |t|
@@ -47,37 +47,37 @@ ActiveRecord::Schema.define(:version => 20120228230904) do
   end
 
   create_table "snapshots", :force => true do |t|
-    t.text      "code"
-    t.integer   "program_id"
-    t.integer   "step_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.text     "code"
+    t.integer  "program_id"
+    t.integer  "step_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "steps", :force => true do |t|
-    t.integer   "kit_id"
-    t.text      "description"
-    t.text      "spec"
-    t.text      "success_message"
-    t.integer   "position"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "title"
-    t.text      "hint"
-    t.text      "solution"
-    t.string    "image_url"
-    t.boolean   "bonus",           :default => false
-    t.boolean   "freeplay",        :default => false
-    t.text      "more_info"
+    t.integer  "kit_id"
+    t.text     "description"
+    t.text     "spec"
+    t.text     "success_message"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "title"
+    t.text     "hint"
+    t.text     "solution"
+    t.string   "image_url"
+    t.boolean  "bonus",           :default => false
+    t.boolean  "freeplay",        :default => false
+    t.text     "more_info"
   end
 
   create_table "users", :force => true do |t|
-    t.string    "name"
-    t.string    "slug"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "role"
-    t.string    "token"
+    t.string   "name"
+    t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "role"
+    t.string   "token"
   end
 
 end
