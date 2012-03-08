@@ -31,7 +31,7 @@ window.ProgramView = Backbone.View.extend(
     "submit #ide form" : "submitCode"
     "click a.hint" : "showHint"
     "click .next_button" : "refreshStep"
-    "click .last_button" : "submitCode"
+    "click .last_button" : "submitCodeAndShow"
     "click .solution-link" : "toggleSolutions"
     "click .more-info"  : "showMoreInfo"
     "click .less-info"  : "showLessInfo"
@@ -64,6 +64,10 @@ window.ProgramView = Backbone.View.extend(
     $("#ide input#program_code").val(val)
     $("#ide input#program_step_id").val(this.model.get('id'))
     this.model.runSpecs()
+  submitCodeAndShow: (e) ->
+    e.preventDefault()
+    $("#ide form").submit()
+    window.location.href = e.target.parentElement.href
   subTitle: () ->
     this.model.get('title')
   successHeader: ->
