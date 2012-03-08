@@ -67,7 +67,10 @@ window.ProgramView = Backbone.View.extend(
   submitCodeAndShow: (e) ->
     e.preventDefault()
     $("#ide form").submit()
-    window.location.href = e.target.parentElement.href
+    if e.target.parentElement
+      window.location.href = e.target.parentElement.href
+    else
+      window.location.href = e.target.href
   subTitle: () ->
     this.model.get('title')
   successHeader: ->
