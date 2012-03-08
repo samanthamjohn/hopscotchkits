@@ -43,5 +43,5 @@ window.Requirements = Backbone.Collection.extend(
           errorHtml = "<div class='syntax-error'>#{error}</div>"
           console.log(error)
       $("#stage").append(errorHtml)
-    window.editor.focus()
+    window.editor.focus() unless window.input
 )

@@ -61,7 +61,7 @@
         }
         $("#stage").append(errorHtml);
       }
-      return window.editor.focus();
+      if (!window.input) return window.editor.focus();
     }
   });
 

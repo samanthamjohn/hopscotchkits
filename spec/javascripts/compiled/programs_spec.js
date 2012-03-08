@@ -91,7 +91,7 @@
         expect(Step.runSpecs).toHaveBeenCalled();
         return expect(Step.runSpecs.callCount).toEqual(1);
       });
-      return it("should not timeout if you press enter", function() {
+      it("should not timeout if you press enter", function() {
         var fakeRange;
         spyOn(Step, 'runSpecs').andCallThrough();
         spyOn($.fn, "submit");
@@ -118,6 +118,12 @@
         jasmine.Clock.tick(tick);
         expect(Step.runSpecs).toHaveBeenCalled();
         return expect(Step.runSpecs.callCount).toEqual(1);
+      });
+      return it("should autocomplete when you type a hashmark", function() {
+        spyOn(window, "aceAutocomplete");
+        startEditor('');
+        editor.commands.commands.addAutocomplete.exec(editor);
+        return expect(window.aceAutocomplete).toHaveBeenCalled();
       });
     });
   });

@@ -135,5 +135,12 @@ describe("Programs", ->
       expect(Step.runSpecs).toHaveBeenCalled()
       expect(Step.runSpecs.callCount).toEqual(1)
     )
+
+    it("should autocomplete when you type a hashmark", ->
+      spyOn(window, "aceAutocomplete")
+      startEditor('')
+      editor.commands.commands.addAutocomplete.exec(editor)
+      expect(window.aceAutocomplete).toHaveBeenCalled()
+    )
   )
 )

@@ -7,6 +7,43 @@
     return CoffeeScript.eval(val);
   };
 
+  window.aceAutocomplete = function() {
+    var input, left, top;
+    left = $(".ace_cursor").offset().left;
+    top = $(".ace_cursor").offset().top;
+    input = "    <input style='position:absolute;     top:" + top + "px; left:" + left + "px!important; opacity:0;      z-index:999' value=''      id='autocomplete_input'>    </input>    ";
+    window.input = true;
+    $(input).appendTo('body').focus();
+    return $("#autocomplete_input").autocomplete({
+      source: ["#ffffff", "#000000"],
+      minLength: 0,
+      search: function(e, ui) {
+        var key, s;
+        console.log(e);
+        console.log(ui);
+        debugger;
+        key = e.originalEvent.keyCode;
+        if (key === 8) {
+          return editor.commands.commands.backspace.exec(editor);
+        } else if (key === 39) {
+          editor.focus();
+          return $("#autocomplete_input").remove();
+        } else {
+          s = _.last($("#autocomplete_input").attr('value'));
+          return window.editor.insert(s);
+        }
+      },
+      select: function(e, ui) {
+        editor.focus();
+        editor.commands.commands.selectwordleft.exec(editor);
+        editor.commands.commands.del.exec(editor);
+        editor.commands.commands.backspace.exec(editor);
+        window.editor.insert(ui.item.value);
+        return $("#autocomplete_input").remove();
+      }
+    });
+  };
+
   window.startEditor = function(code) {
     var CoffeeScriptMode, tick;
     window.editor = ace.edit("editor");
@@ -32,6 +69,18 @@
         Step.runSpecs();
         if (e.data.text && e.data.text.match(/\r/)) return $("#ide form").submit();
       }), tick);
+    });
+    editor.commands.addCommand({
+      name: 'addAutocomplete',
+      bindKey: {
+        win: "#",
+        mac: "#",
+        sender: editor
+      },
+      exec: function(editor) {
+        editor.insert("#");
+        return aceAutocomplete();
+      }
     });
     editor.commands.addCommand({
       name: 'saveNewLine',
