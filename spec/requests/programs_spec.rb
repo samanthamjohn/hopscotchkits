@@ -6,7 +6,7 @@ feature "hopscotch kits flow", js: true do
   scenario "completing a kit" do
     steps = Kit.find_by_slug("puppy").steps.order("position ASC").all
     visit new_kit_program_path(kit_id: 'puppy')
-    fill_in "What's your name?", with: "Samantha"
+    fill_in "What's it called?", with: "Samantha"
     click_on "Start coding"
 
     # step 1

@@ -13,8 +13,8 @@ describe ProgramsController do
 
     context "the user is signed in" do
       it "should render the my page" do
-        user = User.create!(name: "sam")
-        session[:user_id] = user.id
+        user = create(:user)
+        sign_in user
         kit = Kit.create!(slug: "puppy")
         get :root, kit_id: kit.to_param
         response.should render_template("my")
@@ -34,17 +34,17 @@ describe ProgramsController do
   describe "#create" do
     it "should set the name" do
       kit = Kit.create(slug: "foo")
-      post :create, kit_id: kit.to_param, program: { kit_id: kit.id, user_attributes: {name: "Evan"} }
+      post :create, kit_id: kit.to_param, program: { kit_id: kit.id, name: "FOO" }
       program = Program.last
-      program.user.name.should == "Evan"
-      response.should redirect_to edit_kit_program_path(kit, program)
+      program.name.should == "FOO"
+      response.should redirect_to edit_program_path(program)
     end
   end
 
   describe "#edit" do
     it "should render the edit template" do
       kit = Kit.create(slug: "foo")
-      program = Program.create(kit: kit, user_attributes: {name: "Evan"})
+      program = create(:program, kit: kit)
       get :edit, kit_id: kit.to_param, id: program.to_param
       assigns(:program).should == program
       response.should be_success
@@ -53,14 +53,14 @@ describe ProgramsController do
     it "should default to current_step" do
       kit = Kit.create(slug: "foo")
       step = Step.create!(kit_id: kit.id, position: 2)
-      program = Program.create(kit: kit, step_id: step.id, user_attributes: {name: "Evan"})
+      program = Program.create(kit: kit, step_id: step.id)
       get :edit, kit_id: kit.to_param, id: program.to_param
       assigns(:step).should == step
     end
 
     it "should set the step" do
       kit = Kit.create(slug: "foo")
-      program = Program.create(kit: kit, user_attributes: {name: "Evan"})
+      program = Program.create(kit: kit)
       step = Step.create!(kit_id: kit.id, position: 2)
       get :edit, kit_id: kit.to_param, id: program.to_param, step: step.position
       assigns(:step).should == step
@@ -69,7 +69,7 @@ describe ProgramsController do
     context "when the step_param is freeplay" do
       it "should set the step as the freeplay step if present" do
         kit = Kit.create(slug: "foo")
-        program = Program.create(kit: kit, user_attributes: {name: "Evan"})
+        program = Program.create(kit: kit)
         step = Step.create!(kit_id: kit.id, position: 2, freeplay: true)
         get :edit, kit_id: kit.to_param, id: program.to_param, step: "freeplay"
         assigns(:step).should == step
@@ -82,7 +82,7 @@ describe ProgramsController do
       kit = Kit.create(slug: "foo")
       step = Step.create!(kit_id: kit.id, position: 2, freeplay: true)
       step2 = Step.create!(kit_id: kit.id, position: 3)
-      program = Program.create(kit: kit, user_attributes: {name: "Evan"}, code: "foo", current_step: step)
+      program = Program.create(kit: kit, code: "foo", current_step: step)
       get :data, id: program.to_param
       response.body.should == {step: step, program: program}.to_json
     end
@@ -108,7 +108,7 @@ describe ProgramsController do
   describe "#name" do
     it "should set the programs name" do
       kit = Kit.create!(slug: "foo")
-      program = Program.create(kit: kit, user_attributes: {name: "Evan"}, code: "foo")
+      program = Program.create(kit: kit, code: "foo")
       post :name, id: program.to_param, value: 'Sam is cool'
       response.body.should == "Sam is cool"
     end
@@ -126,7 +126,7 @@ describe ProgramsController do
   describe "#update" do
     it "should update the program" do
       kit = Kit.create(slug: "foo")
-      program = Program.create(kit: kit, user_attributes: { name: "Evan" })
+      program = create(:program, kit: kit)
       post :update, kit_id: kit.to_param, id: program.to_param, program: {code: "var x = 3;"}
       assigns(:program).code.should == "var x = 3;"
     end
@@ -146,7 +146,7 @@ describe ProgramsController do
       kit = Kit.create(slug: "foo")
       step = Step.create!(kit_id: kit.id, position: 2)
       step2 = Step.create!(kit_id: kit.id, position: 3)
-      program = Program.create(kit: kit, user_attributes: { name: "Evan"}, current_step: step)
+      program = Program.create(kit: kit, current_step: step)
       get :next_step, kit_id: kit.to_param, id: program.to_param
       assigns(:program).reload.current_step.should == step.next_step
       resp = JSON.parse(response.body)
@@ -159,7 +159,7 @@ describe ProgramsController do
   describe "#show" do
     it "should show the code" do
       kit = Kit.create(slug: "foo")
-      program = Program.create(kit: kit, user_attributes: { name: "Evan" })
+      program = Program.create(kit: kit)
       get :show, kit_id: "foo", id: program.to_param
       response.should render_template("show")
       response.should render_template("layouts/application")
@@ -169,14 +169,14 @@ describe ProgramsController do
     it "should default to current_step" do
       kit = Kit.create(slug: "foo")
       step = Step.create!(kit_id: kit.id, position: 2)
-      program = Program.create(kit: kit, step_id: step.id, user_attributes: {name: "Evan"})
+      program = Program.create(kit: kit, step_id: step.id)
       get :show, kit_id: kit.to_param, id: program.to_param
       assigns(:step).should == step
     end
 
     it "should set the step" do
       kit = Kit.create(slug: "foo")
-      program = Program.create(kit: kit, user_attributes: {name: "Evan"})
+      program = Program.create(kit: kit)
       step = Step.create!(kit_id: kit.id, position: 2)
       get :show, kit_id: kit.to_param, id: program.to_param, step: step.position
       assigns(:step).should == step
@@ -196,7 +196,7 @@ describe ProgramsController do
   describe "#feature" do
     it "should feature the program" do
       user = create(:user, role: 'admin')
-      session[:user_id] = user.id
+      sign_in user
       program = create(:program, updated_at: Time.parse('july 1, 2011'))
       put :feature, id: program.id, program: {featured: true}
       program.reload.updated_at.should == Time.parse('july 1, 2011')
@@ -206,7 +206,7 @@ describe ProgramsController do
 
     it "should unfeature the program" do
       user = create(:user, role: 'admin')
-      session[:user_id] = user.id
+      sign_in user
       program = create(:program, featured: true)
       put :feature, id: program.id, program: {featured: 'false'}
       program.reload.featured?.should_not be
@@ -217,7 +217,7 @@ describe ProgramsController do
   describe "destroy" do
     it "should delete the record" do
       kit = Kit.create(slug: 'puppy')
-      program = Program.create(kit: kit, user_attributes: {name: "Evan"})
+      program = create(:program, kit: kit)
       delete :destroy, id: program.to_param, kit_id: kit.to_param
       lambda {
         program.reload

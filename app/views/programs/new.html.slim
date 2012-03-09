@@ -10,8 +10,7 @@
       .new.program
         = simple_form_for [@program.kit, @program] do |f|
           = f.hidden_field :kit_id
-          = f.fields_for :user do |u|
-            = u.input :name, label: "What's your name?"
+          = f.input :name, label: "What's it called?"
           = f.submit value: "Start coding"
 
 

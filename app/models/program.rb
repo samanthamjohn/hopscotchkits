@@ -3,9 +3,7 @@ class Program < ActiveRecord::Base
   belongs_to :current_step, foreign_key: :step_id, class_name: "Step"
   belongs_to :user
   has_many :snapshots
-  validates :user, presence: true
   validates :kit, presence: true
-  accepts_nested_attributes_for :user
 
   before_create :set_current_step
   before_save :set_name
@@ -25,6 +23,6 @@ private
   end
 
   def set_name
-    self.name = "#{self.user.name}'s #{self.kit.name}" unless self.name.present?
+    self.name = kit.name unless self.name.present?
   end
 end

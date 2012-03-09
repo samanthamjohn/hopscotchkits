@@ -3,8 +3,8 @@ require 'spec_helper'
 describe StepsController do
 
   before do
-    user = User.create!(role: "admin", name: "evan")
-    session[:user_id] = user.id
+    user = create(:user, role: "admin", name: "evan")
+    sign_in user
   end
 
   describe "update" do

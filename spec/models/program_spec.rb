@@ -4,7 +4,6 @@ describe Program do
   it { should belong_to :kit }
   it { should belong_to :current_step }
   it { should belong_to :user }
-  it { should validate_presence_of :user }
   it { should validate_presence_of :kit }
   it { should have_many :snapshots }
 
@@ -35,11 +34,10 @@ describe Program do
     end
   end
   describe "before_save" do
-    it "should return the user name if it doesn't exists" do
+    it "should return the kit name if it doesn't exists" do
       kit = Kit.create!(slug: "foo", name: 'bar')
-      user = User.create!(name: "foo")
-      program = Program.create!(kit: kit, user: user)
-      program.name.should == "foo's bar"
+      program = Program.create!(kit: kit)
+      program.name.should == "bar"
       program.update_attributes(name: "boo!")
       program.name.should == "boo!"
     end

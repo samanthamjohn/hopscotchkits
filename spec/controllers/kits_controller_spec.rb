@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe KitsController do
   before do
-    user = User.create!(role: "admin", name: "evan")
-    session[:user_id] = user.id
+    user = create(:user, role: "admin", name: "evan")
+    sign_in user
   end
 
   describe "#index" do
@@ -51,7 +51,7 @@ describe KitsController do
   describe "#analytics" do
     it "should load the kit and all its programs" do
       kit = Kit.create!(slug: 'foo')
-      program = Program.create!(kit: kit, user_attributes: {name: "evan"})
+      program = create(:program, kit: kit)
       step = Step.create!(kit: kit, position: 1)
       get :analytics, id: "foo"
       assigns(:kit).should == kit
