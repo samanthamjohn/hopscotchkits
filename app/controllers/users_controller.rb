@@ -4,4 +4,8 @@ class UsersController < ApplicationController
     session[:user_id] = user.id
     redirect_to kits_path
   end
+
+  def registered
+
+  end
 end

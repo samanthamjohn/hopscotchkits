@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'cancan'
+gem 'devise'
 gem 'googlecharts'
 gem 'jquery-rails'
 gem 'rails', '3.2'

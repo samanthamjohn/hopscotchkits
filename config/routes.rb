@@ -1,5 +1,7 @@
 Hopscotch::Application.routes.draw do
 
+  devise_for :users, :controllers => { registrations: "registrations", sessions: "sessions" }
+
   resources :steps
   match "login/:token", to: "users#login"
 

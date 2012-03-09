@@ -3,7 +3,7 @@ class ProgramsController < ApplicationController
   load_and_authorize_resource only: ["index", "feature"]
 
   def root
-    if session[:user_id]
+    if current_user
       render "my"
     else
       new

@@ -19,6 +19,225 @@ body {
   background: #f2eee8;
   height: 100%;
 }
+
+#top_bar {
+  background: $bright-orange;
+  height: 28px;
+  position: relative;
+  &.logged-in {
+    margin-bottom: 10px;
+  }
+  #nav {
+    width: 960px;
+    margin: 0 auto;
+    > div, > a {
+      position: absolute;
+      span {
+        padding: 11px 22px;
+        display: block;
+        color: white;
+        font-family: "MavenProBold";
+        font-size: 18px;
+      }
+    }
+
+    #logged_in, #logout {
+      display: none;
+    }
+    &.logged-in {
+      position: relative;
+      #login {
+        display: none;
+      }
+      #register {
+        display: none;
+      }
+      #logout {
+        display: block;
+        right: 0;
+        width: 425px;
+        float: right;
+        span.your-name {
+          text-align: right;
+          width: 371px;
+          float: left;
+          font-family: Georgia;
+          font-style: italic;
+          padding: 3px 6px 0 0;
+        }
+        a {
+          color: #444;
+          text-decoration: underline;
+          font-style: italic;
+          font-family: Georgia;
+          line-height: 26px;
+        }
+      }
+      #logged_in {
+        display: block;
+        @include sprite("top_bar", "logged-in");
+        top: -15px;
+        z-index: 99;
+        .welcome-back {
+          padding: 0 19px;
+          color: black;
+          font-size: 14px;
+          font-family: Georgia;
+          font-style: italic;
+        }
+        .name {
+          color: black;
+          padding: 24px 16px 5px;
+          font-size: 24px;
+          margin: 0 auto;
+        }
+      }
+      #my_programs {
+        display: block;
+        @include sprite("top_bar", "my-programs");
+        margin-left: 206px;
+        z-index: 9;
+        top: -2px;
+      }
+      #gallery {
+        margin-left: 382px;
+      }
+    }
+
+    #login_form, #register_form {
+      display: none;
+      position: absolute;
+      background: white;
+      font-style: italic;
+      font-family: Georgia;
+      padding: 14px 20px;
+      z-index: 9;
+      div {
+        padding: 13px 0;
+      }
+      input {
+        border: none;
+        border-bottom: 2px solid #333;
+        position: absolute;
+      }
+      .hidden-submit {
+        opacity: 0;
+        position: absolute;
+      }
+      .already-reg, .password-forget {
+        background: $bright-blue;
+        position: absolute;
+        padding: 10px 10px;
+        color: black;
+        width: 238px;
+        left: -7px;
+        box-shadow: 3px 4px 5px 1px #999;
+        text-align: center;
+        margin-top: 12px;
+        a {
+          color: #444;
+        }
+      }
+    }
+
+    #register_form {
+      left: 351px;
+      z-index: 9;
+      top: 38px;
+      width: 201px;
+      input#user_name {
+        top: 22px;
+      }
+      input.email {
+        top: 61px;
+      }
+      input#user_password {
+        top: 101px;
+        left: 99px;
+      }
+      input#user_password_confirmation{
+        top: 140px;
+        left: 84px;
+      }
+    }
+
+    #login_form {
+      top: 44px;
+      width: 205px;
+      margin-left: 8px;
+      input.email {
+        top: 21px;
+        left: 61px;
+      }
+      input.password {
+        top: 61px;
+        left: 88px;
+      }
+    }
+    #login {
+      z-index: 99;
+      display: block;
+      cursor: pointer;
+      @include sprite("top_bar", "login");
+      &:hover {
+        @include sprite("top_bar", "login-hover");
+      }
+    }
+    #register {
+      z-index: 9;
+      @include sprite("top_bar", "register");
+      margin-left: 104px;
+      cursor: pointer;
+      &:hover {
+        @include sprite("top_bar", "register-hover");
+      }
+    }
+    #gallery {
+      @include sprite("top_bar", "gallery");
+      margin-left: 195px;
+      cursor: pointer;
+      &:hover {
+        @include sprite("top_bar", "gallery-hover");
+      }
+    }
+
+    &.register {
+      #register_form {
+        display: block;
+      }
+      #register {
+        z-index: 999;
+        top: -2px;
+        @include sprite("top_bar", "register-active");
+        span {
+          padding: 11px 77px;
+        }
+      }
+      #gallery {
+        z-index: 99;
+        margin-left: 353px;
+      }
+    }
+    &.login {
+      #login_form {
+        display: block;
+      }
+      #login {
+        top: -2px;
+        @include sprite("top_bar", "login-active");
+        span {
+          padding: 11px 77px;
+        }
+      }
+      #register {
+        margin-left: 256px;
+      }
+      #gallery {
+        margin-left: 353px;
+      }
+    }
+  }
+}
 #content {
   width: 960px;
   margin: 0 auto -54px;

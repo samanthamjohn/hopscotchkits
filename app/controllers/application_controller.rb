@@ -1,12 +1,18 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  helper_method :current_user
+  helper_method [:resource_name, :resource, :devise_mapping]
   before_filter :add_body_class
 
-  def current_user
-    if session[:user_id]
-      User.find(session[:user_id])
-    end
+  def resource_name
+    :user
+  end
+
+  def resource
+    @resource ||= User.new
+  end
+
+  def devise_mapping
+    @devise_mapping ||= Devise.mappings[:user]
   end
 
   private
