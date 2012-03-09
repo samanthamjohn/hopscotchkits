@@ -6,6 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 #
+#
+unless User.where(email: "info@gethopscotch.com").first
+  User.create(name: "admin", email: "info@gethopscotch.com", password: "cheeseburgers")
+end
+
 require Rails.root.join("lib/kits.rb")
 require Rails.root.join("lib/steps.rb")
 require Rails.root.join("lib/requirements.rb")
