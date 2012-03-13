@@ -46,5 +46,4 @@ group :test do
   gem 'ruby-debug19'
   gem "shoulda-matchers"
   gem 'simplecov'
-  gem 'zonebie'
 end
