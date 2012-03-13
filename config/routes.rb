@@ -36,5 +36,5 @@ Hopscotch::Application.routes.draw do
     end
   end
   resources :programs
-  root :to => 'programs#root', kit_id: "quiz"
+  root :to => 'programs#root', kit_id: "puppy"
 end
