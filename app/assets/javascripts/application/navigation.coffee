@@ -2,12 +2,14 @@ $ ->
   $("a#login, .already-reg a").click( (e) ->
     e.preventDefault()
     $("#nav").removeClass("register")
+    $("#register_form").removeClass('errors')
     $("#nav").toggleClass("login")
   )
 
   $("a#register").click((e) ->
     e.preventDefault()
     $("#nav").removeClass("login")
+    $("#login_form").removeClass('errors')
     $("#nav").toggleClass("register")
   )
 
@@ -17,8 +19,10 @@ $ ->
     $("#top_bar").addClass("logged-in")
     $("#logged_in span.name").html(data.name + "!")
     $("#logout span").html("Your name's not #{data.name}?")
+    $("#login_form").removeClass('errors')
   ).on("ajax:error", (xhr, data, status) ->
-    console.log(data.responseText)
+    $("#login_form .errors").html(data.responseText)
+    $("#login_form").addClass('errors')
   )
 
   $("#register_form form").on("ajax:success", (xhr, data, status) ->
@@ -27,7 +31,13 @@ $ ->
     $("#top_bar").addClass("logged-in")
     $("#logged_in span.name").html(data.name + "!")
     $("#logout span").html("Your name's not #{data.name}?")
+    $("#register_form").removeClass('errors')
   ).on("ajax:error", (xhr, data, status) ->
-    console.log(data.responseText)
+    errors = JSON.parse(data.responseText)
+    errorStr = _.map(errors, (e, i) ->
+      "#{i} #{e}."
+    )
+    $("#register_form .errors").html(errorStr.join('<br />'))
+    $("#register_form").addClass('errors')
   )
 

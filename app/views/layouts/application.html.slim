@@ -35,7 +35,7 @@ html
           = simple_form_for(resource, as: resource_name, url: session_path(resource_name), remote: true) do |f|
             = f.input :email, required: false, label: "email:", input_html: { size: 27 }
             = f.input :password, required: false, label: "password:", input_html: { size: 21 }
-            = f.error_notification
+            div class='errors'
             div class='password-forget'
               = f.submit "log-in"
         = link_to "#", id: 'register' do
@@ -46,7 +46,7 @@ html
             = f.input :email, :required => true, label: "email:", input_html: {size: 26}
             = f.input :password, :required => true, label: "password:", input_html: {size: 20}
             = f.input :password_confirmation, :required => true, label: "confirm:", input_html: { size: 23 }
-            = f.error_notification
+            div class='errors'
             div class='hidden-submit'
               = f.submit
           div class='already-reg'

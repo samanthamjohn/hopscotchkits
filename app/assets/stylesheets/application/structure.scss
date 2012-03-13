@@ -201,9 +201,16 @@ body {
       }
     }
 
+    .errors {
+      display: none;
+    }
     &.register {
       #register_form {
         display: block;
+        &.errors .errors {
+          display: block;
+          color: $bright-orange;
+        }
       }
       #register {
         z-index: 999;
@@ -221,6 +228,10 @@ body {
     &.login {
       #login_form {
         display: block;
+        &.errors .errors {
+          display: block;
+          color: $bright-orange;
+        }
       }
       #login {
         top: -2px;
