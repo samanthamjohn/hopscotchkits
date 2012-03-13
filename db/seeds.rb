@@ -8,7 +8,8 @@
 #
 #
 unless User.where(email: "info@gethopscotch.com").first
-  User.create(name: "admin", email: "info@gethopscotch.com", password: "cheeseburgers")
+  u = User.create(name: "admin", email: "info@gethopscotch.com", password: "cheeseburgers")
+  u.update_attribute(:role, "admin")
 end
 
 require Rails.root.join("lib/kits.rb")
