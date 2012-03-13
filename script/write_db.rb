@@ -10,6 +10,9 @@ f.close
 f = File.open(Rails.root.join("lib/kits.rb"), 'a')
 f.write(
 "
+Kit.where(name: nil).each do |kit|
+  kit.destroy
+end
 kits.each do |kit|
   if existing_kit = Kit.where(id: kit['id']).first
     existing_kit.update_attributes(kit)
