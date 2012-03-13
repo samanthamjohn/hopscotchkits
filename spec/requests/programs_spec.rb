@@ -4,7 +4,7 @@ feature "hopscotch kits flow", js: true do
     require File.expand_path(Rails.root.join("db/seeds.rb"), __FILE__)
   end
 
-  scenario "logging in" do
+  scenario "logging in and completing a kit" do
     old_user = create(:user, email: "hello@goodbye.com", password: "password")
     visit root_path
     fill_in "What's it called", with: "my awesome program"
@@ -58,9 +58,7 @@ feature "hopscotch kits flow", js: true do
     end
     page.should have_content("#{old_user.name}!")
     program.reload.user.should == user
-  end
 
-  scenario "completing a kit" do
     steps = Kit.find_by_slug("puppy").steps.order("position ASC").all
     visit new_kit_program_path(kit_id: 'puppy')
     fill_in "What's it called?", with: "Samantha"
