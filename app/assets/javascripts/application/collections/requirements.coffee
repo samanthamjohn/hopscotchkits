@@ -15,9 +15,10 @@ window.Requirements = Backbone.Collection.extend(
       if failedSpecs.length > 0
         $(".progress .message.successful").removeClass("successful")
       else
-        $(".progress .message").addClass("successful")
-        $('.next_button').button({disabled: false}) if $(".next_button").length > 0
-        $('.last_button').button({disabled: false}) if $(".last_button").length > 0
+        unless Step.get('freeplay')
+          $(".progress .message").addClass("successful")
+          $('.next_button').button({disabled: false}) if $(".next_button").length > 0
+          $('.last_button').button({disabled: false}) if $(".last_button").length > 0
     catch error
       $(".progress .message.successful").removeClass("successful")
       if old_paper && old_paper.canvas

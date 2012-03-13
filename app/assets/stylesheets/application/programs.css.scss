@@ -342,7 +342,23 @@
     display: inline-block;
     margin-left: 5px;
   }
-  .next_button, .last_button { float: right }
+  .next_button, .last_button { 
+    float: right;
+    .publish {
+      display: none;
+    }
+    .next {
+      display: block;
+    }
+  }
+  .publish-button {
+    .publish {
+      display: block;
+    }
+    .next {
+      display: none;
+    }
+  }
 }
 
 .message {

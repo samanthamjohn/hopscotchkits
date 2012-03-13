@@ -9,6 +9,7 @@ window.ProgramView = Backbone.View.extend(
     $("#next_steps").html(Mustache.render(ideTemplate, this))
     $(".next_button").button(disabled: true)
     $(".last_button").button(disabled: true)
+    $(".publish-button").button(disabled: false)
     $(".more-info").button(icons:
       secondary: "ui-icon-triangle-1-s"
     )
@@ -32,6 +33,7 @@ window.ProgramView = Backbone.View.extend(
     "click a.hint" : "showHint"
     "click .next_button" : "refreshStep"
     "click .last_button" : "submitCodeAndShow"
+    "click .publish-button" : "submitCodeAndShow"
     "click .solution-link" : "toggleSolutions"
     "click .more-info"  : "showMoreInfo"
     "click .less-info"  : "showLessInfo"
@@ -125,7 +127,9 @@ window.ProgramView = Backbone.View.extend(
   programId: ->
     this.model.get('programId')
   buttonClass: ->
-    if this.model.get('last_step') || this.model.get('bonus') == true || this.model.get('freeplay') == true
+    if this.model.get('bonus') == true || this.model.get('freeplay') == true
+      "publish-button"
+    else if this.model.get('last_step') 
       "last_button"
     else if this.model.get('next_step_id')
       "next_button"
