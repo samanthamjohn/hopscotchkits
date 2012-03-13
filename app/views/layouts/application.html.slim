@@ -36,10 +36,8 @@ html
             = f.input :email, required: false, label: "email:", input_html: { size: 27 }
             = f.input :password, required: false, label: "password:", input_html: { size: 21 }
             = f.error_notification
-            div class='hidden-submit'
-              = f.submit
-          div class='password-forget'
-            = link_to "Forgot your password?", new_password_path(resource_name)
+            div class='password-forget'
+              = f.submit "log-in"
         = link_to "#", id: 'register' do
             span register
         div id='register_form'
