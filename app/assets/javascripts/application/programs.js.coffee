@@ -1,3 +1,153 @@
+window.colors = [
+  "black"
+  "navy"
+  "darkblue"
+  "mediumblue"
+  "blue"
+  "darkgreen"
+  "green"
+  "teal"
+  "darkcyan"
+  "deepskyblue"
+  "darkturquoise"
+  "mediumspringgreen"
+  "lime"
+  "springgreen"
+  "aqua"
+  "cyan"
+  "midnightblue"
+  "dodgerblue"
+  "lightseagreen"
+  "forestgreen"
+  "seagreen"
+  "darkslategray"
+  "darkslategrey"
+  "limegreen"
+  "mediumseagreen"
+  "turquoise"
+  "royalblue"
+  "steelblue"
+  "darkslateblue"
+  "mediumturquoise"
+  "indigo "
+  "darkolivegreen"
+  "cadetblue"
+  "cornflowerblue"
+  "mediumaquamarine"
+  "dimgray"
+  "dimgrey"
+  "slateblue"
+  "olivedrab"
+  "slategray"
+  "slategrey"
+  "lightslategray"
+  "lightslategrey"
+  "mediumslateblue"
+  "lawngreen"
+  "chartreuse"
+  "aquamarine"
+  "maroon"
+  "purple"
+  "olive"
+  "gray"
+  "grey"
+  "skyblue"
+  "lightskyblue"
+  "blueviolet"
+  "darkred"
+  "darkmagenta"
+  "saddlebrown"
+  "darkseagreen"
+  "lightgreen"
+  "mediumpurple"
+  "darkviolet"
+  "palegreen"
+  "darkorchid"
+  "yellowgreen"
+  "sienna"
+  "brown"
+  "darkgray"
+  "darkgrey"
+  "lightblue"
+  "greenyellow"
+  "paleturquoise"
+  "lightsteelblue"
+  "powderblue"
+  "firebrick"
+  "darkgoldenrod"
+  "mediumorchid"
+  "rosybrown"
+  "darkkhaki"
+  "silver"
+  "mediumvioletred"
+  "indianred "
+  "peru"
+  "chocolate"
+  "tan"
+  "lightgray"
+  "lightgrey"
+  "palevioletred"
+  "thistle"
+  "orchid"
+  "goldenrod"
+  "crimson"
+  "gainsboro"
+  "plum"
+  "burlywood"
+  "lightcyan"
+  "lavender"
+  "darksalmon"
+  "violet"
+  "palegoldenrod"
+  "lightcoral"
+  "khaki"
+  "aliceblue"
+  "honeydew"
+  "azure"
+  "sandybrown"
+  "wheat"
+  "beige"
+  "whitesmoke"
+  "mintcream"
+  "ghostwhite"
+  "salmon"
+  "antiquewhite"
+  "linen"
+  "lightgoldenrodyellow"
+  "oldlace"
+  "red"
+  "fuchsia"
+  "magenta"
+  "deeppink"
+  "orangered"
+  "tomato"
+  "hotpink"
+  "coral"
+  "darkorange"
+  "lightsalmon"
+  "orange"
+  "lightpink"
+  "pink"
+  "gold"
+  "peachpuff"
+  "navajowhite"
+  "moccasin"
+  "bisque"
+  "mistyrose"
+  "blanchedalmond"
+  "papayawhip"
+  "lavenderblush"
+  "seashell"
+  "cornsilk"
+  "lemonchiffon"
+  "floralwhite"
+  "snow"
+  "yellow"
+  "lightyellow"
+  "ivory"
+  "white"
+]
+
 executeCode = ->
   val = editor.getSession().getValue()
   CoffeeScript.eval(val)
@@ -49,7 +199,18 @@ window.startEditor = (code) ->
     exec: (editor) ->
       wRange = editor.getSelectionRange()
       word = editor.getSession().doc.getTextRange(wRange)
-      if word.match(/\d/)
+      colorIndex = _.indexOf(colors, word.toLowerCase())
+      if colorIndex > 0
+        newWord = colors[colorIndex - 1]
+        editor.getSession().replace(wRange, "#{newWord}")
+        editor.commands.commands.selectwordleft.exec(editor)
+        executeCode()
+      else if colorIndex == 0
+        newWord = _.last(colors)
+        editor.getSession().replace(wRange, "#{newWord}")
+        editor.commands.commands.selectwordleft.exec(editor)
+        executeCode()
+      else if word.match(/\d/)
         if parseInt(word) || parseInt(word) == 0
           editor.getSession().replace(wRange, "#{(parseInt(word, 10) + 1)}")
           editor.commands.commands.selectwordleft.exec(editor)
@@ -87,7 +248,18 @@ window.startEditor = (code) ->
     exec: (editor) ->
       wRange = editor.getSelectionRange()
       word = editor.getSession().doc.getTextRange(wRange)
-      if word.match(/\d/) 
+      colorIndex = _.indexOf(colors, word.toLowerCase())
+      if word.toLowerCase() == _.last(colors)
+        newWord = _.first(colors)
+        editor.getSession().replace(wRange, "#{newWord}")
+        editor.commands.commands.selectwordleft.exec(editor)
+        executeCode()
+      else if colorIndex >= 0
+        newWord = colors[colorIndex + 1]
+        editor.getSession().replace(wRange, "#{newWord}")
+        editor.commands.commands.selectwordleft.exec(editor)
+        executeCode()
+      else if word.match(/\d/) 
         if parseInt(word) || parseInt(word) == 0
           editor.getSession().replace(wRange, "#{(parseInt(word, 10) - 1)}")
           editor.commands.commands.selectwordleft.exec(editor)

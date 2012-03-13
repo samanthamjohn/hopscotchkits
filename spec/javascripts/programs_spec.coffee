@@ -120,6 +120,44 @@ describe("Programs", ->
       expect(Step.runSpecs.callCount).toEqual(1)
       expect($.fn.submit).toHaveBeenCalled()
     )
+    it("should not timeout if you change a color word", ->
+      spyOn(Step, 'runSpecs').andCallThrough()
+      startEditor("window.foo = 'Black'")
+      jasmine.Clock.tick(tick)
+      expect(window.foo).toEqual('Black')
+      spyOn($.fn, "submit")
+
+      fakeRange = editor.getSelectionRange()
+      fakeRange.end =
+        column: 19
+        row: 0
+      fakeRange.start =
+        column: 14
+        row: 0
+      spyOn(editor, 'getSelectionRange').andReturn(fakeRange)
+
+      # make a change using the up arrow
+      editor.commands.commands.upArrow.exec(editor)
+      expect(window.foo).toEqual('white')
+      expect($.fn.submit).not.toHaveBeenCalled()
+      editor.commands.commands.upArrow.exec(editor)
+      expect(window.foo).toEqual('ivory')
+      expect($.fn.submit).not.toHaveBeenCalled()
+
+      # make a change using the down arrow
+      editor.commands.commands.downArrow.exec(editor)
+      expect(window.foo).toEqual('white')
+      expect($.fn.submit).not.toHaveBeenCalled()
+
+      editor.commands.commands.downArrow.exec(editor)
+      expect(window.foo).toEqual('black')
+      expect($.fn.submit).not.toHaveBeenCalled()
+
+      jasmine.Clock.tick(tick)
+      expect(Step.runSpecs).toHaveBeenCalled()
+      expect(Step.runSpecs.callCount).toEqual(1)
+      expect($.fn.submit).toHaveBeenCalled()
+    )
 
     it("should not timeout if you press enter", ->
       spyOn(Step, 'runSpecs').andCallThrough()
