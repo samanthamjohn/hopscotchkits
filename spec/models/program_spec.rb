@@ -11,6 +11,14 @@ describe Program do
     create(:program).should be_valid
   end
 
+  describe "scopes" do
+    it "should have a featured scope" do
+      unfeatured = create(:program)
+      featured = create(:program, featured: true)
+      Program.featured.should include(featured)
+    end
+  end
+
   describe "creation" do
     it "should start on the first step" do
       step = create(:step)

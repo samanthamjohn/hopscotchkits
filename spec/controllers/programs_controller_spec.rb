@@ -51,8 +51,10 @@ describe ProgramsController do
   describe "#new" do
     it "should render the new page" do
       kit = Kit.create(slug: "foo")
+      program = create(:program, kit: kit, featured: true)
       get :new, :kit_id => kit.to_param
       assigns(:kit).should == kit
+      assigns(:programs).should be
       response.should render_template("new")
     end
   end

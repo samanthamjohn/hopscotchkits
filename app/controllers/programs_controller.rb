@@ -14,6 +14,7 @@ class ProgramsController < ApplicationController
   def new
     @body_class = "programs new"
     @kit= Kit.find_by_slug(params[:kit_id])
+    @programs = Program.featured.where(kit_id: @kit.id)
   end
 
   def new_form

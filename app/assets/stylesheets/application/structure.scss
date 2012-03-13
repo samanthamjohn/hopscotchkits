@@ -24,6 +24,10 @@ body {
   display: none;
 }
 
+.clearfix {
+  clear: both;
+}
+
 #top_bar {
   background: $bright-orange;
   height: 28px;

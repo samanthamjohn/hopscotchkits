@@ -10,15 +10,9 @@
       .new.program data-kit=@kit.to_param
 
 
-  div id='ide'
-    div id='editor'
-    div id='stage'
-      iframe name='stage'
-    div id='controls'
-      form
-        input id="program_code" type='hidden'
-      = link_to "Run this", "#", id: "runthis", class: "button"
-      = link_to "Hint", "#", class: "hint button"
-
-  div id='hint' Fill in your name and press Start Coding to begin
-
+  div class='clearfix'
+  div class='programs-gallery new-programs-gallery'
+    .hr
+    div id='subtitle' A selection of nifty projects by others
+    - @i = 0
+    ul= render @programs

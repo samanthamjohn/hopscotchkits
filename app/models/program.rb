@@ -9,6 +9,8 @@ class Program < ActiveRecord::Base
   before_save :set_name
   after_save :create_snapshot
 
+  scope :featured, where(featured: true)
+
   def next_step
     self.kit.steps.where("position > ?", self.current_step.position).order(:position).first
   end
