@@ -60,6 +60,8 @@ $ ->
   ).on("ajax:error", (xhr, data, status) ->
     errors = JSON.parse(data.responseText)
     errorStr = _.map(errors, (e, i) ->
+      if e instanceof Array
+        e = e.join(', ')
       "#{i} #{e}."
     )
     $("#register_form .errors").html(errorStr.join('<br />'))

@@ -9,6 +9,7 @@ class RegistrationsController < Devise::RegistrationsController
     Rails.logger.info(params)
     user = User.new(params[:user])
     if user.save
+      sign_in(user)
       render json: user, status: 201
     else
       render json: user.errors, status: 400

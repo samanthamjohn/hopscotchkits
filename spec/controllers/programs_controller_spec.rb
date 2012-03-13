@@ -130,6 +130,16 @@ describe ProgramsController do
       post :update, kit_id: kit.to_param, id: program.to_param, program: {code: "var x = 3;"}
       assigns(:program).code.should == "var x = 3;"
     end
+
+    context "the program already has a user" do
+      it "should not switch the programs user" do
+        user = create(:user)
+        new_user = create(:user)
+        program = create(:program, user: user)
+        post :update, id: program.to_param, program: {user_id: new_user.id}
+        program.reload.user.should == user
+      end
+    end
   end
 
   describe "#mobile" do

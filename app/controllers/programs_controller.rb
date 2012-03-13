@@ -34,6 +34,9 @@ class ProgramsController < ApplicationController
   end
 
   def update
+    if @program.user
+      params[:program].reject!{|p| p == "user_id"}
+    end
     @program.update_attributes(params[:program])
     head :ok
   end
