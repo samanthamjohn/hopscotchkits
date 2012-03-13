@@ -18,7 +18,6 @@ class ProgramsController < ApplicationController
 
   def new_form
     kit = Kit.find_by_slug(params[:kit_id])
-    Rails.logger.info(session.inspect)
     if session[:program_id]
       @current_program = Program.find(session[:program_id])
     else
