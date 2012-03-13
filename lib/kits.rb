@@ -51,16 +51,11 @@ kits = [{"id"=>2,
  "updated_at"=>"2012-02-15 14:53:09 UTC",
  "icon_url"=>"quiz-icon.png",
  "published"=>true,
- "blurb"=>"Make a quiz you can play on your computer or your phone."},
-{"id"=>8,
- "name"=>nil,
- "slug"=>"foo",
- "description"=>nil,
- "created_at"=>"2012-02-28 16:52:10 UTC",
- "updated_at"=>"2012-02-28 16:52:10 UTC",
- "icon_url"=>nil,
- "published"=>nil,
- "blurb"=>nil}]
+ "blurb"=>"Make a quiz you can play on your computer or your phone."}
+]
+Kit.where(name: nil).each do |kit|
+  kit.destroy
+end
 kits.each do |kit|
   if existing_kit = Kit.where(id: kit['id']).first
     existing_kit.update_attributes(kit)
