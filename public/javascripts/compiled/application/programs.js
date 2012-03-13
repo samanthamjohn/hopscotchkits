@@ -30,7 +30,7 @@
       clearTimeout(specTimer);
       return window.specTimer = setTimeout((function() {
         Step.runSpecs();
-        if (e.data.text && e.data.text.match(/\r/)) return $("#ide form").submit();
+        return $("#ide form").submit();
       }), tick);
     });
     editor.commands.addCommand({

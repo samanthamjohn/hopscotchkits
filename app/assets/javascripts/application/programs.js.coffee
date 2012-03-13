@@ -23,8 +23,7 @@ window.startEditor = (code) ->
     clearTimeout(specTimer)
     window.specTimer = setTimeout((-> 
       Step.runSpecs()
-      if e.data.text && e.data.text.match(/\r/)
-        $("#ide form").submit()
+      $("#ide form").submit()
     ), tick)
   )
 
