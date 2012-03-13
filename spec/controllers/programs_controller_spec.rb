@@ -6,7 +6,7 @@ describe ProgramsController do
       it "should render the new page" do
         kit = Kit.create!(slug: "foo")
         get :root, :kit_id => kit.to_param
-        assigns(:program).kit.should == kit
+        assigns(:kit).should == kit
         response.should render_template("new")
       end
     end
@@ -22,21 +22,48 @@ describe ProgramsController do
     end
   end
 
+
+  describe "#new_form" do
+    context "they have already started a program" do
+      it "should also assign the current_program instance variable" do
+        program = create(:program)
+        session[:program_id] = program.id
+        kit = create(:kit)
+        get :new_form, kit_id: kit.to_param
+        assigns(:program).kit.should == kit
+        assigns(:current_program).should == program
+        response.should render_template "new_form"
+        response.should_not render_template "layouts/application"
+      end
+    end
+    context "there is no program session" do
+      it "should render the new form partial" do
+        kit = create(:kit)
+        get :new_form, kit_id: kit.to_param
+        assigns(:program).kit.should == kit
+        assigns(:current_program).should be_nil
+        response.should render_template "new_form"
+        response.should_not render_template "layouts/application"
+      end
+    end
+  end
+
   describe "#new" do
     it "should render the new page" do
       kit = Kit.create(slug: "foo")
       get :new, :kit_id => kit.to_param
-      assigns(:program).kit.should == kit
+      assigns(:kit).should == kit
       response.should render_template("new")
     end
   end
 
   describe "#create" do
-    it "should set the name" do
+    it "should set the name and a session variable" do
       kit = Kit.create(slug: "foo")
       post :create, kit_id: kit.to_param, program: { kit_id: kit.id, name: "FOO" }
       program = Program.last
       program.name.should == "FOO"
+      session[:program_id].should == program.id
       response.should redirect_to edit_program_path(program)
     end
   end

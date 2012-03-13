@@ -1,0 +1,19 @@
+- if @current_program
+  div class='existing-program'
+    h2
+      | It seems that you have already started a program. 
+    h2
+      = link_to "Continue editing", edit_program_path(@current_program)
+      |  or 
+      = link_to "start a new one", "#", class: "show-new-program"
+  div class='new-program-form hidden'
+    = simple_form_for [@program.kit, @program] do |f|
+      = f.hidden_field :kit_id
+      = f.input :name, label: "What's it called?"
+      = f.submit value: "Start coding"
+    h2= link_to "Continue editing", edit_program_path(@current_program)
+- else
+  = simple_form_for [@program.kit, @program] do |f|
+    = f.hidden_field :kit_id
+    = f.input :name, label: "What's it called?"
+    = f.submit value: "Start coding"

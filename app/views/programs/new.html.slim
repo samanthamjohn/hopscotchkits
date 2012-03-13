@@ -3,15 +3,11 @@
     h1 Hello!
     .hr
     .progress
-      = image_tag(@program.kit.icon_url) if @program.kit.icon_url.present?
+      = image_tag(@kit.icon_url) if @kit.icon_url.present?
     .instructions.welcome
       div class='description'
-        p= @program.kit.description
-      .new.program
-        = simple_form_for [@program.kit, @program] do |f|
-          = f.hidden_field :kit_id
-          = f.input :name, label: "What's it called?"
-          = f.submit value: "Start coding"
+        p= @kit.description
+      .new.program data-kit=@kit.to_param
 
 
   div id='ide'
@@ -25,3 +21,4 @@
       = link_to "Hint", "#", class: "hint button"
 
   div id='hint' Fill in your name and press Start Coding to begin
+

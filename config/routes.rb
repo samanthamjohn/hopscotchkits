@@ -28,6 +28,7 @@ Hopscotch::Application.routes.draw do
     resources :programs do
       collection do
         get :root
+        get :new_form
       end
       member do
         get :next_step

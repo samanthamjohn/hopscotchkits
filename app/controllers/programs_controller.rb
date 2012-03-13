@@ -1,5 +1,5 @@
 class ProgramsController < ApplicationController
-  before_filter :load_program, except: ["new", "create", "index", "root", "gallery"]
+  before_filter :load_program, except: ["new", "create", "index", "root", "gallery", "new_form"]
   load_and_authorize_resource only: ["index", "feature"]
 
   def root
@@ -13,14 +13,25 @@ class ProgramsController < ApplicationController
 
   def new
     @body_class = "programs new"
-    kit= Kit.find_by_slug(params[:kit_id])
-    @program = Program.new(kit: kit, user: User.new)
+    @kit= Kit.find_by_slug(params[:kit_id])
+  end
+
+  def new_form
+    kit = Kit.find_by_slug(params[:kit_id])
+    Rails.logger.info(session.inspect)
+    if session[:program_id]
+      @current_program = Program.find(session[:program_id])
+    else
+      @current_program = nil
+    end
+    @program = Program.new(kit: kit)
+    render partial: "new_form"
   end
 
   def create
     program_attrs = params[:program]
     @program = Program.create!(program_attrs)
-    @program.reload
+    session[:program_id] = @program.id
     redirect_to edit_program_path(@program)
   end
 

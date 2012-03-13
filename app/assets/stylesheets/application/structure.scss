@@ -20,6 +20,10 @@ body {
   height: 100%;
 }
 
+.hidden {
+  display: none;
+}
+
 #top_bar {
   background: $bright-orange;
   height: 28px;

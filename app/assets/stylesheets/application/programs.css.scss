@@ -215,6 +215,15 @@
 }
 
 .program.new {
+  h2 {
+    font-size: 22px;
+    font-family: MavenProBold;
+    margin: 10px 0;
+    clear: both;
+    a {
+      color: $bright-blue;
+    }
+  }
   form {
     width: 605px;
     div {
