@@ -335,8 +335,12 @@ body {
 }
 
 a {
-  color: #6A8D94;
+  color: $bright-blue;
   text-decoration: none;
+  &:active {
+    text-decoration: underline;
+    color: $link-active-blue;
+  }
 }
 
 p a {
