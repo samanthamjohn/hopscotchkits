@@ -180,6 +180,7 @@ describe ProgramsController do
       response.should render_template("mobile")
     end
   end
+
   describe "#next_step" do
     it "should render the next step as json" do
       kit = Kit.create(slug: "foo")
@@ -192,7 +193,21 @@ describe ProgramsController do
       resp["step"]["id"].should == step2.id
       resp["program"]["id"].should == program.id
     end
+  end
 
+  describe "#previous_step" do
+    it "should render the previous step as json" do
+      kit = Kit.create(slug: "foo")
+      step2 = Step.create!(kit_id: kit.id, position: 2)
+      step1 = Step.create!(kit_id: kit.id, position: 1)
+      program = Program.create(kit: kit)
+      program.update_attributes(current_step: step2)
+      get :previous_step, id: program.to_param
+      assigns(:program).reload.current_step.should == step1
+      resp = JSON.parse(response.body)
+      resp["step"]["id"].should == step1.id
+      resp["program"]["id"].should == program.id
+    end
   end
 
   describe "#show" do

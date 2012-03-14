@@ -8,6 +8,7 @@ Hopscotch::Application.routes.draw do
   resources :programs do
     member do
       get :next_step
+      get :previous_step
       get :data
       post :name
       get :iframe

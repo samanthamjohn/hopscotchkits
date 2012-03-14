@@ -41,6 +41,7 @@ describe Program do
       snapshot2.code.should == 'bar'
     end
   end
+
   describe "before_save" do
     it "should return the kit name if it doesn't exists" do
       kit = Kit.create!(slug: "foo", name: 'bar')
@@ -53,10 +54,21 @@ describe Program do
 
   describe "#next_step" do
     it "should return the next step" do
-      step = create(:step)
-      next_step = create(:step, kit: step.kit)
-      p = create(:program, kit: step.kit)
-      p.next_step.should == next_step
+      step = create(:step, position: 1)
+      next_step = create(:step, kit: step.kit, position: 2)
+      program = create(:program, kit: step.kit)
+      program.next_step.should == next_step
+    end
+  end
+
+  describe "#previous_step" do
+    it "should return the previous step" do
+      step3 = create(:step, position: 3)
+      step2 = create(:step, kit: step3.kit, position: 2)
+      step1 = create(:step, kit: step3.kit, position: 1)
+      program = create(:program, kit: step3.kit)
+      program.update_attributes(current_step: step3)
+      program.previous_step.should == step2
     end
   end
 

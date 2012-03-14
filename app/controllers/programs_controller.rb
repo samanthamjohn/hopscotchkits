@@ -53,8 +53,12 @@ class ProgramsController < ApplicationController
   end
 
   def next_step
-    @program = Program.find(params[:id])
     @program.update_attributes(current_step: @program.next_step)
+    render json: { step: @program.current_step, program: @program }
+  end
+
+  def previous_step
+    @program.update_attributes(current_step: @program.previous_step)
     render json: { step: @program.current_step, program: @program }
   end
 

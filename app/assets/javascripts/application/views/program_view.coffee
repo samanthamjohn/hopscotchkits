@@ -10,6 +10,7 @@ window.ProgramView = Backbone.View.extend(
     $(".next_button").button(disabled: true)
     $(".last_button").button(disabled: true)
     $(".publish-button").button(disabled: false)
+    $(".previous_button").button(disabled: false)
     if $("#runthis").length > 0
       leftOffset = $("#runthis").offset().left - 2;
       $("#runthis_copy").css("left", leftOffset)
@@ -27,6 +28,7 @@ window.ProgramView = Backbone.View.extend(
     "click a.hint" : "showHint"
     "click .next_button" : "refreshStep"
     "click .last_button" : "submitCodeAndShow"
+    "click .previous_button" : "previousStep"
     "click .publish-button" : "submitCodeAndShow"
     "click .solution-link" : "toggleSolutions"
     "click .more-info"  : "showMoreInfo"
@@ -44,6 +46,10 @@ window.ProgramView = Backbone.View.extend(
   toggleSolutions: (e) ->
     e.preventDefault()
     $(".solutions").toggle()
+  previousStep: (e) ->
+    e.preventDefault()
+    this.model.set('url', 'previous_step')
+    this.model.fetch()
   refreshStep: (e) ->
     e.preventDefault()
     this.model.set('url', 'next_step')
@@ -124,6 +130,11 @@ window.ProgramView = Backbone.View.extend(
       "last_button"
     else if this.model.get('next_step_id')
       "next_button"
+  backButtonClass: ->
+    if this.model.get('bonus') == true || this.model.get('freeplay') == true || this.model.get('position') == 1
+      "hidden"
+    else
+      "previous_button"
   image_tag: () ->
     if this.model.get('image_url')
       "<img src='/assets/step_images/#{this.model.get('image_url')}' alt=#{this.model.get('.title')}/>"

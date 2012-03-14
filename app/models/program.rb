@@ -15,6 +15,10 @@ class Program < ActiveRecord::Base
     self.kit.steps.where("position > ?", self.current_step.position).order(:position).first
   end
 
+  def previous_step
+    self.kit.steps.where("position < ?", self.current_step.position).order("position DESC").first
+  end
+
 private
   def set_current_step
     self.current_step = self.kit.steps.order(:position).first

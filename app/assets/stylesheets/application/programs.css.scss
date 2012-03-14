@@ -361,6 +361,9 @@
 
 .next-controls {
   width: 400px;
+  .previous_button {
+    float: left;
+  }
   .next_button, .last_button {
     float: right;
     .publish {
