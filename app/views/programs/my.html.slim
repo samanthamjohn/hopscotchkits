@@ -10,7 +10,8 @@ div class='my-programs'
         span class='name'= program.name
         span class='updated'= " last updated #{time_ago_in_words(program.updated_at)} ago"
 
-        = link_to edit_kit_program_path(program.kit, program) do
+        = link_to "", edit_program_path(program), class: "program-overlay"
+        = link_to edit_program_path(program) do
           - if i%2 == 0
             = image_tag("frame-orange.png")
           - else

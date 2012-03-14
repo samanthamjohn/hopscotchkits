@@ -35,4 +35,14 @@
   img {
     position: absolute;
   }
+  a.program-overlay {
+   display: block;
+   position: absolute;
+   cursor: pointer;
+   top: 41px;
+   left: 1px;
+   height: 222px;
+   width: 242px;
+   z-index: 9;
+  }
 }

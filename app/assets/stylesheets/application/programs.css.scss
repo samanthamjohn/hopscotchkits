@@ -17,45 +17,55 @@
     height: 313px;
     img {
       position: absolute;
-    }
-    .name {
-      font-family: "MavenProBold";
-      font-weight: bold;
-      font-size: 20px;
-      margin-left: 8px;
-      color: black;
-    }
-    .updated {
-      color: #666;
-      font-style: italic;
-      display: block;
-      margin-left: 8px;
-      margin-bottom: 5px;
-    }
-    a.program {
-      width: 300px;
-      display: inline-block;
-    }
-    .edit-button {
-      height: 25px;
-      width: 25px;
-      background: transparent image_url("edit-icon.png") 0 0 no-repeat;
-    }
-    .trash-button {
-      height: 24px;
-      width: 24px;
-      background: transparent image_url("trash-icon.png") 0 0 no-repeat;
-    }
-    .trash-button, .edit-button {
-      display: block;
-      float: right;
-      margin: 58px 14px 0 0;
-      text-indent: -9999px;
-   }
-   iframe {
-     position: relative;
   }
+  .name {
+    font-family: "MavenProBold";
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: 8px;
+    color: black;
   }
+  .updated {
+    color: #666;
+    font-style: italic;
+    display: block;
+    margin-left: 8px;
+    margin-bottom: 5px;
+  }
+  a.program {
+    width: 300px;
+    display: inline-block;
+  }
+  .edit-button {
+    height: 25px;
+    width: 25px;
+    background: transparent image_url("edit-icon.png") 0 0 no-repeat;
+  }
+  .trash-button {
+    height: 24px;
+    width: 24px;
+    background: transparent image_url("trash-icon.png") 0 0 no-repeat;
+  }
+  .trash-button, .edit-button {
+    display: block;
+    float: right;
+    margin: 58px 14px 0 0;
+    text-indent: -9999px;
+  }
+  a.program-overlay {
+   display: block;
+   position: absolute;
+   cursor: pointer;
+   top: 41px;
+   left: 1px;
+   height: 222px;
+   width: 242px;
+   z-index: 9;
+  }
+  iframe {
+   position: relative;
+  }
+}
 
   .new-programs {
     li {

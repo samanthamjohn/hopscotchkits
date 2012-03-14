@@ -2,6 +2,7 @@
 li
   h2= link_to program.name, program_path(program)
   div class='updated'= "last updated #{time_ago_in_words(program.updated_at)} ago"
+  = link_to "", program_path(program), class: "program-overlay"
   = link_to program_path(program), class: 'iframe-container', "data-iframe" => {name: program.id, src: iframe_program_path(program) }.to_json do
     - if @i%2 == 0
       = image_tag("frame-orange.png")
