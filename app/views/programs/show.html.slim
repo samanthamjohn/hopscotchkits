@@ -25,7 +25,7 @@ div class='right'
   div class='created-by'
     | created by 
     =@program.user.name
-  div class='updated'= "last updated #{time_ago_in_words(@program.created_at)} ago"
+  div class='updated'= "last updated #{time_ago_in_words(@program.updated_at)} ago"
 
 div class='bottom'
   div id='social_links'
