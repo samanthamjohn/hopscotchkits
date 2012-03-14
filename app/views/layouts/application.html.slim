@@ -17,52 +17,53 @@ html
       })();
   = yield :head
   body class=@body_class
-    - klass= current_user ? "logged-in" : ""
-    - name = current_user.name if current_user
-    div id='top_bar' class=klass
-      div id='nav' class=klass
-        = link_to "#", id: 'login' do
-          span log-in
-        div id='logged_in'
-          span.name= "#{name}!"
-          span.welcome-back welcome back
-        = link_to root_path, id: "my_programs" do
-          span my programs
-        div id='logout'
-          span.your-name= "Your name's not #{name}?"
-          = link_to "log out", destroy_user_session_path, method: "delete"
-        div id='login_form' action="" method="get"
-          = simple_form_for(resource, as: resource_name, url: session_path(resource_name), remote: true) do |f|
-            = f.input :email, required: false, label: "email:", input_html: { size: 27 }
-            = f.input :password, required: false, label: "password:", input_html: { size: 21 }
-            div class='errors'
-            div class='password-forget'
-              = f.submit "log-in"
-        = link_to "#", id: 'register' do
-            span register
-        div id='register_form'
-          = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), remote: true) do |f|
-            = f.input :name, :required => true, label: "name:", input_html: {size: 26}
-            = f.input :email, :required => true, label: "email:", input_html: {size: 26}
-            = f.input :password, :required => true, label: "password:", input_html: {size: 20}
-            = f.input :password_confirmation, :required => true, label: "confirm:", input_html: { size: 23 }
-            div class='errors'
-            div class='hidden-submit'
-              = f.submit
-          div class='already-reg'
-            = link_to "Already registered? Log in!", "#"
-        = link_to gallery_path, id: 'gallery' do
-          span gallery
-    /* - if flash[:notice] */
-      /* div class='flash'= flash[:notice] */
-    #content
-      a.logo Kits (beta!)
-      = yield
-      div class='push'
-    #footer
-      .homelink
-        = link_to "http://www.gethopscotch.com", target: "_blank" do
-          |a 
-          span.logo Hopscotch 
-          | app
-      #footer_bg
+    div class='bg'
+      - klass= current_user ? "logged-in" : ""
+      - name = current_user.name if current_user
+      div id='top_bar' class=klass
+        div id='nav' class=klass
+          = link_to "#", id: 'login' do
+            span log-in
+          div id='logged_in'
+            span.name= "#{name}!"
+            span.welcome-back welcome back
+          = link_to root_path, id: "my_programs" do
+            span my programs
+          div id='logout'
+            span.your-name= "Your name's not #{name}?"
+            = link_to "log out", destroy_user_session_path, method: "delete"
+          div id='login_form' action="" method="get"
+            = simple_form_for(resource, as: resource_name, url: session_path(resource_name), remote: true) do |f|
+              = f.input :email, required: false, label: "email:", input_html: { size: 27 }
+              = f.input :password, required: false, label: "password:", input_html: { size: 21 }
+              div class='errors'
+              div class='password-forget'
+                = f.submit "log-in"
+          = link_to "#", id: 'register' do
+              span register
+          div id='register_form'
+            = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), remote: true) do |f|
+              = f.input :name, :required => true, label: "name:", input_html: {size: 26}
+              = f.input :email, :required => true, label: "email:", input_html: {size: 26}
+              = f.input :password, :required => true, label: "password:", input_html: {size: 20}
+              = f.input :password_confirmation, :required => true, label: "confirm:", input_html: { size: 23 }
+              div class='errors'
+              div class='hidden-submit'
+                = f.submit
+            div class='already-reg'
+              = link_to "Already registered? Log in!", "#"
+          = link_to gallery_path, id: 'gallery' do
+            span gallery
+      /* - if flash[:notice] */
+        /* div class='flash'= flash[:notice] */
+      #content
+        a.logo Kits (beta!)
+        = yield
+        div class='push'
+      #footer
+        .homelink
+          = link_to "http://www.gethopscotch.com", target: "_blank" do
+            |a 
+            span.logo Hopscotch 
+            | app
+        #footer_bg

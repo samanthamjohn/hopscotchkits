@@ -16,8 +16,14 @@ body {
   width: 100%;
   font-family: 'Georgia';
   font-size: 14px;
-  background: #f2eee8;
   height: 100%;
+  background: #f2eee8 image_url("bg-stripes.png");
+  .bg {
+    background: transparent image_url('bg-pattern.png');
+    width: 100%;
+    font-family: 'Georgia';
+    font-size: 14px;
+  }
 }
 
 .hidden {
@@ -32,9 +38,6 @@ body {
   background: $bright-orange;
   height: 28px;
   position: relative;
-  &.logged-in {
-    margin-bottom: 10px;
-  }
   #nav {
     width: 960px;
     margin: 0 auto;
@@ -263,6 +266,11 @@ body {
   min-height: 100%;
   height: auto !important;
   height: 100%;
+  background: #f2eee8;
+  padding: 10px 10px 0;
+  box-shadow: 0px 0px 8px 5px #ccc;
+  -moz-box-shadow: 0px 0px 8px 5px #ccc;
+  -webkit-box-shadow: 0px 0px 8px 5px #ccc;
 }
 
 #footer, .push {

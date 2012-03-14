@@ -10,12 +10,6 @@ window.ProgramView = Backbone.View.extend(
     $(".next_button").button(disabled: true)
     $(".last_button").button(disabled: true)
     $(".publish-button").button(disabled: false)
-    $(".more-info").button(icons:
-      secondary: "ui-icon-triangle-1-s"
-    )
-    $(".less-info").button(icons:
-      secondary: 'ui-icon-triangle-1-n'
-    )
     if $("#runthis").length > 0
       leftOffset = $("#runthis").offset().left - 2;
       $("#runthis_copy").css("left", leftOffset)
@@ -83,10 +77,10 @@ window.ProgramView = Backbone.View.extend(
   moreInfo: () ->
     if this.model.get('more_info') != "<p></p>"
       html = "<div class='gradient'>" +
-        "<div id='more_info_button'><a href='#' class='more-info'>more info</a></div id='more_info_button'>" +
+        "<div id='more_info_button'><a href='#' class='more-info'>more info<span></span></a></div>" +
         "<div id='more_info'>" +
           "<div class='text'>" + this.model.get('more_info') + "</div>" +
-          "<a href='#' class='less-info'>less info</a>" +
+          "<a href='#' class='less-info'><span></span>less info</a>" +
         "</div>" +
       "</div>"
     else
