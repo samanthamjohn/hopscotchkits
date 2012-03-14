@@ -280,12 +280,6 @@ window.startEditor = (code) ->
         editor.navigateDown(1);
   )
 $ ->
-  if $("body.programs.new").length > 0
-    startEditor("")
-    $("#runthis").click((e) ->
-      val = window.editor.getSession().getValue()
-      CoffeeScript.eval(val)
-    )
   if $("body.programs-root").length > 0
     $(".new-program-form img").click( (e) ->
       $(e.target).parents().closest(".form").find(".blurb-hover form").submit()
