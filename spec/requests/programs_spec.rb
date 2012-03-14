@@ -93,7 +93,7 @@ feature "hopscotch kits flow", js: true do
     end
 
     # step 2
-    click_on("Next")
+    click_on("next step >>")
     within ".preface > h1" do
       page.should have_content('Step 2: ')
       within "span.subtitle" do
@@ -110,7 +110,7 @@ feature "hopscotch kits flow", js: true do
     end
 
     steps[2, (steps.length - 3)].each do |step|
-      click_on "Next"
+      click_on "next step >>"
       within ".preface > h1" do
         page.should have_content("Step #{step.position}: ")
         within "span.subtitle" do
@@ -124,7 +124,7 @@ feature "hopscotch kits flow", js: true do
       end
     end
 
-    click_on("Next")
+    click_on("next step >>")
     current_path.should == program_path(Program.last)
 
   end
