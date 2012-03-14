@@ -2,13 +2,13 @@
 
   window.ProgramModel = Backbone.Model.extend({
     initialize: function() {
-      this.fetch();
+      this.fetch(true);
       return this.view = new ProgramView({
         model: this,
         el: $("body")
       });
     },
-    fetch: function() {
+    fetch: function(newPage) {
       var programId, template,
         _this = this;
       template = $('script#preface_template');
@@ -28,7 +28,7 @@
             } else {
               code = "";
             }
-            return startEditor(code);
+            if (newPage) return startEditor(code);
           }
         });
       }

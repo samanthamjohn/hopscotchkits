@@ -1,11 +1,11 @@
 window.ProgramModel = Backbone.Model.extend(
   initialize: ->
-    this.fetch()
+    this.fetch(true)
     this.view = new ProgramView (
       model: this
       el: $("body")
     )
-  fetch: ->
+  fetch: (newPage) ->
     template = $('script#preface_template')
     if template.length > 0
       programId = $("script#preface_template").data('programId')
@@ -21,7 +21,7 @@ window.ProgramModel = Backbone.Model.extend(
             code = data.program.code
           else
             code = ""
-          startEditor(code)
+          startEditor(code) if newPage
       )
   requirements: new Requirements()
   runSpecs: ->
