@@ -24,7 +24,7 @@ div class='left'
 div class='right'
   div class='created-by'
     | created by 
-    =@program.user.name
+    = @program.user ? @program.user.name : "anonymous"
   div class='updated'= "last updated #{time_ago_in_words(@program.updated_at)} ago"
 
 div class='bottom'
