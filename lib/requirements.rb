@@ -290,7 +290,7 @@ requirements = [
     position: 2,
     step: 7,
     kit: "puppy",
-    name: "make the left pupil",
+    name: "make the left pupil (smaller than 11px)",
     spec: '
       eye = false
       _.each($frame.find("svg ellipse"), (ellipse)->
@@ -331,7 +331,7 @@ requirements = [
     position: 4,
     step: 7,
     kit: "puppy",
-    name: "make the right pupil",
+    name: "make the right pupil (smaller than 11px)",
     spec: '
       eye = false
       _.each($frame.find("svg ellipse"), (ellipse)->
