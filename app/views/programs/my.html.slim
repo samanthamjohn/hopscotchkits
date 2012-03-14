@@ -22,7 +22,7 @@ div class='my-programs'
   .hr
   ul.new-programs
     - Kit.published.each do |kit|
-      li
+      li data-hover='off'
         div class='form' id="#{kit.to_param}_form"
           - program = Program.new(kit: kit, user: current_user)
           .new-program-form

@@ -62,8 +62,12 @@
       float: left;
       padding-right: 20px;
       padding-top: 20px;
-      width: 400px;
+      width: 130px;
       height: 180px;
+      .form {
+        width: 150px;
+        height: 150px;
+      }
     }
   }
   .ui-state-default {
@@ -102,6 +106,7 @@
     position: absolute;
     left: 100px;
     top: 0;
+    z-index: 99;
     form {
       float: right;
     }

@@ -290,21 +290,24 @@ $ ->
     $(".new-program-form img").click( (e) ->
       $(e.target).parents().closest(".form").find(".blurb-hover form").submit()
     )
-    hoverState = 'off'
     $(".new-program-form img").on('mouseenter', (e)->
+      li = $(e.target).parents("li")
+      hoverState = li.data("hover")
       if (hoverState == 'off')
         setTimeout( (->
-          hover = $(e.target).parents(".form").find('.blurb-hover')
+          hover = $(li).find('.blurb-hover')
           hover.show()
-          hoverState = 'on'
-        ), 500)
+          $(li).data('hover', "on")
+        ), 200)
     )
     $('.form').on("mouseleave", (e) ->
+      li = $(e.target).parents('li')
+      hoverState = $(li).data("hover")
       if hoverState == 'on'
         setTimeout( (->
-          hover = $(e.target).parents(".form").find('.blurb-hover')
+          hover = $(li).find('.blurb-hover')
           hover.hide()
-          hoverState = "off"
+          $(li).data('hover', "off")
         ), 500)
     )
 
