@@ -8,7 +8,18 @@
     font-style: normal;
 
 }
-
+@font-face {
+    font-family: 'Inconsolata';
+    src: url('/assets/Inconsolata.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Monaco';
+    src: url('/assets/Monaco.dfont');
+    font-weight: normal;
+    font-style: normal;
+}
 
 @font-face {
     font-family: 'MavenProBlack';

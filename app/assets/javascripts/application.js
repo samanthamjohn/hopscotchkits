@@ -10,7 +10,7 @@
 //= require raphael
 //= require underscore
 //= require backbone
-//= require ace-uncompressed
+//= require ace-uncompressed-patched
 //= require theme-clouds-uncompressed
 //= require mode-coffee-uncompressed
 //= require coffee-script
