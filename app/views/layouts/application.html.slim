@@ -25,12 +25,11 @@ html
             span log-in
           div id='logged_in'
             span.name= "#{name}!"
-            span.welcome-back welcome back
+            span#logout
+              | not you? 
+              = link_to "log out", destroy_user_session_path, method: "delete"
           = link_to my_programs_path, id: "my_programs" do
             span my programs
-          div id='logout'
-            span.your-name= "Your name's not #{name}?"
-            = link_to "log out", destroy_user_session_path, method: "delete"
           div id='login_form' action="" method="get"
             = simple_form_for(resource, as: resource_name, url: session_path(resource_name), remote: true) do |f|
               = f.input :email, required: false, label: "email:", input_html: { size: 27 }

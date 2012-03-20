@@ -69,36 +69,20 @@ body {
       }
       #logout {
         display: block;
-        right: 0;
-        width: 425px;
-        float: right;
-        span.your-name {
-          text-align: right;
-          width: 371px;
-          float: left;
-          font-family: Georgia;
-          font-style: italic;
-          padding: 3px 6px 0 0;
-        }
-        a {
-          color: #444;
-          text-decoration: underline;
-          font-style: italic;
-          font-family: Georgia;
-          line-height: 26px;
-        }
       }
       #logged_in {
         display: block;
         @include sprite("top_bar", "logged-in");
         top: -15px;
         z-index: 9999;
-        .welcome-back {
+        #logout {
+          font-family: MavenProBold;
           padding: 0 19px;
           color: black;
           font-size: 14px;
           font-family: Georgia;
           font-style: italic;
+          text-align: right;
         }
         .name {
           color: black;
