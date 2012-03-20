@@ -1,12 +1,14 @@
 window.ProgramView = Backbone.View.extend(
   render: ->
-    template = $('script#preface_template').html()
-    $('.preface').html(Mustache.render(template, this))
+    prefaceTemplate = $('script#preface_template').html()
+    $('.preface').html(Mustache.render(prefaceTemplate, this))
     $("#progressbar").progressbar(
       value: $('#progressbar').data('progress')
     )
     ideTemplate = $("script#ide_template").html()
     $("#next_steps").html(Mustache.render(ideTemplate, this))
+    leftsideTemplate = $("script#leftside_template").html()
+    $(".left-side-template").html(Mustache.render(leftsideTemplate, this))
     $(".next_button").button(disabled: true)
     $(".last_button").button(disabled: true)
     $(".publish-button").button(disabled: false)
