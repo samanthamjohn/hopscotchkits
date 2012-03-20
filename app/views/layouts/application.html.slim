@@ -1,4 +1,3 @@
-doctype html
 html
   head
     title Hopscotch
@@ -57,7 +56,7 @@ html
       /* - if flash[:notice] */
         /* div class='flash'= flash[:notice] */
       #content
-        a.logo Kits (beta!)
+        = link_to "Kits (beta!)", root_path, class: 'logo'
         = yield
         div class='push'
     #footer
