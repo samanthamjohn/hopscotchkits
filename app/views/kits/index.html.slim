@@ -1,0 +1,19 @@
+h1 Welcome to Hopscotch Kits!
+.hr
+
+div class='title-text' Pick a kit off the shelf to make your own program:
+ul.new-programs
+  - Kit.published.each do |kit|
+    li
+      = link_to new_kit_program_path(kit) do
+        h3= kit.name
+        = image_tag(kit.icon_url)
+div id='shelf'
+div class='clearfix'
+div class='programs-gallery new-programs-gallery'
+  .hr
+  div id='subtitle' Nifty projects by others:
+  - @i = 0
+  ul
+    - @programs.each do |program|
+      = render 'programs/program', program: program

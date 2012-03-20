@@ -1,0 +1,44 @@
+@import "mixins.scss";
+body.kits-index {
+  .title-text {
+    font-size: 32px;
+    font-family: Helvetica;
+    margin-top: 70px;
+    margin-left: 138px;
+  }
+
+  #subtitle {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  ul.new-programs {
+    h3 {
+      font-family: MavenProBold;
+      font-size: 20px;
+    }
+    overflow: hidden;
+    margin-top: 40px;
+    margin-left: 138px;
+    li {
+      cursor: pointer;
+      float: left;
+      padding: 10px;
+      background: #ECECEC;
+      border: 3px solid brown;
+      margin-right: 100px;
+    }
+  }
+
+  #shelf {
+    background: image_url("shelf.png") 0 0;
+    width: 702px;
+    height: 33px;
+    margin-left: 100px;
+    margin-bottom: 84px;
+    box-shadow: 2px 3px 5px 1px #ccc;
+    -moz-box-shadow: 2px 3px 5px 1px #ccc;
+    -webkit-box-shadow: 2px 3px 5px 1px #ccc;
+    -o-box-shadow: 2px 3px 5px 1px #ccc;
+  }
+}
