@@ -21,6 +21,10 @@ body.kits-index {
     margin-top: 40px;
     margin-left: 138px;
     li {
+      -moz-box-shadow: 2px 5px 1px 2px #ccc;
+      -webkit-box-shadow: 2px 5px 1px 2px #ccc;
+      -o-box-shadow: 2px 5px 1px 2px #ccc;
+      box-shadow: 2px 5px 1px 2px #ccc;
       cursor: pointer;
       float: left;
       padding: 10px;
