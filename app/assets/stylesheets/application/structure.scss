@@ -4,7 +4,8 @@ html {
 }
 
 a.logo {
-  float: right;
+  float: left;
+  margin-right: 30px;
   display: block;
   text-indent: -999em;
   background: transparent image_url('logo.png') 0px 11px no-repeat;
@@ -22,7 +23,6 @@ body {
     background: white;
   }
   .bg {
-    background: transparent image_url('bg-pattern.png');
     width: 100%;
     font-family: 'Georgia';
     font-size: 14px;
