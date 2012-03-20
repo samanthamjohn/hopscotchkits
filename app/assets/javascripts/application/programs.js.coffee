@@ -165,7 +165,7 @@ window.startEditor = (code) ->
     clearTimeout(specTimer)
     window.specTimer = setTimeout((-> 
       Step.runSpecs()
-      $("#ide form").submit()
+      $("#controls form").submit()
     ), tick)
   )
 
@@ -179,7 +179,7 @@ window.startEditor = (code) ->
       editor.insert("\n")
       clearTimeout(specTimer)
       Step.runSpecs()
-      $('#ide form').submit()
+      $('#controls form').submit()
   )
 
   editor.commands.addCommand(

@@ -26,7 +26,7 @@ window.ProgramView = Backbone.View.extend(
         ) ),
         offset: 'bottom-in-view')
   events:
-    "submit #ide form" : "submitCode"
+    "submit #controls form" : "submitCode"
     "click a.hint" : "showHint"
     "click .next_button" : "refreshStep"
     "click .last_button" : "submitCodeAndShow"
@@ -55,7 +55,7 @@ window.ProgramView = Backbone.View.extend(
   refreshStep: (e) ->
     e.preventDefault()
     this.model.set('url', 'next_step')
-    $("#ide form").submit()
+    $("#controls form").submit()
     this.model.fetch()
   showHint: (e) ->
     e.preventDefault()
@@ -65,12 +65,12 @@ window.ProgramView = Backbone.View.extend(
     )
   submitCode: ->
     val = window.editor.getSession().getValue()
-    $("#ide input#program_code").val(val)
-    $("#ide input#program_step_id").val(this.model.get('id'))
+    $("#controls input#program_code").val(val)
+    $("#controls input#program_step_id").val(this.model.get('id'))
     this.model.runSpecs()
   submitCodeAndShow: (e) ->
     e.preventDefault()
-    $("#ide form").submit()
+    $("#controls form").submit()
     window.location.href = window.location.href.split('/edit')[0]
   subTitle: () ->
     this.model.get('title')
