@@ -280,7 +280,7 @@ window.startEditor = (code) ->
         editor.navigateDown(1);
   )
 $ ->
-  if $("body.programs-root").length > 0
+  if $("body.programs-my").length > 0
     $(".new-program-form img").click( (e) ->
       $(e.target).parents().closest(".form").find(".blurb-hover form").submit()
     )
