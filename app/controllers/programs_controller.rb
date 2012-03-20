@@ -1,13 +1,12 @@
 class ProgramsController < ApplicationController
-  before_filter :load_program, except: ["new", "create", "index", "root", "gallery", "new_form"]
+  before_filter :load_program, except: ["new", "create", "index", "root", "gallery", "new_form", "my"]
   load_and_authorize_resource only: ["index", "feature"]
 
-  def root
+  def my
     if current_user
       render "my"
     else
-      new
-      render "new"
+      redirect_to root_path
     end
   end
 

@@ -17,7 +17,7 @@ Hopscotch::Application.routes.draw do
       get :mobile
     end
     collection do
-      get :root
+      get :my
       get :gallery
     end
   end

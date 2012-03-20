@@ -74,7 +74,7 @@ feature "hopscotch kits flow", js: true do
     click_on("next step >>")
     current_path.should == program_path(Program.last)
     old_user = create(:user, email: "hello@goodbye.com", password: "password")
-    visit root_path
+    visit new_kit_program_path(kit_id: 'puppy')
     click_on "start a new one"
     fill_in "What's it called", with: "my awesome program"
     click_on "Start coding"
