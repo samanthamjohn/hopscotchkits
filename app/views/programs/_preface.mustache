@@ -2,49 +2,59 @@
   {{showTitle}}
   <span class='subtitle'>{{subTitle}}</span>
 </h1>
-<div class='hr'></div>
-<div class='progress'>
+<div class='progress top-progress'>
   <div id='progressbar' data-progress="{{progressPct}}">
   </div>
   <p> {{progressText}} </p>
-  <div class='message'>
-    <div class='specs'>
-      <ul>
-        {{#requirements}}
-        <li id="req_{{id}}">
-          <div class='{{result}}'></div>
-          <div class='name'>{{name}}</p></div>
-        </li>
-        {{/requirements}}
-      </ul>
-    </div>
-    <div class='success'>
-      <h3>{{successHeader}}</h3>
-      {{{successMessage}}}
-      <div class='controls'>
-        <a href='/programs/{{programId}}' class='button {{buttonClass}}'>
-          next step >>
-        </a>
+</div>
+<div class='hr'></div>
+<div class='left-side'>
+  <div class='progress'>
+    <div class='message'>
+      <div class='specs'>
+        <ul>
+          {{#requirements}}
+          <li id="req_{{id}}">
+            <div class='{{result}}'></div>
+            <div class='name'>{{name}}</p></div>
+          </li>
+          {{/requirements}}
+        </ul>
+      </div>
+      <div class='success'>
+        <h3>{{successHeader}}</h3>
+        {{{successMessage}}}
+        <div class='controls'>
+          <a href='/programs/{{programId}}' class='button {{buttonClass}}'>
+            next step >>
+          </a>
+        </div>
+      </div>
+      <div class='hint'> Are you stumped? 
+        <a href="#" class="hint"> get a hint</a>
       </div>
     </div>
-    <div class='hint'> Are you stumped? 
-      <a href="#" class="hint"> get a hint</a>
+  </div>
+  <div class='instructions'>
+    <div class='description'>
+      {{{image_tag}}}
+      {{{description}}}
+      {{{moreInfo}}}
     </div>
   </div>
-</div>
-<div class='instructions'>
-  <div class='description'>
-    {{{image_tag}}}
-    {{{description}}}
-    {{{moreInfo}}}
-  </div>
-</div>
 
-<div id='hint'>
-  <p>{{{hint}}}</p>
-  <p> Still having trouble?</p>
-  <a href='#' class='solution-link'>See the solution</a>
-  <div class='solutions' style='display:none'>
-    <code> {{{solution}}}</code>
+  <div id='hint'>
+    <p>{{{hint}}}</p>
+    <p> Still having trouble?</p>
+    <a href='#' class='solution-link'>See the solution</a>
+    <div class='solutions' style='display:none'>
+      <code> {{{solution}}}</code>
+    </div>
+  </div>
+
+  <div id='ide'>
+    <div id='editor'>
+    </div>
+  </div>
 </div>
 

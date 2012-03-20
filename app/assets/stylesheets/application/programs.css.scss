@@ -1,4 +1,7 @@
 @import 'mixins.scss';
+body.programs-edit {
+  overflow: hidden;
+}
 .programs-my {
   h1 {
     font-size: 36px;
@@ -124,6 +127,13 @@
   }
 }
 .program {
+  .left-side {
+    float: left;
+    width: 530px;
+    overflow-x: hidden;
+    overflow-y: scrollbar;
+    height: 450px;
+  }
   h1 {
     .subtitle {
       font-family: 'Georgia';
@@ -133,7 +143,7 @@
 
   .instructions {
     float: left;
-    width: 550px;
+    width: 500px;
     &.welcome p {
       font-size: 20px;
       line-height: 22px;
@@ -157,7 +167,7 @@
       position: absolute;
       z-index: 99;
       padding-right: 8px;
-      width: 552px;
+      width: 502px;
       .text {
         background: #f2eee8;
         padding-bottom: 8px;
@@ -202,6 +212,11 @@
     float: right;
     padding-right: 53px;
     text-align: center;
+    &.top-progress {
+      position: absolute;
+      right: 210px;
+      top: 75px;
+    }
     p {
       padding-top: 5px;
     }
@@ -224,7 +239,7 @@
 
 .instructions, #hint, .success, .error {
   .description {
-    width: 550px;
+    width: 500px;
     float: left;
     padding-right: 10px;
   }
