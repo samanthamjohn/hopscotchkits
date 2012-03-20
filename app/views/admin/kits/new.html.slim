@@ -1,4 +1,4 @@
-= simple_form_for @kit do |f|
+= simple_form_for @kit, url: admin_kits_path(@kit) do |f|
   = f.input :name
   = f.input :slug
   = f.input :icon_url, as: :string

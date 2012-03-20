@@ -1,4 +1,4 @@
-class KitsController < ApplicationController
+class Admin::KitsController < ApplicationController
   load_and_authorize_resource :find_by => :slug
   before_filter :set_body_class
 
@@ -13,12 +13,12 @@ class KitsController < ApplicationController
 
   def create
     @kit = Kit.create(params[:kit])
-    redirect_to edit_kit_path(@kit)
+    redirect_to edit_admin_kit_path(@kit)
   end
 
   def update
     @kit.update_attributes(params[:kit])
-    redirect_to edit_kit_path(@kit)
+    redirect_to edit_admin_kit_path(@kit)
   end
 
   def analytics
@@ -32,7 +32,7 @@ class KitsController < ApplicationController
   private
 
   def set_body_class
-    @body_class = "kit"
+    @body_class = "admin-kit"
   end
 
 end

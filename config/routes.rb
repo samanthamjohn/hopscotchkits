@@ -22,10 +22,14 @@ Hopscotch::Application.routes.draw do
     end
   end
   match "/gallery", to: "programs#gallery", as: :gallery
-  resources :kits do
-    member do
-      get :analytics
+  namespace :admin do
+    resources :kits do
+      member do 
+        get :analytics
+      end
     end
+  end
+  resources :kits do
     resources :programs do
       collection do
         get :root

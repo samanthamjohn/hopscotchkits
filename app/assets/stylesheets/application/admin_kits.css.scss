@@ -1,5 +1,8 @@
 @import 'mixins.scss';
-body.kit {
+body.admin-kit {
+  #content {
+    padding-top: 50px;
+  }
   h1 {
     font-size: 20px;
     padding: 10px;

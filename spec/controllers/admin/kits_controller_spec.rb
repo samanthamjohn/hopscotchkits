@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe KitsController do
+describe Admin::KitsController do
   before do
     user = create(:user, role: "admin", name: "evan")
     sign_in user
@@ -27,7 +27,7 @@ describe KitsController do
     it "should update the kit" do
       kit = Kit.create!(slug: 'foo', description: "Foo")
       put :update, id: kit.to_param, kit: {description: "Bar"}
-      response.should redirect_to edit_kit_path(kit)
+      response.should redirect_to edit_admin_kit_path(kit)
       kit.reload.description.should == 'Bar'
     end
   end
@@ -44,7 +44,7 @@ describe KitsController do
       post :create, kit: {slug: "bar"}
       kit = Kit.last
       kit.slug.should == "bar"
-      response.should redirect_to edit_kit_path(kit)
+      response.should redirect_to edit_admin_kit_path(kit)
     end
   end
 

@@ -19,7 +19,7 @@ div class='show-kit' id='kit_show'
     = @kit.published
   p= link_to "Edit", "#", id: "kit", class: "show"
 div class='edit-kit' id='kit_form' style='display:none'
-  = simple_form_for @kit do |f|
+  = simple_form_for @kit, url: admin_kit_path(@kit) do |f|
     = f.input :name
     = f.input :slug
     = f.input :published

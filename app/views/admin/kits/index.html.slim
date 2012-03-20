@@ -1,0 +1,10 @@
+h1 Kits
+p= link_to "Puppy Draw Analytics", analytics_admin_kit_path(id: 'puppy')
+p= link_to "Quiz Analytics", analytics_admin_kit_path(id: 'quiz')
+br
+p= link_to "Add a new kit", new_admin_kit_path
+ul
+  - @kits.each do |kit|
+    li
+      p= link_to kit, edit_admin_kit_path(kit)
+
