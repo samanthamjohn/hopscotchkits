@@ -151,7 +151,7 @@ window.startEditor = (code) ->
   window.editor.setTheme("ace/theme/clouds")
   window.editor.getSession().setTabSize(2)
   tick = 1200
-  $('#editor').css('fontSize', '16px')
+  $('#editor').css('fontSize', '15px')
   $('#editor').css('line-height', '21px')
   $(".ace_gutter-cell").css('fontSize', '16px')
   CoffeeScriptMode = require("ace/mode/coffee").Mode

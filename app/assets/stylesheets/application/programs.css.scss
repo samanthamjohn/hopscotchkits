@@ -219,7 +219,7 @@
 }
 
 #ide .ace_gutter {
-  background: none;
+  display: none;
 }
 
 .instructions, #hint, .success, .error {
@@ -234,9 +234,24 @@
     margin-bottom: 15px;
     line-height: 18px;
   }
-  code, code p {
-    font-family: monospace;
-  }
+  code {
+    background: #F9F9E8;
+    margin: 10px 0;
+    font-family: Inconsolata;
+    border: 1px solid #CCC;
+    font-size: 15px;
+    line-height: 21px;
+    overflow: auto;
+    padding: 6px 10px;
+    border-radius: 3px;
+    display: block;
+    p {
+      font-family: Inconsolata;
+      margin: 0px;
+      line-height: 21px;
+      font-size: 15px;
+    }
+  } 
 }
 
 .program.new {
@@ -280,7 +295,7 @@
 
 #editor {
   position: relative;
-  width: 480px;
+  width: 495px;
   height: 400px;
   float: left;
 }
@@ -297,7 +312,6 @@
   }
   .next-controls {
     float: right;
-    margin: 20px;
   }
 }
 #runthis {
