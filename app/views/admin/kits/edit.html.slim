@@ -42,7 +42,7 @@ ul.kit-steps
         p= step.success_message
         p= simple_format(step.spec)
         p= link_to "Edit", "#", id: step.id, class: "show"
-        p= link_to "Delete", step_path(step), method: "delete"
+        p= link_to "Delete", step_path(step), method: "delete", confirm: "are you sure?"
       div class='edit-step hidden' id="#{step.id}_form"
         = simple_form_for step do |f|
           = render "steps/form", f: f, id: "#{step.id}"
