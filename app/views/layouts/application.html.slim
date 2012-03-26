@@ -1,6 +1,6 @@
 html
   head
-    title Hopscotch
+    title= @body_class == "admin-kit" ? "Hopscotch admin" : "Hopscotch"
     = stylesheet_link_tag    "application"
     script src='/assets/ace.js'
     = javascript_include_tag "application"
