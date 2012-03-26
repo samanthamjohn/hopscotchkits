@@ -56,3 +56,36 @@
   text-indent: -9999px;
 }
 
+code {
+  background: #F9F9E8;
+  margin: 10px 0;
+  font-family: Inconsolata;
+  border: 1px solid #CCC;
+  font-size: 15px;
+  line-height: 21px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+  display: block;
+  p {
+    font-family: Inconsolata;
+    margin: 0px;
+    line-height: 21px;
+    font-size: 15px;
+  }
+  add {
+    background: #ddffdd;
+    display: inline-block;
+    width: 100%;
+    color: #005b00;
+  }
+  delete {
+    background: #ffeeee;
+    display: inline-block;
+    width: 100%;
+    color: #960000;
+    margin-left: -8px;
+    padding-right: 8px;
+  }
+}
+
