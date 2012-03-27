@@ -8,6 +8,8 @@ div class='program edit'
     = render 'left_side.mustache'
   div id='left_side'
     div class='left-side-template'
+    div class='hint'
+      = link_to "get a hint", "#", class: 'hint'
     div id='ide'
       div id='editor'
 
@@ -21,5 +23,4 @@ div class='program edit'
         = f.hidden_field :step_id, value: @program.kit.step(params[:step]) || @program.step_id
         = f.submit id: "runthis", value: "run this"
         = f.submit id: "runthis_copy", value: "run this"
-        = link_to "Hint", "#", class: "hint button"
 
