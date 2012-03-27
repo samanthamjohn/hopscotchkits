@@ -3,8 +3,9 @@ window.Requirements = Backbone.Collection.extend(
   runSpecs: ->
     $('.syntax-error').remove()
     val = window.editor.getSession().getValue()
-    old_paper = window._paper
     try
+      CoffeeScript.compile(val)
+      old_paper = window._paper
       CoffeeScript.eval(val)
       if old_paper && old_paper.canvas
         old_paper.clear()
@@ -30,7 +31,9 @@ window.Requirements = Backbone.Collection.extend(
         errorHtml = "<div class='syntax-error'>You are calling a method that doesn't exist! '" + error.arguments[0] + "' is either not the right method or you may have called it on the wrong variable.</div>"
       else if error.type="malformed regex"
         console.log("error in your requirements regex")
-        console.log(error.arguments)
+        if error.message
+          errorHtml = "<div class='syntax-error'>#{error.message}</div>"
+        console.log(error)
       else
         if error.message
           if error.message.split('line')[1]
