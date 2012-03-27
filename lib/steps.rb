@@ -673,7 +673,20 @@ steps = [{"id"=>6,
  "bonus"=>false,
  "freeplay"=>false,
  "more_info"=>""}]
+
 steps.each do |step|
+  if ENV['host']
+    if step["hint"]
+      hint = step["hint"]
+      step["hint"] = hint.gsub('localhost:5000', ENV['host'])
+    end
+    if step["solution"]
+      solution = step["solution"]
+      step["solution"] = solution.gsub('localhost:5000', ENV['host'])
+    end
+    description = step["description"]
+    step["description"] = description.gsub('localhost:5000', ENV['host'])
+  end
   if existing_step = Step.where(id: step['id']).first
     existing_step.update_attributes(step)
   elsif existing_step = Step.where(position: step['position']).where(kit_id: step["kit_id"]).first
