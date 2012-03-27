@@ -66,7 +66,7 @@ kits = [{"id"=>3,
  "slug"=>"whackamole",
  "description"=>"Program your own Whack-a-mole game using CoffeeScript and Raphael.",
  "created_at"=>"2012-03-20 19:11:57 UTC",
- "updated_at"=>"2012-03-20 19:12:03 UTC",
+ "updated_at"=>"2012-03-27 16:44:38 UTC",
  "icon_url"=>"mole-icon.png",
  "published"=>true,
  "blurb"=>"Program your own Whack-a-mole game using CoffeeScript and Raphael."}]
