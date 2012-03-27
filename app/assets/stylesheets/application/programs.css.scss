@@ -132,6 +132,7 @@
   }
 
   .instructions {
+    margin-top: 20px;
     float: left;
     width: 550px;
     &.welcome p {
@@ -232,7 +233,7 @@
     font-family:  'Helvetica';
     font-size: 17px;
     margin-bottom: 15px;
-    line-height: 18px;
+    line-height: 20px;
   }
 }
 .toggle-grid {
@@ -332,7 +333,7 @@
       p {
         font-family: "Georgia";
         margin-bottom: 0;
-        text-align: center;
+        text-align: left;
       }
       h3 {
         text-align: center;
