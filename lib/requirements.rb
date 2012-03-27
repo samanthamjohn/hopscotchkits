@@ -4,6 +4,205 @@ requirements = [
     position: 1,
     success: "You just made an HTML canvas to draw on.",
     step: 1,
+    kit: "whackamole"
+  },
+  { name: "set the background color",
+    spec: '
+    colored_rects = 0
+    _.each($frame.find("svg rect"), (rect) ->
+      if $(rect).attr("fill").match(/#/i) &&
+      $(rect).attr("width") >= 399 && $(rect).attr("height") >= 399
+        colored_rects += 1
+    )
+    if colored_rects > 1
+      return true
+    else
+      return false
+    ',
+    position: 1,
+    success: "Great, now you have a nice color in your background",
+    step: 2,
+    kit: "whackamole"
+  },
+  { name: "add the first mole hole",
+    spec: '
+    colored_circles = 0
+    _.each($frame.find("svg circle"), (circle) ->
+      if $(circle).attr("fill").match(/#/i) &&
+      $(circle).attr("stroke-width") == "0" &&
+      $(circle).attr("r") == "30"
+        colored_circles += 1
+    )
+    colored_circles > 0
+    ',
+    position: 1,
+    step: 3,
+    kit: "whackamole"
+  },
+  { name: "add 16 mole holes",
+    spec: '
+    colored_circles = 0
+    _.each($frame.find("svg circle"), (circle) ->
+      if $(circle).attr("fill").match(/#/i) &&
+      $(circle).attr("stroke-width") == "0" &&
+      $(circle).attr("r") == "30"
+        colored_circles += 1
+    )
+    colored_circles > 15
+    ',
+    position: 1,
+    step: 4,
+    kit: "whackamole"
+  },
+  { name: "add the mole image",
+    spec: '$frame.find("svg image").length > 0',
+    position: 1,
+    step: 5,
+    kit: "whackamole"
+  },
+  { name: "add the sound file to the page",
+    spec: '$("#sound").length > 0',
+    position: 1,
+    step: 6,
+    kit: 'whackamole'
+  },
+  { name: "add a random function",
+    spec: 'editor.getSession().getValue().match(///
+    \r\nrandom*.+=*.+->
+    ///)',
+    position: 1,
+    step: 7,
+    kit: 'whackamole'
+  },
+  { name: "add the showMole function",
+    spec: 'editor.getSession().getValue().match(///
+      \r\nshowMole*.+=*.+->
+    ///)',
+    position: 2,
+    step: 7,
+    kit: 'whackamole'
+  },
+  { name: "animate the mole",
+    spec: 'editor.getSession().getValue().match(///
+    \r\n\s\smole\.animate
+    ///)',
+    position: 3,
+    step: 7,
+    kit: 'whackamole'
+  },
+  { name: "call the showMole function",
+    spec: 'editor.getSession().getValue().match(/\r\nshowMole\(\)/)',
+    position: 4,
+    step: 7,
+    kit: 'whackamole'
+  },
+  { name: "Add a count",
+    spec: '
+    editor.getSession().getValue().match(///
+      \r\ncount*.+=*.+0
+    ///)
+    ',
+    position: 1,
+    step: 8,
+    kit: "whackamole"
+  },
+  { name: "create the hide and show function",
+    spec: '
+      editor.getSession().getValue().match(///
+        \r\n\s{6}setTimeout\(*.+\(*.+->*.+
+        \r\n\s{8}mole.hide\(\)*.+
+        \r\n\s{8}count\+\+*.+
+        \r\n\s{8}if\scount\<*.+\d*.+
+        \r\n\s{10}showMole\(\)
+      ///)
+    ',
+    position: 2,
+    step: 8,
+    kit: 'whackamole'
+  },
+  { name: "Add a button",
+    spec: '
+    buttonText = false
+    _.each($frame.find("svg rect"), (rect) ->
+      $rect = $(rect)
+      if $rect.attr("stroke-width") == "3" && $rect.attr("width") < 200 && $rect.attr("height") < 100
+        if $frame.find("svg text").length > 6
+          buttonText = true
+    )
+    buttonText
+    ',
+    position: 1,
+    step: 9,
+    kit: 'whackamole'
+  },
+  { name: "Delay starting the mole",
+    spec: '
+    match = editor.getSession().getValue().match(/\r\nshowMole\(\)/)
+    if match
+      false
+    else
+      true
+    ',
+    position: 2,
+    step: 9,
+    kit: 'whackamole'
+  },
+  { name: "attach the click to the button",
+    spec: '
+      editor.getSession().getValue().match(///
+      \r\nbutton\.click\(*.+->[^]+
+        \r\n\s{2}button\.hide\(\)[^]+
+        \r\n\s{2}showMole\(\)
+      ///)
+    ',
+    step: 10,
+    position: 1,
+    kit: "whackamole"
+  },
+  { name: "attach the click to the text",
+    spec: '
+      editor.getSession().getValue().match(///
+      \r\ntext\.click\(*.+->[^]+
+        \r\n\s{2}text\.hide\(\)[^]+
+        \r\n\s{2}showMole\(\)
+      ///)
+    ',
+    step: 10,
+    position: 2,
+    kit: 'whackamole'
+  },
+  { name: "tally the score",
+    step: 11,
+    position: 1,
+    kit: 'whackamole',
+    spec: '
+      match1 = editor.getSession().getValue().match(///
+        \r\nscore*.+=*.+\d
+      ///)
+      match2 = editor.getSession().getValue().match(///
+        \r\n\s{2}score*.+\+
+      ///)
+      if match1 && match2
+        true
+      else
+        false
+    '
+  },
+  { name: "show the score",
+    step: 11,
+    position: 2,
+    kit: "whackamole",
+    spec: '
+      editor.getSession().getValue().match(///
+      \r\n\s{10}text\.attr\(*.+text*.+Score:\s*.+score*.+\)
+      ///)
+    '
+  },
+  { name: "add the paper to the page",
+    spec: "$frame.find('svg').length > 0",
+    position: 1,
+    success: "You just made an HTML canvas to draw on.",
+    step: 1,
     kit: "quiz"
   },
   { name: "assign a variable to the paper",
@@ -434,3 +633,5 @@ requirements.each do |req|
     Requirement.create!(req)
   end
 end
+
+
