@@ -16,6 +16,7 @@ html
       })();
   = yield :head
   body class=@body_class
+    div id='bell'
     div class='bg'
       - klass= current_user ? "logged-in" : ""
       - name = current_user.name if current_user

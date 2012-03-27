@@ -21,7 +21,10 @@ window.ProgramModel = Backbone.Model.extend(
             code = data.program.code
           else
             code = ""
-          startEditor(code) if newPage
+          if newPage
+            startEditor(code)
+          else
+            $("#bell").html("<embed src='/assets/bell.wav' hidden='true' autostart='true' loop='false'>")
       )
   requirements: new Requirements()
   runSpecs: ->
