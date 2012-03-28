@@ -19,7 +19,6 @@ div class='preface'
   div id='subtitle'
     | Tah dah! Check out your masterpiece.
 div class='left'
-  = image_tag("large-frame.png", class: 'show-frame')
   iframe name=@program.id src=iframe_program_path(@program, full_size: true)
 div class='right'
   div class='created-by'

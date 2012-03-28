@@ -12,9 +12,10 @@ body.programs-show {
   .left {
     position: relative;
     float: left;
-    height: 442px;
+    height: 421px;
     width: 500px;
-    margin-left: 50px;
+    margin-left: 124px;
+    z-index: 0;
   }
   .right {
     float: left;
@@ -26,14 +27,14 @@ body.programs-show {
   }
   #social_links {
     background: transparent image_url('share-bg.png') 0 0 no-repeat;
-    margin-left: 59px;
+    margin-left: 120px;
     overflow: hidden;
     height: 49px;
     float: left;
     width: 371px;
     z-index: 99;
     position: relative;
-    top: -1px;
+    top: 0px;
     .social {
       display: block;
       cursor: pointer;
@@ -67,7 +68,7 @@ body.programs-show {
     display: block;
     float: left;
     @include sprite('social_buttons', 'edit-bg');
-    margin-top: 1px;
+    margin-top: 2px;
     position: relative;
     left: -8px;
     text-align: center;
