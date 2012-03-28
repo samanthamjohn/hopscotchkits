@@ -8,6 +8,10 @@ class RegistrationsController < Devise::RegistrationsController
   def create
     Rails.logger.info(params)
     user = User.new(params[:user])
+    if session[:program_id]
+      program = Program.find(session[:program_id])
+      user.programs << program
+    end
     if user.save
       sign_in(user)
       render json: user, status: 201
