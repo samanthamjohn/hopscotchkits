@@ -7,7 +7,6 @@ body.admin-kit {
     font-size: 20px;
     padding: 10px;
   }
-
   a {
     color: $bright-blue;
   }
@@ -56,10 +55,19 @@ body.admin-kit {
     overflow: hidden;
   }
   .finished-puppies {
+    overflow: hidden;
     form {
       width: 200px;
       clear: both;
     }
+  iframe {
+     position: relative;
+  }
+  img {
+    position: absolute;
+    z-index: 9;
+  }
+
 
     form.feature, form.unfeature {
       display: none;

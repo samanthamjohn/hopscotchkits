@@ -57,9 +57,15 @@ div class='finished-puppies'
     | Finished puppys 
     = @complete_programs.count
   ul
+    - i = 0
     - @complete_programs.each do |program|
       li style='margin:10px 0;'
-        iframe name=program.id class='puppy' src=iframe_program_path(program)
+        = link_to program_path(program), class: 'iframe-container', "data-iframe" => {name: program.id, src: iframe_program_path(program) }.to_json do
+          - if i%2 == 0
+            = image_tag("frame-orange.png")
+          - else
+            = image_tag("frame-green.png")
+        div class='by'= "by #{program.user_name}"
         - if program.featured?
           - featured_status = 'featured'
         - else
