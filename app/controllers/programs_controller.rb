@@ -20,6 +20,7 @@ class ProgramsController < ApplicationController
     kit = Kit.find_by_slug(params[:kit_id])
     if session[:program_id]
       @current_program = Program.find(session[:program_id])
+      @current_program = nil unless @current_program.kit == kit
     else
       @current_program = nil
     end

@@ -23,14 +23,26 @@ describe ProgramsController do
 
 
   describe "#new_form" do
-    context "they have already started a program" do
+    context "they have already started a program for that kit" do
       it "should also assign the current_program instance variable" do
+        program = create(:program)
+        session[:program_id] = program.id
+        kit = program.kit
+        get :new_form, kit_id: kit.to_param
+        assigns(:program).kit.should == kit
+        assigns(:current_program).should == program
+        response.should render_template "new_form"
+        response.should_not render_template "layouts/application"
+      end
+    end
+    context "they have started a program witha different kit" do
+      it "should not assign the current_program instance variable" do
         program = create(:program)
         session[:program_id] = program.id
         kit = create(:kit)
         get :new_form, kit_id: kit.to_param
         assigns(:program).kit.should == kit
-        assigns(:current_program).should == program
+        assigns(:current_program).should be_nil
         response.should render_template "new_form"
         response.should_not render_template "layouts/application"
       end
