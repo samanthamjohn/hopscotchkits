@@ -52,6 +52,21 @@ describe Program do
     end
   end
 
+  describe "#user_name" do
+    context "there is a user" do
+      it "should return the users name" do
+        program = create(:program)
+        program.user_name.should == program.user.name
+      end
+    end
+    context "there is not a user" do
+      it "should return anonymous" do
+        program = create(:program, user: nil)
+        program.user_name.should == "anonymous"
+      end
+    end
+  end
+
   describe "#next_step" do
     it "should return the next step" do
       step = create(:step, position: 1)

@@ -30,11 +30,12 @@ div class='summary'
   p
     | Completion rate: 
     - count = 0
-    - @users.each do |user|
-      - programs = user.programs.where("step_id IN (17, 27)")
-      - if programs.length > 0
-        - count += 1
-    = ((count.to_f/@users.count.to_f) * 100).to_i
+    = @kit.num
+    - @programs.each do |program|
+      - if program.current_step == @kit.freeplay_step 
+        -if program.current_step.id = @kit.step(@kit.num_steps)
+          - count += 1
+    = ((count.to_f/@programs.count.to_f) * 100).to_i
     | %
 div class='step-breakdown'
   h1 Puppy Draw Step breakdown
@@ -51,7 +52,7 @@ div class='step-breakdown'
     axis_with_labels: ['x', 'y'], labels: positions, \
     bar_width_and_spacing: [35,10], size: '500x400', \
     bar_colors: "008cba"))
-- unfinished_programs = @programs.select{|p| p.current_step && p.current_step.position < 8}
+- unfinished_programs = @programs.select{|p| p.current_step && p.current_step.position < @kit.num_steps}
 div class='finished-puppies'
   h1
     | Finished puppys 
@@ -71,7 +72,7 @@ div class='finished-puppies'
           = simple_form_for program, remote: true, url: feature_program_path(program), html: { class: "feature", id: "feature_#{program.id}" } do |f|
             = f.hidden_field :featured, value: true
             = f.submit "feature"
-        = link_to("By #{program.user.name}", kit_program_path(program.kit, program))
+        = link_to("By #{program.user_name}", kit_program_path(program.kit, program))
         |  - 
         = program.created_at.strftime("%m/%d/%Y")
         |  Step 
@@ -84,7 +85,7 @@ h1
 ul
   - unfinished_programs.each do |program|
     li style='margin:10px 0;'
-      = link_to("By #{program.user.name}", kit_program_path(program.kit, program))
+      = link_to("By #{program.user_name}", kit_program_path(program.kit, program))
       |  - 
       = program.created_at.strftime("%m/%d/%Y")
       |  Step 

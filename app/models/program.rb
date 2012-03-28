@@ -11,6 +11,10 @@ class Program < ActiveRecord::Base
 
   scope :featured, where(featured: true)
 
+  def user_name
+    user.try(:name) || "anonymous"
+  end
+
   def next_step
     self.kit.steps.where("position > ?", self.current_step.position).order(:position).first
   end
