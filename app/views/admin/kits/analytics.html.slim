@@ -30,7 +30,6 @@ div class='summary'
   p
     | Completion rate: 
     - count = 0
-    = @kit.num
     - @programs.each do |program|
       - if program.current_step == @kit.freeplay_step 
         -if program.current_step.id = @kit.step(@kit.num_steps)
