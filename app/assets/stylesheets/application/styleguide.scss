@@ -58,12 +58,13 @@
 
 code {
   background: #F9F9E8;
-  margin: 10px 0;
+  margin: 10px 0 10px 30px;
   font-family: Inconsolata;
   border: 1px solid #CCC;
   font-size: 15px;
   line-height: 21px;
-  overflow: auto;
+  overflow: visible;
+  position: relative;
   padding: 6px 10px;
   border-radius: 3px;
   display: block;
@@ -84,6 +85,15 @@ code {
     display: inline-block;
     width: 100%;
     color: #960000;
+  }
+  num {
+    position: absolute;
+    left: -29px;
+    top: 6px;
+    color: #333;
+    width: 26px;
+    text-align: right;
+    padding-right: 2px;
   }
 }
 

@@ -220,7 +220,14 @@
 }
 
 #ide .ace_gutter {
-  display: none;
+  width: 30px;
+  background: transparent;
+  .ace_layer {
+    min-width: 20px;
+    .ace_gutter-cell {
+      padding-left: 2px;
+    }
+  }
 }
 
 .instructions, #hint, .success, .error {
