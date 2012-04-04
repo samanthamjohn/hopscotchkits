@@ -56,11 +56,12 @@ div class='finished-puppies'
   h1
     | Finished puppys 
     = @complete_programs.count
+  p= link_to "Click here to load images", "#", id: "load_iframes"
   ul
     - i = 0
     - @complete_programs.each do |program|
       li style='margin:10px 0;'
-        = link_to program_path(program), class: 'iframe-container', "data-iframe" => {name: program.id, src: iframe_program_path(program) }.to_json do
+        = link_to program_path(program), class: 'admin-iframe-container', "data-iframe" => {name: program.id, src: iframe_program_path(program) }.to_json do
           - if i%2 == 0
             = image_tag("frame-orange.png")
           - else
