@@ -98,7 +98,7 @@ class ProgramsController < ApplicationController
   end
 
   def gallery
-    @programs = Program.where(featured: true).order("updated_at DESC")
+    @programs = Program.where(featured: true).order("updated_at DESC").limit(21)
   end
 
   def feature
