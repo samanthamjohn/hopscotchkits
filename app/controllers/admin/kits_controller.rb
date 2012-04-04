@@ -22,8 +22,11 @@ class Admin::KitsController < ApplicationController
   end
 
   def analytics
-    @programs = @kit.programs.order("created_at DESC")
+    @programs = @kit.programs.order("programs.created_at DESC").includes(:user, :current_step, :snapshots)
     @steps = @kit.steps
+    @freeplay_step = @kit.freeplay_step
+    @num_steps = @kit.num_steps
+    @last_step = @kit.step(@num_steps)
     @complete_programs = @programs.joins(:current_step).where("steps.position >= #{@kit.num_steps}").paginate(page: params[:page])
     @incomplete_programs = @programs.joins(:current_step).where("steps.position < #{@kit.num_steps}").paginate(page: params[:page], per_page: 100)
   end
