@@ -24,7 +24,7 @@ class ProgramsController < ApplicationController
     else
       @current_program = nil
     end
-    @program = Program.new(kit: kit)
+    @program = Program.new(kit: kit, user: current_user)
     render partial: "new_form"
   end
 

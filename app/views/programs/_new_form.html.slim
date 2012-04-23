@@ -9,11 +9,13 @@
   div class='new-program-form hidden'
     = simple_form_for [@program.kit, @program] do |f|
       = f.hidden_field :kit_id
+      = f.hidden_field :user_id
       = f.input :name, label: "What's it called?"
       = f.submit value: "Start coding"
     h2= link_to "Continue editing", edit_program_path(@current_program)
 - else
   = simple_form_for [@program.kit, @program] do |f|
     = f.hidden_field :kit_id
+    = f.hidden_field :user_id
     = f.input :name, label: "What's it called?"
     = f.submit value: "Start coding"

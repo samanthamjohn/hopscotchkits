@@ -56,6 +56,15 @@ describe ProgramsController do
         response.should render_template "new_form"
         response.should_not render_template "layouts/application"
       end
+      context "when a user is signed in" do
+        it "should set that program to belong to the user" do
+          kit = create(:kit)
+          user = create(:user)
+          sign_in(user)
+          get :new_form, kit_id: kit.to_param
+          assigns(:program).user.should == user
+        end
+      end
     end
   end
 
