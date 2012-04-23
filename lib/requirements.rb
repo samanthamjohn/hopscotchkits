@@ -338,9 +338,18 @@ requirements = [
     position: 1,
     name: 'add an ellipse for the face',
     spec: '$frame.find("svg ellipse").length > 0',
-    step: 2,
+    step: 3,
     kit: "puppy",
     success: "You just drew an ellipse for the face."
+  },
+  {
+    position: 1,
+    name: 'create a variable named paper',
+    spec: 'editor.getSession().getValue().match(///
+    paper*.+=*.+makeWorkspace\(\)
+    ///)',
+    step: 2,
+    kit: 'puppy',
   },
   {
     position: 2,
@@ -353,7 +362,7 @@ requirements = [
       return face
     ',
     name: "make the width 60",
-    step: 2,
+    step: 3,
     kit: "puppy",
     success: "the third number that you added to ellipse set the width"
   },
@@ -368,13 +377,13 @@ requirements = [
       return face
     ',
     name: "make the height 80",
-    step: 2,
+    step: 3,
     kit: "puppy",
     success: "and the last number set the height."
   },
   {
     position: 1,
-    step: 3,
+    step: 4,
     kit: 'puppy',
     name: "set the face color to saddlebrown",
     spec: '_.find($frame.find("svg ellipse"),((e)-> $(e).attr("fill").match(/#/i)))',
@@ -382,7 +391,7 @@ requirements = [
   },
   {
     position: 1,
-    step: 4,
+    step: 5,
     kit: "puppy",
     name: "add 2 new ellipses for the ears",
     spec: '$frame.find("svg ellipse").length > 2',
@@ -390,7 +399,7 @@ requirements = [
   },
   {
     position: 2,
-    step: 4,
+    step: 5,
     kit: "puppy",
     name: "make sure the x-coordinate (first number in the ellipse method) is different for each ear",
     spec: '$frame.find("svg ellipse[cx=150]").length != 2',
@@ -398,7 +407,7 @@ requirements = [
   },
   {
     position: 3,
-    step: 4,
+    step: 5,
     kit: "puppy",
     name: "give both ears x-radius (the third number in the ellipse method) of approximately 40",
     spec: '
@@ -416,7 +425,7 @@ requirements = [
   },
   {
     position: 4,
-    step: 4,
+    step: 5,
     kit: "puppy",
     name: "give both ears y-radius (the fourth number in the ellipse method) of approximately 80",
     spec: '
@@ -435,7 +444,7 @@ requirements = [
   {
     position: 1,
     name: "color both ears saddlebrown",
-    step: 5,
+    step: 6,
     kit: "puppy",
     spec: '
       brownEllipses = 0
@@ -452,7 +461,7 @@ requirements = [
   },
   {
     position: 1,
-    step: 6,
+    step: 7,
     kit: "puppy",
     name: "rotate both ears",
     spec: '
@@ -470,7 +479,7 @@ requirements = [
   },
   {
     position: 1,
-    step: 7,
+    step: 8,
     kit: "puppy",
     name: "make the outer left eye",
     spec: '
@@ -487,7 +496,7 @@ requirements = [
   },
   {
     position: 2,
-    step: 7,
+    step: 8,
     kit: "puppy",
     name: "make the left pupil (smaller than 11px)",
     spec: '
@@ -511,7 +520,7 @@ requirements = [
   },
   {
     position: 3,
-    step: 7,
+    step: 8,
     kit: "puppy",
     name: "make the outer right eye",
     spec: '
@@ -528,7 +537,7 @@ requirements = [
   },
   {
     position: 4,
-    step: 7,
+    step: 8,
     kit: "puppy",
     name: "make the right pupil (smaller than 11px)",
     spec: '
@@ -552,7 +561,7 @@ requirements = [
   },
   {
     position: 1,
-    step: 8,
+    step: 9,
     kit: "puppy",
     name: "make a nose that is wider than it is long",
     spec: '
@@ -566,7 +575,7 @@ requirements = [
   },
   {
     position: 2,
-    step: 8,
+    step: 9,
     kit: "puppy",
     name: "center the nose",
     spec: '
@@ -582,7 +591,7 @@ requirements = [
   },
   {
     position: 3,
-    step: 8,
+    step: 9,
     kit: "puppy",
     name: "put the nose at the bottom of the face",
     spec: '
@@ -607,7 +616,7 @@ requirements = [
   },
   {
     position: 4,
-    step: 8,
+    step: 9,
     kit: "puppy",
     name: 'give the nose a color',
     spec: '
@@ -622,16 +631,12 @@ requirements = [
   }
 ]
 
+Requirement.destroy_all
 requirements.each do |req|
   kit = Kit.find_by_slug(req.delete(:kit))
   step = Step.where(kit_id: kit.id).where(position: req.delete(:step)).first
   req[:step_id] = step.id
-
-  if existing_req = Requirement.where(step_id: req[:step_id], position: req[:position]).first
-    existing_req.update_attributes(req)
-  else
-    Requirement.create!(req)
-  end
+  Requirement.create!(req)
 end
 
 
