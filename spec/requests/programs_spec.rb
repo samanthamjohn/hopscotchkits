@@ -4,6 +4,7 @@ feature "hopscotch kits flow", js: true do
     require File.expand_path(Rails.root.join("db/seeds.rb"), __FILE__)
   end
 
+  scenario "claiming a program"
   scenario "logging in and completing a kit" do
 
     steps = Kit.find_by_slug("puppy").steps.order("position ASC").all
@@ -18,12 +19,6 @@ feature "hopscotch kits flow", js: true do
         page.should have_content(steps[0].title)
       end
     end
-    click_on("more info")
-    within "#more_info" do
-      page.should have_content(steps[0].more_info.split('. ').last)
-    end
-    click_on("less info")
-    page.should have_css("#more_info", visible: false)
 
     within ".specs" do
       page.should have_css("div.unchecked")
@@ -47,8 +42,6 @@ feature "hopscotch kits flow", js: true do
         page.should have_content(steps[1].title)
       end
     end
-    page.should have_css("img[src='/assets/step_images/#{steps[1].image_url}']")
-    page.should have_css("#more_info")
 
     page.execute_script("window.editor.getSession().setValue('#{steps[1].solution.gsub("\r", ";").gsub("\n", ";")}')")
     click_on("run this")
