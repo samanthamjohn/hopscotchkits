@@ -14,7 +14,6 @@
     margin-right: 47px;
     position: relative;
     width: 256px;
-    height: 313px;
     img {
       position: absolute;
   }
@@ -59,7 +58,7 @@
       width: 130px;
       height: 180px;
       .form {
-        width: 150px;
+        width: 157px;
         height: 150px;
       }
     }
@@ -76,7 +75,7 @@
       background: #3F9CBA;
       color: white;
       padding: 10px;
-      width: 117px;
+      width: 142px;
       font-size: 20px;
       margin: 5px 0 10px;
       font-family: "MavenProBold";
@@ -117,6 +116,11 @@
    }
  }
 
+ .new_program {
+   .ui-button {
+     display: none;
+   }
+ }
   .ui-button {
     margin-right: 10px;
     float: right;
