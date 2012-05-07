@@ -1,0 +1,20 @@
+---
+id: 4ed07650-7ac2-012f-e23e-1231381950af
+setup:
+  commands:
+  - bundle install --without development production
+  - bundle exec rake db:migrate
+  - bundle exec rake db:seed
+test:
+  commands:
+  - bundle exec rake
+deploy:
+  branch: master
+  heroku:
+    staging:
+      name: kits-staging
+    production:
+      name: hopscotchkits
+      backup: false
+ruby_versions:
+- 1.9.2
