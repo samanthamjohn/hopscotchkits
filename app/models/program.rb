@@ -4,7 +4,7 @@ class Program < ActiveRecord::Base
   belongs_to :user
   has_many :snapshots
   validates :kit, presence: true
-  default_scope :order => 'updated_at DESC'
+  default_scope :order => 'programs.updated_at DESC'
 
   before_create :set_current_step
   before_save :set_name
