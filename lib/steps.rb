@@ -690,9 +690,11 @@ steps.each do |step|
     description = step['description']
     step['description'] = description.gsub('localhost:5000', ENV['host'])
   end
+
   if existing_step = Step.where(id: step['id']).first
     existing_step.update_attributes(step.reject{|k,v| k == 'id'})
   elsif existing_step = Step.where(position: step['position']).where(kit_id: step['kit_id']).first
+    puts step.inspect if step["position"] == 4
     existing_step.update_attributes(step.reject{|k,v| k == 'id'})
   else
     new_step = Step.new(step)
