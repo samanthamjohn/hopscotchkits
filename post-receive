@@ -1,0 +1,20 @@
+#!/bin/sh
+
+while read oldrev newrev ref
+do
+    echo "STARTING [$oldrev $newrev $ref]"
+    email=`git log $newrev --format=%ce -n 1`
+    name=`git log $newrev --format=%cn -n 1`
+    message=`git log $newrev --format=%B -n 1`
+    echo $email
+
+    wget --post-data "payload={\"ref\":\"$ref\", \
+      \"after\":\"$newrev\", \
+      \"commits\": \
+      [{ \
+        \"id\":\"$newrev\", \
+        \"author\":{\"email\":\"$email\", \"name\":\"$name\"}, \
+        \"message\":\"$message\" \
+      }] \
+    }" https://railsonfire.com/hook/fa51a960-8046-012f-5cf9-1231392d83c1
+done
