@@ -41,7 +41,7 @@ kits = [{"id"=>3,
  "created_at"=>"2012-02-15 14:53:09 UTC",
  "updated_at"=>"2012-02-15 14:53:09 UTC",
  "icon_url"=>"quiz-icon.png",
- "published"=>true,
+ "published"=>false,
  "blurb"=>"Make a quiz you can play on your computer or your phone."},
 {"id"=>2,
  "name"=>"Tic-Tac-Toe",
@@ -68,7 +68,7 @@ kits = [{"id"=>3,
  "created_at"=>"2012-03-20 19:11:57 UTC",
  "updated_at"=>"2012-03-27 16:44:38 UTC",
  "icon_url"=>"mole-icon.png",
- "published"=>true,
+ "published"=>false,
  "blurb"=>"Program your own Whack-a-mole game using CoffeeScript and Raphael."}]
 Kit.where(name: nil).each do |kit|
   kit.destroy
