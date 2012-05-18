@@ -43,7 +43,6 @@ end
 group :test do
   gem 'database_cleaner'
   gem 'capybara'
-  gem 'fixture_builder'
   gem 'ruby-debug19'
   gem "shoulda-matchers"
   gem 'simplecov'
