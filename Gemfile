@@ -5,6 +5,7 @@ gem 'devise'
 gem 'googlecharts'
 gem 'jquery-rails'
 gem 'rails', '3.2'
+gem 'mongrel', '1.2.0.pre2'
 gem 'simple_form'
 gem 'pg'
 gem 'slim-rails'
@@ -29,7 +30,6 @@ group :development, :test do
   gem 'auto_tagger'
   gem 'foreman'
   gem "rspec-rails"
-  gem 'mongrel', '1.2.0.pre2'
   gem "taps"
   gem "yaml_db"
 end
