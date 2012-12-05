@@ -1,10 +1,27 @@
 html
   head
     title= @body_class == "admin-kit" ? "Hopscotch admin" : "Hopscotch"
+
     = stylesheet_link_tag    "application"
     script src='/assets/ace.js'
     = javascript_include_tag "application"
     = csrf_meta_tags
+    - description = "A fun way to create and share your own javascript programs in the browser."
+    - image = "http://www.hopscotchkits.com/assets/images/logo_large.png"
+    - title = "Hopscotch Kits"
+    - url = "http://www.hopscotchkits.com"
+    meta name="twitter:card" content="summary"
+    meta name="twitter:url" content=url
+    meta name="twitter:title" content=title
+    meta name="twitter:description" content=description
+    meta name="twitter:site" content="hopscotchkits"
+    meta name="twitter:image" content=image
+
+    meta property="og:url" content=url
+    meta property="og:site_name" content=title
+    meta property="og:title" content=title
+    meta property="og:image" content=image
+    meta property="og:description" content=description
     javascript:
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-29069109-1']);
